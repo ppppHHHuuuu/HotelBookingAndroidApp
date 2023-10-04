@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "MobDev_Nhom7"
 include(":app")
- 
