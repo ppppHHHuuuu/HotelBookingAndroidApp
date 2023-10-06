@@ -82,6 +82,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="33dp"
@@ -111,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/lower_case_characters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text = "0/10"/>
@@ -130,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/upper_case_characters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text = "0/1"/>
