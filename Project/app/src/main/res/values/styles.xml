@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PrimaryButtonStyle">
+        <item name="android:background">#FF5733</item>
+    </style>
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">45dp</item>
+    </style>
+</resources>
