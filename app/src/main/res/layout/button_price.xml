@@ -5,6 +5,7 @@
     android:layout_width="350dp"
     android:layout_height="110dp"
     android:background="@drawable/pricebutton"
+    android:clickable="true"
     tools:layout_editor_absoluteX="-11dp"
     tools:layout_editor_absoluteY="0dp">
 
