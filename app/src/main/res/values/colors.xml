@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="AppGrey">#EBECED</color>
+    <color name="DarkGrey">#737373</color>
+    <color name="TextGrey">#70757A</color>
+    <color name="ButtonColor">#007FAD</color>
 </resources>
