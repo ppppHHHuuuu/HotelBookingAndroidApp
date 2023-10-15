@@ -9,17 +9,21 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity2 extends AppCompatActivity {
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+public class NewPassword extends AppCompatActivity {
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_new_password);
         Intent message = getIntent();
 
         TextView emailText = findViewById(R.id.email_text);
@@ -42,6 +46,25 @@ public class MainActivity2 extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {}
+        });
+
+        Button registerButton = findViewById(R.id.register_button);
+        registerButton.setOnClickListener(v -> {
+            String email = emailText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(NewPassword.this, "createUserWithEmail:success",
+                                    Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Log.d("Current User", user.getEmail());
+                        } else {
+                            Log.w("Login Status", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(NewPassword.this, task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
     }
 
