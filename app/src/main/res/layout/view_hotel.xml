@@ -8,7 +8,6 @@
     tools:context=".ViewHotel">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -49,16 +48,14 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <GridLayout
+        <LinearLayout
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="12dp"
-            android:columnCount="1"
-            android:rowCount="3"
-            android:layout_width="340dp"
             android:layout_gravity="center"
-            >
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="12dp"
+            android:orientation="vertical">
 
             <include
                 android:id="@+id/button1"
@@ -67,20 +64,20 @@
                 android:layout_height="110dp" />
 
             <include
-                android:layout_marginTop="20dp"
-                android:id="@+id/button1"
+                android:id="@+id/button2"
                 layout="@layout/button_price"
                 android:layout_width="fill_parent"
-                android:layout_height="110dp" />
+                android:layout_height="110dp"
+                android:layout_marginTop="20dp" />
 
             <include
-                android:layout_marginTop="20dp"
-                android:id="@+id/button1"
+                android:id="@+id/button3"
                 layout="@layout/button_price"
                 android:layout_width="fill_parent"
-                android:layout_height="110dp" />
+                android:layout_height="110dp"
+                android:layout_marginTop="20dp" />
 
-        </GridLayout>
+        </LinearLayout>
 
 
         <View
