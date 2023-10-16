@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/stays"
+        android:icon="@drawable/hotel_selector"
+        android:title="Stays"></item>
+    <item
+        android:id="@+id/favourites"
+        android:icon="@drawable/heart_selector"
+        android:title="Favourites"></item>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings_selector"
+        android:title="Settings"></item>
+</menu>

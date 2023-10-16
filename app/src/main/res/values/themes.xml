@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MobDev_Nhom7" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/avenir_rgl</item>
+        <item name="android:actionMenuTextColor">#FF0000</item>
+    </style>
 
-    <style name="Theme.MobDev_Nhom7" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.MobDev_Nhom7" parent="Base.Theme.MobDev_Nhom7" />
 </resources>
