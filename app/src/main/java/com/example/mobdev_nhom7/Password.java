@@ -37,7 +37,10 @@ public class Password extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

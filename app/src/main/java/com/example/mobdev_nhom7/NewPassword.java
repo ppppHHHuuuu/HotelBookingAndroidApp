@@ -60,10 +60,12 @@ public class NewPassword extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(NewPassword.this, "createUserWithEmail:success",
-                                    Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d("Current User", user.getEmail());
+//                            Toast.makeText(NewPassword.this, "createUserWithEmail:success",
+//                                    Toast.LENGTH_SHORT).show();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
                         } else {
                             Log.w("Login Status", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(NewPassword.this, task.getException().getMessage(),
@@ -74,7 +76,6 @@ public class NewPassword extends AppCompatActivity {
     }
 
     private Pair<Integer, Integer> passwordCheck(String password) {
-        Log.d("aaa", password);
         int dem1 = password.length();
         int dem2 = 0;
         for (char ch : password.toCharArray()) {

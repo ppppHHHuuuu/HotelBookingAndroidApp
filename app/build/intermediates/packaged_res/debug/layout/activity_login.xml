@@ -46,24 +46,26 @@
             android:id="@+id/email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="33dp"
             android:layout_marginTop="5dp"
+            android:background="@drawable/custom_edittext"
+            android:minHeight="33dp"
             android:paddingHorizontal="5dp"
             android:paddingVertical="10dp"
             android:textSize="12sp"
-            android:background="@drawable/custom_edittext" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
             android:layout_marginTop="5dp"
+            android:minHeight="45dp"
+            android:text="Tiếp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
             app:backgroundTint="#006ECB"
             app:cornerRadius="5dp"
-            android:text="Tiếp"
-            android:textSize="12sp"
-            android:textColor="@color/white" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,48 +101,51 @@
             android:id="@+id/google_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
-            android:maxHeight="45dp"
             android:layout_marginTop="5dp"
-            app:backgroundTint="@color/white"
-            app:strokeColor="#000000"
-            app:strokeWidth="1dp"
-            app:cornerRadius="5dp"
             android:drawableLeft="@drawable/google_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
             android:text="Tiếp tục bằng Google"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:textColor="@color/black">
-        </Button>
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
 
         <Button
             android:id="@+id/apple_continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
             android:layout_marginTop="5dp"
-            app:backgroundTint="@color/white"
-            app:strokeColor="#000000"
-            app:strokeWidth="1dp"
-            app:cornerRadius="5dp"
             android:drawableLeft="@drawable/apple_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
             android:text="Tiếp tục bằng Apple"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:textColor="@color/black" />
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+
 
         <Button
             android:id="@+id/facebook_continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
             android:layout_marginTop="5dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="1dp"
-            app:cornerRadius="5dp"
-            app:backgroundTint="@color/white"
             android:drawableLeft="@drawable/facebook_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
             android:text="Tiếp tục bằng Facebook"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:textColor="@color/black" />
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+
 
         <TextView
             android:layout_width="wrap_content"

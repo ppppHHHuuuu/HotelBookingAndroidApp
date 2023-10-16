@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="AppGrey">#EBECED</color>
+    <color name="ButtonColor">#007FAD</color>
+    <color name="DarkGrey">#737373</color>
+    <color name="TextBoldGrey">#575A5E</color>
+    <color name="TextGrey">#70757A</color>
+    <color name="TextLowLight">#CAC9C9</color>
     <color name="black">#FF000000</color>
     <color name="black_with_alpha">#40000000</color>
+    <color name="green">#2ADC31</color>
+    <color name="red">#EF0454</color>
     <color name="white">#FFFFFFFF</color>
-    <string name="app_name">Login Section</string>
+    <string name="app_name">MobDev_Nhom7</string>
     <string name="default_web_client_id" translatable="false">979262975653-af89ac3url9bo6krjl9hf1iupmsvsqho.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">979262975653</string>
     <string name="google_api_key" translatable="false">AIzaSyBCo0hfDiYROUw5CFxVu1HjNhsT5B7MK6I</string>
     <string name="google_app_id" translatable="false">1:979262975653:android:e97c013c8ab14a36a6e74c</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBCo0hfDiYROUw5CFxVu1HjNhsT5B7MK6I</string>
     <string name="google_storage_bucket" translatable="false">hotel-management-applica-2820c.appspot.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="project_id" translatable="false">hotel-management-applica-2820c</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <style name="Base.Theme.MobDev_Nhom7" parent="Theme.Material3.DayNight.NoActionBar">
-        
-        
+    <style name="Base.Theme.MobDev_Nhom7" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/avenir_rgl</item>
+        <item name="android:actionMenuTextColor">#FF0000</item>
     </style>
     <style name="Theme.MobDev_Nhom7" parent="Base.Theme.MobDev_Nhom7"/>
 </resources>
