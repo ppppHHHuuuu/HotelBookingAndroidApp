@@ -1,0 +1,122 @@
+[
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_apple.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/apple.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_custom_edittext.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/custom_edittext.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_password_reset.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_password_reset.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_hide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hide_eye.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_login.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/xml_backup_rules.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_facebook_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/facebook_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_new_password.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_new_password.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_unhide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/unhide_eye.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_apple_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/apple_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_password.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_password.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_back_arrow_xml.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_back_arrow_xml.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_google.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/google.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_facebook.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/facebook.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_google_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/google_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    }
+]
