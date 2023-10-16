@@ -158,6 +158,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateRoomLayout" />
         <Button
+            android:id="@+id/buttonSearch"
             android:backgroundTint="@color/ButtonColor"
             android:background="@drawable/search_button"
             android:layout_width="match_parent"
