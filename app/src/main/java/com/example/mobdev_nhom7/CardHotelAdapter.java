@@ -1,7 +1,6 @@
-package com.build.mobdev_nhom7;
+package com.example.mobdev_nhom7;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mobdev_nhom7.R;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mobdev_nhom7">
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -9,16 +9,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.MobDev_Nhom7"
         tools:targetApi="31">
         <activity
-            android:name=".FavHotelActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MobDev_Nhom7">
-        <activity
-            android:name=".FilterOptionActivity"
+            android:name=".FilterOptionsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
