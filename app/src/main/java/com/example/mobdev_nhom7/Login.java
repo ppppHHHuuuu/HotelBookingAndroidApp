@@ -113,8 +113,10 @@ public class Login extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        FirebaseUser user = mAuth.getCurrentUser();
+//                        Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+//                        FirebaseUser user = mAuth.getCurrentUser();
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
