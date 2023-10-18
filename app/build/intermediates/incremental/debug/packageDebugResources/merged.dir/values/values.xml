@@ -26,4 +26,7 @@
         <item name="android:actionMenuTextColor">#FF0000</item>
     </style>
     <style name="Theme.MobDev_Nhom7" parent="Base.Theme.MobDev_Nhom7"/>
+    <style name="progressBarStyle" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_drawable</item>
+    </style>
 </resources>

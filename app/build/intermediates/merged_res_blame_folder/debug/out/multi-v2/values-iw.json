@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-3:/values-iw/values-iw.xml",
+            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-33:/values-iw/values-iw.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\dcb130395ddb6a573c6d1b2763b218c2\\transformed\\play-services-basement-18.2.0\\res\\values-iw\\values.xml",

@@ -42,6 +42,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.MobDev_Nhom7" >
         <activity
+            android:name="com.example.mobdev_nhom7.ViewHotel"
+            android:exported="false" />
+        <activity
             android:name="com.example.mobdev_nhom7.PasswordReset"
             android:exported="false" />
         <activity

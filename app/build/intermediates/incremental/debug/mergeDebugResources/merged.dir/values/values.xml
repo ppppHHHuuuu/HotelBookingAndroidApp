@@ -9085,6 +9085,9 @@
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
     </style>
+    <style name="progressBarStyle" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_drawable</item>
+    </style>
     <declare-styleable name="ActionBar">
         
         <attr name="navigationMode">

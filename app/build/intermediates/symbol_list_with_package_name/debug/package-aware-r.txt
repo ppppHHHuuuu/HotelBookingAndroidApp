@@ -2996,6 +2996,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable divider
 drawable edit_background
+drawable expedia
 drawable facebook
 drawable facebook_icon
 drawable filter
@@ -3007,6 +3008,7 @@ drawable heart_icon
 drawable heart_icon_checked
 drawable heart_selector
 drawable hide_eye
+drawable hotel
 drawable hotel_1
 drawable hotel_2
 drawable hotel_3
@@ -3087,7 +3089,9 @@ drawable mtrl_switch_thumb_unchecked_pressed
 drawable mtrl_switch_track
 drawable mtrl_switch_track_decoration
 drawable mtrl_tabs_default_indicator
+drawable mybutton
 drawable navigation_empty_icon
+drawable next
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -3101,21 +3105,33 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable order
+drawable overviewbutton
+drawable parking
+drawable pet
+drawable pool
+drawable pricebutton
+drawable progress_bar_drawable
 drawable rounded_background
 drawable rounded_border
 drawable search_button
 drawable settings_icon
 drawable settings_icon_checked
 drawable settings_selector
+drawable spa
+drawable telephone
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable top_rounded_background
 drawable trivago_logo
 drawable unhide_eye
+drawable wifi
 font avenir_bold
 font avenir_lt
 font avenir_rgl
+font poppins_bold
+font poppins_extrabold
+font poppins_regular
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3224,6 +3240,9 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id button1
+id button2
+id button3
 id buttonPanel
 id buttonSearch
 id cache_measures
@@ -3489,11 +3508,13 @@ id password_toggle
 id path
 id pathRelative
 id peekHeight
+id people
 id percent
 id pin
 id position
 id postLayout
 id pressed
+id price
 id progress_circular
 id progress_horizontal
 id radio
@@ -3508,6 +3529,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id room
 id roomsDisplay
 id roomsView
 id rounded
@@ -3797,6 +3819,7 @@ layout activity_password
 layout activity_password_reset
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
+layout button_price
 layout card_hotel
 layout card_hotel_2
 layout custom_dialog
@@ -3879,6 +3902,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout view_hotel
 menu bottom_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -5177,6 +5201,7 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style progressBarStyle
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
