@@ -69,6 +69,7 @@ id favourites
 id forgot_password_text
 id frameLayout
 id google_login
+id hide_image
 id imageHotel
 id imageView
 id layoutIntroduce
@@ -125,6 +126,7 @@ string google_storage_bucket
 string hello_blank_fragment
 string project_id
 string title_activity_maps
+string user_info
 style Base.Theme.MobDev_Nhom7
 style Theme.MobDev_Nhom7
 xml backup_rules

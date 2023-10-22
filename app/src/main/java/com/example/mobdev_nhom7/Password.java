@@ -3,18 +3,25 @@ package com.example.mobdev_nhom7;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Password extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private Boolean hiddenPassword = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,20 @@ public class Password extends AppCompatActivity {
 
         EditText passwordEditText = findViewById(R.id.password_edit_text);
 
+        ImageView hideImage = findViewById(R.id.hide_image);
+        hideImage.setOnClickListener(v -> {
+            if (!hiddenPassword) {
+                hideImage.setImageResource(R.drawable.hide_eye);
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                hideImage.setImageResource(R.drawable.unhide_eye);
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+
+            passwordEditText.setSelection(passwordEditText.getText().length());
+            hiddenPassword = !hiddenPassword;
+        });
+
         Button registerButton = findViewById(R.id.login_button);
         registerButton.setOnClickListener(v -> {
             String email = emailText.getText().toString();
@@ -37,7 +58,14 @@ public class Password extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-//                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            SharedPreferences sharedPreferences = this.getSharedPreferences(
+                                    getString(R.string.user_info), Context.MODE_PRIVATE
+                            );
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("email", user.getEmail());
+                            editor.putString("provider", user.getProviderId());
+                            editor.apply();
 
                             Intent intent = new Intent(this, MainActivity.class);
                             startActivity(intent);
