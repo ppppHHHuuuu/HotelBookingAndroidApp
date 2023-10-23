@@ -34,6 +34,41 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        getByName("main") {
+            res {
+                srcDirs("src\\main\\res", "src\\main\\res\\login",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\login", "src\\main\\res", "src\\main\\res\\layouts\\sign-up",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\component", "src\\main\\res", "src\\main\\res\\layouts\\main",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\main\\fragments", "src\\main\\res", "src\\main\\res\\layouts\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\main-activity\\layout", "src\\main\\res", "src\\main\\res\\layouts\\sign-up\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\main-page", "src\\main\\res", "src\\main\\res\\layouts\\main-page",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\main-page\\layout", "src\\main\\res", "src\\main\\res\\layouts\\components\\button",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\components\\toast",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\components\\button\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\hotel-detail",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\hotel-detail\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\components\\cards",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\components\\cards\\layout"
+                )
+            }
+            assets {
+                srcDirs("src\\main\\assets", "src\\main\\res\\assets")
+            }
+        }
+    }
 }
 
 dependencies {

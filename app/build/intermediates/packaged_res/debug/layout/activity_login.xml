@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".activity.Login">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
+        android:text="Nhóm 7"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="50dp"
+        android:paddingTop="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập hoặc tạo tài khoản"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Địa chỉ email của bạn"
+            android:textStyle="bold"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/custom_edittext"
+            android:minHeight="33dp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minHeight="45dp"
+            android:text="Tiếp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="#006ECB"
+            app:cornerRadius="5dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="HOẶC"
+                android:textSize="13sp"
+                android:textColor="#99000000" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#000000" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/google_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/google_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
+            android:text="Tiếp tục bằng Google"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/apple_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/apple_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
+            android:text="Tiếp tục bằng Apple"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+
+
+        <Button
+            android:id="@+id/facebook_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/facebook_icon"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
+            android:text="Tiếp tục bằng Facebook"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="5dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Bằng việc tạo tài khoản, bạn đồng ý với Chính sách riêng tư và Điều khoản sử dụng của chúng tôi"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
