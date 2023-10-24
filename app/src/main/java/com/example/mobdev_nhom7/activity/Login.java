@@ -2,7 +2,6 @@ package com.example.mobdev_nhom7.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.mobdev_nhom7.R;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,6 +22,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.example.mobdev_nhom7.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

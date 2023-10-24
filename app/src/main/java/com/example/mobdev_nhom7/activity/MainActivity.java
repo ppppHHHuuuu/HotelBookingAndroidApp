@@ -14,7 +14,6 @@ import com.example.mobdev_nhom7.fragment.main_activity.SettingsFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 
 public class MainActivity extends AppCompatActivity {
-
     ActivityMainBinding binding;
 
     @Override
