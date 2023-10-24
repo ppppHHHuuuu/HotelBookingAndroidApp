@@ -1,2 +1,4 @@
-package com.example.mobdev_nhom7.remote;public class APIService {
+package com.example.mobdev_nhom7.remote;
+public interface APIService {
+
 }

@@ -1,2 +1,12 @@
-package com.example.mobdev_nhom7;public class MyApplication {
+package com.example.mobdev_nhom7;
+
+import android.app.Application;
+import com.google.firebase.FirebaseApp;
+
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        FirebaseApp.initializeApp(this); // Initialize Firebase
+    }
 }

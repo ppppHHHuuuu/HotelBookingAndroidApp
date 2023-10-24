@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -61,7 +62,9 @@ android {
                     "src\\main\\res",
                     "src\\main\\res\\layouts\\components\\cards",
                     "src\\main\\res",
-                    "src\\main\\res\\layouts\\components\\cards\\layout"
+                    "src\\main\\res\\layouts\\components\\cards\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\login\\layout"
                 )
             }
             assets {
@@ -72,7 +75,16 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.retrofit2:retrofit:2.1.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.1.0")
 
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+    testImplementation("junit:junit:4.12")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -80,3 +92,4 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
+

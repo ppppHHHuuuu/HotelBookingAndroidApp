@@ -18,9 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mobdev_nhom7.R;
 
-import com.example.mobdev_nhom7.activity.MainActivity;
+import com.example.mobdev_nhom7.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 public class NewPassword extends AppCompatActivity {
