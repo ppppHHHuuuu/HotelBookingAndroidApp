@@ -68,6 +68,7 @@ font poppins_regular
 id apple_continue
 id back_button
 id bottomNav
+id btn_editAcc_save
 id button1
 id button2
 id button3
@@ -81,6 +82,10 @@ id desTextView
 id divider1
 id divider2
 id divider3
+id editTextPhone
+id editTextText2
+id editTextTextEmailAddress
+id editText_name
 id email_edit_text
 id email_text
 id facebook_continue
@@ -88,6 +93,7 @@ id favourites
 id forgot_password_text
 id frameLayout
 id google_login
+id hide_image
 id imageHotel
 id imageView
 id layoutIntroduce
@@ -149,6 +155,7 @@ string google_storage_bucket
 string hello_blank_fragment
 string project_id
 string title_activity_maps
+string user_info
 style Base.Theme.MobDev_Nhom7
 style Theme.MobDev_Nhom7
 style progressBarStyle

@@ -3240,6 +3240,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn_editAcc_save
 id button1
 id button2
 id button3
@@ -3327,6 +3328,10 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editTextPhone
+id editTextText2
+id editTextTextEmailAddress
+id editText_name
 id edit_query
 id elastic
 id email_edit_text
@@ -3370,6 +3375,7 @@ id group_divider
 id grouping
 id groups
 id header_title
+id hide_image
 id hideable
 id home
 id homeAsUp
@@ -4098,6 +4104,7 @@ string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
 string title_activity_maps
+string user_info
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

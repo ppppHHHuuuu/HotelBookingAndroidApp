@@ -21,11 +21,11 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_main.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_main.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/main-page/layout/activity_main.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_fragment_stays.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/fragment_stays.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/main-page/layout/fragment_stays.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_facebook_icon.xml.flat",
@@ -73,11 +73,11 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_fragment_settings.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/fragment_settings.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/main-page/layout/fragment_settings.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_view_hotel.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/view_hotel.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/hotel-detail/layout/view_hotel.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_order.xml.flat",
@@ -101,7 +101,7 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_new_password.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_new_password.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/sign-up/layout/activity_new_password.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_hotel_3.jpg.flat",
@@ -117,7 +117,7 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_password_reset.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_password_reset.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/login/layout/activity_password_reset.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_hide_eye.png.flat",
@@ -193,7 +193,7 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_button_price.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/button_price.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/components/button/layout/button_price.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_heart_icon.xml.flat",
@@ -217,7 +217,7 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_password.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_password.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/login/layout/activity_password.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/font_poppins_extrabold.ttf.flat",
@@ -229,7 +229,7 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_login.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_login.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/login/layout/activity_login.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -257,11 +257,11 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_card_hotel.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/card_hotel.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/components/cards/layout/card_hotel.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_fragment_favourites.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/fragment_favourites.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/main-page/layout/fragment_favourites.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_google.png.flat",
@@ -289,11 +289,11 @@
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_activity_filter_options.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/activity_filter_options.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/login/layout/activity_filter_options.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/layout_card_hotel_2.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-37:/layout/card_hotel_2.xml"
+        "source": "com.example.mobdev_nhom7.app-main-37:/layouts/components/cards/layout/card_hotel_2.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-35:/drawable_google_icon.xml.flat",

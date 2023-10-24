@@ -42,25 +42,25 @@
         android:testOnly="true"
         android:theme="@style/Theme.MobDev_Nhom7" >
         <activity
-            android:name="com.example.mobdev_nhom7.ViewHotel"
+            android:name="com.example.mobdev_nhom7.activity.ViewHotel"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.PasswordReset"
+            android:name="com.example.mobdev_nhom7.activity.PasswordReset"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.NewPassword"
+            android:name="com.example.mobdev_nhom7.activity.NewPassword"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.Password"
+            android:name="com.example.mobdev_nhom7.activity.Password"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.MainActivity"
+            android:name="com.example.mobdev_nhom7.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.FilterOptionsActivity"
+            android:name="com.example.mobdev_nhom7.activity.FilterOptionsActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.Login"
+            android:name="com.example.mobdev_nhom7.activity.Login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
