@@ -172,6 +172,10 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-7:\\layout\\fragment_favourites.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_login.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_login.xml"
+    },
+    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-5:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-7:\\mipmap-mdpi\\ic_launcher.webp"
     },
