@@ -8,6 +8,8 @@
         android:minSdkVersion="26"
         android:targetSdkVersion="33" />
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <!-- Include required permissions for Google Maps API to run. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,22 +44,22 @@
         android:testOnly="true"
         android:theme="@style/Theme.MobDev_Nhom7" >
         <activity
-            android:name="com.example.mobdev_nhom7.PasswordReset"
+            android:name="com.example.mobdev_nhom7.activities.PasswordReset"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.NewPassword"
+            android:name="com.example.mobdev_nhom7.activities.NewPassword"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.Password"
+            android:name="com.example.mobdev_nhom7.activities.Password"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.MainActivity"
+            android:name="com.example.mobdev_nhom7.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.FilterOptionsActivity"
+            android:name="com.example.mobdev_nhom7.activities.FilterOptionsActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.Login"
+            android:name="com.example.mobdev_nhom7.activities.Login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

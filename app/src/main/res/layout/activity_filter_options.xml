@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/AppGrey"
     android:padding="8dp"
-    tools:context=".FilterOptionsActivity">
+    tools:context=".activities.FilterOptionsActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
