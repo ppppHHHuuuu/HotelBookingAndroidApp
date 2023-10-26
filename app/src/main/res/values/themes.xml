@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+
     <style name="Base.Theme.MobDev_Nhom7" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fontFamily">@font/avenir_rgl</item>
         <item name="android:actionMenuTextColor">#FF0000</item>

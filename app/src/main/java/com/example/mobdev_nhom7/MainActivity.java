@@ -13,7 +13,6 @@ import android.os.Bundle;
 import com.example.mobdev_nhom7.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
     ActivityMainBinding binding;
 
     @Override
