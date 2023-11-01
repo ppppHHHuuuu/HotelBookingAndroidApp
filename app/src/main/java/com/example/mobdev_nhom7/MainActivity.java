@@ -26,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             if(id==R.id.stays) {
                 replaceFragment(new StaysFragment());
+            } else if (id==R.id.cities) {
+
             } else if (id==R.id.favourites) {
                 replaceFragment(new FavouritesFragment());
+            } else if (id==R.id.trips) {
+                replaceFragment(new TripsFragment());
             } else if (id==R.id.settings) {
                 replaceFragment(new SettingsFragment());
             }

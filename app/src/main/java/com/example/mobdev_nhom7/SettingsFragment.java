@@ -1,5 +1,11 @@
 package com.example.mobdev_nhom7;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +13,53 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView profilePic;
+    Bitmap results, maskBitmap;
 
     public SettingsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        profilePic = view.findViewById(R.id.pfp);
+
+        Bitmap finalMasking = maskingProcess();
+        return view;
+    }
+
+    private Bitmap maskingProcess() {
+        try {
+            Bitmap original, mask;
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.demo_pfp);
+            mask = BitmapFactory.decodeResource(getResources(), R.drawable.circle_mask);
+
+            if (original != null) {
+                int width = original.getWidth();
+                int height = original.getHeight();
+                results = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                maskBitmap = Bitmap.createScaledBitmap(mask, width, height, true);
+
+                Canvas canvas = new Canvas(results);
+                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+
+                canvas.drawBitmap(original, 0, 0, null);
+                canvas.drawBitmap(maskBitmap,0,0,paint);
+                paint.setXfermode(null);
+                paint.setStyle(Paint.Style.STROKE);
+            }
+        } catch (OutOfMemoryError outOfMemoryError) {
+            outOfMemoryError.printStackTrace();
+        }
+
+        profilePic.setImageBitmap(results);
+        return results;
     }
 }
