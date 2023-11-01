@@ -9,9 +9,3 @@ buildscript {
 plugins {
     id("com.android.application") version "8.1.1" apply false
 }
-
-buildscript {
-    dependencies {
-        classpath("com.google.gms:google-services:4.3.10")
-    }
-}

@@ -56,15 +56,6 @@ public class FavouritesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_favourites, container, false);
-        // Inflate the layout for this fragment
-
-        // Assign variables to views using findViewById
-//        textHotelName = findViewById(R.id.textHotelName);
-//        textStarNumber = findViewById(R.id.textStarNumber);
-//        textCity = findViewById(R.id.textCity);
-//        textScore = findViewById(R.id.textScore);
-//        textRate = findViewById(R.id.textRate);
-//        textNumberofJudges = findViewById(R.id.textNumberofJudges);
         hotels = new ArrayList<String>(){{
             add("Hotel 1");
             add("Hotel 2");

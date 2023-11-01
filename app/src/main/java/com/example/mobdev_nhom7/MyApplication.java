@@ -1,6 +1,8 @@
 package com.example.mobdev_nhom7;
 
 import android.app.Application;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;
 
 public class MyApplication extends Application {
@@ -8,5 +10,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         FirebaseApp.initializeApp(this); // Initialize Firebase
+        Glide.with(this);
     }
 }
