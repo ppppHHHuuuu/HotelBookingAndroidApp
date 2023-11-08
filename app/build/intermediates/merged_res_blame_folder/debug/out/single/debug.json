@@ -16,6 +16,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hotel_selector.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_code_input_text.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/code_input_text.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_foreground.xml"
     },
@@ -28,8 +32,24 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_background.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_spa.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/spa.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_parking.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/parking.png"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_hotel_2.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/layout/card_hotel_2.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_code_input.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_code_input.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_blue_round_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/blue_round_background.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xhdpi_ic_launcher.webp.flat",
@@ -38,6 +58,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_trivago_logo.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/trivago_logo.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_next.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/next.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_search_button.xml.flat",
@@ -80,6 +104,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/unhide_eye.png"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_button_price.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/button_price.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_heart_icon_checked.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/heart_icon_checked.xml"
     },
@@ -98,6 +126,14 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/font_avenir_lt.otf.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/font/avenir_lt.otf"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_telephone.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/telephone.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/font_poppins_bold.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/font/poppins_bold.ttf"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_fragment_favourites.xml.flat",
@@ -128,6 +164,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/settings_icon.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_phone.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/phone.png"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_facebook.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/facebook.png"
     },
@@ -140,8 +180,16 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_main.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_pool.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/pool.png"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_phone_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/phone_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_hotel_icon_checked.xml.flat",
@@ -154,6 +202,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_custom_edittext.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/custom_edittext.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_progress_bar_drawable.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/progress_bar_drawable.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-hdpi_ic_launcher.webp.flat",
@@ -196,6 +248,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_login.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_hotel.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hotel.jpg"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
@@ -204,8 +260,16 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/heart_icon.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_phone_input.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/activity_phone_input.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_apple_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/apple_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_view_hotel.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layout/view_hotel.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/menu_bottom_menu.xml.flat",
@@ -220,8 +284,24 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hotel_3.jpg"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_mybutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/mybutton.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/font_poppins_extrabold.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/font/poppins_extrabold.ttf"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_heart_selector.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/heart_selector.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/font_poppins_regular.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/font/poppins_regular.ttf"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_wifi.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/wifi.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxhdpi_ic_launcher.webp.flat",
@@ -246,6 +326,22 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_google.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/google.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_overviewbutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/overviewbutton.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_pet.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/pet.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_pricebutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/pricebutton.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_expedia.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/expedia.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_top_rounded_background.xml.flat",

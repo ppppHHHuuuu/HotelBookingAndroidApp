@@ -9,6 +9,7 @@
     <color name="black">#FF000000</color>
     <color name="black_with_alpha">#40000000</color>
     <color name="green">#2ADC31</color>
+    <color name="light_black">#3C3C3C</color>
     <color name="red">#EF0454</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">MobDev_Nhom7</string>
@@ -27,4 +28,7 @@
         <item name="android:actionMenuTextColor">#FF0000</item>
     </style>
     <style name="Theme.MobDev_Nhom7" parent="Base.Theme.MobDev_Nhom7"/>
+    <style name="progressBarStyle" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_drawable</item>
+    </style>
 </resources>
