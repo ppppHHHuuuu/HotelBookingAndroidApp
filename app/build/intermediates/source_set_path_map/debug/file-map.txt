@@ -54,5 +54,6 @@ com.example.mobdev_nhom7.app-main-page-52 D:\University\Nam_3\Semester_1\Mobile_
 com.example.mobdev_nhom7.app-main-53 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\layouts\main\fragments
 com.example.mobdev_nhom7.app-layouts-54 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\layouts\sign-up
 com.example.mobdev_nhom7.app-sign-up-55 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\layouts\sign-up\layout
-com.example.mobdev_nhom7.app-res-56 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\login
-com.example.mobdev_nhom7.app-res-57 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\main-page
+com.example.mobdev_nhom7.app-trip-page-56 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\layouts\trip-page\layout
+com.example.mobdev_nhom7.app-res-57 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\login
+com.example.mobdev_nhom7.app-res-58 D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\res\main-page

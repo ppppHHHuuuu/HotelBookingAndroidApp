@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="light_black">#3C3C3C</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black_with_alpha">#40000000</color>
     <color name="AppGrey">#EBECED</color>
@@ -11,5 +12,6 @@
     <color name="ButtonColor">#007FAD</color>
     <color name="green">#2ADC31</color>
     <color name="red">#EF0454</color>
+    <color name="modern_red">#FF5454</color>
 
 </resources>
