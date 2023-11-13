@@ -11,20 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.hotel.HotelItem;
 
 import java.util.ArrayList;
 
 public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavHotelViewHolder> {
     Context context;
-    ArrayList<HotelItem> hotels;
+    ArrayList hotels, stars, cities, scores, rates, judges;
+    ArrayList<Integer> images; // Add images ArrayList
 
-    public CardHotelAdapter(Context context,
-                            ArrayList<HotelItem> hotels) {
+    public CardHotelAdapter(Context context, ArrayList<String> hotels, ArrayList<String> stars, ArrayList<String> cities, ArrayList<String> scores, ArrayList<String> rates, ArrayList<String> judges, ArrayList<Integer> images) {
         this.context = context;
         this.hotels = hotels;
+        this.stars = stars;
+        this.cities = cities;
+        this.scores = scores;
+        this.rates = rates;
+        this.judges = judges;
+        this.images = images;
     }
-
     @NonNull
     @Override
     public FavHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,19 +39,19 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
 
     @Override
     public void onBindViewHolder(@NonNull FavHotelViewHolder holder, int position) {
-        HotelItem hotelItem = hotels.get(position);
-        holder.textCity.setText(String.valueOf(hotelItem.getCity()));
-        holder.textStarNumber.setText(String.valueOf(hotelItem.getStar()));
-        holder.textNumberofJudges.setText(String.valueOf(hotelItem.getJudge()));
-        holder.textScore.setText(String.valueOf(hotelItem.getScore()));
-        holder.textRate.setText(String.valueOf(hotelItem.getRate()));
-        holder.textHotelName.setText(String.valueOf(hotelItem.getName()));
-        holder.imagesHotel.setImageResource(hotelItem.getImage());
+        holder.textCity.setText(String.valueOf(cities.get(position)));
+        holder.textStarNumber.setText(String.valueOf(stars.get(position)));
+        holder.textNumberofJudges.setText(String.valueOf(judges.get(position)));
+        holder.textScore.setText(String.valueOf(scores.get(position)));
+        holder.textRate.setText(String.valueOf(rates.get(position)));
+        holder.textHotelName.setText(String.valueOf(hotels.get(position)));
+        holder.imagesHotel.setImageResource(images.get(position));
+
     }
 
     @Override
     public int getItemCount() {
-        return hotels.size();
+        return hotels.size(); // Return the number of hotels in the list
     }
 
     public class FavHotelViewHolder extends RecyclerView.ViewHolder{

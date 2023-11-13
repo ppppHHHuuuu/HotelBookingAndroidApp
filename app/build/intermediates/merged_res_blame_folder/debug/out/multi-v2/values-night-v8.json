@@ -4,7 +4,7 @@
             "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-3:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\UET\\MobDev\\BTL\\Nhap\\MobDev21_Nhom-07\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "source": "C:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
