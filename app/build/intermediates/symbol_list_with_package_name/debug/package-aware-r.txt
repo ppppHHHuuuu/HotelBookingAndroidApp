@@ -2964,6 +2964,7 @@ drawable apple
 drawable apple_icon
 drawable avd_hide_password
 drawable avd_show_password
+drawable blue_round_background
 drawable bookmark
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3037,6 +3038,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable image_border
 drawable location
 drawable location_icon
 drawable location_icon_checked
@@ -3122,13 +3124,17 @@ drawable order
 drawable overviewbutton
 drawable parking
 drawable pet
+drawable phone
+drawable phone_icon
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
 drawable progress_bar_drawable
 drawable rounded_background
 drawable rounded_border
+drawable rounded_button_white
 drawable rounded_profile_tags
+drawable search_box_border
 drawable search_button
 drawable settings_icon
 drawable settings_icon_checked
@@ -3218,7 +3224,6 @@ id action_mode_close_button
 id action_text
 id actions
 id active_btn
-id active_trips
 id activity_chooser_view_content
 id add
 id adjust_height
@@ -3232,7 +3237,6 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
-id apple_continue
 id arc
 id asConfigured
 id async
@@ -3251,7 +3255,6 @@ id booking_detail
 id booking_icon
 id booking_tag
 id bottom
-id bottomBlock
 id bottomNav
 id bounce
 id bounceBoth
@@ -3265,13 +3268,15 @@ id browser_actions_menu_view
 id button1
 id button2
 id button3
+id button4
+id button5
 id buttonPanel
 id buttonSearch
 id cache_measures
 id callMeasure
 id cancel_button
 id cancelled_btn
-id cancelled_trips
+id cardHotel
 id carryVelocity
 id center
 id centerCrop
@@ -3286,6 +3291,7 @@ id checked
 id chronometer
 id circle_center
 id cities
+id cityName
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3299,6 +3305,7 @@ id container
 id content
 id contentPanel
 id contiguous
+id continue_button
 id continuousVelocity
 id coordinator
 id cos
@@ -3334,7 +3341,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
-id distanceIcon
+id distance
 id divider1
 id divider2
 id divider3
@@ -3365,7 +3372,6 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id facebook_continue
 id fade
 id favourites
 id fill
@@ -3388,6 +3394,7 @@ id frost
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id google_login
 id graph
@@ -3396,6 +3403,7 @@ id group_divider
 id grouping
 id groups
 id header_title
+id hide_image
 id hideable
 id home
 id homeAsUp
@@ -3409,6 +3417,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageCity
 id imageHotel
 id imageView
 id immediateStop
@@ -3431,8 +3440,9 @@ id light
 id line1
 id line3
 id linear
-id linearLayout
 id linearLayout2
+id linearLayout4
+id linearLayoutDestination
 id listMode
 id list_item
 id login_button
@@ -3507,7 +3517,6 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
-id new_password_edit_text
 id noScroll
 id noState
 id none
@@ -3519,6 +3528,12 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
+id otp_1
+id otp_2
+id otp_3
+id otp_4
+id otp_5
+id otp_6
 id outline
 id outward
 id overshoot
@@ -3529,16 +3544,17 @@ id parentPanel
 id parentRelative
 id parent_matrix
 id password_edit_text
-id password_login_button
 id password_toggle
 id past_btn
-id past_trips
 id path
 id pathRelative
 id peekHeight
 id people
 id percent
 id pfp
+id phone_edit_text
+id phone_login
+id phone_text
 id pin
 id placeholder_view
 id position
@@ -3553,9 +3569,11 @@ id profile_tag
 id progress_circular
 id progress_horizontal
 id radio
+id rating
 id ratio
 id rectangles
 id recycleView
+id recycle_view
 id recyclerView
 id register_button
 id resend_button
@@ -3582,6 +3600,7 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchBar
+id searchView
 id search_badge
 id search_bar
 id search_bar_text_view
@@ -3677,6 +3696,7 @@ id textHotel
 id textHotelName
 id textJudge
 id textLastBookingTime
+id textLocation
 id textNumberofJudges
 id textRate
 id textScore
@@ -3685,6 +3705,9 @@ id textSpacerNoTitle
 id textStarNumber
 id textStart
 id textTop
+id textView
+id textView7
+id textView8
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3710,6 +3733,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tripDescription
 id trips
 id unchecked
 id uniform
@@ -3853,17 +3877,21 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_code_input
 layout activity_filter_options
 layout activity_login
 layout activity_main
 layout activity_new_password
 layout activity_password
 layout activity_password_reset
+layout activity_phone_input
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
+layout card_city
 layout card_hotel
 layout card_hotel_2
+layout code_input_text
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3880,6 +3908,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_city
 layout fragment_favourites
 layout fragment_settings
 layout fragment_stays
@@ -4015,6 +4044,7 @@ string common_signin_button_text
 string common_signin_button_text_long
 string copy_toast_msg
 string default_web_client_id
+string err_network
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
@@ -4145,6 +4175,7 @@ string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
 string title_activity_maps
+string user_info
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

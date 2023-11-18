@@ -1,0 +1,57 @@
+{
+  "post": [
+    {
+      "hotel_id": "4hurfsd",
+      "name": "Muong Thanh",
+      "location": "Da Lat",
+      "score": "6.6",
+      "imageURL": "your_image_url_1",
+      "amount": "35$",
+      "positionFromCenter": "30km",
+      "isLoved": "true",
+      "isBooked": "false",
+      "isCanceled": "false",
+      "isBooking": "true"
+    },
+    {
+      "hotel_id": "8jfhsa",
+      "name": "Sunset Resort",
+      "location": "Phu Quoc",
+      "score": "8.2",
+      "imageURL": "your_image_url_2",
+      "amount": "75$",
+      "positionFromCenter": "15km",
+      "isLoved": "false",
+      "isBooked": "true",
+      "isCanceled": "false",
+      "isBooking": "false"
+    },
+    {
+      "hotel_id": "2dfgda",
+      "name": "Ocean View Inn",
+      "location": "Nha Trang",
+      "score": "7.9",
+      "imageURL": "your_image_url_3",
+      "amount": "50$",
+      "positionFromCenter": "10km",
+      "isLoved": "true",
+      "isBooked": "true",
+      "isCanceled": "false",
+      "isBooking": "false"
+    },
+    {
+      "hotel_id": "9vbnhs",
+      "name": "Mountain Retreat",
+      "location": "Sapa",
+      "score": "9.0",
+      "imageURL": "your_image_url_4",
+      "amount": "120$",
+      "positionFromCenter": "5km",
+      "isLoved": "true",
+      "isBooked": "true",
+      "isCanceled": "true",
+      "isBooking": "false"
+    }
+  ]
+
+}
