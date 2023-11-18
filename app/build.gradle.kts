@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.fusesource.jansi.AnsiRenderer.test
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
@@ -40,7 +42,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     sourceSets {
+
+
         getByName("main") {
+
             res {
                 srcDirs("src\\main\\res", "src\\main\\res\\login",
                     "src\\main\\res",
@@ -66,17 +71,36 @@ android {
                     "src\\main\\res",
                     "src\\main\\res\\layouts\\components\\cards",
                     "src\\main\\res",
-                    "src\\main\\res\\layouts\\components\\cards\\layout"
+                    "src\\main\\res\\layouts\\components\\cards\\layout",
+                    "src\\main\\res",
+                    "src\\main\\res\\layouts\\trip-page\\layout"
                 )
             }
             assets {
-                srcDirs("src\\main\\assets", "src\\main\\res\\assets")
+                srcDirs("src\\main\\assets", "src\\main\\res\\assets",
+                    "src\\main\\assets",
+                    "src\\main\\assets"
+                )
+            }
+            resources {
+                srcDirs("src\\main\\resources", "src\\main\\res\\layouts\\trip-page")
             }
         }
+
     }
+
 }
 
 dependencies {
+    implementation("androidx.test:monitor:1.6.1")
+    testImplementation ("org.mock-server:mockserver-netty:3.10.8")
+    testImplementation ("org.mock-server:mockserver-client-java:3.10.8")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.6.1")
+    implementation ("com.squareup.retrofit2:converter-gson:2.6.1")
     implementation ("com.google.guava:guava:31.1-jre")
     implementation ("com.github.bumptech.glide:glide:4.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -89,4 +113,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.test:monitor:1.6.1")
+    testImplementation ("org.mock-server:mockserver-netty:3.10.8")
+    testImplementation ("org.mock-server:mockserver-client-java:3.10.8")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
 }

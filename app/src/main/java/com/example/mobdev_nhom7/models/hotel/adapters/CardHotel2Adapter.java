@@ -2,6 +2,8 @@ package com.example.mobdev_nhom7.models.hotel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,41 +15,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
+import com.example.mobdev_nhom7.utils.AmountConverter;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.ListHotelViewHolder> {
     Context context;
-    ArrayList hotels, stars, cities, scores, rates, judges, distance, lastBooking, amount;
-    ArrayList<Integer> images; // Add images ArrayList
-    RecyclerView recyclerView;
-
-    public CardHotel2Adapter(Context context,
-                             ArrayList<String> hotels,
-                             ArrayList<String> stars,
-                             ArrayList<String> cities,
-                             ArrayList<String> scores,
-                             ArrayList<String> rates,
-                             ArrayList<String> judges,
-                             ArrayList<Integer> images,
-                             ArrayList<Double> distance,
-                             ArrayList<String> lastBooking, ArrayList<Double> amount) {
-        this.context = context;
-        this.hotels = hotels;
-        this.stars = stars;
-        this.cities = cities;
-        this.scores = scores;
-        this.rates = rates;
-        this.judges = judges;
-        this.images = images;
-        this.distance = distance;
-        this.lastBooking = lastBooking;
-        this.amount = amount;
+    private List<SearchHotelItem> data;
+    public CardHotel2Adapter(ArrayList<SearchHotelItem> data) {
+        this.data= data;
     }
-
-
 
     @NonNull
     @Override
@@ -67,47 +51,48 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
 
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
-//        holder.textCity.setText(String.valueOf(cities.get(position)));
-//        holder.tex.setText(String.valueOf(stars.get(position)));
-        holder.textJudge.setText(String.valueOf(judges.get(position)));
-        holder.textScore.setText(String.valueOf(scores.get(position)));
-        holder.textJudge.setText(String.valueOf(rates.get(position)));
-        holder.textHotelName.setText(String.valueOf(hotels.get(position)));
-        holder.imagesHotel.setImageResource(images.get(position));
-        holder.textAmount.setText(String.valueOf(amount.get(position)));
-        holder.textDistance.setText(String.valueOf(distance.get(position)));
-        holder.textLastBookingTime.setText(String.valueOf(lastBooking.get(position)));
+        Bitmap hotelImage;
+        try {
+            URL url = new URL(data.get(position).getImageURL());
+            hotelImage = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        holder.textHotel.setText("Hotel");
+        holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
+        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
+        holder.textScore.setText(String.valueOf(data.get(position).getScore()));
+        holder.imagesHotel.setImageBitmap(hotelImage);
+        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
+        holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore()));
+        holder.textDistance.setText(String.valueOf(data.get(position).getPositionFromCenter()));
     }
 
     @Override
     public int getItemCount() {
-        return hotels.size(); // Return the number of hotels in the list
+        return data.size(); // Return the number of hotels in the list
     }
 
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imagesHotel;
-        private LinearLayout layoutIntroduce;
-        private TextView textHotel;
-        private TextView textHotelName;
-        private TextView textScore;
-        private TextView textJudge;
-        private TextView textDistance;
-        private TextView textAmount;
-        private TextView textLastBookingTime;
-
+        private final TextView textHotel;
+        private final TextView textLocation;
+        private final TextView textScore;
+        private final ImageView imagesHotel;
+        private final TextView textHotelName;
+        private final TextView textJudge;
+        private final TextView textAmount;
+        private final TextView textDistance;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Initialize variables with their corresponding itemViews
-            imagesHotel = itemView.findViewById(R.id.imageHotel);
-            layoutIntroduce = itemView.findViewById(R.id.layoutIntroduce);
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
+            imagesHotel = itemView.findViewById(R.id.imageHotel);
+            textLocation = itemView.findViewById(R.id.textLocation);
             textScore = itemView.findViewById(R.id.textScore);
-            textJudge = itemView.findViewById(R.id.textJudge);
-            textDistance = itemView.findViewById(R.id.textDistance);
-            textAmount = itemView.findViewById(R.id.textAmount);
-            textLastBookingTime = itemView.findViewById(R.id.textLastBookingTime);
 
+            textJudge = itemView.findViewById(R.id.textJudge);
+            textAmount = itemView.findViewById(R.id.textAmount);
+            textDistance = itemView.findViewById(R.id.textDistance);
         }
     }
 }

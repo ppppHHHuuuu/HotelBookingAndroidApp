@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ClipData;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.databinding.ActivityMainBinding;
+import com.example.mobdev_nhom7.fragment.main_activity.CityFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.FavouritesFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.SettingsFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
+import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -27,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             if(id== R.id.stays) {
                 replaceFragment(new StaysFragment());
+            } else if (id==R.id.cities) {
+                replaceFragment(new CityFragment());
             } else if (id==R.id.favourites) {
                 replaceFragment(new FavouritesFragment());
+            } else if (id==R.id.trips) {
+                replaceFragment(new TripsFragment());
             } else if (id==R.id.settings) {
                 replaceFragment(new SettingsFragment());
             }

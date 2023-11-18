@@ -85,6 +85,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cach trung tam 1,1 km" />
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:id="@+id/textLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dalat"
+                />
         </LinearLayout>
 
     </LinearLayout>

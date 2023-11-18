@@ -107,12 +107,12 @@ public class FavouritesFragment extends Fragment {
             add("3546 nhan xet");
         }};
         images = new ArrayList<Integer>() {{
-            add(R.drawable.hotel_1);
-            add(R.drawable.hotel_2);
-            add(R.drawable.hotel_3);
-            add(R.drawable.hotel_3);
-            add(R.drawable.hotel_3);
-            add(R.drawable.hotel_3);
+            add(R.drawable.google);
+            add(R.drawable.google);
+            add(R.drawable.google);
+            add(R.drawable.google);
+            add(R.drawable.google);
+            add(R.drawable.google);
         }};
 
         cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images );
