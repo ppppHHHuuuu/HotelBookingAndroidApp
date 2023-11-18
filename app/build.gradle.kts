@@ -9,6 +9,10 @@ android {
     namespace = "com.example.mobdev_nhom7"
     compileSdk = 33
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId = "com.example.mobdev_nhom7"
         minSdk = 26
@@ -109,5 +113,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.test:monitor:1.6.1")
+    testImplementation ("org.mock-server:mockserver-netty:3.10.8")
+    testImplementation ("org.mock-server:mockserver-client-java:3.10.8")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 }

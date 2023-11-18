@@ -2964,6 +2964,7 @@ drawable apple
 drawable apple_icon
 drawable avd_hide_password
 drawable avd_show_password
+drawable blue_round_background
 drawable bookmark
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3123,6 +3124,8 @@ drawable order
 drawable overviewbutton
 drawable parking
 drawable pet
+drawable phone
+drawable phone_icon
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -3234,7 +3237,6 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
-id apple_continue
 id arc
 id asConfigured
 id async
@@ -3289,6 +3291,7 @@ id checked
 id chronometer
 id circle_center
 id cities
+id cityName
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3302,6 +3305,7 @@ id container
 id content
 id contentPanel
 id contiguous
+id continue_button
 id continuousVelocity
 id coordinator
 id cos
@@ -3337,6 +3341,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id distance
 id divider1
 id divider2
 id divider3
@@ -3367,7 +3372,6 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id facebook_continue
 id fade
 id favourites
 id fill
@@ -3413,8 +3417,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageCity1
-id imageCity100
+id imageCity
 id imageHotel
 id imageView
 id immediateStop
@@ -3525,6 +3528,12 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
+id otp_1
+id otp_2
+id otp_3
+id otp_4
+id otp_5
+id otp_6
 id outline
 id outward
 id overshoot
@@ -3543,6 +3552,9 @@ id peekHeight
 id people
 id percent
 id pfp
+id phone_edit_text
+id phone_login
+id phone_text
 id pin
 id placeholder_view
 id position
@@ -3557,9 +3569,11 @@ id profile_tag
 id progress_circular
 id progress_horizontal
 id radio
+id rating
 id ratio
 id rectangles
 id recycleView
+id recycle_view
 id recyclerView
 id register_button
 id resend_button
@@ -3692,14 +3706,6 @@ id textStarNumber
 id textStart
 id textTop
 id textView
-id textView3
-id textView300
-id textView4
-id textView400
-id textView5
-id textView5000
-id textView6
-id textView600
 id textView7
 id textView8
 id text_input_end_icon
@@ -3727,6 +3733,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tripDescription
 id trips
 id unchecked
 id uniform
@@ -3870,18 +3877,21 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_code_input
 layout activity_filter_options
 layout activity_login
 layout activity_main
 layout activity_new_password
 layout activity_password
 layout activity_password_reset
+layout activity_phone_input
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
 layout card_city
 layout card_hotel
 layout card_hotel_2
+layout code_input_text
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

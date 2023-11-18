@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.utils.CustomToast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,7 +25,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.example.mobdev_nhom7.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +54,14 @@ public class Login extends AppCompatActivity {
             }
 
             String email = emailEditText.getText().toString();
-            if (isValidEmail(email)) {
+
+            boolean preCheck = true;
+            String preMessage = "";
+            if (!isValidEmail(email)) {
+                preCheck = false;
+                preMessage = "Email không hợp lệ";
+            }
+            if (preCheck) {
                 mAuth.createUserWithEmailAndPassword(email, "!!!!!!")
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
@@ -64,18 +73,21 @@ public class Login extends AppCompatActivity {
                                         intent.putExtra("email", emailEditText.getText().toString());
                                         startActivity(intent);
                                     } else {
-                                        Toast.makeText(this, "Đã có lỗi không xác định",
-                                                Toast.LENGTH_SHORT).show();
+                                        CustomToast.makeText(this, task1.getException().getMessage(), Toast.LENGTH_SHORT);
                                     }
                                 });
                             } else {
-                                Intent intent = new Intent(getApplicationContext(), Password.class);
-                                intent.putExtra("email", emailEditText.getText().toString());
-                                startActivity(intent);
+                                if (task.getException().getMessage().equals("The email address is already in use by another account.")) {
+                                    Intent intent = new Intent(getApplicationContext(), Password.class);
+                                    intent.putExtra("email", emailEditText.getText().toString());
+                                    startActivity(intent);
+                                } else {
+                                    CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);
+                                }
                             }
                         });
             } else {
-                Toast.makeText(this, "Email không hợp lệ",
+                Toast.makeText(this, preMessage,
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -85,6 +97,7 @@ public class Login extends AppCompatActivity {
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        googleSignInClient.signOut();
         Button googleLogin = findViewById(R.id.google_login);
         googleLogin.setOnClickListener(v -> {
             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -92,6 +105,12 @@ public class Login extends AppCompatActivity {
                 mAuth.signOut();
             }
             GoogleSignIn();
+        });
+
+        Button phoneLogin = findViewById(R.id.phone_login);
+        phoneLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, PhoneInput.class);
+            startActivity(intent);
         });
     }
 
@@ -104,8 +123,9 @@ public class Login extends AppCompatActivity {
         googleSignInClient.signOut();
     }
 
+
     public static boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        String emailRegex = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+)\\.([A-Za-z]{2,4})$";
 
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
@@ -127,7 +147,7 @@ public class Login extends AppCompatActivity {
                 GoogleSignInAccount signInAccount = account.getResult(ApiException.class);
                 googleAuth(signInAccount.getIdToken());
             } catch (ApiException e) {
-                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                CustomToast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
             }
         }
     }
@@ -149,7 +169,7 @@ public class Login extends AppCompatActivity {
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);
                     }
                 });
     }

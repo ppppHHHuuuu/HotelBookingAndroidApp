@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,11 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mobdev_nhom7.activity.MainActivity;
-import com.example.mobdev_nhom7.activity.PasswordReset;
+import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.utils.CustomToast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.example.mobdev_nhom7.R;
 
 public class Password extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -59,24 +57,29 @@ public class Password extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             String email = emailText.getText().toString();
             String password = passwordEditText.getText().toString();
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            SharedPreferences sharedPreferences = this.getSharedPreferences(
-                                    getString(R.string.user_info), Context.MODE_PRIVATE
-                            );
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("email", user.getEmail());
-                            editor.putString("provider", user.getProviderId());
-                            editor.apply();
+            try {
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                SharedPreferences sharedPreferences = this.getSharedPreferences(
+                                        getString(R.string.user_info), Context.MODE_PRIVATE
+                                );
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("email", user.getEmail());
+                                editor.putString("provider", user.getProviderId());
+                                editor.apply();
 
-                            Intent intent = new Intent(this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                Intent intent = new Intent(this, MainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);
+                            }
+                        });
+            } catch (Exception e) {
+                CustomToast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+            }
+
         });
 
         TextView forgot_password_text = findViewById(R.id.forgot_password_text);

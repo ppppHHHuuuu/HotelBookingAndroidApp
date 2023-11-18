@@ -22,12 +22,14 @@ public interface APIService {
     @FormUrlEncoded
     Call<HistoryResponseObj> getHistory(@Query("id") String userID);
     @DELETE("user/history?limit=50")
+
     @FormUrlEncoded
     Call<HistoryResponseObj> deleteHistory(@Query("id") String userID);
 
     @GET("user/booking?limit=50")
     @FormUrlEncoded
     Call<BookingResponseObj> getBooking(@Query("id") String userID);
+
     @POST("user/booking?limit=50")
     @FormUrlEncoded
     Call<BookingResponseObj> deleteBooking(@Query("id") String userID);
@@ -40,7 +42,6 @@ public interface APIService {
     @FormUrlEncoded
     Call<CancelledReservation> deleteCancelledBooking(@Query("id") String userID);
 
-
     @POST("auth/")
     @FormUrlEncoded
     Call<HistoryResponseObj> register(@Field("username") String username,
@@ -48,7 +49,6 @@ public interface APIService {
                                     @Field("lastname") String lastname,
                                     @Field("email") String email,
                                     @Field("password") String password);
-
 
     @GET("user/profile")
     @FormUrlEncoded
@@ -60,4 +60,14 @@ public interface APIService {
                                                @Query("date") String date,
                                                @Query("number_of_ppl") String numberPpl);
 
+    @GET("hotel/detail")
+    Call<SearchHotelResponseData> searchHotelDetail(@Query("id") String id);
+
+    @POST("booking")
+    Call<Object> booking(@Field("user_id") String user_id,
+                         @Field("hotel_id") String hotel_id,
+                         @Field("room_1_number") String room_1_number,
+                         @Field("room_2_number") String room_2_number,
+                         @Field("start_date") String start_date,
+                         @Field("end_number") String end_number);
 }

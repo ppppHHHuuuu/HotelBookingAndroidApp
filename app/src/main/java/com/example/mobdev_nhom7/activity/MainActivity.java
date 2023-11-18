@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNav.setItemIconTintList(null);
         binding.bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-            if(id == R.id.stays) {
+            if(id== R.id.stays) {
                 replaceFragment(new StaysFragment());
             } else if (id==R.id.cities) {
                 replaceFragment(new CityFragment());

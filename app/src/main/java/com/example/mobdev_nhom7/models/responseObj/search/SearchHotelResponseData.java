@@ -1,6 +1,5 @@
 package com.example.mobdev_nhom7.models.responseObj.search;
 
-import com.example.mobdev_nhom7.models.responseObj.room.RoomItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

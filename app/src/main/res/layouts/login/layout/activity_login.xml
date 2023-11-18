@@ -103,8 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/google_icon"
-            android:maxHeight="45dp"
-            android:minHeight="45dp"
+            android:maxHeight="48dp"
+            android:minHeight="48dp"
             android:text="Tiếp tục bằng Google"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -114,31 +114,14 @@
             app:strokeWidth="1dp" />
 
         <Button
-            android:id="@+id/apple_continue"
+            android:id="@+id/phone_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/apple_icon"
-            android:maxHeight="45dp"
-            android:minHeight="45dp"
-            android:text="Tiếp tục bằng Apple"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:backgroundTint="@color/white"
-            app:cornerRadius="5dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="1dp" />
-
-
-        <Button
-            android:id="@+id/facebook_continue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/facebook_icon"
-            android:maxHeight="45dp"
-            android:minHeight="45dp"
-            android:text="Tiếp tục bằng Facebook"
+            android:drawableLeft="@drawable/phone_icon"
+            android:maxHeight="48dp"
+            android:minHeight="48dp"
+            android:text="Tiếp tục bằng số điện thoại"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:backgroundTint="@color/white"

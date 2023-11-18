@@ -69,7 +69,5 @@ public class PasswordReset extends AppCompatActivity {
                 });
             }
         }.start();
-
-
     }
 }

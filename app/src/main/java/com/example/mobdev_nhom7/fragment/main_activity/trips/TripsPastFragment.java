@@ -115,12 +115,12 @@ public class TripsPastFragment extends Fragment {
             add("3546 Reviews");
         }};
         images = new ArrayList<Integer>() {{
-            add(R.drawable.demo_pfp);
-            add(R.drawable.demo_pfp);
-            add(R.drawable.demo_pfp);
-            add(R.drawable.demo_pfp);
-            add(R.drawable.demo_pfp);
-            add(R.drawable.demo_pfp);
+            add(R.drawable.apple);
+            add(R.drawable.apple);
+            add(R.drawable.apple);
+            add(R.drawable.apple);
+            add(R.drawable.apple);
+            add(R.drawable.apple);
         }};
 
         cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images);

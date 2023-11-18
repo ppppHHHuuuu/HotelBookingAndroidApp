@@ -71,13 +71,7 @@ public class StaysFragment extends Fragment {
         recyclerView.setVisibility(View.GONE);
 
         buttonSearch = view.findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString());
-            }
-
-        });
+        buttonSearch.setOnClickListener(view1 -> loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString()));
 
         return view;
     }
@@ -88,10 +82,6 @@ public class StaysFragment extends Fragment {
         callHotel.enqueue(new Callback<SearchHotelResponseData>() {
             @Override
             public void onResponse(Call<SearchHotelResponseData> call, Response<SearchHotelResponseData> response) {
-                if (response.body() == null) {
-                    onFailure(call, null);
-                    return;
-                }
                 List<SearchHotelItem> searchHotelItems = response.body().getData();
                 if (searchHotelItems.size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();

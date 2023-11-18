@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Pair;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,14 +17,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mobdev_nhom7.R;
 
-import com.example.mobdev_nhom7.activity.MainActivity;
+import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.utils.CustomToast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 public class NewPassword extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private boolean hiddenPassword = true;
+    TextView lowerCaseCharacters;
+    TextView upperCaseCharacters;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,6 +56,9 @@ public class NewPassword extends AppCompatActivity {
             passwordEditText.setSelection(passwordEditText.getText().length());
             hiddenPassword = !hiddenPassword;
         });
+
+        lowerCaseCharacters = findViewById(R.id.lower_case_characters);
+        upperCaseCharacters = findViewById(R.id.upper_case_characters);
         passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,11 +66,8 @@ public class NewPassword extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Pair<Integer, Integer> characterCount = passwordCheck(passwordEditText.getText().toString());
-                TextView lowerCaseCharacters = findViewById(R.id.lower_case_characters);
-                lowerCaseCharacters.setText(characterCount.first.toString() + "/10");
-                TextView upperCaseCharacters = findViewById(R.id.upper_case_characters);
-                upperCaseCharacters.setText(characterCount.second.toString() + "/1");
+                lowerCaseCharacters.setText(totalCharacterCount(passwordEditText.getText().toString()) + "/10");
+                upperCaseCharacters.setText(uppercaseCount(passwordEditText.getText().toString()) + "/1");
             }
 
             @Override
@@ -78,37 +79,64 @@ public class NewPassword extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             String email = emailText.getText().toString();
             String password = passwordEditText.getText().toString();
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            SharedPreferences sharedPreferences = this.getSharedPreferences(
-                                    getString(R.string.user_info), Context.MODE_PRIVATE
-                            );
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("email", user.getEmail());
-                            editor.putString("provider", user.getProviderId());
-                            editor.apply();
 
-                            Intent intent = new Intent(this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Log.w("Login Status", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(NewPassword.this, task.getException().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            boolean preCheck = true;
+            String preMessage = "";
+            String totalChars = lowerCaseCharacters.getText().toString();
+            String uppercaseChars = upperCaseCharacters.getText().toString();
+            totalChars = totalChars.substring(0, totalChars.indexOf('/'));
+            uppercaseChars = uppercaseChars.substring(0, uppercaseChars.indexOf('/'));
+            if (!passwordCheck(Integer.parseInt(totalChars), Integer.parseInt(uppercaseChars))) {
+                preCheck = false;
+                preMessage = "Mật khẩu phải có tối thiểu 10 kí tự và 1 kí tự in hoa";
+            }
+            if (preCheck) {
+                try {
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(this, task -> {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    SharedPreferences sharedPreferences = this.getSharedPreferences(
+                                            getString(R.string.user_info), Context.MODE_PRIVATE
+                                    );
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("email", user.getEmail());
+                                    editor.putString("provider", user.getProviderId());
+                                    editor.apply();
+
+                                    Intent intent = new Intent(this, MainActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);
+                                }
+                            });
+                } catch(Exception e) {
+                    CustomToast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+                }
+            } else {
+                Toast.makeText(this, preMessage, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    private Pair<Integer, Integer> passwordCheck(String password) {
-        int dem1 = password.length();
-        int dem2 = 0;
+    public static int totalCharacterCount(String password) {
+        return password.length();
+    }
+
+    public static int uppercaseCount(String password) {
+        int dem = 0;
         for (char ch : password.toCharArray()) {
             if (Character.isUpperCase(ch)) {
-                dem2++;
+                dem++;
             }
         }
-        return new Pair(dem1, dem2);
+        return dem;
+    }
+
+    public static boolean passwordCheck(int totalChars, int uppercaseChars) {
+        if (totalChars < 10 | uppercaseChars < 1) {
+            return false;
+        }
+        return true;
     }
 }
