@@ -1,0 +1,230 @@
+package com.example.mobdev_nhom7.activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.utils.CustomToast;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+public class CodeInput extends AppCompatActivity {
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String phoneNumber;
+    private String mVerificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private int selectedETPosition = 0;
+    private boolean resendEnabled = false;
+    private int resendTime = 60;
+    private TextView resendButton;
+    private EditText otpET1, otpET2, otpET3, otpET4, otpET5, otpET6;
+    private EditText[] otpETs = new EditText[6];
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_code_input);
+
+        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                SharedPreferences sharedPreferences = CodeInput.this.getSharedPreferences(
+                        getString(R.string.user_info), Context.MODE_PRIVATE
+                );
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", user.getEmail());
+                editor.putString("provider", user.getProviderId());
+                editor.apply();
+
+                Intent intent = new Intent(CodeInput.this, MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+                Log.d("Error message", e.getMessage());
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    Log.d("Error code1", ((FirebaseAuthInvalidCredentialsException) e).getErrorCode());
+                    CustomToast.makeText(CodeInput.this, ((FirebaseAuthInvalidCredentialsException) e).getErrorCode(), Toast.LENGTH_SHORT);
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                    Log.d("Error code2", ((FirebaseAuthInvalidCredentialsException) e).getErrorCode());
+                    CustomToast.makeText(CodeInput.this, ((FirebaseAuthInvalidCredentialsException) e).getErrorCode(), Toast.LENGTH_SHORT);
+                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+                    // reCAPTCHA verification attempted with null Activity
+                    Log.d("Error code3", ((FirebaseAuthInvalidCredentialsException) e).getErrorCode());
+                    CustomToast.makeText(CodeInput.this, ((FirebaseAuthInvalidCredentialsException) e).getErrorCode(), Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String verificationId,
+                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                Log.d("onCodeSent", "onCodeSent:" + verificationId);
+
+                // Save verification ID and resending token so we can use them later
+                mVerificationId = verificationId;
+                mResendToken = token;
+            }
+        };
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(phoneNumber)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(mCallbacks)
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+        LinearLayout backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        otpET1 = findViewById(R.id.otp_1);
+        otpET2 = findViewById(R.id.otp_2);
+        otpET3 = findViewById(R.id.otp_3);
+        otpET4 = findViewById(R.id.otp_4);
+        otpET5 = findViewById(R.id.otp_5);
+        otpET6 = findViewById(R.id.otp_6);
+        
+        otpETs[0] = findViewById(R.id.otp_1);
+        otpETs[1] = findViewById(R.id.otp_2);
+        otpETs[2] = findViewById(R.id.otp_3);
+        otpETs[3] = findViewById(R.id.otp_4);
+        otpETs[4] = findViewById(R.id.otp_5);
+        otpETs[5] = findViewById(R.id.otp_6);
+
+        for (int i = 0; i < 6; i++) {
+            otpETs[i].addTextChangedListener(textWatcher);
+        }
+        otpET1.addTextChangedListener(textWatcher);
+        otpET2.addTextChangedListener(textWatcher);
+        otpET3.addTextChangedListener(textWatcher);
+        otpET4.addTextChangedListener(textWatcher);
+        otpET5.addTextChangedListener(textWatcher);
+        otpET6.addTextChangedListener(textWatcher);
+
+        // By default open keyboard on first EditText
+        showKeyboard(otpET1);
+
+        Button loginButton = findViewById(R.id.login_button);
+        loginButton.setOnClickListener(v -> {
+            String getOtp = "";
+            for (int i = 0; i < 6; i++) {
+                getOtp += otpETs[i].getText().toString();
+            }
+            getOtp = otpET1.getText().toString() +
+                    otpET2.getText().toString() +
+                    otpET3.getText().toString() +
+                    otpET4.getText().toString() +
+                    otpET5.getText().toString() +
+                    otpET6.getText().toString();
+
+            if (getOtp.length() == 6) {
+
+            } else {
+                Toast.makeText(CodeInput.this, "Mã xác thực phải có 6 chữ số", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        startCountDownTimer();
+        resendButton = findViewById(R.id.resend_button);
+        resendButton.setPaintFlags(resendButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        resendButton.setOnClickListener(v -> {
+            if (resendEnabled) {
+                startCountDownTimer();
+            }
+        });
+    }
+
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() > 0) {
+                selectedETPosition = (selectedETPosition + 1) % 6;
+                showKeyboard(otpETs[selectedETPosition]);
+                switch (selectedETPosition) {
+                    case 0:
+                        showKeyboard(otpET1);
+                    case 1:
+                        showKeyboard(otpET2);
+                    case 2:
+                        showKeyboard(otpET3);
+                    case 3:
+                        showKeyboard(otpET4);
+                    case 4:
+                        showKeyboard(otpET5);
+                    case 5:
+                        showKeyboard(otpET6);
+                }
+            }
+        }
+    };
+
+    private void showKeyboard(EditText otpET) {
+        otpET.requestFocus();
+
+        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(otpET, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void startCountDownTimer() {
+        resendEnabled = false;
+        new CountDownTimer(resendTime * 1000L, 1000) {
+            @Override
+            public void onTick(long sendsUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                resendEnabled = true;
+            }
+        };
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+
+    }
+}
