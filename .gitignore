@@ -22,14 +22,14 @@ app/src/main/java/com/example/mobdev_nhom7/Nhap card
 app/src/main/java/com/example/mobdev_nhom7/Nhap card2
 app/src/main/java/com/example/mobdev_nhom7/Nhap FavuriteFragment
 app/src/main/java/com/example/mobdev_nhom7/Nhap FilterOptionActivity
-e
-db.json
-e.auth.AuthCredential
-etOnClickListener(v - {
-sharedPreferences = this.getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
-t
-t.makeText(this, preMessage,
-tIdToken(getString(R.string.default_web_client_id))
-tartActivity(intent);
-.CustomToast
-;
+/e
+/db.json
+/e.auth.AuthCredential
+/etOnClickListener(v - {
+/sharedPreferences = this.getSharedPreferences(getString(R.string.user_info), /MODE_PRIVATE);
+/t
+/t.makeText(this, preMessage,
+/tIdToken(getString(R.string.default_web_client_id))
+/tartActivity(intent);
+/.CustomToast
+/;
