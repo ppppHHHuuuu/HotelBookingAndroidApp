@@ -1,12 +1,14 @@
 package com.example.mobdev_nhom7.remote;
 
-import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
+import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.reservation.BookingResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.reservation.CancelledReservation;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
-import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.models.responseObj.user.UserResponseObj;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -15,6 +17,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -38,7 +41,7 @@ public interface APIService {
     @FormUrlEncoded
     Call<CancelledReservation> getCancelledBooking(@Query("id") String userID);
 
-    @POST("user/cancelled")
+    @PUT("user/cancelled")
     @FormUrlEncoded
     Call<CancelledReservation> deleteCancelledBooking(@Query("id") String userID);
 
@@ -52,22 +55,34 @@ public interface APIService {
 
     @GET("user/profile")
     @FormUrlEncoded
-
     Call<UserResponseObj> fetchUserInfo(@Header("Authorization") String token);
 
-    @GET("hotels/api?limit=10")
-    Call<SearchHotelResponseData> searchHotels(@Query("destination") String destination,
-                                               @Query("date") String date,
-                                               @Query("number_of_ppl") String numberPpl);
+    @GET("get/hotel/by/destination")
+    @FormUrlEncoded
+    Call<SearchHotelResponseData> searchHotels(@Field("hotel_id") String hotel_id,
+                                               @Field("city_id") String city_id,
+                                               @Field("start_date") String start_date,
+                                               @Field("end_date") String end_date,
+                                               @Field("number_of_ppl") String numberPpl,
+                                               @Field("number_of_room") String numberRoom);
 
     @GET("hotel/detail")
+    @FormUrlEncoded
     Call<SearchHotelResponseData> searchHotelDetail(@Query("id") String id);
 
     @POST("booking")
+    @FormUrlEncoded
     Call<Object> booking(@Field("user_id") String user_id,
                          @Field("hotel_id") String hotel_id,
-                         @Field("room_1_number") String room_1_number,
-                         @Field("room_2_number") String room_2_number,
+                         @Field("rooms") Map<String, Integer> room_number,
                          @Field("start_date") String start_date,
-                         @Field("end_number") String end_number);
+                         @Field("end_date") String end_date);
+
+    @GET("get/city/all")
+    @FormUrlEncoded
+    Call<CityNameResponseData> getAllCityName();
+
+    @GET("get/hotel/all")
+    @FormUrlEncoded
+    Call<HotelNameResponseData> getAllHotelName();
 }
