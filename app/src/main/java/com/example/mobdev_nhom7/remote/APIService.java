@@ -4,6 +4,7 @@ import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.reservation.BookingResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.reservation.CancelledReservation;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchCityResponseData;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.models.responseObj.user.UserResponseObj;
@@ -54,11 +55,19 @@ public interface APIService {
     @FormUrlEncoded
 
     Call<UserResponseObj> fetchUserInfo(@Header("Authorization") String token);
+    @GET("hotel?limit=10")
+    Call<SearchHotelResponseData> getAllHotel();
+    @GET("city?limit=10")
+    Call<SearchCityResponseData> getAllCity();
 
-    @GET("hotels/api?limit=10")
-    Call<SearchHotelResponseData> searchHotels(@Query("destination") String destination,
-                                               @Query("date") String date,
-                                               @Query("number_of_ppl") String numberPpl);
+
+    @GET("hotel/search?limit=10")
+    Call<SearchHotelResponseData> searchHotels(@Query("hotel_id") String hotel_id,
+                                               @Query("city") String city,
+                                               @Query("start_date") String start_date,
+                                               @Query("end_date") String end_date,
+                                               @Query("room_quantity") Integer numberRoom,
+                                               @Query("ppl_quantity") Integer numberPpl);
 
     @GET("hotel/detail")
     Call<SearchHotelResponseData> searchHotelDetail(@Query("id") String id);

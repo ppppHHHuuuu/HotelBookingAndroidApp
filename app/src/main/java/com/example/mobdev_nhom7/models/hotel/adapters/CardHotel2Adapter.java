@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchCityItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 
@@ -29,6 +30,9 @@ import java.util.List;
 public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.ListHotelViewHolder> {
     Context context;
     private List<SearchHotelItem> data;
+    public SearchHotelItem getData(int x) {
+        return data.get(x);
+    }
     public CardHotel2Adapter(ArrayList<SearchHotelItem> data) {
         this.data= data;
     }

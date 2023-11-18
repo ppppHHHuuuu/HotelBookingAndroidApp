@@ -18,7 +18,7 @@ public class RequestService {
         Call<SearchHotelResponseData> callHotel = null;
         switch (requestCode) {
             case 1:
-                callHotel = apiService.searchHotels(params.get(0), params.get(1), params.get(2));
+//                callHotel = apiService.searchHotels(params.get(0), params.get(1), params.get(2));
         }
         final List[] result = {null};
         callHotel.enqueue(new Callback<SearchHotelResponseData>() {

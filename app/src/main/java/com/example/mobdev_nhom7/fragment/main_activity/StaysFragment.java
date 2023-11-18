@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SearchEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseDat
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,9 @@ public class StaysFragment extends Fragment {
     private Button buttonSearch;
     private EditText desInput;
     private TextView roomsDisplay;
-    private TextView dateDisplay;
+    private TextView pplDisplay;
+    private TextView startDateDisplay;
+    private TextView endDateDisplay;
     private RecyclerView recyclerView;
     public StaysFragment() {
         // Required empty public constructor
@@ -61,24 +65,37 @@ public class StaysFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_stays, container, false);
         desInput = view.findViewById(R.id.desInput);
-        dateDisplay = view.findViewById(R.id.dateDisplay);
+        startDateDisplay = view.findViewById(R.id.startDateDisplay);
+        endDateDisplay = view.findViewById(R.id.endDateDisplay);
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
         recyclerView = view.findViewById(R.id.recyclerView);
-
+        pplDisplay = view.findViewById(R.id.pplDisplay);
         hotelItemList = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setVisibility(View.GONE);
 
         buttonSearch = view.findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(view1 -> loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString()));
+        buttonSearch.setOnClickListener(view1 -> loadHotels(
+                desInput.getText().toString(),
+                startDateDisplay.getText().toString(),
+                endDateDisplay.getText().toString(),
+                Integer.parseInt(getFirstNumberFromString(roomsDisplay.getText().toString())),
+                Integer.parseInt(getFirstNumberFromString(pplDisplay.getText().toString()))));
 
         return view;
     }
+    public static String getFirstNumberFromString(String word) {
+        return word.substring(0, 1);
+    }
 
 
-    public void loadHotels(String destination, String date, String numberPpl) {
-        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(destination, date, numberPpl);
+
+    public void loadHotels(String destination, String start_date, String end_date, Integer numberRoom, Integer numberPpl) {
+        //TODO: HOTELID
+        String hotel_id = "bdsfgkjdhg";
+        //TODO: Dates, ROOM PARSER
+        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(hotel_id,destination, start_date, end_date, numberRoom, numberPpl);
         callHotel.enqueue(new Callback<SearchHotelResponseData>() {
             @Override
             public void onResponse(Call<SearchHotelResponseData> call, Response<SearchHotelResponseData> response) {
@@ -94,7 +111,8 @@ public class StaysFragment extends Fragment {
 
             @Override
             public void onFailure(Call<SearchHotelResponseData> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("call", t.toString());
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         } );
     }

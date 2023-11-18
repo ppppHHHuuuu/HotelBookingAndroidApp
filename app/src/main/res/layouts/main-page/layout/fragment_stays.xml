@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -100,14 +100,30 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/dateDisplay"
+                        android:id="@+id/startDateDisplay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Oct 9 - Oct 10"
+                        android:layout_marginTop="4dp"
+                        android:text="9-11-23"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/endDateDisplay"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateView" />
+
+                    <TextView
+                        android:id="@+id/endDateDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="4dp"
+                        android:text="13-11-23"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/dateView" />
 
@@ -144,6 +160,17 @@
 
                     <TextView
                         android:id="@+id/roomsDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="2 guests, 1 room"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/roomsView" />
+                    <TextView
+                        android:id="@+id/pplDisplay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

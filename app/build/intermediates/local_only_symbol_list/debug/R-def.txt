@@ -116,6 +116,7 @@ id divider3
 id dummy_name
 id email_edit_text
 id email_text
+id endDateDisplay
 id favourites
 id forgot_password_text
 id frameLayout
@@ -144,6 +145,7 @@ id phone_edit_text
 id phone_login
 id phone_text
 id placeholder_view
+id pplDisplay
 id price
 id profile_detail
 id profile_email
@@ -166,6 +168,7 @@ id search_bar
 id settings
 id sign_out_icon
 id sign_out_tag
+id startDateDisplay
 id stays
 id tabLayout
 id textAmount
