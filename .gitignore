@@ -12,6 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+
 local.properties
 /sage = 
 sage = 
@@ -22,7 +23,7 @@ app/src/main/java/com/example/mobdev_nhom7/Nhap card
 app/src/main/java/com/example/mobdev_nhom7/Nhap card2
 app/src/main/java/com/example/mobdev_nhom7/Nhap FavuriteFragment
 app/src/main/java/com/example/mobdev_nhom7/Nhap FilterOptionActivity
-/e
+/
 /db.json
 /e.auth.AuthCredential
 /etOnClickListener(v - {
