@@ -30,7 +30,7 @@ public class Password extends AppCompatActivity {
 
         EditText passwordEditText = findViewById(R.id.password_edit_text);
 
-        Button registerButton = findViewById(R.id.login_button);
+        Button registerButton = findViewById(R.id.password_login_button);
         registerButton.setOnClickListener(v -> {
             String email = emailText.getText().toString();
             String password = passwordEditText.getText().toString();

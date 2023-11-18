@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,55 +13,77 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.FilterOptionsActivity;
+import com.example.mobdev_nhom7.CardHotel2Adapter;
+
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link StaysFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class StaysFragment extends Fragment {
+    CardHotel2Adapter cardHotel2Adapter;
+    ArrayList hotels, stars, cities, scores, rates, judges, distance, lastBooking, amount;
+    ArrayList<Integer> images; // Add images ArrayList
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private Button buttonToFilterOption;
+    private Button buttonSearch;
+    private RecyclerView recyclerView;
     public StaysFragment() {
         // Required empty public constructor
     }
     public static StaysFragment newInstance(String param1, String param2) {
         StaysFragment fragment = new StaysFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+        //TODO: Will instead get data from BE not this way
+        hotels = new ArrayList<>();
+        stars = new ArrayList<>();
+        cities = new ArrayList<>();
+        scores = new ArrayList<>();
+        rates = new ArrayList<>();
+        judges = new ArrayList<>();
+        images = new ArrayList<>();
+        distance = new ArrayList<>();
+        lastBooking = new ArrayList<>();
+        amount = new ArrayList<>();
+        // Populate the ArrayLists with sample data for six hotels
+        for (int i = 0; i < 6; i++) {
+            hotels.add("Hotel " + (i + 1));
+            stars.add("4.5");
+            cities.add("City " + (i + 1));
+            scores.add("8.5");
+            rates.add("Very Good");
+            judges.add("150");
+            images.add(R.drawable.hotel_1); // Replace with your image resource
+            distance.add("1.5 km");
+            lastBooking.add("2 hours ago");
+            amount.add("4500 VND");
         }
+        cardHotel2Adapter = new CardHotel2Adapter(getContext(), hotels, stars, cities, scores, rates, judges, images, distance, lastBooking, amount);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_stays, container, false);
-        buttonToFilterOption = view.findViewById(R.id.buttonSearch);
-        buttonToFilterOption.setOnClickListener(new View.OnClickListener() {
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setAdapter(cardHotel2Adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setVisibility(View.GONE);
+        buttonSearch = view.findViewById(R.id.buttonSearch);
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FilterOptionsActivity.class);
-                Toast.makeText(getContext(), "Go to Filter Option", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                recyclerView.setVisibility(View.VISIBLE);
             }
         });
         return view;
