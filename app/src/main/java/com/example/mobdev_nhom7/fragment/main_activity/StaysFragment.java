@@ -20,13 +20,16 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelName;
+import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,4 +119,40 @@ public class StaysFragment extends Fragment {
             }
         } );
     }
+
+    public void callHotelName() {
+        Call<HotelNameResponseData> hotelNameResponseDataCall = apiService.getAllHotelName();
+        hotelNameResponseDataCall.enqueue(new Callback<HotelNameResponseData>() {
+            @Override
+            public void onResponse(Call<HotelNameResponseData> call, Response<HotelNameResponseData> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<HotelName> hotelNameList = response.body().getData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelNameResponseData> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+            }
+        });
+    };
+
+    public void callCityName() {
+        Call<CityNameResponseData> cityNameResponseDataCall = apiService.getAllCityName();
+        cityNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
+            @Override
+            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
+                switch (response.code()) {
+                    case 200:
+                        List<CityName> cityNameList = response.body().getData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+            }
+        });
+    };
 }
