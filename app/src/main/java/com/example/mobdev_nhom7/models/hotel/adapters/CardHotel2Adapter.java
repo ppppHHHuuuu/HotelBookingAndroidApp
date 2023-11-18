@@ -77,7 +77,6 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
-
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final TextView textHotel;
         private final TextView textLocation;
