@@ -82,6 +82,7 @@ font poppins_bold
 font poppins_extrabold
 font poppins_regular
 id active_btn
+id active_trips
 id apple_continue
 id back_button
 id booking_detail
@@ -94,6 +95,7 @@ id button2
 id button3
 id buttonSearch
 id cancelled_btn
+id cancelled_trips
 id cities
 id dateDisplay
 id dateRoomLayout
@@ -118,10 +120,12 @@ id layoutIntroduce
 id linearLayout
 id linearLayout2
 id login_button
-id logo
 id lower_case_characters
+id new_password_edit_text
 id password_edit_text
+id password_login_button
 id past_btn
+id past_trips
 id people
 id pfp
 id placeholder_view
@@ -132,6 +136,7 @@ id profile_icon
 id profile_name
 id profile_tag
 id recycleView
+id recyclerView
 id register_button
 id resend_button
 id resend_time_count_text
@@ -139,6 +144,7 @@ id room
 id roomsDisplay
 id roomsView
 id searchBar
+id search_bar
 id settings
 id sign_out_icon
 id sign_out_tag

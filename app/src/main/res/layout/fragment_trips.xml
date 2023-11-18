@@ -21,16 +21,19 @@
             android:background="@color/white">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/active_trips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Active" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/past_trips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Past" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/cancelled_trips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancelled" />

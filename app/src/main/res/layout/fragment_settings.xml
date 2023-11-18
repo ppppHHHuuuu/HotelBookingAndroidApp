@@ -16,8 +16,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="410dp"
-        android:layout_height="633dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".85"
         android:background="@drawable/profile_rounded_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
