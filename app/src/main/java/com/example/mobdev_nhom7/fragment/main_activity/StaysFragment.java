@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,13 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
-import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
-import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelName;
 import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchCityItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
@@ -46,6 +43,7 @@ public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
+    ArrayList<SearchCityItem> cityItemList = new ArrayList<>();
     private Button buttonSearch;
     private EditText desInput;
     private TextView roomsDisplay;
@@ -66,6 +64,7 @@ public class StaysFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view =  inflater.inflate(R.layout.fragment_stays, container, false);
         desInput = view.findViewById(R.id.desInput);
         startDateDisplay = view.findViewById(R.id.startDateDisplay);
@@ -78,6 +77,7 @@ public class StaysFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setVisibility(View.GONE);
 
+//        findCitySuggestion();
         buttonSearch = view.findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(view1 -> loadHotels(
                 desInput.getText().toString(),
@@ -86,30 +86,49 @@ public class StaysFragment extends Fragment {
                 Integer.parseInt(getFirstNumberFromString(roomsDisplay.getText().toString())),
                 Integer.parseInt(getFirstNumberFromString(pplDisplay.getText().toString()))));
 
+        //NOTE: for pop up screen select hotel
+        desInput.setOnClickListener(view1 -> getSuggestedDestinationActivity());
         return view;
     }
     public static String getFirstNumberFromString(String word) {
         return word.substring(0, 1);
     }
 
-
+    public void getSuggestedDestinationActivity() {
+        Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
+        startActivity(intent);
+    }
 
     public void loadHotels(String destination, String start_date, String end_date, Integer numberRoom, Integer numberPpl) {
         //TODO: HOTELID
         String hotel_id = "bdsfgkjdhg";
         //TODO: Dates, ROOM PARSER
-        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(hotel_id,destination, start_date, end_date, numberRoom, numberPpl);
+        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(
+                hotel_id,destination, start_date, end_date, numberRoom, numberPpl);
         callHotel.enqueue(new Callback<SearchHotelResponseData>() {
             @Override
             public void onResponse(Call<SearchHotelResponseData> call, Response<SearchHotelResponseData> response) {
-                List<SearchHotelItem> searchHotelItems = response.body().getData();
-                if (searchHotelItems.size() == 0) {
-                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
+
+                switch (response.code()) {
+                    case 200:
+                        if (response.body() != null) {
+                            Log.d("Content", "Empty content");
+                            Toast.makeText(getContext(), "Empty content", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                        List<SearchHotelItem> searchHotelItems = response.body().getData();
+                        if (searchHotelItems.size() == 0) {
+                            Log.d("Content", "Empty Search Result");
+                            Toast.makeText(getContext(), "Empty Search Result", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                        hotelItemList= (ArrayList<SearchHotelItem>) response.body().getData();
+                        cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
+                        recyclerView.setAdapter(cardHotel2Adapter);
+                        recyclerView.setVisibility(View.VISIBLE);
+                    case 404:
+                        Log.d("Error", "No accepted route error");
                 }
-                hotelItemList= (ArrayList<SearchHotelItem>) response.body().getData();
-                cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
-                recyclerView.setAdapter(cardHotel2Adapter);
-                recyclerView.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -120,39 +139,40 @@ public class StaysFragment extends Fragment {
         } );
     }
 
-    public void callHotelName() {
-        Call<HotelNameResponseData> hotelNameResponseDataCall = apiService.getAllHotelName();
-        hotelNameResponseDataCall.enqueue(new Callback<HotelNameResponseData>() {
-            @Override
-            public void onResponse(Call<HotelNameResponseData> call, Response<HotelNameResponseData> response) {
-                switch (response.code()) {
-                    case 200:
-                        List<HotelName> hotelNameList = response.body().getData();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<HotelNameResponseData> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-            }
-        });
-    };
-
-    public void callCityName() {
-        Call<CityNameResponseData> cityNameResponseDataCall = apiService.getAllCityName();
-        cityNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
-            @Override
-            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
-                switch (response.code()) {
-                    case 200:
-                        List<CityName> cityNameList = response.body().getData();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-            }
-        });
-    };
+//    public void findCitySuggestion() {
+//        Call<CityNameResponseData> hotelNameResponseDataCall = apiService.getSuggestedCity();
+//        hotelNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
+//            @Override
+//            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
+//                switch (response.code()) {
+//                    case 200:
+//                        hotelNameList = response.body().getData();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HotelNameResponseData> call, Throwable t) {
+//                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    };
+//
+//    public void callCityName() {
+//        Call<CityNameResponseData> cityNameResponseDataCall = apiService.getAllCityName();
+//        cityNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
+//            @Override
+//            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
+//                switch (response.code()) {
+//                    case 200:
+//                        List<CityName> cityNameList = response.body().getData();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
+//                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    };
 }

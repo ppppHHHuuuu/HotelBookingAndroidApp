@@ -33,9 +33,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.FilterOptionsActivity"
-            android:exported="false" />
+        <activity android:name=".fragment.main_activity.SuggestedDestinationActivity"
+            android:exported="false"/>
+<!--        <activity-->
+<!--            android:name=".activity.FilterOptionsActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".activity.Login"
             android:exported="true">

@@ -3126,6 +3126,7 @@ drawable parking
 drawable pet
 drawable phone
 drawable phone_icon
+drawable placeholder
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -3237,11 +3238,13 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id appBarLayout
 id arc
 id asConfigured
 id async
 id auto
 id autoComplete
+id autoCompleteDest
 id autoCompleteToEnd
 id autoCompleteToStart
 id back_button
@@ -3270,6 +3273,7 @@ id button2
 id button3
 id button4
 id button5
+id buttonCancel
 id buttonPanel
 id buttonSearch
 id cache_measures
@@ -3310,6 +3314,7 @@ id continuousVelocity
 id coordinator
 id cos
 id counterclockwise
+id countryName
 id cradle
 id currentState
 id custom
@@ -3418,6 +3423,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageButton
 id imageCity
 id imageHotel
 id imageView
@@ -3441,11 +3447,13 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id linearLayout2
 id linearLayout4
 id linearLayoutDestination
 id listMode
 id list_item
+id location
 id login_button
 id lower_case_characters
 id m3_side_sheet
@@ -3515,6 +3523,7 @@ id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_header_container
+id nestedScrollView
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
@@ -3577,6 +3586,7 @@ id rectangles
 id recycleView
 id recycle_view
 id recyclerView
+id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
@@ -3709,6 +3719,7 @@ id textStarNumber
 id textStart
 id textTop
 id textView
+id textView3
 id textView7
 id textView8
 id text_input_end_icon
@@ -3888,10 +3899,13 @@ layout activity_new_password
 layout activity_password
 layout activity_password_reset
 layout activity_phone_input
+layout auto_complete_custom
+layout auto_complete_view
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
 layout card_city
+layout card_city_name
 layout card_hotel
 layout card_hotel_2
 layout code_input_text
@@ -3980,6 +3994,7 @@ layout search_bar
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout suggested_destination
 layout support_simple_spinner_dropdown_item
 layout view_hotel
 menu bottom_menu

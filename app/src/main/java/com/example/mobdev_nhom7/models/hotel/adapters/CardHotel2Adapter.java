@@ -64,10 +64,8 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         }
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-//        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore()));
         holder.imagesHotel.setImageBitmap(hotelImage);
-//        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore()));
         holder.textDistance.setText(String.valueOf(data.get(position).getPositionFromCenter()));
     }

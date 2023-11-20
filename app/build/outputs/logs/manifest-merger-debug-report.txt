@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-50:12
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:2:1-52:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\doanv\.gradle\caches\transforms-3\e530574cc8780721330cf2e82edfeb16\transformed\viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.test:monitor:1.6.1] C:\Users\doanv\.gradle\caches\transforms-3\3efc0fdd17594de34da1e3901e030ccc\transformed\monitor-1.6.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\doanv\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:2:1-12:12
@@ -93,8 +93,8 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\doanv\.grad
 	android:name
 		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:8:5-48:19
-INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:8:5-48:19
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:8:5-50:19
+INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:8:5-50:19
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\doanv\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\doanv\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\doanv\.gradle\caches\transforms-3\18aee80cf9811f232ccd2c40bacdfd00\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
@@ -193,28 +193,28 @@ ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\sr
 		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:35:13-37
 	android:name
 		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:34:13-50
-activity#com.example.mobdev_nhom7.activity.FilterOptionsActivity
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:36:9-38:40
+activity#com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:36:9-37:39
 	android:exported
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:38:13-37
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:37:13-37
 	android:name
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:37:13-59
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:36:19-86
 activity#com.example.mobdev_nhom7.activity.Login
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:39:9-47:20
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:41:9-49:20
 	android:exported
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:41:13-36
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:43:13-36
 	android:name
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:40:13-43
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:42:13-43
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:42:13-46:29
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:44:13-48:29
 action#android.intent.action.MAIN
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:43:17-69
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:45:17-69
 	android:name
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:43:25-66
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:45:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:45:17-77
+ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:47:17-77
 	android:name
-		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:45:27-74
+		ADDED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml:47:27-74
 uses-sdk
 INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\University\Nam_3\Semester_1\Mobile_Development\MobDev_Nhom7\app\src\main\AndroidManifest.xml

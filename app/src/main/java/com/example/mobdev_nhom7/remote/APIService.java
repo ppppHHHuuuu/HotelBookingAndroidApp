@@ -21,30 +21,6 @@ import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface APIService {
-    @GET("user/history?limit=50")
-    @FormUrlEncoded
-    Call<HistoryResponseObj> getHistory(@Query("id") String userID);
-    @DELETE("user/history?limit=50")
-
-    @FormUrlEncoded
-    Call<HistoryResponseObj> deleteHistory(@Query("id") String userID);
-
-    @GET("user/booking?limit=50")
-    @FormUrlEncoded
-    Call<BookingResponseObj> getBooking(@Query("id") String userID);
-
-    @POST("user/booking?limit=50")
-    @FormUrlEncoded
-    Call<BookingResponseObj> deleteBooking(@Query("id") String userID);
-
-    @GET("user/cancelled")
-    @FormUrlEncoded
-    Call<CancelledReservation> getCancelledBooking(@Query("id") String userID);
-
-    @PUT("user/cancelled")
-    @FormUrlEncoded
-    Call<CancelledReservation> deleteCancelledBooking(@Query("id") String userID);
-
     @POST("auth/")
     @FormUrlEncoded
     Call<HistoryResponseObj> register(@Field("username") String username,
@@ -52,12 +28,6 @@ public interface APIService {
                                     @Field("lastname") String lastname,
                                     @Field("email") String email,
                                     @Field("password") String password);
-
-    @GET("user/profile")
-    @FormUrlEncoded
-
-    Call<UserResponseObj> fetchUserInfo(@Header("Authorization") String token);
-
 
     @GET("hotel/search?limit=10")
     Call<SearchHotelResponseData> searchHotels(@Query("hotel_id") String hotel_id,
@@ -79,11 +49,9 @@ public interface APIService {
                          @Field("start_date") String start_date,
                          @Field("end_date") String end_date);
 
-    @GET("get/city/all")
-    @FormUrlEncoded
-    Call<CityNameResponseData> getAllCityName();
+    @GET("city/suggested")
+    Call<CityNameResponseData> getSuggestedCity();
+    @GET("city")
+    Call<CityNameResponseData> getAllCity();
 
-    @GET("get/hotel/all")
-    @FormUrlEncoded
-    Call<HotelNameResponseData> getAllHotelName();
 }

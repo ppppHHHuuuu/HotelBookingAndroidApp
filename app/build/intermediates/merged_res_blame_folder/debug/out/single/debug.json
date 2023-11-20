@@ -20,6 +20,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_1.jpg"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_suggested_destination.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/suggested_destination.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_phone_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/phone_icon.xml"
     },
@@ -156,6 +160,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/top_rounded_background.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_city_name.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_city_name.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel.xml"
     },
@@ -232,6 +240,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/heart_icon_checked.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_auto_complete_custom.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/auto_complete_custom.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_search_box_border.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/search_box_border.xml"
     },
@@ -270,6 +282,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_apple.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/apple.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_blue_round_background.xml.flat",
@@ -446,5 +462,9 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel_2.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel_2.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_auto_complete_view.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/auto_complete_view.xml"
     }
 ]

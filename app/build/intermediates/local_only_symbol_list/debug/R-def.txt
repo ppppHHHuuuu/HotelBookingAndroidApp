@@ -62,6 +62,7 @@ drawable parking
 drawable pet
 drawable phone
 drawable phone_icon
+drawable placeholder
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -88,6 +89,8 @@ font poppins_bold
 font poppins_extrabold
 font poppins_regular
 id active_btn
+id appBarLayout
+id autoCompleteDest
 id back_button
 id booking_detail
 id booking_icon
@@ -98,12 +101,14 @@ id button2
 id button3
 id button4
 id button5
+id buttonCancel
 id buttonSearch
 id cancelled_btn
 id cardHotel
 id cities
 id cityName
 id continue_button
+id countryName
 id dateDisplay
 id dateRoomLayout
 id dateView
@@ -122,15 +127,19 @@ id forgot_password_text
 id frameLayout
 id google_login
 id hide_image
+id imageButton
 id imageCity
 id imageHotel
 id imageView
 id layoutIntroduce
+id linearLayout
 id linearLayout2
 id linearLayout4
 id linearLayoutDestination
+id location
 id login_button
 id lower_case_characters
+id nestedScrollView
 id otp_1
 id otp_2
 id otp_3
@@ -156,6 +165,7 @@ id rating
 id recycleView
 id recycle_view
 id recyclerView
+id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
@@ -184,6 +194,7 @@ id textRate
 id textScore
 id textStarNumber
 id textView
+id textView3
 id textView7
 id textView8
 id tripDescription
@@ -200,8 +211,11 @@ layout activity_new_password
 layout activity_password
 layout activity_password_reset
 layout activity_phone_input
+layout auto_complete_custom
+layout auto_complete_view
 layout button_price
 layout card_city
+layout card_city_name
 layout card_hotel
 layout card_hotel_2
 layout code_input_text
@@ -214,6 +228,7 @@ layout fragment_trips_active
 layout fragment_trips_cancelled
 layout fragment_trips_past
 layout search_bar
+layout suggested_destination
 layout view_hotel
 menu bottom_menu
 mipmap ic_launcher
