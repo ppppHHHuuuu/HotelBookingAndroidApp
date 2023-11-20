@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
@@ -18,12 +19,13 @@ import java.util.ArrayList;
 public class FavouritesFragment extends Fragment {
 
     ArrayList<String> hotels;
-    ArrayList <String> stars;
-    ArrayList <String> cities;
-    ArrayList <String> scores;
-    ArrayList <String> rates;
-    ArrayList <String> judges;
-    ArrayList <Integer> images;
+    ArrayList<String> stars;
+    ArrayList<String> cities;
+    ArrayList<String> scores;
+    ArrayList<String> rates;
+    ArrayList<String> judges;
+    ArrayList<Integer> images;
+    ArrayList<Boolean> favourite;
 
     RecyclerView recyclerView;
 
@@ -55,8 +57,8 @@ public class FavouritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v= inflater.inflate(R.layout.fragment_favourites, container, false);
-        hotels = new ArrayList<String>(){{
+        View v = inflater.inflate(R.layout.fragment_favourites, container, false);
+        hotels = new ArrayList<String>() {{
             add("Hotel 1");
             add("Hotel 2");
             add("Hotel 3");
@@ -64,7 +66,7 @@ public class FavouritesFragment extends Fragment {
             add("Hotel Long Name does it lost");
             add("Hotel 6");
         }};
-        stars = new ArrayList<String>(){{
+        stars = new ArrayList<String>() {{
             add("****");
             add("*****");
             add("***");
@@ -114,13 +116,26 @@ public class FavouritesFragment extends Fragment {
             add(R.drawable.google);
             add(R.drawable.google);
         }};
+        favourite = new ArrayList<Boolean>() {{
+            add(true);
+            add(true);
+            add(false);
+            add(true);
+            add(false);
+            add(true);
+        }};
 
-        cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images );
+        cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
 
         recyclerView.setAdapter(cardHotelAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return v;
+    }
+
+    public void favouriteToggle() {
+
     }
 
 

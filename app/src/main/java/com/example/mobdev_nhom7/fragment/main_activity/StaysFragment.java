@@ -1,18 +1,29 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +36,12 @@ import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseDat
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,17 +53,23 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class StaysFragment extends Fragment {
+    final int DEFAULT_GUEST_NUMBER = 2;
+    final int DEFAULT_ROOM_NUMBER = 1;
     private APIService apiService = APIUtils.getUserService();
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
     private Button buttonSearch;
+
     private EditText desInput;
     private TextView roomsDisplay;
     private TextView dateDisplay;
     private RecyclerView recyclerView;
+
+
     public StaysFragment() {
         // Required empty public constructor
     }
+
     public static StaysFragment newInstance(String param1, String param2) {
         StaysFragment fragment = new StaysFragment();
         Bundle args = new Bundle();
@@ -59,7 +80,35 @@ public class StaysFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_stays, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_stays, container, false);
+        ConstraintLayout roomInfoOptions = view.findViewById(R.id.room_info_options);
+        ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
+        roomInfoOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRoomOptionsDialog();
+            }
+        });
+
+        Date today = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+        String formattedToday = dateFormat.format(today);
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+        String formattedTomorrow = dateFormat.format(tomorrow);
+
+        dateDisplay = view.findViewById(R.id.dateDisplay);
+        dateDisplay.setText(formattedToday + " - " + formattedTomorrow);
+
+        String fullDate = dateDisplay.getText().toString();
+        String checkInDate = fullDate.substring(0,6);
+        String checkOutDate = fullDate.substring(9,15);
+        dateOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDateOptionsDialog(dateDisplay);
+            }
+        });
         desInput = view.findViewById(R.id.desInput);
         dateDisplay = view.findViewById(R.id.dateDisplay);
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
@@ -73,7 +122,145 @@ public class StaysFragment extends Fragment {
         buttonSearch = view.findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(view1 -> loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString()));
 
+
         return view;
+    }
+
+    public void openRoomOptionsDialog() {
+
+
+        final Dialog dialog = new Dialog(this.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.room_option_pop_up);
+
+        Button confirmBtn = dialog.findViewById(R.id.confirm_button);
+        EditText roomNum = dialog.findViewById(R.id.room_number_edit_text);
+        EditText guestNum = dialog.findViewById(R.id.guest_number_edit_text);
+
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+
+        window.setAttributes(windowAttributes);
+
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setRoomType(roomNum.getText().toString(), guestNum.getText().toString());
+                dialog.hide();
+            }
+        });
+        dialog.show();
+    }
+
+    public void openDateOptionsDialog(TextView dateDisplay) {
+        final Dialog dialog = new Dialog(this.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.date_option_pop_up);
+
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+
+        window.setAttributes(windowAttributes);
+        TextView checkIn = dialog.findViewById(R.id.check_in_date_picker);
+        TextView checkOut = dialog.findViewById(R.id.check_out_date_picker);
+
+        String fullDate = dateDisplay.getText().toString();
+        String checkInDate = fullDate.substring(0,6);
+        String checkOutDate = fullDate.substring(9,15);
+        checkIn.setText(checkInDate);
+        checkOut.setText(checkOutDate);
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker(checkIn);
+            }
+        });
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker(checkOut);
+            }
+        });
+        Button confirmBtn = dialog.findViewById(R.id.confirm_button);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate(checkIn.getText().toString(), checkOut.getText().toString());
+                dialog.hide();
+            }
+        });
+        dialog.show();
+    }
+
+    public void showDatePicker(TextView tv) {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
+                        Calendar selectedCalendar = Calendar.getInstance();
+                        selectedCalendar.set(selectedYear, selectedMonth, selectedDay);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+                        String formattedDate = dateFormat.format(selectedCalendar.getTime());
+
+                        // Update the EditText with the formatted date
+                        tv.setText(formattedDate);
+                    }
+                },
+                year, month, dayOfMonth);
+
+        // Show the DatePickerDialog
+        datePickerDialog.show();
+    }
+
+    public void setDate(String in, String out) {
+        dateDisplay.setText(in + " - " + out);
+    }
+
+    public void setRoomType(String roomNum, String guestNum) {
+        String res = roomNum;
+        int roomNumInt = Integer.parseInt(roomNum);
+        int guestNumInt = Integer.parseInt(guestNum);
+        if (roomNumInt <= 1) {
+            res += " room, ";
+        } else {
+            res += " rooms, ";
+        }
+
+        res += guestNum;
+
+        if (guestNumInt <= 1) {
+            res += " guest";
+        } else {
+            res += " guests";
+        }
+
+        roomsDisplay.setText(res);
     }
 
 
@@ -86,7 +273,7 @@ public class StaysFragment extends Fragment {
                 if (searchHotelItems.size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                 }
-                hotelItemList= (ArrayList<SearchHotelItem>) response.body().getData();
+                hotelItemList = (ArrayList<SearchHotelItem>) response.body().getData();
                 cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
                 recyclerView.setAdapter(cardHotel2Adapter);
                 recyclerView.setVisibility(View.VISIBLE);
@@ -96,6 +283,6 @@ public class StaysFragment extends Fragment {
             public void onFailure(Call<SearchHotelResponseData> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
             }
-        } );
+        });
     }
 }

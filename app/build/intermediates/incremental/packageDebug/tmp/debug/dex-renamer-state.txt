@@ -1,18 +1,18 @@
-#Tue Nov 14 19:25:05 ICT 2023
-base.0=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.10=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
-base.11=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.12=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
-base.13=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.2=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.3=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.4=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.5=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.6=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.7=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
-base.8=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.9=C\:\\UET\\MobDev\\BTL\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+#Mon Nov 20 10:54:31 ICT 2023
+base.0=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.10=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+base.11=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.12=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.13=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.2=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.3=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.4=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.5=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.6=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.7=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.8=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.9=D\:\\De data\\School\\MobDev\\MobDev21_Nhom-07\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=6/classes.dex
