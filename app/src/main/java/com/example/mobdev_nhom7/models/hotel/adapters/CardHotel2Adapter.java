@@ -64,8 +64,10 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         }
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
+        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore()));
         holder.imagesHotel.setImageBitmap(hotelImage);
+        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore()));
         holder.textDistance.setText(String.valueOf(data.get(position).getPositionFromCenter()));
     }
@@ -76,7 +78,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     }
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final TextView textHotel;
-        private final TextView textLocation;
+//        private final TextView textLocation;
         private final TextView textScore;
         private final ImageView imagesHotel;
         private final TextView textHotelName;
@@ -88,7 +90,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
             imagesHotel = itemView.findViewById(R.id.imageHotel);
-            textLocation = itemView.findViewById(R.id.textLocation);
+//            textLocation = itemView.findViewById(R.id.textLocation);
             textScore = itemView.findViewById(R.id.textScore);
 
             textJudge = itemView.findViewById(R.id.textJudge);

@@ -2247,6 +2247,7 @@ dimen design_tab_scrollable_min_width
 dimen design_tab_text_size
 dimen design_tab_text_size_2line
 dimen design_textinput_caption_translate_y
+dimen dialog_horizontal_margin
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
 dimen fastscroll_default_thickness
@@ -3007,6 +3008,9 @@ drawable edit_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
+drawable favourite_toggle_icon
+drawable favourite_toggle_icon_checked
+drawable favourite_toggle_selector
 drawable filter
 drawable google
 drawable google_icon
@@ -3258,6 +3262,7 @@ id booking_detail
 id booking_icon
 id booking_tag
 id bottom
+id bottomBlock
 id bottomNav
 id bounce
 id bounceBoth
@@ -3280,7 +3285,6 @@ id cache_measures
 id callMeasure
 id cancel_button
 id cancelled_btn
-id cardHotel
 id carryVelocity
 id center
 id centerCrop
@@ -3290,6 +3294,12 @@ id center_vertical
 id chain
 id chain2
 id chains
+id check_in_date_cl
+id check_in_date_picker
+id check_in_date_tv
+id check_out_date_cl
+id check_out_date_picker
+id check_out_date_tv
 id checkbox
 id checked
 id chronometer
@@ -3324,6 +3334,7 @@ id dark
 id dateDisplay
 id dateRoomLayout
 id dateView
+id date_options
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3347,6 +3358,7 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id distance
+id distanceIcon
 id divider1
 id divider2
 id divider3
@@ -3379,6 +3391,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id favouriteIcon
 id favourites
 id fill
 id fill_horizontal
@@ -3408,6 +3421,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id guest_number_edit_text
 id header_title
 id hide_image
 id hideable
@@ -3450,7 +3464,6 @@ id linear
 id linearLayout
 id linearLayout2
 id linearLayout4
-id linearLayoutDestination
 id listMode
 id list_item
 id location
@@ -3535,6 +3548,10 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id numberGuestCl
+id numberGuestTv
+id numberRoomCl
+id numberRoomTv
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -3596,6 +3613,8 @@ id rightToLeft
 id right_icon
 id right_side
 id room
+id room_info_options
+id room_number_edit_text
 id roomsDisplay
 id roomsView
 id rounded
@@ -3709,7 +3728,6 @@ id textHotel
 id textHotelName
 id textJudge
 id textLastBookingTime
-id textLocation
 id textNumberofJudges
 id textRate
 id textScore
@@ -3910,6 +3928,7 @@ layout card_hotel
 layout card_hotel_2
 layout code_input_text
 layout custom_dialog
+layout date_option_pop_up
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -3990,6 +4009,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout room_option_pop_up
 layout search_bar
 layout select_dialog_item_material
 layout select_dialog_multichoice_material

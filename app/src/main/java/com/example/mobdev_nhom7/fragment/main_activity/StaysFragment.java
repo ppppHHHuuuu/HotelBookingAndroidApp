@@ -1,34 +1,47 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
-import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
-import com.example.mobdev_nhom7.models.responseObj.search.SearchCityItem;
+import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,20 +53,23 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class StaysFragment extends Fragment {
+    final int DEFAULT_GUEST_NUMBER = 2;
+    final int DEFAULT_ROOM_NUMBER = 1;
     private APIService apiService = APIUtils.getUserService();
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
-    ArrayList<SearchCityItem> cityItemList = new ArrayList<>();
     private Button buttonSearch;
+
     private EditText desInput;
     private TextView roomsDisplay;
-    private TextView pplDisplay;
-    private TextView startDateDisplay;
-    private TextView endDateDisplay;
+    private TextView dateDisplay;
     private RecyclerView recyclerView;
+
+
     public StaysFragment() {
         // Required empty public constructor
     }
+
     public static StaysFragment newInstance(String param1, String param2) {
         StaysFragment fragment = new StaysFragment();
         Bundle args = new Bundle();
@@ -65,114 +81,208 @@ public class StaysFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_stays, container, false);
+        View view = inflater.inflate(R.layout.fragment_stays, container, false);
+        ConstraintLayout roomInfoOptions = view.findViewById(R.id.room_info_options);
+        ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
+        roomInfoOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRoomOptionsDialog();
+            }
+        });
+
+        Date today = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+        String formattedToday = dateFormat.format(today);
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+        String formattedTomorrow = dateFormat.format(tomorrow);
+
+        dateDisplay = view.findViewById(R.id.dateDisplay);
+        dateDisplay.setText(formattedToday + " - " + formattedTomorrow);
+
+        String fullDate = dateDisplay.getText().toString();
+        String checkInDate = fullDate.substring(0,6);
+        String checkOutDate = fullDate.substring(9,15);
+        dateOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDateOptionsDialog(dateDisplay);
+            }
+        });
         desInput = view.findViewById(R.id.desInput);
-        startDateDisplay = view.findViewById(R.id.startDateDisplay);
-        endDateDisplay = view.findViewById(R.id.endDateDisplay);
+        dateDisplay = view.findViewById(R.id.dateDisplay);
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
         recyclerView = view.findViewById(R.id.recyclerView);
-        pplDisplay = view.findViewById(R.id.pplDisplay);
+
         hotelItemList = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setVisibility(View.GONE);
 
-//        findCitySuggestion();
         buttonSearch = view.findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(view1 -> loadHotels(
-                desInput.getText().toString(),
-                startDateDisplay.getText().toString(),
-                endDateDisplay.getText().toString(),
-                Integer.parseInt(getFirstNumberFromString(roomsDisplay.getText().toString())),
-                Integer.parseInt(getFirstNumberFromString(pplDisplay.getText().toString()))));
+        buttonSearch.setOnClickListener(view1 -> loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString()));
 
-        //NOTE: for pop up screen select hotel
-        desInput.setOnClickListener(view1 -> getSuggestedDestinationActivity());
+
         return view;
     }
-    public static String getFirstNumberFromString(String word) {
-        return word.substring(0, 1);
+
+    public void openRoomOptionsDialog() {
+
+
+        final Dialog dialog = new Dialog(this.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.room_option_pop_up);
+
+        Button confirmBtn = dialog.findViewById(R.id.confirm_button);
+        EditText roomNum = dialog.findViewById(R.id.room_number_edit_text);
+        EditText guestNum = dialog.findViewById(R.id.guest_number_edit_text);
+
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+
+        window.setAttributes(windowAttributes);
+
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setRoomType(roomNum.getText().toString(), guestNum.getText().toString());
+                dialog.hide();
+            }
+        });
+        dialog.show();
     }
 
-    public void getSuggestedDestinationActivity() {
-        Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
-        startActivity(intent);
+    public void openDateOptionsDialog(TextView dateDisplay) {
+        final Dialog dialog = new Dialog(this.getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.date_option_pop_up);
+
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+
+        window.setAttributes(windowAttributes);
+        TextView checkIn = dialog.findViewById(R.id.check_in_date_picker);
+        TextView checkOut = dialog.findViewById(R.id.check_out_date_picker);
+
+        String fullDate = dateDisplay.getText().toString();
+        String checkInDate = fullDate.substring(0,6);
+        String checkOutDate = fullDate.substring(9,15);
+        checkIn.setText(checkInDate);
+        checkOut.setText(checkOutDate);
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker(checkIn);
+            }
+        });
+
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker(checkOut);
+            }
+        });
+        Button confirmBtn = dialog.findViewById(R.id.confirm_button);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate(checkIn.getText().toString(), checkOut.getText().toString());
+                dialog.hide();
+            }
+        });
+        dialog.show();
     }
 
-    public void loadHotels(String destination, String start_date, String end_date, Integer numberRoom, Integer numberPpl) {
-        //TODO: HOTELID
-        String hotel_id = "bdsfgkjdhg";
-        //TODO: Dates, ROOM PARSER
-        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(
-                hotel_id,destination, start_date, end_date, numberRoom, numberPpl);
+    public void showDatePicker(TextView tv) {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
+                        Calendar selectedCalendar = Calendar.getInstance();
+                        selectedCalendar.set(selectedYear, selectedMonth, selectedDay);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+                        String formattedDate = dateFormat.format(selectedCalendar.getTime());
+
+                        // Update the EditText with the formatted date
+                        tv.setText(formattedDate);
+                    }
+                },
+                year, month, dayOfMonth);
+
+        // Show the DatePickerDialog
+        datePickerDialog.show();
+    }
+
+    public void setDate(String in, String out) {
+        dateDisplay.setText(in + " - " + out);
+    }
+
+    public void setRoomType(String roomNum, String guestNum) {
+        String res = roomNum;
+        int roomNumInt = Integer.parseInt(roomNum);
+        int guestNumInt = Integer.parseInt(guestNum);
+        if (roomNumInt <= 1) {
+            res += " room, ";
+        } else {
+            res += " rooms, ";
+        }
+
+        res += guestNum;
+
+        if (guestNumInt <= 1) {
+            res += " guest";
+        } else {
+            res += " guests";
+        }
+
+        roomsDisplay.setText(res);
+    }
+
+
+    public void loadHotels(String destination, String date, String numberPpl) {
+        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(destination, date, numberPpl);
         callHotel.enqueue(new Callback<SearchHotelResponseData>() {
             @Override
             public void onResponse(Call<SearchHotelResponseData> call, Response<SearchHotelResponseData> response) {
-
-                switch (response.code()) {
-                    case 200:
-                        if (response.body() != null) {
-                            Log.d("Content", "Empty content");
-                            Toast.makeText(getContext(), "Empty content", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                        List<SearchHotelItem> searchHotelItems = response.body().getData();
-                        if (searchHotelItems.size() == 0) {
-                            Log.d("Content", "Empty Search Result");
-                            Toast.makeText(getContext(), "Empty Search Result", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                        hotelItemList= (ArrayList<SearchHotelItem>) response.body().getData();
-                        cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
-                        recyclerView.setAdapter(cardHotel2Adapter);
-                        recyclerView.setVisibility(View.VISIBLE);
-                    case 404:
-                        Log.d("Error", "No accepted route error");
+                List<SearchHotelItem> searchHotelItems = response.body().getData();
+                if (searchHotelItems.size() == 0) {
+                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                 }
+                hotelItemList = (ArrayList<SearchHotelItem>) response.body().getData();
+                cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
+                recyclerView.setAdapter(cardHotel2Adapter);
+                recyclerView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<SearchHotelResponseData> call, Throwable t) {
-                Log.d("call", t.toString());
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
             }
-        } );
+        });
     }
-
-//    public void findCitySuggestion() {
-//        Call<CityNameResponseData> hotelNameResponseDataCall = apiService.getSuggestedCity();
-//        hotelNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
-//            @Override
-//            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
-//                switch (response.code()) {
-//                    case 200:
-//                        hotelNameList = response.body().getData();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<HotelNameResponseData> call, Throwable t) {
-//                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    };
-//
-//    public void callCityName() {
-//        Call<CityNameResponseData> cityNameResponseDataCall = apiService.getAllCityName();
-//        cityNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
-//            @Override
-//            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
-//                switch (response.code()) {
-//                    case 200:
-//                        List<CityName> cityNameList = response.body().getData();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
-//                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    };
 }
