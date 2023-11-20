@@ -27,6 +27,13 @@ public class SearchHotelItem {
     @SerializedName("distanceFromCenter")
     @Expose
     private String distanceFromCenter;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("number_of_judges")
+    @Expose
+    private String numberOfJudges;
+
     public String getPositionFromCenter() {
         return distanceFromCenter;
     }
@@ -74,4 +81,19 @@ public class SearchHotelItem {
         this.star = star;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getNumberOfJudges() {
+        return numberOfJudges;
+    }
+
+    public void setNumberOfJudges(String numberOfJudges) {
+        this.numberOfJudges = numberOfJudges;
+    }
 }
