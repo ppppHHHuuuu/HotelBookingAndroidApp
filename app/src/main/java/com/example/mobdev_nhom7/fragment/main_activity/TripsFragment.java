@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class TripsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
+    public static int initialPosition;
 
     public TripsFragment() {
         // Required empty public constructor
@@ -37,23 +38,26 @@ public class TripsFragment extends Fragment {
         viewPagerAdapter.addFragment(new TripsCancelledFragment());
 
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(initialPosition);
 
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     switch (position) {
                         case 0:
+                            initialPosition = 0;
                             tab.setText("Active");
                             break;
                         case 1:
+                            initialPosition = 1;
                             tab.setText("Past");
                             break;
                         case 2:
+                            initialPosition = 2;
                             tab.setText("Cancelled");
                             break;
                     }
                 }
         ).attach();
-
         return view;
     }
 }

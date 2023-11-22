@@ -308,6 +308,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/unhide_eye.png"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_save_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/save_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/font_avenir_lt.otf.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/font/avenir_lt.otf"
     },
@@ -346,6 +350,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_rounded_profile_tags.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/rounded_profile_tags.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_edit_off_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/edit_off_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_facebook.png.flat",

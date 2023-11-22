@@ -25,6 +25,7 @@ drawable demo_pfp
 drawable divider
 drawable edit_background
 drawable edit_icon
+drawable edit_off_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
@@ -70,6 +71,7 @@ drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
 drawable rounded_profile_tags
+drawable save_icon
 drawable search_box_border
 drawable search_button
 drawable settings_icon
@@ -114,6 +116,8 @@ id divider1
 id divider2
 id divider3
 id dummy_name
+id email_block
+id email_edit_image
 id email_edit_text
 id email_text
 id favourites
@@ -130,6 +134,8 @@ id linearLayout4
 id linearLayoutDestination
 id login_button
 id lower_case_characters
+id name_block
+id name_edit_image
 id otp_1
 id otp_2
 id otp_3
@@ -140,6 +146,8 @@ id password_edit_text
 id past_btn
 id people
 id pfp
+id phone_block
+id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
@@ -160,6 +168,9 @@ id resend_time_count_text
 id room
 id roomsDisplay
 id roomsView
+id save_button
+id save_image
+id save_text
 id searchBar
 id searchView
 id search_bar

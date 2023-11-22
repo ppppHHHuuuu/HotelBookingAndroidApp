@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-48:12
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\Admin\.gradle\caches\transforms-3\e530574cc8780721330cf2e82edfeb16\transformed\viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.test:monitor:1.6.1] C:\Users\Admin\.gradle\caches\transforms-3\3efc0fdd17594de34da1e3901e030ccc\transformed\monitor-1.6.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\Admin\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:2:1-12:12
@@ -93,8 +93,8 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Admin\.grad
 	android:name
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-46:19
-INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-46:19
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-49:19
+INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-49:19
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\Admin\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\Admin\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\18aee80cf9811f232ccd2c40bacdfd00\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
@@ -191,28 +191,34 @@ ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:3
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:33:13-37
 	android:name
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:32:13-50
-activity#com.example.mobdev_nhom7.activity.FilterOptionsActivity
+activity#com.example.mobdev_nhom7.activity.PhoneInput
 ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:34:9-36:40
 	android:exported
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:35:13-59
-activity#com.example.mobdev_nhom7.activity.Login
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:37:9-45:20
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:35:13-48
+activity#com.example.mobdev_nhom7.activity.CodeInput
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:37:9-39:40
 	android:exported
-		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:39:13-36
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:39:13-37
 	android:name
-		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:38:13-43
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:38:13-47
+activity#com.example.mobdev_nhom7.activity.Login
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:40:9-48:20
+	android:exported
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:42:13-36
+	android:name
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:41:13-43
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:40:13-44:29
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:43:13-47:29
 action#android.intent.action.MAIN
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:41:17-69
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:44:17-69
 	android:name
-		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:41:25-66
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:44:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:43:17-77
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:46:17-77
 	android:name
-		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:43:27-74
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:46:27-74
 uses-sdk
 INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml

@@ -3004,6 +3004,7 @@ drawable design_snackbar_background
 drawable divider
 drawable edit_background
 drawable edit_icon
+drawable edit_off_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
@@ -3134,6 +3135,7 @@ drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
 drawable rounded_profile_tags
+drawable save_icon
 drawable search_box_border
 drawable search_button
 drawable settings_icon
@@ -3362,6 +3364,8 @@ id east
 id edge
 id edit_query
 id elastic
+id email_block
+id email_edit_image
 id email_edit_text
 id email_text
 id embed
@@ -3507,6 +3511,8 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id name_block
+id name_edit_image
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3552,6 +3558,8 @@ id peekHeight
 id people
 id percent
 id pfp
+id phone_block
+id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
@@ -3589,8 +3597,11 @@ id roomsView
 id rounded
 id row_index_key
 id satellite
+id save_button
+id save_image
 id save_non_transition_alpha
 id save_overlay_view
+id save_text
 id sawtooth
 id scale
 id screen

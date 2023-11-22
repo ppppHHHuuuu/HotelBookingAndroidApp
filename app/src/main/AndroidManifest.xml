@@ -32,7 +32,10 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FilterOptionsActivity"
+            android:name=".activity.PhoneInput"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CodeInput"
             android:exported="false" />
         <activity
             android:name=".activity.Login"
