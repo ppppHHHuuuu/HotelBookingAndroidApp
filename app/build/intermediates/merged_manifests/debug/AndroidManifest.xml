@@ -35,6 +35,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:debuggable="true"
+        android:enableOnBackInvokedCallback="true"
         android:extractNativeLibs="false"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -42,7 +43,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.MobDev_Nhom7" >
+        android:theme="@style/Theme.MobDev_Nhom7"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.example.mobdev_nhom7.activity.ViewCity"
+            android:exported="false" />
         <activity
             android:name="com.example.mobdev_nhom7.activity.ViewHotel"
             android:exported="false" />
@@ -59,8 +64,12 @@
             android:name="com.example.mobdev_nhom7.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.activity.FilterOptionsActivity"
+            android:name="com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity"
             android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".activity.FilterOptionsActivity" -->
+        <!-- android:exported="false" /> -->
+
         <activity
             android:name="com.example.mobdev_nhom7.activity.Login"
             android:exported="true" >

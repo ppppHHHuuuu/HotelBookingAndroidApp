@@ -2,7 +2,7 @@ package com.example.mobdev_nhom7.models.user;
 
 public class UserItem {
     private String name;
-    private String uid;
+    private String user_id;
     private String email;
     private String phone;
     private String provider;
@@ -10,14 +10,14 @@ public class UserItem {
     private String address;
 
     public UserItem(String name,
-                    String uid,
+                    String user_id,
                     String email,
                     String phone,
                     String provider,
                     String age,
                     String address) {
         this.name = name;
-        this.uid = uid;
+        this.user_id = user_id;
         this.email = email;
         this.phone = phone;
         this.provider = provider;
@@ -29,8 +29,8 @@ public class UserItem {
         return name;
     }
 
-    public String getUid() {
-        return uid;
+    public String getuser_id() {
+        return user_id;
     }
 
     public String getEmail() {

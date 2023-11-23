@@ -6,9 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.databinding.ActivityMainBinding;
@@ -17,9 +20,12 @@ import com.example.mobdev_nhom7.fragment.main_activity.FavouritesFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.SettingsFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        if (mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            Log.d("uid", uid);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("user_id", uid);
+            editor.apply();
+        }
+        else {
+            Log.d("uid", "empty");
+        }
     }
 
     private void replaceFragment (Fragment fragment) {

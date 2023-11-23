@@ -9,134 +9,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
 
 import java.util.ArrayList;
 
 public class FavouritesFragment extends Fragment {
+    private APIService apiService = APIUtils.getUserService();
+    CardHotelAdapter cardHotelAdapter;
+    ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
 
-    ArrayList<String> hotels;
-    ArrayList<String> stars;
-    ArrayList<String> cities;
-    ArrayList<String> scores;
-    ArrayList<String> rates;
-    ArrayList<String> judges;
-    ArrayList<Integer> images;
-    ArrayList<Boolean> favourite;
 
     RecyclerView recyclerView;
-
-    CardHotelAdapter cardHotelAdapter;
-    private static final String TAG = "Favourite Fragment";
-    private String mParam1;
-
     public FavouritesFragment() {
         // Required empty public constructor
     }
-
-    // TODO: Rename and change types and number of parameters
-    public static FavouritesFragment newInstance(String param1) {
-        FavouritesFragment fragment = new FavouritesFragment();
-        Bundle args = new Bundle();
-        args.putString(TAG, param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(TAG);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_favourites, container, false);
-        hotels = new ArrayList<String>() {{
-            add("Hotel 1");
-            add("Hotel 2");
-            add("Hotel 3");
-            add("Hotel 4");
-            add("Hotel Long Name does it lost");
-            add("Hotel 6");
-        }};
-        stars = new ArrayList<String>() {{
-            add("****");
-            add("*****");
-            add("***");
-            add("***");
-            add("***");
-            add("***");
-        }};
-        cities = new ArrayList<String>() {
-            {
-                add("Ha Noi");
-                add("Ho Chi Minh");
-                add("Da Nang");
-                add("Da Nang");
-                add("Da Nang");
-                add("Da Nang");
-            }
-        };
-        scores = new ArrayList<String>() {{
-            add("8.6");
-            add("4.5");
-            add("8.9");
-            add("8.9");
-            add("8.9");
-            add("8.9");
-        }};
-        rates = new ArrayList<String>() {{
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-        }};
-        judges = new ArrayList<String>() {{
-            add("4546 nhan xet");
-            add("3456 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-        }};
-        images = new ArrayList<Integer>() {{
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-        }};
-        favourite = new ArrayList<Boolean>() {{
-            add(true);
-            add(true);
-            add(false);
-            add(true);
-            add(false);
-            add(true);
-        }};
+        View v= inflater.inflate(R.layout.fragment_favourites, container, false);
 
-        cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images);
+        cardHotelAdapter = new CardHotelAdapter(hotelItemList );
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
 
         recyclerView.setAdapter(cardHotelAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         return v;
     }
 
-    public void favouriteToggle() {
-
-    }
-
+    //TODO CALL FROM BE
 
 }

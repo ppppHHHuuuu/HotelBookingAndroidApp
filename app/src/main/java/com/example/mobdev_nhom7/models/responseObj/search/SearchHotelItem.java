@@ -9,88 +9,41 @@ import com.google.gson.annotations.SerializedName;
 import java.net.URL;
 
 public class SearchHotelItem {
-    @SerializedName("hotel_id")
-    @Expose
-    private String hotelId;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("location")
+    @SerializedName("star")
     @Expose
-    private String location;
+    private String star;
+    @SerializedName("hotel_id")
+    @Expose
+    private String hotelId;
+
     @SerializedName("score")
     @Expose
     private Double score;
     @SerializedName("imageURL")
     @Expose
     private String imageURL;
+    @SerializedName("distanceFromCenter")
+    @Expose
+    private String distanceFromCenter;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("number_of_judges")
+    @Expose
+    private String numberOfJudges;
     @SerializedName("amount")
     @Expose
     private String amount;
-    @SerializedName("positionFromCenter")
-    @Expose
-    private String positionFromCenter;
-    @SerializedName("isLoved")
-    @Expose
-    private String isLoved;
-    @SerializedName("isBooked")
-    @Expose
-    private String isBooked;
-    @SerializedName("isCanceled")
-    @Expose
-    private String isCanceled;
-    @SerializedName("isBooking")
-    @Expose
-    private String isBooking;
-
-    public String getIsCanceled() {
-        return isCanceled;
-    }
-
-    public void setIsCanceled(String isCanceled) {
-        this.isCanceled = isCanceled;
-    }
-
-    public String getIsBooking() {
-        return isBooking;
-    }
-
-    public void setIsBooking(String isBooking) {
-        this.isBooking = isBooking;
-    }
-
-    public String getIsBooked() {
-        return isBooked;
-    }
-
-    public void setIsBooked(String isBooked) {
-        this.isBooked = isBooked;
-    }
-
-    public String getIsLoved() {
-        return isLoved;
-    }
-
-    public void setIsLoved(String isLoved) {
-        this.isLoved = isLoved;
-    }
 
     public String getPositionFromCenter() {
-        return positionFromCenter;
+        return distanceFromCenter;
     }
-
     public void setPositionFromCenter(String positionFromCenter) {
-        this.positionFromCenter = positionFromCenter;
+        this.distanceFromCenter = positionFromCenter;
     }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public Double getScore() {
         return score;
     }
@@ -123,35 +76,36 @@ public class SearchHotelItem {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+
+    public String getStar() {
+        return star;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStar(String star) {
+        this.star = star;
     }
 
-    public String getReview() {
-        return review;
+    public String getCity() {
+        return city;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getDistance() {
-        return distance;
+    public String getNumberOfJudges() {
+        return numberOfJudges;
     }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
+    public void setNumberOfJudges(String numberOfJudges) {
+        this.numberOfJudges = numberOfJudges;
     }
 
-    @SerializedName("review")
-    @Expose
-    private String review;
+    public String getAmount() {
+        return amount;
+    }
 
-    @SerializedName("distance")
-    @Expose
-    private String distance;
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 }

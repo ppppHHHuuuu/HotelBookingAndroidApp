@@ -35,12 +35,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ListUserViewHo
     public void onBindViewHolder(@NonNull ListUserViewHolder holder, int position) {
         UserItem userItem = users.get(position);
         holder.textName.setText(String.valueOf(userItem.getName()));
-        holder.textUid.setText(String.valueOf(userItem.getUid()));
+        holder.textuser_id.setText(String.valueOf(userItem.getuser_id()));
         holder.textEmail.setText(String.valueOf(userItem.getEmail()));
         holder.textPhone.setText(String.valueOf(userItem.getPhone()));
         holder.textProvider.setText(String.valueOf(userItem.getProvider()));
         holder.textAge.setText(String.valueOf(userItem.getAge()));
-        holder.textAddress.setText(String.valueOf(userItem.getAddress()));
     }
 
     @Override
@@ -51,24 +50,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ListUserViewHo
     public class ListUserViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout layoutIntroduce;
         private TextView textName;
-        private TextView textUid;
+        private TextView textuser_id;
         private TextView textEmail;
         private TextView textPhone;
         private TextView textProvider;
         private TextView textAge;
-        private TextView textAddress;
 
         public ListUserViewHolder(@NonNull View itemView) {
             super(itemView);
             // Initialize variables with their corresponding itemViews
             layoutIntroduce = itemView.findViewById(R.id.layoutIntroduce);
             textName = itemView.findViewById(R.id.textHotel);
-            textUid = itemView.findViewById(R.id.textHotelName);
+            textuser_id = itemView.findViewById(R.id.textHotelName);
             textEmail = itemView.findViewById(R.id.textScore);
             textPhone = itemView.findViewById(R.id.textJudge);
             textProvider = itemView.findViewById(R.id.textDistance);
             textAge = itemView.findViewById(R.id.textAmount);
-            textAddress = itemView.findViewById(R.id.textLastBookingTime);
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SearchEvent;
@@ -47,25 +48,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StaysFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class StaysFragment extends Fragment {
-    final int DEFAULT_GUEST_NUMBER = 2;
-    final int DEFAULT_ROOM_NUMBER = 1;
     private APIService apiService = APIUtils.getUserService();
     CardHotel2Adapter cardHotel2Adapter;
-    ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
     private Button buttonSearch;
-
-    private EditText desInput;
+    private TextView desInput;
     private TextView roomsDisplay;
     private TextView dateDisplay;
     private RecyclerView recyclerView;
 
-
+    private String hotelID;
+    private String destination;
+    private String startDate;
+    private String endDate;
+    private String roomNumber;
+    private String pplNumber;
+    private String user_id;
     public StaysFragment() {
         // Required empty public constructor
     }
@@ -110,22 +108,39 @@ public class StaysFragment extends Fragment {
             }
         });
         desInput = view.findViewById(R.id.desInput);
+
         dateDisplay = view.findViewById(R.id.dateDisplay);
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
         recyclerView = view.findViewById(R.id.recyclerView);
-
-        hotelItemList = new ArrayList<>();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setVisibility(View.GONE);
-
         buttonSearch = view.findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(view1 -> loadHotels(desInput.getText().toString(), dateDisplay.getText().toString(), roomsDisplay.getText().toString()));
 
+        //NOTE: Default search value
+        SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        hotelID = "null";
+//        destination = desInput.getText().toString();
+        user_id = "1";
+        destination = "1";
+        startDate = dateFullFormat.format(today);
+        endDate = dateFullFormat.format(tomorrow);
+        roomNumber = "2";
+        pplNumber = "1";
+        buttonSearch.setOnClickListener(view1 -> loadHotels(user_id, hotelID, destination, startDate, endDate, roomNumber, pplNumber));
+        Log.d("hotelID", hotelID);
+        Log.d("destination", destination);
+        Log.d("start_date", startDate);
+        Log.d("end_date", endDate);
+        Log.d("room_quantity", roomNumber);
+        Log.d("ppl_quantity", pplNumber);
+        desInput.setOnClickListener(view1 -> getSuggestedDestinationActivity());
 
         return view;
     }
-
+    public void getSuggestedDestinationActivity() {
+        Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
+        startActivity(intent);
+    }
     public void openRoomOptionsDialog() {
 
 
@@ -157,11 +172,12 @@ public class StaysFragment extends Fragment {
             public void onClick(View view) {
                 setRoomType(roomNum.getText().toString(), guestNum.getText().toString());
                 dialog.hide();
+                roomNumber = roomNum.getText().toString();
+                pplNumber = guestNum.getText().toString();
             }
         });
         dialog.show();
     }
-
     public void openDateOptionsDialog(TextView dateDisplay) {
         final Dialog dialog = new Dialog(this.getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -207,11 +223,12 @@ public class StaysFragment extends Fragment {
             public void onClick(View view) {
                 setDate(checkIn.getText().toString(), checkOut.getText().toString());
                 dialog.hide();
+                startDate = checkIn.getText().toString();
+                endDate = checkIn.getText().toString();
             }
         });
         dialog.show();
     }
-
     public void showDatePicker(TextView tv) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -237,11 +254,9 @@ public class StaysFragment extends Fragment {
         // Show the DatePickerDialog
         datePickerDialog.show();
     }
-
     public void setDate(String in, String out) {
         dateDisplay.setText(in + " - " + out);
     }
-
     public void setRoomType(String roomNum, String guestNum) {
         String res = roomNum;
         int roomNumInt = Integer.parseInt(roomNum);
@@ -262,26 +277,40 @@ public class StaysFragment extends Fragment {
 
         roomsDisplay.setText(res);
     }
-
-
-    public void loadHotels(String destination, String date, String numberPpl) {
-        Call<SearchHotelResponseData> callHotel = apiService.searchHotels(destination, date, numberPpl);
-        callHotel.enqueue(new Callback<SearchHotelResponseData>() {
+    public void loadHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity,String ppl_quantity ) {
+        Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID,destination, start_date, end_date, room_quantity, ppl_quantity);
+        // Get the request URL
+        String requestUrl = callHotel.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        callHotel.enqueue(new Callback<List<SearchHotelItem>>() {
             @Override
-            public void onResponse(Call<SearchHotelResponseData> call, Response<SearchHotelResponseData> response) {
-                List<SearchHotelItem> searchHotelItems = response.body().getData();
+            public void onResponse(Call<List<SearchHotelItem>> call, Response<List<SearchHotelItem>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("response error", String.valueOf(response.code()));
+                    return;
+                }
+                if (response.body() == null) {
+                    Log.d("response error", "Empty response");
+                    return;
+                }
+                ArrayList<SearchHotelItem> searchHotelItems = (ArrayList<SearchHotelItem>) response.body();
                 if (searchHotelItems.size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
+                    //ADD LOADING QUERY
+
+                    return;
                 }
-                hotelItemList = (ArrayList<SearchHotelItem>) response.body().getData();
-                cardHotel2Adapter = new CardHotel2Adapter(hotelItemList);
+                cardHotel2Adapter = new CardHotel2Adapter(getContext(), searchHotelItems);
                 recyclerView.setAdapter(cardHotel2Adapter);
                 recyclerView.setVisibility(View.VISIBLE);
+                Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
+
             }
 
             @Override
-            public void onFailure(Call<SearchHotelResponseData> call, Throwable t) {
+            public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("loadHotel",t.toString());
             }
         });
     }

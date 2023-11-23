@@ -142,14 +142,6 @@
             android:textStyle="bold"
             android:textColor="@color/ButtonColor"/>
 
-        <TextView
-            android:textColor="@color/black"
-            android:id="@+id/textLastBookingTime"
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_marginTop="8sp"
-            android:text="Last booked: 2 hours ago" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
