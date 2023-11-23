@@ -3302,6 +3302,9 @@ id chronometer
 id circle_center
 id cities
 id cityName
+id cityName2
+id cityName3
+id cityName4
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3320,6 +3323,10 @@ id continuousVelocity
 id coordinator
 id cos
 id counterclockwise
+id countryName
+id countryName2
+id countryName3
+id countryName4
 id cradle
 id currentState
 id custom
@@ -3391,6 +3398,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id firstRow
 id fitCenter
 id fitEnd
 id fitStart
@@ -3588,9 +3596,9 @@ id progress_horizontal
 id radio
 id rating
 id ratio
+id recent_tv
 id rectangles
 id recycleView
-id recycle_view
 id recyclerView
 id register_button
 id resend_button
@@ -3619,7 +3627,6 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchBar
-id searchView
 id search_badge
 id search_bar
 id search_bar_text_view
@@ -3630,6 +3637,7 @@ id search_go_btn
 id search_mag_icon
 id search_plate
 id search_src_text
+id search_tv
 id search_view_background
 id search_view_clear_button
 id search_view_content_container
@@ -3644,6 +3652,8 @@ id search_view_status_bar_spacer
 id search_view_toolbar
 id search_view_toolbar_container
 id search_voice_btn
+id searchbar
+id secondRow
 id select_dialog_listview
 id selected
 id selection_type
@@ -3688,6 +3698,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id suggested_tv
 id supportScrollUp
 id tabLayout
 id tabMode
@@ -3723,9 +3734,6 @@ id textSpacerNoTitle
 id textStarNumber
 id textStart
 id textTop
-id textView
-id textView7
-id textView8
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3909,6 +3917,7 @@ layout button_price
 layout card_city
 layout card_hotel
 layout card_hotel_2
+layout city_detail
 layout code_input_text
 layout custom_dialog
 layout date_option_pop_up

@@ -176,6 +176,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_profile_tags.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_city_detail.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/city_detail.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_logout.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/logout.xml"
     },
