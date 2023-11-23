@@ -3274,6 +3274,7 @@ id button4
 id button5
 id buttonPanel
 id buttonSearch
+id button_verify_code
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3363,6 +3364,7 @@ id easeOut
 id east
 id edge
 id edit_query
+id edit_text_verification_code
 id elastic
 id email_block
 id email_edit_image
@@ -3752,6 +3754,7 @@ id unlabeled
 id up
 id upper_case_characters
 id useLogo
+id verification_section
 id verticalDivider
 id vertical_only
 id view

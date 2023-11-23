@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.remote;
 
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.reservation.BookingResponseObj;
@@ -8,7 +9,10 @@ import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseOb
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.models.responseObj.user.UserResponseObj;
 
+import org.checkerframework.checker.signature.qual.FieldDescriptor;
+
 import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -18,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -85,4 +90,7 @@ public interface APIService {
     @GET("get/hotel/all")
     @FormUrlEncoded
     Call<HotelNameResponseData> getAllHotelName();
+
+    @POST("/user/{id}")
+    Call<DefaultResponseData> createUser(@Path("id") String id);
 }

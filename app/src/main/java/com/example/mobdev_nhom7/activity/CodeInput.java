@@ -211,14 +211,6 @@ public class CodeInput extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        SharedPreferences sharedPreferences = CodeInput.this.getSharedPreferences(
-                                getString(R.string.user_info), Context.MODE_PRIVATE
-                        );
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", user.getEmail());
-                        editor.putString("provider", user.getProviderId());
-                        editor.apply();
-
                         Intent intent = new Intent(CodeInput.this, MainActivity.class);
                         startActivity(intent);
                     } else {

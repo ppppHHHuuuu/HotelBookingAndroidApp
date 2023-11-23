@@ -101,6 +101,7 @@ id button3
 id button4
 id button5
 id buttonSearch
+id button_verify_code
 id cancelled_btn
 id cardHotel
 id cities
@@ -116,6 +117,7 @@ id divider1
 id divider2
 id divider3
 id dummy_name
+id edit_text_verification_code
 id email_block
 id email_edit_image
 id email_edit_text
@@ -197,6 +199,7 @@ id textView8
 id tripDescription
 id trips
 id upper_case_characters
+id verification_section
 id verticalDivider
 id view
 id viewPager

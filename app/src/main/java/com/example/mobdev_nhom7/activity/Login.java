@@ -157,15 +157,6 @@ public class Login extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                                getString(R.string.user_info), Context.MODE_PRIVATE
-                        );
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", user.getEmail());
-                        editor.putString("provider", user.getProviderId());
-                        editor.apply();
-
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                     } else {

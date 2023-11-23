@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/AppGrey"
-    tools:context=".activity.FilterOptionsActivity">
+    android:background="@color/AppGrey">
 
     <View
         android:id="@+id/view"
@@ -306,6 +305,56 @@
                     android:textStyle="bold"
                     android:textColor="@color/DarkGrey"
                     android:fontFamily="@font/avenir_rgl"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verification_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="You need to verify to change the phone number"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+                <EditText
+                    android:id="@+id/edit_text_verification_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter verification code"
+                    android:inputType="number"
+                    android:maxLength="6" />
+
+                <Button
+                    android:id="@+id/button_verify_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Verify Code"
+                    android:background="@drawable/rounded_profile_tags"
+                    android:backgroundTint="@color/TextLowLight"/>
+
+                <TextView
+                    android:id="@+id/resend_time_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Resend in: 60"
+                    android:clickable="true" />
+
+                <TextView
+                    android:id="@+id/resend_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Resend"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#006ECB"
+                    android:clickable="true" />
             </LinearLayout>
         </LinearLayout>
 

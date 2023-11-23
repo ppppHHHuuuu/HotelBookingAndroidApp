@@ -1,15 +1,22 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -24,13 +31,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.Login;
 import com.example.mobdev_nhom7.activity.MainActivity;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import java.util.concurrent.TimeUnit;
 
-import org.w3c.dom.Text;
+
+
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +63,7 @@ import org.w3c.dom.Text;
  * create an instance of this fragment.
  */
 public class SettingsFragment extends Fragment {
+    private APIService apiService = APIUtils.getUserService();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,9 +73,16 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mVerificationId;
     String oldName = "";
     String oldPhone = "";
     String oldEmail = "";
+    EditText nameText;
+    EditText phoneText;
+    EditText emailText;
+    private boolean resendEnabled = false;
+    private int resendTime = 60;
+    TextView resendTimeCountText;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -87,15 +120,32 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        EditText nameText = view.findViewById(R.id.dummy_name);
+
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
+
+        TextView profileName = view.findViewById(R.id.profile_name);
+        profileName.setText(sharedPreferences.getString("name", ""));
+
+        TextView profileEmail = view.findViewById(R.id.profile_email);
+        profileEmail.setText(sharedPreferences.getString("email", ""));
+
+        nameText = view.findViewById(R.id.dummy_name);
+        nameText.setText(sharedPreferences.getString("name", ""));
         ImageView nameEditImage = view.findViewById(R.id.name_edit_image);
-        EditText phoneText = view.findViewById(R.id.phone_edit_text);
+
+        phoneText = view.findViewById(R.id.phone_edit_text);
+        phoneText.setText(sharedPreferences.getString("phone", ""));
         ImageView phoneEditImage = view.findViewById(R.id.phone_edit_image);
-        EditText emailText = view.findViewById(R.id.email_edit_text);
+
+        emailText = view.findViewById(R.id.email_edit_text);
+        emailText.setText(sharedPreferences.getString("email", ""));
         ImageView emailEditImage = view.findViewById(R.id.email_edit_image);
+
         oldName = nameText.getText().toString();
         oldPhone = phoneText.getText().toString();
         oldEmail = emailText.getText().toString();
+
+        LinearLayout saveButton = view.findViewById(R.id.save_button);
 
         InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
 
@@ -118,9 +168,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!nameText.getText().toString().equals(oldName)) {
+                    saveButton.setEnabled(true);
                     savable();
                 } else if (phoneText.getText().toString().equals(oldPhone)
                         && emailText.getText().toString().equals(oldEmail)) {
+                    saveButton.setEnabled(false);
                     notSavable();
                 }
             }
@@ -155,9 +207,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!phoneText.getText().toString().equals(oldPhone)) {
+                    saveButton.setEnabled(true);
                     savable();
                 } else if (nameText.getText().toString().equals(oldName)
                         && emailText.getText().toString().equals(oldEmail)) {
+                    saveButton.setEnabled(false);
                     notSavable();
                 }
             }
@@ -192,9 +246,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!emailText.getText().toString().equals(oldEmail)) {
+                    saveButton.setEnabled(true);
                     savable();
                 } else if (nameText.getText().toString().equals(oldName)
                         && phoneText.getText().toString().equals(oldPhone)) {
+                    saveButton.setEnabled(false);
                     notSavable();
                 }
             }
@@ -211,11 +267,62 @@ public class SettingsFragment extends Fragment {
             }
             return false;
         });
-        LinearLayout saveButton = view.findViewById(R.id.save_button);
+
         saveButton.setOnClickListener(v -> {
-            oldName = nameText.getText().toString();
-            oldPhone = phoneText.getText().toString();
-            oldEmail = emailText.getText().toString();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (!Objects.equals(oldEmail, emailText.getText().toString())) {
+                oldEmail = emailText.getText().toString();
+                user.updateEmail(oldEmail)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Log.d("Firebase Email Current User", "User email address updated.");
+                            }
+                        });
+            }
+            if (!Objects.equals(oldName, nameText.getText().toString())) {
+                oldName = nameText.getText().toString();
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(oldName).build();
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Log.d("Firebase Current User", "User display name updated.");
+                            }
+                        });
+            }
+            if (!Objects.equals(oldPhone, phoneText.getText().toString())) {
+                oldPhone = phoneText.getText().toString();
+
+                resendTimeCountText = view.findViewById(R.id.resend_time_count_text);
+                TextView resendButton = view.findViewById(R.id.resend_button);
+                resendButton.setPaintFlags(resendButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                resendButton.setOnClickListener(v2 -> {
+                    if (resendEnabled) {
+                        this.requestPhoneNumberVerification(cleanPhoneNumber(oldPhone));
+                        startCountDownTimer();
+                    }
+                });
+
+                this.requestPhoneNumberVerification(cleanPhoneNumber(oldPhone));
+                startCountDownTimer();
+                Toast.makeText(view.getContext(), "We sent a smsCode to your phone", Toast.LENGTH_SHORT).show();
+
+                LinearLayout verification_section = view.findViewById(R.id.verification_section);
+                verification_section.setVisibility(View.VISIBLE);
+                Button verifyButton = view.findViewById(R.id.button_verify_code);
+                EditText smsInput = view.findViewById(R.id.edit_text_verification_code);
+                verifyButton.setOnClickListener(v1 -> {
+                    if (smsInput.getText().toString().length() < 6) {
+                        Toast.makeText(view.getContext(), "SmsCode must have 6 letters", Toast.LENGTH_SHORT);
+                    } else {
+                        this.updatePhoneNumber(mVerificationId, smsInput.getText().toString());
+                        verification_section.setVisibility(View.GONE);
+                    }
+                });
+            }
+            Toast.makeText(view.getContext(), "User information updated successfully", Toast.LENGTH_SHORT);
+
             ImageView saveImage = getView().findViewById(R.id.save_image);
             int color = ContextCompat.getColor(requireContext(), R.color.DarkGrey);
             ColorStateList colorStateList = ColorStateList.valueOf(color);
@@ -282,5 +389,73 @@ public class SettingsFragment extends Fragment {
         ViewCompat.setBackgroundTintList(saveImage, colorStateList);
         TextView saveText = getView().findViewById(R.id.save_text);
         saveText.setTextColor(color);
+    }
+
+    public void requestPhoneNumberVerification(String phoneNumber) {
+        Activity mActivity = getActivity();
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,          // Phone number to verify
+                60,                   // Timeout duration in seconds
+                TimeUnit.SECONDS,     // Unit of timeout
+                mActivity,            // Activity (for callback binding)
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(PhoneAuthCredential credential) {
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(mActivity, "Verification failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+                        mVerificationId = verificationId;
+                    }
+                });
+    }
+
+    // Method to update the user's phone number
+    private void updatePhoneNumber(String verificationId, String smsCode) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        Activity mActivity = getActivity();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+
+            user.updatePhoneNumber(PhoneAuthProvider.getCredential(verificationId, smsCode))
+                    .addOnCompleteListener(mActivity, task -> {
+                        if (task.isSuccessful()) {
+                            // Phone number updated successfully
+                            Toast.makeText(mActivity, "Phone number updated.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If updating fails, display a message to the user.
+                            Toast.makeText(mActivity, "Failed to update phone number.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(mActivity, "User not signed in.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void startCountDownTimer() {
+        resendEnabled = false;
+        new CountDownTimer(resendTime * 1000L, 1000) {
+            @Override
+            public void onTick(long sendsUntilFinished) {
+                resendTimeCountText.setText("Resend in: " + String.valueOf(sendsUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                resendEnabled = true;
+            }
+        }.start();
+    }
+
+    private static String cleanPhoneNumber(String phoneNumber) {
+        String cleanedNumber = phoneNumber.replaceAll("[^+0-9]", "");
+
+        Log.d("asd", cleanedNumber);
+        return cleanedNumber;
     }
 }

@@ -1,11 +1,13 @@
 package com.example.mobdev_nhom7.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +24,11 @@ import com.example.mobdev_nhom7.fragment.main_activity.FavouritesFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.SettingsFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -30,22 +37,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getUserInfo();
+
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new StaysFragment());
         binding.bottomNav.setItemIconTintList(null);
         binding.bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-            if(id== R.id.stays) {
+            if(id== R.id.stays && id != fragmentId) {
+                fragmentId = id;
                 replaceFragment(new StaysFragment());
-            } else if (id==R.id.cities) {
+            } else if (id==R.id.cities && id != fragmentId) {
+                fragmentId = id;
                 replaceFragment(new CityFragment());
-            } else if (id==R.id.favourites) {
+            } else if (id==R.id.favourites && id != fragmentId) {
+                fragmentId = id;
                 replaceFragment(new FavouritesFragment());
-            } else if (id==R.id.trips) {
+            } else if (id==R.id.trips && id != fragmentId) {
+                fragmentId = id;
                 replaceFragment(new TripsFragment());
-            } else if (id==R.id.settings) {
-                fragmentId = 4;
+            } else if (id==R.id.settings && id != fragmentId) {
+                fragmentId = id;
                 replaceFragment(new SettingsFragment());
             }
             return true;
@@ -63,31 +76,47 @@ public class MainActivity extends AppCompatActivity {
         this.binding.bottomNav.setSelectedItemId(R.id.trips);
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(this.INPUT_METHOD_SERVICE);
-//        Log.d("a", "Asd ads");
-//        switch (fragmentId) {
-//            case 4:
-//                switch (keyCode) {
-//                    case KeyEvent.KEYCODE_ENTER:
-//                        switch (SettingsFragment.editTextId) {
-//                            case 0:
-//                                EditText nameEditText = findViewById(R.id.dummy_name);
-//                                nameEditText.setEnabled(false);
-//
-//                            case 1:
-//                                EditText phoneEditText = findViewById(R.id.phone_edit_text);
-//                                phoneEditText.setEnabled(false);
-//
-//                            case 2:
-//                                EditText emailEditText = findViewById(R.id.email_edit_text);
-//                                emailEditText.setEnabled(false);
-//                                inputMethodManager.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
-//                        }
-//                }
-//                return super.onKeyUp(keyCode, event);
-//        }
-//        return true;
-//    }
+    private void getUserInfo() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user.getEmail() != null) {
+            editor.putString("email", user.getEmail());
+        } else {
+            user.updateEmail("examplemail@example.com")
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.d("Firebase Email Current User", "User email address updated.");
+                        }
+                    });
+            editor.putString("email", "examplemail@example.com");
+        }
+        if (user.getPhoneNumber() != null) {
+            editor.putString("phone", user.getPhoneNumber());
+        } else {
+            user.updateEmail("(+84) 012345678")
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.d("Firebase Phone Current User", "User phone address updated.");
+                        }
+                    });
+            editor.putString("phone", "(+84) 012345678");
+        }
+        if (user.getDisplayName() != null) {
+            editor.putString("name", user.getDisplayName());
+        } else {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName("Dummy Name").build();
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.d("Firebase Current User", "User display name updated.");
+                        }
+                    });
+            editor.putString("name", "Dummy Name");
+        }
+        editor.putString("provider", user.getProviderId());
+        editor.apply();
+    }
 }
