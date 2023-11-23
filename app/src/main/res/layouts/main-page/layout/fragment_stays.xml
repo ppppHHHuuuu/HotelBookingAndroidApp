@@ -48,16 +48,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/desInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
+                android:inputType="none"
+                android:text="Ho Chi Minh City"
                 android:background="@drawable/edit_background"
                 android:hint="Preferred Destination"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
                 android:textSize="15sp"
+                android:gravity="center_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.473"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +86,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="100dp"
+                    android:id="@+id/date_options"
+                    android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -104,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Oct 9 - Oct 10"
+                        android:text="Nov 24 - Nov 12"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -125,6 +129,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/room_info_options"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_marginLeft="15dp"

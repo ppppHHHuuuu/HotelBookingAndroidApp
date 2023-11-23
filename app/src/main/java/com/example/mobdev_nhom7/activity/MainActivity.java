@@ -16,6 +16,8 @@ import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.databinding.ActivityMainBinding;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
     }
 
     private void replaceFragment (Fragment fragment) {
@@ -118,5 +121,20 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.putString("provider", user.getProviderId());
         editor.apply();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        if (mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            Log.d("uid", uid);
+            SharedPreferences.Editor editor2 = preferences.edit();
+            editor2.putString("user_id", uid);
+            editor2.apply();
+        }
+        else {
+            Log.d("uid", "empty");
+        }
     }
+
+
 }

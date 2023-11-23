@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchCityItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 
@@ -29,7 +30,11 @@ import java.util.List;
 public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.ListHotelViewHolder> {
     Context context;
     private List<SearchHotelItem> data;
-    public CardHotel2Adapter(ArrayList<SearchHotelItem> data) {
+    public SearchHotelItem getData(int x) {
+        return data.get(x);
+    }
+    public CardHotel2Adapter(Context context, List<SearchHotelItem> data) {
+        this.context =  context;
         this.data= data;
     }
 
@@ -63,7 +68,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
 //        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore()));
         holder.imagesHotel.setImageBitmap(hotelImage);
-//        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
+        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore()));
         holder.textDistance.setText(String.valueOf(data.get(position).getPositionFromCenter()));
     }
@@ -72,10 +77,9 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
-
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final TextView textHotel;
-        private final TextView textLocation;
+//        private final TextView textLocation;
         private final TextView textScore;
         private final ImageView imagesHotel;
         private final TextView textHotelName;
@@ -87,7 +91,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
             imagesHotel = itemView.findViewById(R.id.imageHotel);
-            textLocation = itemView.findViewById(R.id.textLocation);
+//            textLocation = itemView.findViewById(R.id.textLocation);
             textScore = itemView.findViewById(R.id.textScore);
 
             textJudge = itemView.findViewById(R.id.textJudge);

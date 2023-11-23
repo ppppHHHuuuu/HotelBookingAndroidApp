@@ -16,11 +16,11 @@ public class Rating {
     private String customerId;
     @SerializedName("cleanliness")
     @Expose
-    private List<RoomItem> cleanliness;
+    private Double cleanliness;
     @SerializedName("building")
     @Expose
-    private List<RoomItem> building;
+    private Double building;
     @SerializedName("comfort")
     @Expose
-    private List<RoomItem> comfort;
+    private Double comfort;
 }
