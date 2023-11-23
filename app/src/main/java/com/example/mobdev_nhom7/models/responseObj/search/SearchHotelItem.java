@@ -9,15 +9,16 @@ import com.google.gson.annotations.SerializedName;
 import java.net.URL;
 
 public class SearchHotelItem {
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("star")
     @Expose
     private String star;
     @SerializedName("hotel_id")
     @Expose
     private String hotelId;
-    @SerializedName("name")
-    @Expose
-    private String name;
+
     @SerializedName("score")
     @Expose
     private Double score;
@@ -33,6 +34,9 @@ public class SearchHotelItem {
     @SerializedName("number_of_judges")
     @Expose
     private String numberOfJudges;
+    @SerializedName("amount")
+    @Expose
+    private String amount;
 
     public String getPositionFromCenter() {
         return distanceFromCenter;
@@ -95,5 +99,13 @@ public class SearchHotelItem {
 
     public void setNumberOfJudges(String numberOfJudges) {
         this.numberOfJudges = numberOfJudges;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

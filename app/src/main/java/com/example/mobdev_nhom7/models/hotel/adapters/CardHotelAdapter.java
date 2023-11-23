@@ -31,6 +31,7 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
     public CardHotelAdapter(ArrayList<SearchHotelItem > data) {
         this.data= data;
     }
+
     @NonNull
     @Override
     public FavHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,4 +96,5 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             imagesHotel = itemView.findViewById(R.id.imageView);
         }
     }
+
 }

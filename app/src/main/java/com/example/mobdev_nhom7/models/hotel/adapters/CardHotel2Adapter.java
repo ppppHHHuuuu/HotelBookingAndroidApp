@@ -33,7 +33,8 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotel2Adapter(ArrayList<SearchHotelItem> data) {
+    public CardHotel2Adapter(Context context, List<SearchHotelItem> data) {
+        this.context =  context;
         this.data= data;
     }
 
@@ -64,7 +65,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         }
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
+//        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore()));
         holder.imagesHotel.setImageBitmap(hotelImage);
         holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));

@@ -1,6 +1,8 @@
 package com.example.mobdev_nhom7;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;

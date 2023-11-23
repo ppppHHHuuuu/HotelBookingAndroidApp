@@ -2,109 +2,289 @@ package com.example.mobdev_nhom7.fragment.main_activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mobdev_nhom7.models.hotel.HotelItem;
+import com.example.mobdev_nhom7.utils.CustomAdapter;
+import com.example.mobdev_nhom7.utils.PlaceType;
+import com.google.gson.annotations.SerializedName;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CardCityNameAdapter;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
+import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
+import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemCardAdapter;
+import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.google.common.reflect.TypeToken;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.HttpException;
 import retrofit2.Response;
 
 public class SuggestedDestinationActivity extends Activity {
-    private APIService apiService = APIUtils.getUserService();
-    String[] suggestedDest;
-
+    public interface DataLoadedCallback {
+        void onDataLoaded();
+    }
+    private final APIService apiService = APIUtils.getUserService();
     RecyclerView recyclerView;
+
     NestedScrollView nestedScrollView;
-    AutoCompleteTextView autoCompleteTextView;
-    Button buttonCancel;
-    //TODO: FROM ROUTING TO BE
+    EditText editPreferredDest;
+    ImageButton imageBackButton;
+    TextView suggestedPlace;
+    ImageButton buttonCancel;
+    List<String> data = new ArrayList<>();
+    List<PlaceItem> placeItemList;
+    List<CityItem> cityItems;
+    List<HotelItem> hotelItems;
 
-
+    CityItemCardAdapter cityItemCardAdapter;
+    CustomAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggested_destination);
-        recyclerView = findViewById(R.id.recyclerView);
-        autoCompleteTextView = findViewById(R.id.autoCompleteDest);
+        imageBackButton = findViewById(R.id.imageBackButton);
+        suggestedPlace = findViewById(R.id.suggestedPlace);
+        editPreferredDest = findViewById(R.id.editPreferredDest);
         nestedScrollView = findViewById(R.id.nestedScrollView);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setItemAnimator(null);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        placeItemList = new ArrayList<>();
         buttonCancel = findViewById(R.id.buttonCancel);
 
-        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(this,  R.layout.auto_complete_custom,R.id.recyclerView1, suggestedDest);
-        autoCompleteTextView.setAdapter(arrayAdapter);
-//        autoCompleteTextView.setOnClickListener(v-> {
-//            if(autoCompleteTextView.getText().length()>= 1) {
-//                nestedScrollView.setVisibility(View.GONE);
-//
-//            }
-//            else {
-//                nestedScrollView.setVisibility(View.VISIBLE);
-//            }
-//        });
         buttonCancel.setOnClickListener(v-> {
-            autoCompleteTextView.setText("");
+            editPreferredDest.setText("");
         });
+
         getSuggestDest();
-     }
-    private void getFilterPlacesList(){
-        Call<CityNameResponseData> call = apiService.getAllCity();
-        call.enqueue(new Callback<CityNameResponseData>() {
+
+        getAllHotel(() -> {
+            getAllCity(() -> {
+                adapter = new CustomAdapter(getApplicationContext(), placeItemList);
+                Log.d("PlaceItem", String.valueOf(placeItemList.size()));
+            });
+        });
+
+        imageBackButton.setOnClickListener(view -> finish());
+        editPreferredDest.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onResponse(@NonNull Call<CityNameResponseData> call, @NonNull Response<CityNameResponseData> response) {
-                if (response.isSuccessful()) {
-                    if  (response.body() == null) {
-                        Log.d("Content", "Empty content");
-                        Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
-                    }
-                    ArrayList<CityName> cityNames = (ArrayList<CityName>) response.body().getData();
-                    CardCityNameAdapter cardCityNameAdapter = new CardCityNameAdapter(getApplicationContext(), cityNames);
-                    recyclerView.setAdapter(cardCityNameAdapter);
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
-            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
-                Log.d("call", t.toString());
-                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //this check with the editable
+                String searchText = editable.toString().trim();
+                if (searchText.isEmpty()) {
+                    recyclerView.setAdapter(cityItemCardAdapter);
+                }
+                else {
+                    try {
+                        adapter.getFilter().filter(searchText);
+                        recyclerView.setAdapter(adapter);
+                    }
+                    catch (Exception e) {
+                        Log.d("exceptionz", e.getMessage().toString());
+
+                    }
+                }
             }
         });
+
     }
-     private void getSuggestDest() {
-         Call<CityNameResponseData> call = apiService.getSuggestedCity();
-         call.enqueue(new Callback<CityNameResponseData>() {
+    private void getSuggestDest() {
+         Call<List<CityItem>> call = apiService.getSuggestedCity();
+         call.enqueue(new Callback<List<CityItem>>() {
              @Override
-             public void onResponse(@NonNull Call<CityNameResponseData> call, @NonNull Response<CityNameResponseData> response) {
+             public void onResponse(@NonNull Call<List<CityItem>> call, @NonNull Response<List<CityItem>> response) {
                  if (response.isSuccessful()) {
                      if  (response.body() == null) {
                          Log.d("Content", "Empty content");
                          Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
                      }
-                     ArrayList<CityName> cityNames = (ArrayList<CityName>) response.body().getData();
-                     CardCityNameAdapter cardCityNameAdapter = new CardCityNameAdapter(getApplicationContext(), cityNames);
-                     recyclerView.setAdapter(cardCityNameAdapter);
+                     ArrayList<CityItem> cityItems = (ArrayList<CityItem>) response.body();
+                     for (int i = 0; i < response.body().size(); i++ ) {
+                         Log.d("cityItems", response.body().get(i).getCityName());
+                     }
+                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems);
+                     recyclerView.setAdapter(cityItemCardAdapter);
                  }
              }
 
              @Override
-             public void onFailure(Call<CityNameResponseData> call, Throwable t) {
+             public void onFailure(Call<List<CityItem>> call, Throwable t) {
                  Log.d("call", t.toString());
                  Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
              }
          });
      }
+    private void getMatchingSearch(String searching) {
+        Call<List<PlaceItem>> call = apiService.getPlaceByWord();
+        call.enqueue(new Callback<List<PlaceItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<PlaceItem>> call, @NonNull Response<List<PlaceItem>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                List<PlaceItem> placeItemList = response.body();
+                Log.d("placeItemResponse", placeItemList.toString());
+                PlaceItemCardAdapter placeItemCardAdapter = new PlaceItemCardAdapter(getApplicationContext(), placeItemList);
+                recyclerView.setAdapter(placeItemCardAdapter);
+                recyclerView.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<PlaceItem>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    // An IOException occurred, usually a network issue
+                    Log.e("onFailure", "Network error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+                } else if (t instanceof HttpException) {
+                    // An HTTP exception occurred, get the status code
+                    HttpException httpException = (HttpException) t;
+                    int statusCode = httpException.code();
+                    String errorBody = httpException.response().errorBody().toString();
+                    Log.e("onFailure", "HTTP error: " + statusCode + ", " + errorBody);
+                    Toast.makeText(getApplicationContext(), "HTTP error: " + statusCode, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Other types of exceptions
+                    Log.e("onFailure", "Error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+    });
+
+}
+    private void getAllCity(DataLoadedCallback callback) {
+        Call<List<CityItem>> call = apiService.getAllCity();
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<CityItem>>() {
+            @Override
+            public void onResponse(Call<List<CityItem>> call, Response<List<CityItem>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                cityItems = response.body();
+                Log.d("cityItemListResponse", cityItems.toString());
+                for (int i = 0; i < cityItems.size(); i++) {
+                    CityItem cityItem = cityItems.get(i);
+                    PlaceItem placeItem = new PlaceItem();
+                    placeItem.setName(cityItem.getCityName());
+                    placeItem.setCountry(cityItem.getCountry());
+                    placeItem.setType(PlaceType.CITY.getDisplayName());
+                    placeItemList.add(placeItem);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CityItem>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    // An IOException occurred, usually a network issue
+                    Log.e("onFailure", "Network error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+                } else if (t instanceof HttpException) {
+                    // An HTTP exception occurred, get the status code
+                    HttpException httpException = (HttpException) t;
+                    int statusCode = httpException.code();
+                    String errorBody = httpException.response().errorBody().toString();
+                    Log.e("onFailure", "HTTP error: " + statusCode + ", " + errorBody);
+                    Toast.makeText(getApplicationContext(), "HTTP error: " + statusCode, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Other types of exceptions
+                    Log.e("onFailure", "Error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        );
+        callback.onDataLoaded();
+    }
+    private void getAllHotel(DataLoadedCallback callback) {
+        Call<List<HotelItem>> call = apiService.getAllHotel();
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<HotelItem>>() {
+            @Override
+            public void onResponse(Call<List<HotelItem>> call, Response<List<HotelItem>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                hotelItems = response.body();
+                Log.d("hotelItemListResponse", hotelItems.toString());
+                for (int i = 0; i < hotelItems.size(); i++) {
+
+                    HotelItem hotelItem = hotelItems.get(i);
+                    Log.d("hotelItem", hotelItem.getName());
+
+                    PlaceItem placeItem = new PlaceItem();
+                    placeItem.setName(hotelItem.getName());
+                    if (hotelItem.getLocation() != null && hotelItem.getLocation().getAddress() != null) {
+                        placeItem.setCountry(hotelItem.getLocation().getCity());
+                    }
+                    placeItem.setType(PlaceType.HOTEL.getDisplayName());
+
+                    placeItemList.add(placeItem);
+                }
+                callback.onDataLoaded();
+            }
+
+            @Override
+            public void onFailure(Call<List<HotelItem>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    // An IOException occurred, usually a network issue
+                    Log.e("onFailure", "Network error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+                } else if (t instanceof HttpException) {
+                    // An HTTP exception occurred, get the status code
+                    HttpException httpException = (HttpException) t;
+                    int statusCode = httpException.code();
+                    String errorBody = httpException.response().errorBody().toString();
+                    Log.e("onFailure", "HTTP error: " + statusCode + ", " + errorBody);
+                    Toast.makeText(getApplicationContext(), "HTTP error: " + statusCode, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Other types of exceptions
+                    Log.e("onFailure", "Error: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
 }

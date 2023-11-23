@@ -2976,6 +2976,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable circle_mask
+drawable close
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3020,6 +3021,7 @@ drawable heart_icon
 drawable heart_icon_checked
 drawable heart_selector
 drawable hide_eye
+drawable home
 drawable hotel
 drawable hotel_1
 drawable hotel_2
@@ -3248,7 +3250,6 @@ id asConfigured
 id async
 id auto
 id autoComplete
-id autoCompleteDest
 id autoCompleteToEnd
 id autoCompleteToStart
 id back_button
@@ -3377,13 +3378,14 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editPreferredDest
 id edit_query
+id edit_text_comment
 id elastic
 id email_edit_text
 id email_text
 id embed
 id end
-id endDateDisplay
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
@@ -3437,9 +3439,11 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageButton
+id imageBackButton
 id imageCity
 id imageHotel
+id imageHotel1
+id imageHotel2
 id imageView
 id immediateStop
 id included
@@ -3466,7 +3470,6 @@ id linearLayout2
 id linearLayout4
 id listMode
 id list_item
-id location
 id login_button
 id lower_case_characters
 id m3_side_sheet
@@ -3583,10 +3586,11 @@ id phone_edit_text
 id phone_login
 id phone_text
 id pin
+id placeName
+id placeTypeIcon
 id placeholder_view
 id position
 id postLayout
-id pplDisplay
 id pressed
 id price
 id profile_detail
@@ -3631,6 +3635,7 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchBar
+id searchResult
 id searchView
 id search_badge
 id search_bar
@@ -3690,7 +3695,6 @@ id src_in
 id src_over
 id standard
 id start
-id startDateDisplay
 id startHorizontal
 id startToEnd
 id startVertical
@@ -3701,6 +3705,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id suggestedPlace
 id supportScrollUp
 id tabLayout
 id tabMode
@@ -3721,13 +3726,18 @@ id terrain
 id text
 id text2
 id textAmount
+id textAmount1
+id textAmount2
 id textCity
+id textDate1
+id textDate2
 id textDistance
 id textEnd
 id textHotel
 id textHotelName
+id textHotelName1
+id textHotelName2
 id textJudge
-id textLastBookingTime
 id textNumberofJudges
 id textRate
 id textScore
@@ -3737,7 +3747,6 @@ id textStarNumber
 id textStart
 id textTop
 id textView
-id textView3
 id textView7
 id textView8
 id text_input_end_icon
@@ -3926,6 +3935,9 @@ layout card_city
 layout card_city_name
 layout card_hotel
 layout card_hotel_2
+layout card_hotel_trip
+layout card_hotel_trip_with_comment
+layout card_place
 layout code_input_text
 layout custom_dialog
 layout date_option_pop_up

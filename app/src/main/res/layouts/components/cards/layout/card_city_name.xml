@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/placeTypeIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/location"
+        app:layout_constraintStart_toEndOf="@+id/placeTypeIcon"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
         android:layout_marginLeft="20dp"

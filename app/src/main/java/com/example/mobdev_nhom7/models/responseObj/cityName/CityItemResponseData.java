@@ -4,12 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class CityNameResponseData {
+public class CityItemResponseData {
     @SerializedName("data")
     @Expose
-    private ArrayList<CityName> data;
-    public ArrayList<CityName> getData() {return data;}
-    public void setData(ArrayList<CityName> data) {this.data = data;}
+    private ArrayList<CityItem> data;
+    public ArrayList<CityItem> getData() {return data;}
+    public void setData(ArrayList<CityItem> data) { this.data = data;}
 }
