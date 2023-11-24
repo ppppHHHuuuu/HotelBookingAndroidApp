@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,9 +56,9 @@ public class SuggestedDestinationActivity extends Activity {
 
     NestedScrollView nestedScrollView;
     EditText editPreferredDest;
-    ImageButton imageBackButton;
+    ImageView imageBackButton;
     TextView suggestedPlace;
-    ImageButton buttonCancel;
+    ImageView buttonCancel;
     List<String> data = new ArrayList<>();
     List<PlaceItem> placeItemList;
     List<CityItem> cityItems;

@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:paddingLeft="5dp"
-                android:text="Trở lại"
+                android:text="Return"
                 android:textColor="#000000"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -55,9 +55,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nhập số điện thoại của bạn"
+            android:text="Input your phone number"
             android:textStyle="bold"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/avenir_bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/phone_edit_text"
@@ -78,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:minHeight="45dp"
-            android:text="Tiếp tục"
+            android:text="Next"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:backgroundTint="#006ECB"
