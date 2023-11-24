@@ -93,8 +93,8 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Admin\.grad
 	android:name
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:9:5-50:19
-INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:9:5-50:19
+ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-50:19
+INJECTED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-50:19
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\Admin\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.github.bumptech.glide:glide:4.13.0] C:\Users\Admin\.gradle\caches\transforms-3\7ba9fb852139bcdc64c62cf95366d15c\transformed\glide-4.13.0\AndroidManifest.xml:10:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\18aee80cf9811f232ccd2c40bacdfd00\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
@@ -159,6 +159,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:18:9-50
+	android:enableOnBackInvokedCallback
+		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:9:9-51
 	android:dataExtractionRules
 		ADDED from C:\UET\MobDev\BTL\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:11:9-65
 	android:usesCleartextTraffic

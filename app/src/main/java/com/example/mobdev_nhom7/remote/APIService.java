@@ -1,7 +1,7 @@
 package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
 import com.example.mobdev_nhom7.models.responseObj.reservation.BookingResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.reservation.CancelledReservation;

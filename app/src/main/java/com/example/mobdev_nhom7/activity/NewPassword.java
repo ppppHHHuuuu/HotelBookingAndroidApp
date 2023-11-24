@@ -21,8 +21,6 @@ import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.CustomToast;
@@ -141,23 +139,7 @@ public class NewPassword extends AppCompatActivity {
             }
         });
     }
-    public void callCityName() {
-        Call<CityNameResponseData> cityNameResponseDataCall = apiService.getAllCityName();
-        cityNameResponseDataCall.enqueue(new Callback<CityNameResponseData>() {
-            @Override
-            public void onResponse(Call<CityNameResponseData> call, Response<CityNameResponseData> response) {
-                switch (response.code()) {
-                    case 200:
-                        List<CityName> cityNameList = response.body().getData();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<CityNameResponseData> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-            }
-        });
-    };
     public static int totalCharacterCount(String password) {
         return password.length();
     }

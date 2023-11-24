@@ -20,12 +20,20 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hotel_selector.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_place.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/components/cards/layout/card_place.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_launcher_background.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_background.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_spa.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/spa.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_close.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/close.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_hotel_2.xml.flat",
@@ -46,6 +54,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_location.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/location.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_date_option_pop_up.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/date_option_pop_up.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_button_price.xml.flat",
@@ -84,8 +96,20 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/divider.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_city_name.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/components/cards/layout/card_city_name.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_settings_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/settings_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_suggested_destination.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/suggested_destination.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_hotel_trip.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/components/cards/layout/card_hotel_trip.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_phone.png.flat",
@@ -116,8 +140,16 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/custom_edittext.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_favourite_toggle_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/favourite_toggle_icon_checked.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_progress_bar_drawable.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/progress_bar_drawable.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_auto_complete_view.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/auto_complete_view.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_hide_eye.png.flat",
@@ -142,6 +174,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_filter_options.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/layouts/login/layout/activity_filter_options.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_hotel_trip_with_comment.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/components/cards/layout/card_hotel_trip_with_comment.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_login.xml.flat",
@@ -228,6 +264,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/apple.png"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_home.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/home.png"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_location_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/location_icon.xml"
     },
@@ -252,6 +292,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_favourite_toggle_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/favourite_toggle_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_parking.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/parking.png"
     },
@@ -268,20 +312,20 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/blue_round_background.xml"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/color_bottom_nav_color_selector.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-7:/color/bottom_nav_color_selector.xml"
-    },
-    {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_search_button.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/search_button.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_demo_pfp.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/demo_pfp.jpg"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_next.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/next.png"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_demo_pfp.jpg.flat",
-        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/demo_pfp.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_search_button.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/search_button.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/color_bottom_nav_color_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/color/bottom_nav_color_selector.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-mdpi_ic_launcher.webp.flat",
@@ -298,6 +342,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_favourite_toggle_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/favourite_toggle_selector.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_activity_new_password.xml.flat",
@@ -334,6 +382,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_hotel_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/hotel_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_placeholder.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/placeholder.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_back_arrow_xml.xml.flat",
@@ -392,8 +444,16 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/circle_mask.png"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_auto_complete_custom.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/auto_complete_custom.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_luggage_icon_checked.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/luggage_icon_checked.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_room_option_pop_up.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/room_option_pop_up.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_account_icon.xml.flat",

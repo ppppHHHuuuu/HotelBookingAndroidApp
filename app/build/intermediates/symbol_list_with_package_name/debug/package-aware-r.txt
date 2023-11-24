@@ -2247,6 +2247,7 @@ dimen design_tab_scrollable_min_width
 dimen design_tab_text_size
 dimen design_tab_text_size_2line
 dimen design_textinput_caption_translate_y
+dimen dialog_horizontal_margin
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
 dimen fastscroll_default_thickness
@@ -2975,6 +2976,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable circle_mask
+drawable close
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3008,6 +3010,9 @@ drawable edit_off_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
+drawable favourite_toggle_icon
+drawable favourite_toggle_icon_checked
+drawable favourite_toggle_selector
 drawable filter
 drawable google
 drawable google_icon
@@ -3017,6 +3022,7 @@ drawable heart_icon
 drawable heart_icon_checked
 drawable heart_selector
 drawable hide_eye
+drawable home
 drawable hotel
 drawable hotel_1
 drawable hotel_2
@@ -3127,6 +3133,7 @@ drawable parking
 drawable pet
 drawable phone
 drawable phone_icon
+drawable placeholder
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -3239,6 +3246,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id appBarLayout
 id arc
 id asConfigured
 id async
@@ -3257,6 +3265,7 @@ id booking_detail
 id booking_icon
 id booking_tag
 id bottom
+id bottomBlock
 id bottomNav
 id bounce
 id bounceBoth
@@ -3272,6 +3281,7 @@ id button2
 id button3
 id button4
 id button5
+id buttonCancel
 id buttonPanel
 id buttonSearch
 id button_verify_code
@@ -3279,7 +3289,6 @@ id cache_measures
 id callMeasure
 id cancel_button
 id cancelled_btn
-id cardHotel
 id carryVelocity
 id center
 id centerCrop
@@ -3289,6 +3298,12 @@ id center_vertical
 id chain
 id chain2
 id chains
+id check_in_date_cl
+id check_in_date_picker
+id check_in_date_tv
+id check_out_date_cl
+id check_out_date_picker
+id check_out_date_tv
 id checkbox
 id checked
 id chronometer
@@ -3313,6 +3328,7 @@ id continuousVelocity
 id coordinator
 id cos
 id counterclockwise
+id countryName
 id cradle
 id currentState
 id custom
@@ -3322,6 +3338,7 @@ id dark
 id dateDisplay
 id dateRoomLayout
 id dateView
+id date_options
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3345,6 +3362,7 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id distance
+id distanceIcon
 id divider1
 id divider2
 id divider3
@@ -3363,7 +3381,9 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editPreferredDest
 id edit_query
+id edit_text_comment
 id edit_text_verification_code
 id elastic
 id email_block
@@ -3379,6 +3399,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id favouriteIcon
 id favourites
 id fill
 id fill_horizontal
@@ -3408,6 +3429,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id guest_number_edit_text
 id header_title
 id hide_image
 id hideable
@@ -3423,8 +3445,11 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageBackButton
 id imageCity
 id imageHotel
+id imageHotel1
+id imageHotel2
 id imageView
 id immediateStop
 id included
@@ -3446,9 +3471,9 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id linearLayout2
 id linearLayout4
-id linearLayoutDestination
 id listMode
 id list_item
 id login_button
@@ -3522,6 +3547,7 @@ id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_header_container
+id nestedScrollView
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
@@ -3533,6 +3559,10 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id numberGuestCl
+id numberGuestTv
+id numberRoomCl
+id numberRoomTv
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -3566,6 +3596,8 @@ id phone_edit_text
 id phone_login
 id phone_text
 id pin
+id placeName
+id placeTypeIcon
 id placeholder_view
 id position
 id postLayout
@@ -3585,6 +3617,7 @@ id rectangles
 id recycleView
 id recycle_view
 id recyclerView
+id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
@@ -3594,6 +3627,8 @@ id rightToLeft
 id right_icon
 id right_side
 id room
+id room_info_options
+id room_number_edit_text
 id roomsDisplay
 id roomsView
 id rounded
@@ -3613,6 +3648,7 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchBar
+id searchResult
 id searchView
 id search_badge
 id search_bar
@@ -3682,6 +3718,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id suggestedPlace
 id supportScrollUp
 id tabLayout
 id tabMode
@@ -3702,14 +3739,18 @@ id terrain
 id text
 id text2
 id textAmount
+id textAmount1
+id textAmount2
 id textCity
+id textDate1
+id textDate2
 id textDistance
 id textEnd
 id textHotel
 id textHotelName
+id textHotelName1
+id textHotelName2
 id textJudge
-id textLastBookingTime
-id textLocation
 id textNumberofJudges
 id textRate
 id textScore
@@ -3899,14 +3940,21 @@ layout activity_new_password
 layout activity_password
 layout activity_password_reset
 layout activity_phone_input
+layout auto_complete_custom
+layout auto_complete_view
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
 layout card_city
+layout card_city_name
 layout card_hotel
 layout card_hotel_2
+layout card_hotel_trip
+layout card_hotel_trip_with_comment
+layout card_place
 layout code_input_text
 layout custom_dialog
+layout date_option_pop_up
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -3987,10 +4035,12 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout room_option_pop_up
 layout search_bar
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout suggested_destination
 layout support_simple_spinner_dropdown_item
 layout view_hotel
 menu bottom_menu
