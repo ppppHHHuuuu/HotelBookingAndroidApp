@@ -232,6 +232,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/activity_filter_options.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_save_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/save_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_view_hotel.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/view_hotel.xml"
     },
@@ -482,6 +486,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_trips_cancelled.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_trips_cancelled.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_off_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_off_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location_selector.xml.flat",

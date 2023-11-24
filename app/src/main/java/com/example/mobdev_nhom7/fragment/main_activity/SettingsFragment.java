@@ -36,8 +36,7 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.Login;
 import com.example.mobdev_nhom7.activity.MainActivity;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityName;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityNameResponseData;
+
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.google.firebase.FirebaseException;

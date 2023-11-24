@@ -27,6 +27,7 @@ drawable demo_pfp
 drawable divider
 drawable edit_background
 drawable edit_icon
+drawable edit_off_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
@@ -77,6 +78,7 @@ drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
 drawable rounded_profile_tags
+drawable save_icon
 drawable search_box_border
 drawable search_button
 drawable settings_icon
@@ -109,6 +111,7 @@ id button4
 id button5
 id buttonCancel
 id buttonSearch
+id button_verify_code
 id cancelled_btn
 id check_in_date_cl
 id check_in_date_picker
@@ -135,6 +138,9 @@ id divider3
 id dummy_name
 id editPreferredDest
 id edit_text_comment
+id edit_text_verification_code
+id email_block
+id email_edit_image
 id email_edit_text
 id email_text
 id favouriteIcon
@@ -156,6 +162,8 @@ id linearLayout2
 id linearLayout4
 id login_button
 id lower_case_characters
+id name_block
+id name_edit_image
 id nestedScrollView
 id numberGuestCl
 id numberGuestTv
@@ -171,6 +179,8 @@ id password_edit_text
 id past_btn
 id people
 id pfp
+id phone_block
+id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
@@ -196,6 +206,9 @@ id room_info_options
 id room_number_edit_text
 id roomsDisplay
 id roomsView
+id save_button
+id save_image
+id save_text
 id searchBar
 id searchResult
 id searchView
@@ -229,6 +242,7 @@ id title
 id tripDescription
 id trips
 id upper_case_characters
+id verification_section
 id verticalDivider
 id view
 id viewPager

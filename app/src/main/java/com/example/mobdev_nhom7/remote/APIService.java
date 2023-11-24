@@ -1,6 +1,7 @@
 package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
@@ -64,5 +65,6 @@ public interface APIService {
     Call<List<HotelItem>> getAllHotel();
     @GET("reservation/history/{user_id}")
     Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
-
+    @POST("/user/{id}")
+    Call<DefaultResponseData> createUser(@Path("id") String id);
 }
