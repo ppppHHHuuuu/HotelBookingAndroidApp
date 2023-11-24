@@ -6,40 +6,31 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
-import com.example.mobdev_nhom7.utils.CustomAdapter;
+import com.example.mobdev_nhom7.models.responseObj.places.CustomAdapter;
 import com.example.mobdev_nhom7.utils.PlaceType;
-import com.google.gson.annotations.SerializedName;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemCardAdapter;
-import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
-import com.google.common.reflect.TypeToken;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

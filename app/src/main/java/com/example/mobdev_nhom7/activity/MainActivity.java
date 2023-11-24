@@ -22,6 +22,8 @@ import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -57,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("user_id", uid);
             editor.apply();
+            Map<String,?> keys = preferences.getAll();
+
+            for(Map.Entry<String,?> entry : keys.entrySet()){
+                Log.d("map values",entry.getKey() + ": " +
+                                   entry.getValue().toString());
+            }
         }
         else {
             Log.d("uid", "empty");
