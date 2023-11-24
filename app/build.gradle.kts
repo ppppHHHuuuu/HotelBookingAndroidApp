@@ -121,5 +121,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
     
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 
 }

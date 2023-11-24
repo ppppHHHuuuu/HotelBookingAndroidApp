@@ -53,7 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         PlaceItem placeItem = filteredData.get(position);
         if (Objects.equals(placeItem.getType(), PlaceType.CITY.getDisplayName())) {
-            holder.imageType.setBackgroundResource(R.drawable.placeholder);
+            holder.imageType.setBackgroundResource(R.drawable.location_icon);
         }
         else if (Objects.equals(placeItem.getType(), PlaceType.HOTEL.getDisplayName())) {
             holder.imageType.setBackgroundResource(R.drawable.hotel_icon);

@@ -15,7 +15,7 @@ public class CityItem {
     private String country;
 
     public String getCountry() {
-        return country;
+        return "Vietnam";
     }
 
     public void setCountry(String country) {

@@ -2961,6 +2961,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable account_icon
+drawable alert_icon
 drawable apple
 drawable apple_icon
 drawable avd_hide_password
@@ -2975,6 +2976,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable car_icon
 drawable circle_mask
 drawable close
 drawable common_full_open_on_phone
@@ -3138,6 +3140,7 @@ drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
 drawable progress_bar_drawable
+drawable restaurants_icon
 drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
@@ -3169,6 +3172,7 @@ id BOTTOM_START
 id CTRL
 id FUNCTION
 id META
+id MyRating
 id NO_DEBUG
 id SHIFT
 id SHOW_ALL
@@ -3233,10 +3237,13 @@ id action_mode_close_button
 id action_text
 id actions
 id active_btn
+id activitiesRV
+id activitiesTitle
 id activity_chooser_view_content
 id add
 id adjust_height
 id adjust_width
+id alertContent
 id alertTitle
 id aligned
 id all
@@ -3309,7 +3316,11 @@ id checked
 id chronometer
 id circle_center
 id cities
+id cityImage
 id cityName
+id cityName2
+id cityName3
+id cityName4
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3329,6 +3340,9 @@ id coordinator
 id cos
 id counterclockwise
 id countryName
+id countryName2
+id countryName3
+id countryName4
 id cradle
 id currentState
 id custom
@@ -3405,6 +3419,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id firstRow
 id fitCenter
 id fitEnd
 id fitStart
@@ -3613,14 +3628,18 @@ id progress_horizontal
 id radio
 id rating
 id ratio
+id recent_tv
 id rectangles
 id recycleView
-id recycle_view
 id recyclerView
 id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
+id restaurantName
+id restaurantsImage
+id restaurantsRV
+id restaurantsTitle
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3649,7 +3668,6 @@ id scrollView
 id scrollable
 id searchBar
 id searchResult
-id searchView
 id search_badge
 id search_bar
 id search_bar_text_view
@@ -3660,6 +3678,7 @@ id search_go_btn
 id search_mag_icon
 id search_plate
 id search_src_text
+id search_tv
 id search_view_background
 id search_view_clear_button
 id search_view_content_container
@@ -3674,6 +3693,8 @@ id search_view_status_bar_spacer
 id search_view_toolbar
 id search_view_toolbar_container
 id search_voice_btn
+id searchbar
+id secondRow
 id select_dialog_listview
 id selected
 id selection_type
@@ -3719,6 +3740,7 @@ id stretch
 id submenuarrow
 id submit_area
 id suggestedPlace
+id suggested_tv
 id supportScrollUp
 id tabLayout
 id tabMode
@@ -3759,9 +3781,6 @@ id textSpacerNoTitle
 id textStarNumber
 id textStart
 id textTop
-id textView
-id textView7
-id textView8
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3786,6 +3805,8 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id transportRV
+id transportTitle
 id triangle
 id tripDescription
 id trips
@@ -3946,12 +3967,14 @@ layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
 layout card_city
+layout card_city_details
 layout card_city_name
 layout card_hotel
 layout card_hotel_2
 layout card_hotel_trip
 layout card_hotel_trip_with_comment
 layout card_place
+layout city_detail
 layout code_input_text
 layout custom_dialog
 layout date_option_pop_up

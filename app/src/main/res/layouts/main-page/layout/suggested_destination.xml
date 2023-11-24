@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:paddingHorizontal="10dp">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,15 +18,16 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="8dp">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageBackButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_back_arrow_xml"
-                android:background="@drawable/rounded_button_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +35,7 @@
             <EditText
                 android:id="@+id/editPreferredDest"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="37dp"
                 android:inputType="textAutoComplete"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/edit_background"
@@ -53,10 +51,10 @@
                 app:layout_constraintTop_toTopOf="parent">
             </EditText>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/buttonCancel"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/rounded_button_white"
                 android:gravity="center"
                 android:scaleType="centerInside"
@@ -76,7 +74,8 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingHorizontal="15dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
