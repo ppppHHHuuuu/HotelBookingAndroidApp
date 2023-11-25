@@ -84,6 +84,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/search_box_border.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_restaurants_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/restaurants_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_settings_selector.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/settings_selector.xml"
     },
@@ -134,6 +138,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_filter.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/filter.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_card_city_details.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/components/cards/layout/card_city_details.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_custom_edittext.xml.flat",
@@ -248,6 +256,10 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/settings_icon_checked.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_car_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/car_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_pet.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/pet.png"
     },
@@ -282,6 +294,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_city_detail.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/sign-up/layout/city_detail.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_image_border.xml.flat",
@@ -422,6 +438,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_alert_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/drawable/alert_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/mipmap-hdpi_ic_launcher.webp.flat",

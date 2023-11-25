@@ -36,6 +36,11 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.Login;
 import com.example.mobdev_nhom7.activity.MainActivity;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.CityDetail;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.google.firebase.FirebaseException;
@@ -319,7 +324,7 @@ public class SettingsFragment extends Fragment {
                     }
                 });
             }
-            Toast.makeText(view.getContext(), "User information updated successfully", Toast.LENGTH_SHORT);
+            Toast.makeText(view.getContext(), "User information updated successfully", Toast.LENGTH_SHORT).show();
 
             ImageView saveImage = getView().findViewById(R.id.save_image);
             int color = ContextCompat.getColor(requireContext(), R.color.DarkGrey);
