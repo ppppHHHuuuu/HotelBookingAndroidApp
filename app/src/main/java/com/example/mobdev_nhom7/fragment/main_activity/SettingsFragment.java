@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -36,11 +35,6 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.Login;
 import com.example.mobdev_nhom7.activity.MainActivity;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.CityDetail;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.google.firebase.FirebaseException;
@@ -52,13 +46,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.concurrent.TimeUnit;
 
 
-
-import java.util.List;
 import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -290,7 +278,7 @@ public class SettingsFragment extends Fragment {
                 user.updateProfile(profileUpdates)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Log.d("Firebase Current User", "User display name updated.");
+                                Log.d("Firebase Name Current User", "User display name updated.");
                             }
                         });
             }

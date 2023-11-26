@@ -1,10 +1,12 @@
 package com.example.mobdev_nhom7.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -13,9 +15,14 @@ import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters.CardRestaurantAdapter;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters.CardTodoAdapter;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters.CardTransportationAdapter;
+import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,21 +31,38 @@ import retrofit2.Response;
 
 public class ViewCity extends AppCompatActivity {
     private RecyclerView restaurantsRecyclerView;
+    private RecyclerView transportationsRecyclerView;
+    private RecyclerView todosRecyclerView;
     private ImageView cityImage;
     private List<Restaurant> restaurants;
     private List<Todo> todos;
     private List<Transportation> transportations;
     private List<Alert> alerts;
     private APIService apiService = APIUtils.getUserService();
+    private CardRestaurantAdapter cardRestaurantAdapter;
+    private CardTodoAdapter cardTodoAdapter;
+    private CardTransportationAdapter cardTransportationAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_detail);
-        restaurantsRecyclerView = findViewById(R.id.restaurantsRV);
 
         cityImage = findViewById(R.id.cityImage);
         String url = "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892";
         Glide.with(this).load(url).centerCrop().into(cityImage);
+
+        restaurantsRecyclerView = findViewById(R.id.restaurantsRV);
+        restaurantsRecyclerView.setAdapter(cardRestaurantAdapter);
+        restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        transportationsRecyclerView = findViewById(R.id.transportRV);
+        transportationsRecyclerView.setAdapter(cardTransportationAdapter);
+        transportationsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        todosRecyclerView = findViewById(R.id.activitiesRV);
+        todosRecyclerView.setAdapter(cardTodoAdapter);
+        todosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void getCityDetail(String id) {
@@ -49,6 +73,9 @@ public class ViewCity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
                     restaurants = response.body();
+                    cardRestaurantAdapter = new CardRestaurantAdapter(getApplicationContext(), (ArrayList<Restaurant>) restaurants);
+                    restaurantsRecyclerView.setAdapter(cardRestaurantAdapter);
+                    restaurantsRecyclerView.setVisibility(View.VISIBLE);
                 } else {
                     Log.d("Call get city error", "Empty or unsuccessful response");
                 }
@@ -67,6 +94,9 @@ public class ViewCity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
                     transportations = response.body();
+                    cardTransportationAdapter = new CardTransportationAdapter(getApplicationContext(), (ArrayList<Transportation>) transportations);
+                    transportationsRecyclerView.setAdapter(cardTransportationAdapter);
+                    transportationsRecyclerView.setVisibility(View.VISIBLE);
                 } else {
                     Log.d("Call get city error", "Empty or unsuccessful response");
                 }
@@ -85,6 +115,9 @@ public class ViewCity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
                     todos = response.body();
+                    cardTodoAdapter = new CardTodoAdapter(getApplicationContext(), (ArrayList<Todo>) todos);
+                    todosRecyclerView.setAdapter(cardTodoAdapter);
+                    todosRecyclerView.setVisibility(View.VISIBLE);
                 } else {
                     Log.d("Call get city error", "Empty or unsuccessful response");
                 }

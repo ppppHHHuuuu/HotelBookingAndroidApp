@@ -2,7 +2,6 @@ package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
-import com.example.mobdev_nhom7.models.responseObj.cityDetail.CityDetail;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;

@@ -11,6 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
+            android:id="@+id/image"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/restaurantName"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Long Restaurant Name"
@@ -42,7 +43,7 @@
             android:layout_marginTop="5dp"/>
 
         <RatingBar
-            android:id="@+id/MyRating"
+            android:id="@+id/rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,6 +65,7 @@
                 android:src="@drawable/location_icon_checked"
                 />
             <TextView
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Long Restaurant Address"
