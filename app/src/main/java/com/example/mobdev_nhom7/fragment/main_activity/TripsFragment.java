@@ -1,6 +1,7 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class TripsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
+    public static int initialPosition = 0;
 
     public TripsFragment() {
         // Required empty public constructor
@@ -37,6 +39,8 @@ public class TripsFragment extends Fragment {
         viewPagerAdapter.addFragment(new TripsCancelledFragment());
 
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(initialPosition);
+        initialPosition = 0;
 
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {

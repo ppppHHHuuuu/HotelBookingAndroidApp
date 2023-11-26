@@ -3,18 +3,16 @@ package com.example.mobdev_nhom7.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.CustomToast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -32,13 +30,16 @@ import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     GoogleSignInOptions googleSignInOptions;
     private GoogleSignInClient googleSignInClient;
+    private APIService apiService = APIUtils.getUserService();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         EditText emailEditText = findViewById(R.id.email_edit_text);
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
@@ -159,15 +160,6 @@ public class Login extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                                getString(R.string.user_info), Context.MODE_PRIVATE
-                        );
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", user.getEmail());
-                        editor.putString("provider", user.getProviderId());
-                        editor.apply();
-
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                     } else {

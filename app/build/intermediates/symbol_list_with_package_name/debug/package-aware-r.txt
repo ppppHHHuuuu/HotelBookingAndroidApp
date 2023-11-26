@@ -3008,6 +3008,7 @@ drawable design_snackbar_background
 drawable divider
 drawable edit_background
 drawable edit_icon
+drawable edit_off_icon
 drawable expedia
 drawable facebook
 drawable facebook_icon
@@ -3144,6 +3145,7 @@ drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
 drawable rounded_profile_tags
+drawable save_icon
 drawable search_box_border
 drawable search_button
 drawable settings_icon
@@ -3170,7 +3172,6 @@ id BOTTOM_START
 id CTRL
 id FUNCTION
 id META
-id MyRating
 id NO_DEBUG
 id SHIFT
 id SHOW_ALL
@@ -3239,6 +3240,7 @@ id activitiesRV
 id activitiesTitle
 id activity_chooser_view_content
 id add
+id address
 id adjust_height
 id adjust_width
 id alertContent
@@ -3289,6 +3291,7 @@ id button5
 id buttonCancel
 id buttonPanel
 id buttonSearch
+id button_verify_code
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3395,7 +3398,10 @@ id edge
 id editPreferredDest
 id edit_query
 id edit_text_comment
+id edit_text_verification_code
 id elastic
+id email_block
+id email_edit_image
 id email_edit_text
 id email_text
 id embed
@@ -3547,6 +3553,9 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id name
+id name_block
+id name_edit_image
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3597,6 +3606,8 @@ id peekHeight
 id people
 id percent
 id pfp
+id phone_block
+id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
@@ -3626,7 +3637,6 @@ id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
-id restaurantName
 id restaurantsImage
 id restaurantsRV
 id restaurantsTitle
@@ -3643,8 +3653,11 @@ id roomsView
 id rounded
 id row_index_key
 id satellite
+id save_button
+id save_image
 id save_non_transition_alpha
 id save_overlay_view
+id save_text
 id sawtooth
 id scale
 id screen
@@ -3803,6 +3816,7 @@ id unlabeled
 id up
 id upper_case_characters
 id useLogo
+id verification_section
 id verticalDivider
 id vertical_only
 id view

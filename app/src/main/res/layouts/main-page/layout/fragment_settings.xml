@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/AppGrey">
+    
 
     <View
         android:id="@+id/view"
@@ -125,21 +126,29 @@
                     android:textSize="12dp" />
 
                 <RelativeLayout
+                    android:id="@+id/name_block"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/dummy_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:background="#00000000"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
                         android:text="Dummy Name"
+                        android:singleLine="true"
+                        android:maxLength="50"
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:enabled="false"/>
 
                     <ImageView
+                        android:id="@+id/name_edit_image"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
@@ -174,20 +183,29 @@
                     android:textSize="12dp" />
 
                 <RelativeLayout
+                    android:id="@+id/phone_block"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/phone_edit_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:background="#00000000"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
                         android:text="(+84) 012345678"
+                        android:singleLine="true"
+                        android:maxLength="30"
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:enabled="false"/>
 
                     <ImageView
+                        android:id="@+id/phone_edit_image"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
@@ -222,20 +240,29 @@
                     android:textSize="12dp" />
 
                 <RelativeLayout
+                    android:id="@+id/email_block"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/email_edit_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:background="#00000000"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
                         android:text="examplemail@example.com"
+                        android:singleLine="true"
+                        android:maxLength="50"
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:enabled="false"/>
 
                     <ImageView
+                        android:id="@+id/email_edit_image"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
@@ -250,6 +277,85 @@
                     android:layout_gravity="bottom"
                     android:layout_marginTop="3dp"
                     android:background="@color/AppGrey" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/rounded_profile_tags"
+                android:paddingVertical="10dp">
+                <ImageView
+                    android:id="@+id/save_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/save_icon"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/DarkGrey">
+                </ImageView>
+                <TextView
+                    android:id="@+id/save_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Save"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/DarkGrey"
+                    android:fontFamily="@font/avenir_rgl"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verification_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="You need to verify to change the phone number"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+                <EditText
+                    android:id="@+id/edit_text_verification_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter verification code"
+                    android:inputType="number"
+                    android:maxLength="6" />
+
+                <Button
+                    android:id="@+id/button_verify_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Verify Code"
+                    android:background="@drawable/rounded_profile_tags"
+                    android:backgroundTint="@color/TextLowLight"/>
+
+                <TextView
+                    android:id="@+id/resend_time_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Resend in: 60"
+                    android:clickable="true" />
+
+                <TextView
+                    android:id="@+id/resend_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Resend"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#006ECB"
+                    android:clickable="true" />
             </LinearLayout>
         </LinearLayout>
 

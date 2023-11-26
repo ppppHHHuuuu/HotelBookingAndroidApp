@@ -64,12 +64,11 @@
             android:name="com.example.mobdev_nhom7.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity"
+            android:name="com.example.mobdev_nhom7.activity.PhoneInput"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".activity.FilterOptionsActivity" -->
-        <!-- android:exported="false" /> -->
-
+        <activity
+            android:name="com.example.mobdev_nhom7.activity.CodeInput"
+            android:exported="false" />
         <activity
             android:name="com.example.mobdev_nhom7.activity.Login"
             android:exported="true" >

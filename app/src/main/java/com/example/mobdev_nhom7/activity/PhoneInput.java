@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
@@ -24,6 +25,11 @@ public class PhoneInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_input);
+
+        LinearLayout backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            finish();
+        });
 
         phoneEditText = findViewById(R.id.phone_edit_text);
         continueButton = findViewById(R.id.continue_button);
@@ -49,6 +55,8 @@ public class PhoneInput extends AppCompatActivity {
                 Toast.makeText(PhoneInput.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     private static boolean isValidVietnamesePhoneNumber(String phoneNumber) {

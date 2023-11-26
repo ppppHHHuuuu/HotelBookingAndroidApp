@@ -1,17 +1,18 @@
 package com.example.mobdev_nhom7.remote;
 
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
+import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
-import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
-import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 
 import java.util.List;
 import java.util.Map;
@@ -65,4 +66,22 @@ public interface APIService {
     @GET("reservation/history/{user_id}")
     Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
 
+    @GET("get/hotel/all")
+    @FormUrlEncoded
+    Call<HotelNameResponseData> getAllHotelName();
+
+    @POST("/user/{id}")
+    Call<DefaultResponseData> createUser(@Path("id") String id);
+
+    @GET("/cities/restaurant/{id}")
+    Call<List<Restaurant>> getRestaurant(@Path("id") String id);
+
+    @GET("/cities/transportation/{id}")
+    Call<List<Transportation>> getTransportation(@Path("id") String id);
+
+    @GET("/cities/todo/{id}")
+    Call<List<Todo>> getTodo(@Path("id") String id);
+
+    @GET("/cities/alert/{id}")
+    Call<List<Alert>> getAlert(@Path("id") String id);
 }
