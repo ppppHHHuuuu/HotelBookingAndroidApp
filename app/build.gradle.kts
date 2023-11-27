@@ -98,7 +98,7 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
-
+    implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.squareup.retrofit2:retrofit:2.6.1")
     implementation ("com.squareup.retrofit2:converter-gson:2.6.1")
     implementation ("com.google.guava:guava:31.1-jre")

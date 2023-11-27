@@ -7,10 +7,10 @@ public class ActiveHotelItem {
     @SerializedName("user_id")
     @Expose
     private String user_id;
-    @SerializedName("image_url")
+    @SerializedName("hotel_imageURL")
     @Expose
     private String url;
-    @SerializedName("name")
+    @SerializedName("hotel_name")
     @Expose
     private String name;
     @SerializedName("start_date")
@@ -19,7 +19,7 @@ public class ActiveHotelItem {
     @SerializedName("end_date")
     @Expose
     private String end_date;
-    @SerializedName("price")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 

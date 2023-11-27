@@ -11,13 +11,12 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.databinding.ActivityMainBinding;
@@ -31,6 +30,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -65,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
     }
 
     private void replaceFragment (Fragment fragment) {
@@ -123,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         if (mAuth.getCurrentUser() != null) {
             String uid = mAuth.getCurrentUser().getUid();
             Log.d("uid", uid);

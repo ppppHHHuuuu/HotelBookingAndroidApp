@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 
@@ -29,15 +30,14 @@ import java.util.Locale;
 
 public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
     Context context;
-    private List<HistoryHotelItem> data;
-    public HistoryHotelItem getData(int x) {
+    private List<ActiveHotelItem> data;
+    public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelActiveTripAdapter(Context context, ArrayList<HistoryHotelItem> data) {
+    public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data) {
         this.data= data;
         this.context = context;
     }
-
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,26 +56,17 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
 
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
-        Bitmap hotelImage = null;
-        try {
-            hotelImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImageURL());
-            holder.imagesHotel.setImageBitmap(hotelImage);
-
-        }
-        catch (Exception e) {
-            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
-        }
-
-
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
 
+        BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
+        Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
-        holder.textAmount.setText(amount);
         holder.textDate.setText(dates);
+        holder.textAmount.setText(amount + " .000VND");
     }
 
     @Override

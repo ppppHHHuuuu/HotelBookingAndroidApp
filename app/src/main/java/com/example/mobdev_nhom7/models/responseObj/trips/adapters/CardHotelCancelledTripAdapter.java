@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 
@@ -28,11 +28,11 @@ import java.util.Locale;
 
 public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHotelCancelledTripAdapter.ListHotelViewHolder>{
     Context context;
-    private List<HistoryHotelItem> data;
-    public HistoryHotelItem getData(int x) {
+    private List<CancelledHotelItem> data;
+    public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelCancelledTripAdapter(Context context,List <HistoryHotelItem> data) {
+    public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data) {
         this.context = context;
         this.data= data;
     }
@@ -55,18 +55,17 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
 
     @Override
     public void onBindViewHolder(@NonNull CardHotelCancelledTripAdapter.ListHotelViewHolder holder, int position) {
-        Bitmap hotelImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImageURL());
-
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
 
+        BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
-        holder.imagesHotel.setImageBitmap(hotelImage);
-        holder.textAmount.setText(amount);
         holder.textDate.setText(dates);
+        holder.textAmount.setText(amount + " .000VND");
+
     }
 
     @Override

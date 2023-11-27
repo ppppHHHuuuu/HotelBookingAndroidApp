@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,8 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
 import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
@@ -50,13 +54,15 @@ import retrofit2.Response;
 
 public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
+    SharedPreferences preferences;
+
     CardHotel2Adapter cardHotel2Adapter;
+    ArrayList<SearchHotelItem> searchHotelItems;
+    private RecyclerView recyclerView;
     private Button buttonSearch;
     private TextView desInput;
     private TextView roomsDisplay;
     private TextView dateDisplay;
-    private RecyclerView recyclerView;
-
     private String hotelID;
     private String destination;
     private String startDate;
@@ -82,13 +88,9 @@ public class StaysFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_stays, container, false);
         ConstraintLayout roomInfoOptions = view.findViewById(R.id.room_info_options);
         ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
-        roomInfoOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openRoomOptionsDialog();
-            }
-        });
-
+        searchHotelItems = new ArrayList<>();
+        cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems);
+        roomInfoOptions.setOnClickListener(view12 -> openRoomOptionsDialog());
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
         String formattedToday = dateFormat.format(today);
@@ -113,7 +115,8 @@ public class StaysFragment extends Fragment {
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setVisibility(View.GONE);
+        recyclerView.setAdapter(cardHotel2Adapter);
+
         buttonSearch = view.findViewById(R.id.buttonSearch);
 
         //NOTE: Default search value
@@ -137,6 +140,14 @@ public class StaysFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSuggestDest();
+
+    }
+
     public void getSuggestedDestinationActivity() {
         Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
         startActivity(intent);
@@ -279,7 +290,6 @@ public class StaysFragment extends Fragment {
     }
     public void loadHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity,String ppl_quantity ) {
         Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID,destination, start_date, end_date, room_quantity, ppl_quantity);
-        // Get the request URL
         String requestUrl = callHotel.request().url().toString();
         Log.d("Request URL", requestUrl);
         callHotel.enqueue(new Callback<List<SearchHotelItem>>() {
@@ -293,18 +303,12 @@ public class StaysFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<SearchHotelItem> searchHotelItems = (ArrayList<SearchHotelItem>) response.body();
-                if (searchHotelItems.size() == 0) {
+                if (response.body().size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
-                    //ADD LOADING QUERY
-
                     return;
                 }
-                cardHotel2Adapter = new CardHotel2Adapter(getContext(), searchHotelItems);
-                recyclerView.setAdapter(cardHotel2Adapter);
-                recyclerView.setVisibility(View.VISIBLE);
-                Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
-
+                searchHotelItems.addAll(response.body());
+                cardHotel2Adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -314,4 +318,34 @@ public class StaysFragment extends Fragment {
             }
         });
     }
+    public void getSuggestDest() {
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel();
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("response error", String.valueOf(response.code()));
+                    return;
+                }
+                if (response.body() == null) {
+                    Log.d("response error", "Empty response");
+                    return;
+                }
+                if (response.body().size() == 0) {
+                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                searchHotelItems.addAll(response.body());
+                cardHotel2Adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                Log.d("call", t.toString());
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

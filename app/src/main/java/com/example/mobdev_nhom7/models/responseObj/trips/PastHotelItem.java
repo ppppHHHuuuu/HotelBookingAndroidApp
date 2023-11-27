@@ -11,7 +11,7 @@ public class PastHotelItem {
     @SerializedName("image_url")
     @Expose
     private String image_url;
-    @SerializedName("name")
+    @SerializedName("hotel_name")
     @Expose
     private String name;
     @SerializedName("start_date")
@@ -32,7 +32,7 @@ public class PastHotelItem {
         this.amount = amount;
     }
 
-    @SerializedName("amount")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 
