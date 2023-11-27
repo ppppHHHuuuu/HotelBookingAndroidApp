@@ -3,15 +3,12 @@ package com.example.mobdev_nhom7.remote;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
-import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemResponseData;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 
 import java.util.List;
@@ -57,14 +54,22 @@ public interface APIService {
 
     @GET("cities/find")
     Call<List<CityItem>> getSuggestedCity();
-    @GET("place/getAutoComplete")
-    Call<List<PlaceItem> > getPlaceByWord();
+    @GET("hotel/favourite")
+    Call<List<SearchHotelItem>> getFavouriteHotel(@Query("user_id") String user_id);
     @GET("/cities/find")
     Call<List<CityItem>> getAllCity();
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
-    @GET("reservation/history/{user_id}")
-    Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
+    @GET("hotel/suggest")
+    Call<List<SearchHotelItem>> getSuggestedHotel();
+    @GET("reservation/active/{user_id}")
+    Call<List<ActiveHotelItem>> getActiveReservation(@Path("user_id") String user_id);
+    @GET("reservation/cancel/{user_id}")
+    Call<List<CancelledHotelItem>> getCancelReservation(@Path("user_id") String user_id);
+    @GET("reservation/rated/{user_id}")
+    Call<List<PastHotelItem>> getRatedReservation(@Path("user_id") String user_id);
+    @GET("reservation/notRated/{user_id}")
+    Call<List<PastHotelItem>> getNotRatedReservation(@Path("user_id") String user_id);
     @POST("/user/{id}")
     Call<DefaultResponseData> createUser(@Path("id") String id);
 }

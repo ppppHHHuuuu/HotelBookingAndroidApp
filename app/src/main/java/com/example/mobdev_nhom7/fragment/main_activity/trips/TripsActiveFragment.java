@@ -19,7 +19,7 @@ import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
@@ -37,7 +37,7 @@ public class TripsActiveFragment extends Fragment {
     SharedPreferences preferences;
 
     CardHotelActiveTripAdapter cardHotelActiveTripAdapter;
-    ArrayList<HistoryHotelItem> hotelItemList = new ArrayList<>();
+    ArrayList<ActiveHotelItem> hotelItemList = new ArrayList<>();
     RecyclerView recyclerView;
 
     public TripsActiveFragment() {
@@ -66,15 +66,16 @@ public class TripsActiveFragment extends Fragment {
     //TODO CALL FROM BE
 
     private void getUserActiveHotel() {
+        //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
         String dummyUserID = "1";
-        Call<List<HistoryHotelItem>> call = apiService.getHistoryReservation(dummyUserID);
+        Call<List<ActiveHotelItem>> call = apiService.getActiveReservation(dummyUserID);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
-        call.enqueue(new Callback<List<HistoryHotelItem>>() {
+        call.enqueue(new Callback<List<ActiveHotelItem>>() {
             @Override
-            public void onResponse(Call<List<HistoryHotelItem>> call, Response<List<HistoryHotelItem>> response) {
+            public void onResponse(Call<List<ActiveHotelItem>> call, Response<List<ActiveHotelItem>> response) {
                 if (!response.isSuccessful()) {
                     Log.d("response error", String.valueOf(response.code()));
                     return;
@@ -83,43 +84,21 @@ public class TripsActiveFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<HistoryHotelItem> searchHotelItems = (ArrayList<HistoryHotelItem>) response.body();
+                ArrayList<ActiveHotelItem> searchHotelItems = (ArrayList<ActiveHotelItem>) response.body();
                 for (int i = 0; i < searchHotelItems.size(); i++) {
                     Log.d("searchHotelItem", searchHotelItems.get(i).toString());
                 }
-
-                ArrayList<HistoryHotelItem> activeHotelItems = new ArrayList<>();
                 if (searchHotelItems.size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
-                    //ADD LOADING QUERY
                     return;
                 }
-
-                for (int i = 0; i < searchHotelItems.size(); i++) {
-                    Log.d("is cancelled", searchHotelItems.get(i).getIsCancelled().toString());
-                    Log.d("end date", searchHotelItems.get(i).getEndDate());
-                    Log.d("url", searchHotelItems.get(i).getImageURL());
-                    String date = searchHotelItems.get(i).getEndDate();
-                    if (searchHotelItems.get(i).getIsCancelled()) {
-                        continue;
-                    }
-                    else if (DateTimeUtil.isBeforeCurrentDate(date)) {
-                        continue;
-                    }
-                    else {
-                        activeHotelItems.add(searchHotelItems.get(i));
-                        Log.d("activeHotel", searchHotelItems.get(i).getEndDate());
-
-                    }
-                }
-                cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(getContext(), activeHotelItems);
+                cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(getContext(), searchHotelItems);
                 recyclerView.setAdapter(cardHotelActiveTripAdapter);
                 recyclerView.setVisibility(View.VISIBLE);
-//                Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
             }
 
             @Override
-            public void onFailure(Call<List<HistoryHotelItem>> call, Throwable t) {
+            public void onFailure(Call<List<ActiveHotelItem>> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }

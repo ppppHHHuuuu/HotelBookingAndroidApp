@@ -210,6 +210,7 @@ id profile_icon
 id profile_name
 id profile_tag
 id rating
+id ratingBar
 id recent_tv
 id recycleView
 id recyclerView
@@ -257,7 +258,6 @@ id textJudge
 id textNumberofJudges
 id textRate
 id textScore
-id textStarNumber
 id title
 id transportRV
 id transportTitle

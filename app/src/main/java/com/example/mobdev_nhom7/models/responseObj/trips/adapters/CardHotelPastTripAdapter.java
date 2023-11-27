@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 
@@ -29,11 +30,11 @@ import java.util.Locale;
 
 public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPastTripAdapter.ListHotelViewHolder> {
     Context context;
-    private List<HistoryHotelItem> data;
-    public HistoryHotelItem getData(int x) {
+    private List<PastHotelItem> data;
+    public PastHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelPastTripAdapter(Context context,List <HistoryHotelItem> data) {
+    public CardHotelPastTripAdapter(Context context,List <PastHotelItem> data) {
         this.data= data;
         this.context = context;
     }
@@ -56,23 +57,24 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
 
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
-        Bitmap hotelImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImageURL());
-
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
-
-        String comment= data.get(position).getComment();
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
+        String comment;
 
-        if (comment!= null && !comment.equals("")) {
+
+        if (data.get(position).getComment()!= null && ! data.get(position).getComment().equals("")) {
+            Log.d("comment", data.get(position).getComment());
+            comment = data.get(position).getComment();
             holder.editTextComment.setText(comment);
         }
+        BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
-        holder.imagesHotel.setImageBitmap(hotelImage);
-        holder.textAmount.setText(amount);
         holder.textDate.setText(dates);
+        holder.textAmount.setText(amount);
+
     }
 
     @Override

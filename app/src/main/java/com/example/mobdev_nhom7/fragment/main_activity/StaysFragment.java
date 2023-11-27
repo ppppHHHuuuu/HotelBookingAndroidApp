@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,8 @@ import android.widget.Toast;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
 import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
@@ -88,7 +91,6 @@ public class StaysFragment extends Fragment {
                 openRoomOptionsDialog();
             }
         });
-
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
         String formattedToday = dateFormat.format(today);
@@ -113,8 +115,8 @@ public class StaysFragment extends Fragment {
         roomsDisplay = view.findViewById(R.id.roomsDisplay);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setVisibility(View.GONE);
         buttonSearch = view.findViewById(R.id.buttonSearch);
+        getSuggestDest();
 
         //NOTE: Default search value
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -314,4 +316,30 @@ public class StaysFragment extends Fragment {
             }
         });
     }
+    public void getSuggestDest() {
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel();
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
+                if (response.isSuccessful()) {
+                    if  (response.body() == null) {
+                        Log.d("Content", "Empty content");
+                        Toast.makeText(getContext(), "Empty content", Toast.LENGTH_LONG).show();
+                    }
+                    ArrayList<SearchHotelItem> cityItems = (ArrayList<SearchHotelItem>) response.body();
+                    CardHotel2Adapter cityItemCardAdapter = new CardHotel2Adapter(getContext(), cityItems);
+                    recyclerView.setAdapter(cityItemCardAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                Log.d("call", t.toString());
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

@@ -3627,6 +3627,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id rating
+id ratingBar
 id ratio
 id recent_tv
 id rectangles
@@ -3778,7 +3779,6 @@ id textRate
 id textScore
 id textSpacerNoButtons
 id textSpacerNoTitle
-id textStarNumber
 id textStart
 id textTop
 id text_input_end_icon

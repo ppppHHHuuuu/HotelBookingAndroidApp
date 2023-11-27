@@ -5,7 +5,7 @@ public class AmountConverter {
         if (rate > 8.5) {
             return "Very Nice";
         } else if (rate > 7.0) {
-            return "Greate";
+            return "Great";
         } else if (rate > 5.0) {
             return "Acceptable";
         } else {

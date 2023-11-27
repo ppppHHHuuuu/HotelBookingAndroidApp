@@ -15,7 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelCancelledTripAdapter;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelPastTripAdapter;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
@@ -36,7 +37,7 @@ public class TripsPastFragment extends Fragment {
 
     RecyclerView recyclerView;
     CardHotelPastTripAdapter cardHotelPastTripAdapter;
-    ArrayList<HistoryHotelItem> hotelItemList = new ArrayList<>();
+    ArrayList<PastHotelItem> hotelItemList = new ArrayList<>();
 
     public TripsPastFragment() {
         // Required empty public constructor
@@ -57,21 +58,30 @@ public class TripsPastFragment extends Fragment {
         cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL); // Set the orientation as needed
         recyclerView.setAdapter(cardHotelPastTripAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getUserPastHotel();
 
+
+        getUserRatedPastHotel();
+        getUserNotRatedPastHotel();
         return v;
     }
     //TODO CALL FROM BE
-    private void getUserPastHotel() {
+    private void getUserRatedPastHotel() {
+        //fake-data
+
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
+        String dummyUserID = "1";
 
-        Call<List<HistoryHotelItem>> call = apiService.getHistoryReservation(user_id);
-        call.enqueue(new Callback<List<HistoryHotelItem>>() {
+        Call<List<PastHotelItem>> call = apiService.getRatedReservation(dummyUserID);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<PastHotelItem>>() {
             @Override
-            public void onResponse(Call<List<HistoryHotelItem>> call, Response<List<HistoryHotelItem>> response) {
+            public void onResponse(Call<List<PastHotelItem>> call, Response<List<PastHotelItem>> response) {
                 if (!response.isSuccessful()) {
                     Log.d("response error", String.valueOf(response.code()));
                     return;
@@ -80,36 +90,58 @@ public class TripsPastFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<HistoryHotelItem> searchHotelItems = (ArrayList<HistoryHotelItem>) response.body();
-                ArrayList<HistoryHotelItem> pastHotelItems = new ArrayList<>();
+                ArrayList<PastHotelItem> searchHotelItems = (ArrayList<PastHotelItem>) response.body();
                 if (searchHotelItems.size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     //ADD LOADING QUERY
                     return;
                 }
 
-                for (int i = 0; i < searchHotelItems.size(); i++) {
-                    Log.d("is cancelled", searchHotelItems.get(i).getIsCancelled().toString());
-                    Log.d("end date", searchHotelItems.get(i).getEndDate());
-                    String date = searchHotelItems.get(i).getEndDate();
-                    if (searchHotelItems.get(i).getIsCancelled()) {
-                        continue;
-                    }
-                    else if (DateTimeUtil.isBeforeCurrentDate(date)) {
-                        pastHotelItems.add(searchHotelItems.get(i));
-                    }
-                    else {
-                        continue;
-                    }
-                }
-                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), pastHotelItems);
+                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), searchHotelItems);
                 recyclerView.setAdapter(cardHotelPastTripAdapter);
                 recyclerView.setVisibility(View.VISIBLE);
                 Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
             }
 
             @Override
-            public void onFailure(Call<List<HistoryHotelItem>> call, Throwable t) {
+            public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("loadHotel",t.toString());
+            }
+        });
+    }
+    private void getUserNotRatedPastHotel() {
+        //fake-data
+        String user_id = preferences.getString("user_id", "empty user_id");
+        Log.d("user_id", user_id);
+        String dummyUserID = "1";
+
+        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(dummyUserID);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<PastHotelItem>>() {
+            @Override
+            public void onResponse(Call<List<PastHotelItem>> call, Response<List<PastHotelItem>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("response error", String.valueOf(response.code()));
+                    return;
+                }
+                if (response.body() == null) {
+                    Log.d("response error", "Empty response");
+                    return;
+                }
+                ArrayList<PastHotelItem> searchHotelItems = (ArrayList<PastHotelItem>) response.body();
+                if (searchHotelItems.size() == 0) {
+                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), searchHotelItems);
+                recyclerView.setAdapter(cardHotelPastTripAdapter);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }

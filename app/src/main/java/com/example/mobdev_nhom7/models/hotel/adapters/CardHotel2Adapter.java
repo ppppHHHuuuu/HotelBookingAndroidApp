@@ -4,27 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
-import com.example.mobdev_nhom7.models.responseObj.search.SearchCityItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
+import com.example.mobdev_nhom7.utils.BitmapUtil;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.ListHotelViewHolder> {
@@ -56,21 +54,19 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
 
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
-        Bitmap hotelImage;
         try {
-            URL url = new URL(data.get(position).getImageURL());
-            hotelImage = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            URL url = new URL(data.get(position).getImageItemURL().get(0));
+            Log.d("url", url.toString());
+            BitmapUtil.ggDriveConverter(url.toString(), holder.imagesHotel);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-//        holder.textLocation.setText(String.valueOf(data.get(position).getDistance()));
-        holder.textScore.setText(String.valueOf(data.get(position).getScore()));
-        holder.imagesHotel.setImageBitmap(hotelImage);
-        holder.textAmount.setText(String.valueOf(data.get(position).getAmount()));
-        holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore()));
-        holder.textDistance.setText(String.valueOf(data.get(position).getPositionFromCenter()));
+        holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+        holder.textAmount.setText(data.get(position).getAmount() + ".000VND");
+        holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
+        holder.textDistance.setText(data.get(position).getPositionFromCenter() + " from center");
     }
 
     @Override
@@ -91,9 +87,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
             imagesHotel = itemView.findViewById(R.id.imageHotel);
-//            textLocation = itemView.findViewById(R.id.textLocation);
             textScore = itemView.findViewById(R.id.textScore);
-
             textJudge = itemView.findViewById(R.id.textJudge);
             textAmount = itemView.findViewById(R.id.textAmount);
             textDistance = itemView.findViewById(R.id.textDistance);
