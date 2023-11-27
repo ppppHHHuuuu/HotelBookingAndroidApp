@@ -21,6 +21,7 @@ drawable apple
 drawable apple_icon
 drawable blue_round_background
 drawable bookmark
+drawable border_box
 drawable car_icon
 drawable circle_mask
 drawable close
@@ -63,6 +64,7 @@ drawable logout
 drawable luggage_icon
 drawable luggage_icon_checked
 drawable luggage_selector
+drawable minus_sign_icon
 drawable mybutton
 drawable next
 drawable order
@@ -72,6 +74,7 @@ drawable pet
 drawable phone
 drawable phone_icon
 drawable placeholder
+drawable plus_sign_icon
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -179,12 +182,14 @@ id linearLayout2
 id linearLayout4
 id login_button
 id lower_case_characters
+id minusButton
 id name
 id name_block
 id name_edit_image
 id nestedScrollView
 id numberGuestCl
 id numberGuestTv
+id numberPicker
 id numberRoomCl
 id numberRoomTv
 id otp_1
@@ -195,17 +200,17 @@ id otp_5
 id otp_6
 id password_edit_text
 id past_btn
-id people
 id pfp
 id phone_block
 id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
+id picked_room_num
 id placeName
 id placeTypeIcon
 id placeholder_view
-id price
+id plusButton
 id profile_detail
 id profile_email
 id profile_icon
@@ -222,9 +227,11 @@ id resend_time_count_text
 id restaurantsImage
 id restaurantsRV
 id restaurantsTitle
-id room
 id room_info_options
+id room_name
 id room_number_edit_text
+id room_persons
+id room_price
 id roomsDisplay
 id roomsView
 id save_button
@@ -260,6 +267,7 @@ id textRate
 id textScore
 id textStarNumber
 id title
+id totalRoomPrice
 id transportRV
 id transportTitle
 id tripDescription
@@ -299,6 +307,7 @@ layout fragment_trips
 layout fragment_trips_active
 layout fragment_trips_cancelled
 layout fragment_trips_past
+layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
 layout suggested_destination

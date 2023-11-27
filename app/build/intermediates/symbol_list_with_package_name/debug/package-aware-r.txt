@@ -2968,6 +2968,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable blue_round_background
 drawable bookmark
+drawable border_box
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3077,6 +3078,7 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable minus_sign_icon
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3136,6 +3138,7 @@ drawable pet
 drawable phone
 drawable phone_icon
 drawable placeholder
+drawable plus_sign_icon
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
@@ -3522,6 +3525,7 @@ id matrix
 id message
 id middle
 id mini
+id minusButton
 id month_grid
 id month_navigation_bar
 id month_navigation_fragment_toggle
@@ -3577,6 +3581,7 @@ id notification_main_column
 id notification_main_column_container
 id numberGuestCl
 id numberGuestTv
+id numberPicker
 id numberRoomCl
 id numberRoomTv
 id off
@@ -3603,7 +3608,6 @@ id past_btn
 id path
 id pathRelative
 id peekHeight
-id people
 id percent
 id pfp
 id phone_block
@@ -3611,14 +3615,15 @@ id phone_edit_image
 id phone_edit_text
 id phone_login
 id phone_text
+id picked_room_num
 id pin
 id placeName
 id placeTypeIcon
 id placeholder_view
+id plusButton
 id position
 id postLayout
 id pressed
-id price
 id profile_detail
 id profile_email
 id profile_icon
@@ -3645,9 +3650,11 @@ id right
 id rightToLeft
 id right_icon
 id right_side
-id room
 id room_info_options
+id room_name
 id room_number_edit_text
+id room_persons
+id room_price
 id roomsDisplay
 id roomsView
 id rounded
@@ -3797,6 +3804,7 @@ id title_template
 id toggle
 id top
 id topPanel
+id totalRoomPrice
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -4058,6 +4066,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
 layout select_dialog_item_material

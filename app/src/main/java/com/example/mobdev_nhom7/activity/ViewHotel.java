@@ -1,15 +1,25 @@
 package com.example.mobdev_nhom7.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.text.HtmlCompat;
 
 import com.example.mobdev_nhom7.R;
+
+import org.w3c.dom.Text;
 
 public class ViewHotel extends Activity {
     @Override
@@ -17,7 +27,75 @@ public class ViewHotel extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_hotel);
         View price_button1 = findViewById(R.id.button1);
-        TextView room1 = (TextView) price_button1.findViewById(R.id.room);
-        room1.setText("Doubles Room");
+        TextView roomName = (TextView) price_button1.findViewById(R.id.room_name);
+        TextView roomPrice = (TextView) price_button1.findViewById(R.id.room_price);
+        TextView roomPersons = (TextView) price_button1.findViewById(R.id.room_persons);
+        price_button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseRoomNumberDialog(roomName.getText().toString(), Integer.parseInt(roomPrice.getText().toString()));
+            }
+        });
+    }
+
+    public void chooseRoomNumberDialog(String name, Integer price) {
+
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.room_option_dialog);
+
+        Button confirmBtn = dialog.findViewById(R.id.confirm_button);
+        TextView roomName = dialog.findViewById(R.id.title);
+        TextView numberOfRooms = dialog.findViewById(R.id.picked_room_num);
+        ImageView minusBtn = dialog.findViewById(R.id.minusButton);
+        ImageView plusBtn = dialog.findViewById(R.id.plusButton);
+        TextView totalRoomPrice = dialog.findViewById(R.id.totalRoomPrice);
+
+        roomName.setText(name);
+        Window window = dialog.getWindow();
+
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.BOTTOM;
+
+        window.setAttributes(windowAttributes);
+
+        minusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Decrease the number of rooms
+                int currentRooms = Integer.parseInt(numberOfRooms.getText().toString());
+                if (currentRooms > 0) {
+                    currentRooms--;
+                    numberOfRooms.setText(String.valueOf(currentRooms));
+//                    totalRoomPrice.setText(String.valueOf(price * currentRooms));
+                }
+            }
+        });
+
+        plusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Increase the number of rooms
+                int currentRooms = Integer.parseInt(numberOfRooms.getText().toString());
+                currentRooms++;
+                numberOfRooms.setText(String.valueOf(currentRooms));
+//                totalRoomPrice.setText(String.valueOf(price * currentRooms));
+            }
+        });
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        dialog.show();
     }
 }
