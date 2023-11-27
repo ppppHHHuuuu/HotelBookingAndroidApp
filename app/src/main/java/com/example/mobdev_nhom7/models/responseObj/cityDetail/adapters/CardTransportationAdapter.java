@@ -55,7 +55,7 @@ public class CardTransportationAdapter extends RecyclerView.Adapter<CardTranspor
 
         }
         catch (Exception e) {
-            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"exception", Toast.LENGTH_LONG).show();
         }
 
 

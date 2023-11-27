@@ -55,7 +55,7 @@ public class CardTodoAdapter extends RecyclerView.Adapter<CardTodoAdapter.ListTo
 
         }
         catch (Exception e) {
-            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "exception", Toast.LENGTH_LONG).show();
         }
 
 

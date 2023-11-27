@@ -67,7 +67,6 @@ public class SuggestedDestinationActivity extends Activity {
         editPreferredDest = findViewById(R.id.editPreferredDest);
         nestedScrollView = findViewById(R.id.nestedScrollView);
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setItemAnimator(null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         placeItemList = new ArrayList<>();
         buttonCancel = findViewById(R.id.buttonCancel);
