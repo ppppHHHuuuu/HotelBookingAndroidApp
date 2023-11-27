@@ -3,22 +3,17 @@ package com.example.mobdev_nhom7.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.format.Formatter;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.mobdev_nhom7.utils.AutoIpConfig;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.CustomToast;
-import com.example.mobdev_nhom7.utils.Network;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,20 +27,19 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import android.net.wifi.WifiManager;
-
-import org.checkerframework.checker.units.qual.A;
 
 public class Login extends AppCompatActivity {
-    private String ipConfig;
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     GoogleSignInOptions googleSignInOptions;
     private GoogleSignInClient googleSignInClient;
+    private APIService apiService = APIUtils.getUserService();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         EditText emailEditText = findViewById(R.id.email_edit_text);
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
@@ -53,9 +47,6 @@ public class Login extends AppCompatActivity {
         if (!currentAccount.equals("-1")) {
             emailEditText.setText(currentAccount);
         }
-//        AutoIpConfig autoIpConfig = new AutoIpConfig(this);
-//        autoIpConfig.new NetworkScannerTask().execute();
-
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> {

@@ -140,6 +140,7 @@ public class NewPassword extends AppCompatActivity {
             }
         });
     }
+
     public static int totalCharacterCount(String password) {
         return password.length();
     }

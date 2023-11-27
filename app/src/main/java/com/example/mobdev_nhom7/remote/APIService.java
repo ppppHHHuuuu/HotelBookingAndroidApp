@@ -60,6 +60,13 @@ public interface APIService {
     Call<List<CityItem>> getAllCity();
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
+    @GET("reservation/history/{user_id}")
+    Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
+
+    @GET("get/hotel/all")
+    @FormUrlEncoded
+    Call<HotelNameResponseData> getAllHotelName();
+
     @GET("hotel/suggest")
     Call<List<SearchHotelItem>> getSuggestedHotel();
     @GET("reservation/active/{user_id}")
@@ -72,4 +79,16 @@ public interface APIService {
     Call<List<PastHotelItem>> getNotRatedReservation(@Path("user_id") String user_id);
     @POST("/user/{id}")
     Call<DefaultResponseData> createUser(@Path("id") String id);
+
+    @GET("/cities/restaurant/{id}")
+    Call<List<Restaurant>> getRestaurant(@Path("id") String id);
+
+    @GET("/cities/transportation/{id}")
+    Call<List<Transportation>> getTransportation(@Path("id") String id);
+
+    @GET("/cities/todo/{id}")
+    Call<List<Todo>> getTodo(@Path("id") String id);
+
+    @GET("/cities/alert/{id}")
+    Call<List<Alert>> getAlert(@Path("id") String id);
 }

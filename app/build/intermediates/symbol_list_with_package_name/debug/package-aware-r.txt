@@ -3172,7 +3172,6 @@ id BOTTOM_START
 id CTRL
 id FUNCTION
 id META
-id MyRating
 id NO_DEBUG
 id SHIFT
 id SHOW_ALL
@@ -3241,6 +3240,7 @@ id activitiesRV
 id activitiesTitle
 id activity_chooser_view_content
 id add
+id address
 id adjust_height
 id adjust_width
 id alertContent
@@ -3553,6 +3553,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id name
 id name_block
 id name_edit_image
 id navigation_bar_item_active_indicator_view
@@ -3637,7 +3638,6 @@ id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
-id restaurantName
 id restaurantsImage
 id restaurantsRV
 id restaurantsTitle

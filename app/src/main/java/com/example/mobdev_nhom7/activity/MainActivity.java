@@ -121,5 +121,20 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.putString("provider", user.getProviderId());
         editor.apply();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        if (mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            Log.d("uid", uid);
+            SharedPreferences.Editor editor2 = preferences.edit();
+            editor2.putString("user_id", uid);
+            editor2.apply();
+        }
+        else {
+            Log.d("uid", "empty");
+        }
     }
+
+
 }

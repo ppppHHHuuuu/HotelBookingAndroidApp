@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,19 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.databinding.CardCityBinding;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
+import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CityFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
@@ -25,6 +37,7 @@ public class CityFragment extends Fragment {
 
     // Dump Attribute, for demo only
     private Button cityDetail;
+    private List<CityItem> cityItems;
 
     public CityFragment() {
         // Required empty public constructor
@@ -46,19 +59,37 @@ public class CityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getCityName();
         View view =  inflater.inflate(R.layout.fragment_city, container, false);
         cityDetail = view.findViewById(R.id.button4);
 
-        cityDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ViewCity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
+        cityDetail.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), ViewCity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
 
-                getContext().startActivity(intent);
-            }
+            getContext().startActivity(intent);
         });
 
         return view;
+    }
+
+    public void getCityName() {
+        Call<List<CityItem>> callGetAlert = apiService.getAllCity();
+        callGetAlert.enqueue(new Callback<List<CityItem>>() {
+            @Override
+            public void onResponse(Call<List<CityItem>> call, Response<List<CityItem>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Handle the first CityDetail in the list
+                    cityItems = response.body();
+                } else {
+                    Log.d("Call get city error", "Empty or unsuccessful response");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CityItem>> call, Throwable t) {
+                Log.d("Call get city error", t.getMessage());
+            }
+        });
     }
 }
