@@ -99,10 +99,10 @@ font avenir_rgl
 font poppins_bold
 font poppins_extrabold
 font poppins_regular
-id MyRating
 id active_btn
 id activitiesRV
 id activitiesTitle
+id address
 id alertContent
 id alertTitle
 id appBarLayout
@@ -166,6 +166,7 @@ id frameLayout
 id google_login
 id guest_number_edit_text
 id hide_image
+id image
 id imageBackButton
 id imageCity
 id imageHotel
@@ -178,6 +179,7 @@ id linearLayout2
 id linearLayout4
 id login_button
 id lower_case_characters
+id name
 id name_block
 id name_edit_image
 id nestedScrollView
@@ -218,7 +220,6 @@ id recyclerView1
 id register_button
 id resend_button
 id resend_time_count_text
-id restaurantName
 id restaurantsImage
 id restaurantsRV
 id restaurantsTitle

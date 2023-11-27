@@ -37,7 +37,8 @@ public class TripsPastFragment extends Fragment {
 
     RecyclerView recyclerView;
     CardHotelPastTripAdapter cardHotelPastTripAdapter;
-    ArrayList<PastHotelItem> hotelItemList = new ArrayList<>();
+    ArrayList<PastHotelItem> hotelItemList;
+
 
     public TripsPastFragment() {
         // Required empty public constructor
@@ -53,21 +54,21 @@ public class TripsPastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        hotelItemList = new ArrayList<>();
         cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(RecyclerView.VERTICAL); // Set the orientation as needed
         recyclerView.setAdapter(cardHotelPastTripAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        getUserRatedPastHotel();
-        getUserNotRatedPastHotel();
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserNotRatedPastHotel();
+    }
+
     //TODO CALL FROM BE
     private void getUserRatedPastHotel() {
         //fake-data
@@ -90,17 +91,9 @@ public class TripsPastFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<PastHotelItem> searchHotelItems = (ArrayList<PastHotelItem>) response.body();
-                if (searchHotelItems.size() == 0) {
-                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
-                    //ADD LOADING QUERY
-                    return;
-                }
+                hotelItemList.addAll(response.body());
+                cardHotelPastTripAdapter.notifyDataSetChanged();
 
-                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), searchHotelItems);
-                recyclerView.setAdapter(cardHotelPastTripAdapter);
-                recyclerView.setVisibility(View.VISIBLE);
-                Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
             }
 
             @Override
@@ -130,14 +123,9 @@ public class TripsPastFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<PastHotelItem> searchHotelItems = (ArrayList<PastHotelItem>) response.body();
-                if (searchHotelItems.size() == 0) {
-                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), searchHotelItems);
-                recyclerView.setAdapter(cardHotelPastTripAdapter);
-                recyclerView.setVisibility(View.VISIBLE);
+                hotelItemList.addAll(response.body());
+                getUserRatedPastHotel();
+                cardHotelPastTripAdapter.notifyDataSetChanged();
             }
 
             @Override

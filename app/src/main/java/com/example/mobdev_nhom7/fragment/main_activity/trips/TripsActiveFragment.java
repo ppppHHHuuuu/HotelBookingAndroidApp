@@ -35,15 +35,13 @@ import retrofit2.Response;
 public class TripsActiveFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
-
     CardHotelActiveTripAdapter cardHotelActiveTripAdapter;
-    ArrayList<ActiveHotelItem> hotelItemList = new ArrayList<>();
+    ArrayList<ActiveHotelItem> hotelItemList;
     RecyclerView recyclerView;
 
     public TripsActiveFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +51,24 @@ public class TripsActiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
-
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
 
+        hotelItemList = new ArrayList<>();
+        cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(requireContext(), hotelItemList);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getUserActiveHotel();
 
         return v;
     }
     //TODO CALL FROM BE
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserActiveHotel();
+    }
 
     private void getUserActiveHotel() {
         //fake-data
@@ -84,17 +89,13 @@ public class TripsActiveFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<ActiveHotelItem> searchHotelItems = (ArrayList<ActiveHotelItem>) response.body();
-                for (int i = 0; i < searchHotelItems.size(); i++) {
-                    Log.d("searchHotelItem", searchHotelItems.get(i).toString());
-                }
-                if (searchHotelItems.size() == 0) {
+
+                if (response.body().size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     return;
                 }
-                cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(getContext(), searchHotelItems);
-                recyclerView.setAdapter(cardHotelActiveTripAdapter);
-                recyclerView.setVisibility(View.VISIBLE);
+                hotelItemList.addAll(response.body());
+                cardHotelActiveTripAdapter.notifyDataSetChanged();
             }
 
             @Override

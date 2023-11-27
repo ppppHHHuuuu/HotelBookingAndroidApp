@@ -19,7 +19,7 @@ public class ActiveHotelItem {
     @SerializedName("end_date")
     @Expose
     private String end_date;
-    @SerializedName("price")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 

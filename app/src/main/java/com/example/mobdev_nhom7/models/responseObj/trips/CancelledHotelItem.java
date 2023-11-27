@@ -16,7 +16,7 @@ public class CancelledHotelItem {
     @SerializedName("start_date")
     @Expose
     private String start_date;
-    @SerializedName("price")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
     public String getUserId() {

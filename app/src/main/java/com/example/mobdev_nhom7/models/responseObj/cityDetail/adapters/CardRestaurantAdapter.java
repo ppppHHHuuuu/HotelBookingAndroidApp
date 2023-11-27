@@ -19,7 +19,6 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 

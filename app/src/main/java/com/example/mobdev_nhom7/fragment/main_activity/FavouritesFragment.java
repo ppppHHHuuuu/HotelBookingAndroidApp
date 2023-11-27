@@ -31,8 +31,6 @@ public class FavouritesFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     CardHotelAdapter cardHotelAdapter;
     ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
-
-
     RecyclerView recyclerView;
     public FavouritesFragment() {
         // Required empty public constructor
@@ -41,18 +39,23 @@ public class FavouritesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_favourites, container, false);
 
-        cardHotelAdapter = new CardHotelAdapter(getContext(), hotelItemList);
+        cardHotelAdapter = new CardHotelAdapter(requireContext(), hotelItemList);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(cardHotelAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getSuggestDest();
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSuggestDest();
     }
 
     public void getSuggestDest() {
@@ -66,12 +69,12 @@ public class FavouritesFragment extends Fragment {
             public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
                 if (response.isSuccessful()) {
                     if  (response.body() == null) {
-                        Log.d("Content", "Empty content");
+                        Log.d("Content", "Empty cntent");
                         Toast.makeText(getContext(), "Empty content", Toast.LENGTH_LONG).show();
                     }
-                    ArrayList<SearchHotelItem> cityItems = (ArrayList<SearchHotelItem>) response.body();
-                    CardHotelAdapter cityItemCardAdapter = new CardHotelAdapter(getContext(), cityItems);
-                    recyclerView.setAdapter(cityItemCardAdapter);
+                    ArrayList<SearchHotelItem> hotelItems = (ArrayList<SearchHotelItem>) response.body();
+                    cardHotelAdapter.setData(hotelItems);
+                    cardHotelAdapter.notifyDataSetChanged();
                 }
             }
 

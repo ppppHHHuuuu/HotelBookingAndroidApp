@@ -70,13 +70,6 @@
             android:name="com.example.mobdev_nhom7.activity.CodeInput"
             android:exported="false" />
         <activity
-            android:name="com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity"
-            android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".activity.FilterOptionsActivity" -->
-        <!-- android:exported="false" /> -->
-
-        <activity
             android:name="com.example.mobdev_nhom7.activity.Login"
             android:exported="true" >
             <intent-filter>
@@ -85,6 +78,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity" />
 
         <provider
             android:name="com.squareup.picasso.PicassoProvider"

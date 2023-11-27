@@ -66,7 +66,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount);
+        holder.textAmount.setText(amount + " .000VND");
     }
 
     @Override

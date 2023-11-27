@@ -2,6 +2,10 @@ package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
+import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
@@ -60,13 +64,6 @@ public interface APIService {
     Call<List<CityItem>> getAllCity();
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
-    @GET("reservation/history/{user_id}")
-    Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
-
-    @GET("get/hotel/all")
-    @FormUrlEncoded
-    Call<HotelNameResponseData> getAllHotelName();
-
     @GET("hotel/suggest")
     Call<List<SearchHotelItem>> getSuggestedHotel();
     @GET("reservation/active/{user_id}")

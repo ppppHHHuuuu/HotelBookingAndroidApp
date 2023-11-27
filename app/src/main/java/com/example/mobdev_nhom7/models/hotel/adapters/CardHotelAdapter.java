@@ -30,6 +30,10 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
+    public void setData(List<SearchHotelItem> data) {
+        this.data.clear();
+        this.data.addAll(data);
+    }
     public CardHotelAdapter(Context context, ArrayList<SearchHotelItem > data) {
         this.context = context;
         this.data= data;
@@ -53,23 +57,28 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
 
     @Override
     public void onBindViewHolder(@NonNull FavHotelViewHolder holder, int position) {
-        try {
-            URL url = new URL(data.get(position).getImageItemURL().get(0));
-            Log.d("url", url.toString());
-            BitmapUtil.ggDriveConverter(url.toString(), holder.imagesHotel);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        SearchHotelItem searchHotelItem = data.get(position);
+        if (searchHotelItem != null) {
+            try {
+                URL url = new URL(data.get(position).getImageItemURL().get(0));
+                Log.d("url", url.toString());
+                BitmapUtil.ggDriveConverter(url.toString(), holder.imagesHotel);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            holder.textCity.setText(String.valueOf(data.get(position).getCity()));
+            holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
+            holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+            holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
+            holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
+            holder.ratingBar.setRating(data.get(position).getStar());
         }
-        holder.textCity.setText(String.valueOf(data.get(position).getCity()));
-        holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
-        holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
-        holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
-        holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-        holder.ratingBar.setRating(data.get(position).getStar());
+
     }
     @Override
     public int getItemCount() {
-        return data.size(); // Return the number of hotels in the list
+        return data != null ? data.size() : 0; // Return the number of hotels in the list
     }
 
     public class FavHotelViewHolder extends RecyclerView.ViewHolder{

@@ -65,7 +65,7 @@ public class ViewCity extends AppCompatActivity {
         todosRecyclerView.setAdapter(cardTodoAdapter);
         todosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
+    
     private void getCityDetail(String id) {
         Call<List<Restaurant>> callGetRestaurant = apiService.getRestaurant("nw2udhrsvdQGsXSgOO43");
         callGetRestaurant.enqueue(new Callback<List<Restaurant>>() {

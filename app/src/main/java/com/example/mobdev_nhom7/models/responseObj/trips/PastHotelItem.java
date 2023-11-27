@@ -32,7 +32,7 @@ public class PastHotelItem {
         this.amount = amount;
     }
 
-    @SerializedName("amount")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 

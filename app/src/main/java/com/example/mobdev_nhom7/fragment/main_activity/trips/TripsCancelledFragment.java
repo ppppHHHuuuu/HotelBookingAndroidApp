@@ -53,12 +53,17 @@ public class TripsCancelledFragment extends Fragment {
 
         cardHotelCancelledTripAdapter = new CardHotelCancelledTripAdapter(getContext(), hotelItemList);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
-
-        recyclerView.setAdapter(cardHotelCancelledTripAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getUserCancelHotel();
+        recyclerView.setAdapter(cardHotelCancelledTripAdapter);
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserCancelHotel();
+
     }
 
     private void getUserCancelHotel() {
@@ -80,14 +85,14 @@ public class TripsCancelledFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<CancelledHotelItem> searchHotelItems = (ArrayList<CancelledHotelItem>) response.body();
-                if (searchHotelItems.size() == 0) {
+                if (response.body().size() == 0) {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     return;
                 }
-                cardHotelCancelledTripAdapter = new CardHotelCancelledTripAdapter(getContext(), searchHotelItems);
-                recyclerView.setAdapter(cardHotelCancelledTripAdapter);
-                recyclerView.setVisibility(View.VISIBLE);
+
+                hotelItemList.clear();
+                hotelItemList.addAll(response.body());
+                cardHotelCancelledTripAdapter.notifyDataSetChanged();
             }
 
             @Override

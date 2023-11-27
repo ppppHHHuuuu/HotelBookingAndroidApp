@@ -64,7 +64,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String amount = data.get(position).getAmount();
         String comment;
 
-
         if (data.get(position).getComment()!= null && ! data.get(position).getComment().equals("")) {
             Log.d("comment", data.get(position).getComment());
             comment = data.get(position).getComment();
@@ -73,13 +72,12 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount);
-
+        holder.textAmount.setText(amount + ".000VND");
     }
 
     @Override
     public int getItemCount() {
-        return data.size(); // Return the number of hotels in the list
+        return data != null ? data.size() : 0; // Return the number of hotels in the list
     }
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imagesHotel;
