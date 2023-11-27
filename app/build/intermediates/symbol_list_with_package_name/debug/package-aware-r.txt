@@ -3334,7 +3334,6 @@ id container
 id content
 id contentPanel
 id contiguous
-id continue_button
 id continuousVelocity
 id coordinator
 id cos
@@ -3438,7 +3437,6 @@ id ghost_view
 id ghost_view_holder
 id glide_custom_view_target_tag
 id gone
-id google_login
 id graph
 id graph_wrap
 id group_divider
@@ -3582,12 +3580,6 @@ id numberRoomTv
 id off
 id on
 id onInterceptTouchReturnSwipe
-id otp_1
-id otp_2
-id otp_3
-id otp_4
-id otp_5
-id otp_6
 id outline
 id outward
 id overshoot
@@ -3606,11 +3598,6 @@ id peekHeight
 id people
 id percent
 id pfp
-id phone_block
-id phone_edit_image
-id phone_edit_text
-id phone_login
-id phone_text
 id pin
 id placeName
 id placeTypeIcon
@@ -3953,14 +3940,12 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_code_input
 layout activity_filter_options
 layout activity_login
 layout activity_main
 layout activity_new_password
 layout activity_password
 layout activity_password_reset
-layout activity_phone_input
 layout auto_complete_custom
 layout auto_complete_view
 layout browser_actions_context_menu_page

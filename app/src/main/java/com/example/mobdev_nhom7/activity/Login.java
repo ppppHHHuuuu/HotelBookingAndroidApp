@@ -30,11 +30,7 @@ import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-    GoogleSignInOptions googleSignInOptions;
-    private GoogleSignInClient googleSignInClient;
     private APIService apiService = APIUtils.getUserService();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,36 +90,11 @@ public class Login extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-        googleSignInClient.signOut();
-        Button googleLogin = findViewById(R.id.google_login);
-        googleLogin.setOnClickListener(v -> {
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            if (currentUser != null) {
-                mAuth.signOut();
-            }
-            GoogleSignIn();
-        });
-
-        Button phoneLogin = findViewById(R.id.phone_login);
-        phoneLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, PhoneInput.class);
-            startActivity(intent);
-        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (mAuth.getCurrentUser() != null) {
-            mAuth.signOut();
-        }
-        googleSignInClient.signOut();
     }
 
 
@@ -134,37 +105,5 @@ public class Login extends AppCompatActivity {
         Matcher matcher = pattern.matcher(email);
 
         return matcher.matches();
-    }
-
-    private void GoogleSignIn() {
-        Intent intent = googleSignInClient.getSignInIntent();
-        startActivityForResult(intent, 100);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            Task<GoogleSignInAccount> account = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount signInAccount = account.getResult(ApiException.class);
-                googleAuth(signInAccount.getIdToken());
-            } catch (ApiException e) {
-                CustomToast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
-            }
-        }
-    }
-
-    private void googleAuth(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
-                    } else {
-                        CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);
-                    }
-                });
     }
 }

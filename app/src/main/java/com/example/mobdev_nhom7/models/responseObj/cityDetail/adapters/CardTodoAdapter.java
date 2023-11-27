@@ -38,11 +38,6 @@ public class CardTodoAdapter extends RecyclerView.Adapter<CardTodoAdapter.ListTo
     public CardTodoAdapter.ListTodoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_city_details, parent, false);
-        view.setOnClickListener(view1 -> {
-            Intent intent = new Intent(context.getApplicationContext(), ViewCity.class);
-            Toast.makeText(context.getApplicationContext(), "Getting hotel details", Toast.LENGTH_LONG).show();
-            context.startActivity(intent);
-        });
         return new CardTodoAdapter.ListTodoHolder(view);
     }
 
@@ -55,7 +50,6 @@ public class CardTodoAdapter extends RecyclerView.Adapter<CardTodoAdapter.ListTo
 
         }
         catch (Exception e) {
-            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
 
 
