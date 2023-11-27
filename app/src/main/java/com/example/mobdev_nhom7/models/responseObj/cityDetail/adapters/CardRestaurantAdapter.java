@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,7 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
         }
         catch (Exception e) {
             Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
+            Log.e("CardRestaurantAdapter", "Error loading image: " + e.getMessage(), e);
         }
 
 
@@ -93,4 +95,6 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
             textAddress = itemView.findViewById(R.id.address);
         }
     }
+
+
 }

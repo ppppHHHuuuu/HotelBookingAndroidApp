@@ -56,6 +56,7 @@ public class ViewCity extends AppCompatActivity {
         restaurantsRecyclerView.setAdapter(cardRestaurantAdapter);
         restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         transportationsRecyclerView = findViewById(R.id.transportRV);
         transportationsRecyclerView.setAdapter(cardTransportationAdapter);
         transportationsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
