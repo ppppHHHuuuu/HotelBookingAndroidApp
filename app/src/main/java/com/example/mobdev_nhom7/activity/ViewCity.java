@@ -70,6 +70,15 @@ public class ViewCity extends AppCompatActivity {
         todosRecyclerView = findViewById(R.id.activitiesRV);
         todosRecyclerView.setAdapter(cardTodoAdapter);
         todosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        String cityID;
+        Bundle extras = this.getIntent().getExtras();
+        if(extras == null) {
+            Log.d("extra", "abc");
+            cityID= null;
+        } else {
+            cityID= extras.getString("city_id");
+        }
+        Log.d("city_id", cityID);
     }
 
     @Override

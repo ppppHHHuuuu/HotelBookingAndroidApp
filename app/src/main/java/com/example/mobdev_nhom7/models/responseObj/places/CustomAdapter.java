@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.utils.PlaceType;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private CustomFilter filter;
     private Context context;
 
-    public CustomAdapter(Context context, List<PlaceItem> data) {
+    SendID sendID;
+    public CustomAdapter(Context context, List<PlaceItem> data, SendID sendID) {
         this.originalData = data;
         this.filteredData = new ArrayList<>(data);
         this.filter = new CustomFilter();
+        this.sendID = sendID;
         this.context = context;
+    }
+    public void clearData() {
+        originalData.clear();
+        filteredData.clear();
+        notifyDataSetChanged();
     }
     public void setData(List<PlaceItem> newData) {
         filteredData.clear();
@@ -54,20 +62,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         PlaceItem placeItem = filteredData.get(position);
         if (Objects.equals(placeItem.getType(), PlaceType.CITY.getDisplayName())) {
             holder.imageType.setBackgroundResource(R.drawable.location_icon);
+            holder.itemView.setOnClickListener(v -> sendID.go(null, placeItem.getCity_id()));
+
         }
         else if (Objects.equals(placeItem.getType(), PlaceType.HOTEL.getDisplayName())) {
             holder.imageType.setBackgroundResource(R.drawable.hotel_icon);
+            holder.itemView.setOnClickListener(v -> sendID.go(placeItem.getHotel_id(), null));
         }
         holder.country.setText(placeItem.getCountry());
         holder.place.setText(placeItem.getName());
-        holder.itemView.setOnClickListener(v -> {
-            Log.d("context", String.valueOf(context));
-
-            Intent intent = new Intent(context, ViewHotel.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
-
-            context.startActivity(intent);
-        });
 
     }
 

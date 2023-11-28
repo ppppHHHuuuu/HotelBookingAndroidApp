@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.activity.CityActivity;
+import com.example.mobdev_nhom7.activity.ViewCity;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.List;
 
@@ -19,11 +20,12 @@ public class CityItemCardAdapter extends RecyclerView.Adapter<CityItemCardAdapte
 
     private List<CityItem> cityList;
     private Context context;
-
+    SendID sendID;
     // Constructor
-    public CityItemCardAdapter(Context context, List<CityItem> cityList) {
+    public CityItemCardAdapter(Context context, List<CityItem> cityList, SendID sendID) {
         this.context = context;
         this.cityList = cityList;
+        this.sendID = sendID;
         setHasStableIds(true);
 
     }
@@ -45,7 +47,9 @@ public class CityItemCardAdapter extends RecyclerView.Adapter<CityItemCardAdapte
         CityItem city = cityList.get(position);
         holder.bind(city);
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, CityActivity.class);
+            Intent intent = new Intent(context, ViewCity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  // Add this flag
+            intent.putExtra("city_id", city.getCityId()); // Assuming you have a method to get the city ID from CityItem
             context.startActivity(intent);
         });
     }

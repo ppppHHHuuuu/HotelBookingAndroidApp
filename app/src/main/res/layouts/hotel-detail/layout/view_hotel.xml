@@ -13,19 +13,19 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageHotel"
             android:layout_width="fill_parent"
             android:layout_height="280dp"
-            android:src="@drawable/hotel"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
+            android:id="@+id/hotelName"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
             android:fontFamily="@font/poppins_bold"
             android:paddingTop="10dp"
-            android:text="Sofitel Legend Metropole Hanoi"
             android:textSize="20dp"
             android:textColor="#000000"
             tools:layout_editor_absoluteX="0dp"
@@ -48,7 +48,9 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/priceLayout"
+
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,27 +59,27 @@
             android:layout_marginRight="12dp"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/button1"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp" />
+<!--            <include-->
+<!--                android:id="@+id/button1"-->
+<!--                layout="@layout/button_price"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="110dp" />-->
 
-            <include
-                android:id="@+id/button2"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp" />
+<!--            <include-->
+<!--                android:id="@+id/button2"-->
+<!--                layout="@layout/button_price"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="110dp"-->
+<!--                android:layout_marginTop="20dp" />-->
 
-            <include
-                android:id="@+id/button3"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp" />
+<!--            <include-->
+<!--                android:id="@+id/button3"-->
+<!--                layout="@layout/button_price"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="110dp"-->
+<!--                android:layout_marginTop="20dp" />-->
 
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
         <View
@@ -100,12 +102,14 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <LinearLayout
+            android:id="@+id/ratingLayout"
             android:orientation="horizontal"
             android:layout_height="60dp"
             android:layout_width="fill_parent"
             >
 
             <TextView
+                android:id="@+id/ratingPoint"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_width="70dp"
@@ -117,6 +121,7 @@
                 android:background="@drawable/mybutton"/>
 
             <TextView
+                android:id="@+id/judge"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="15dp"
@@ -154,13 +159,14 @@
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="0dp" />
                     <ProgressBar
+                        android:id="@+id/moneyProgressBar"
                         android:paddingBottom="30dp"
                         android:paddingHorizontal="30dp"
                         style="@style/progressBarStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="top"
-                        android:progress="75"/>
+                        android:max="10" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -180,13 +186,15 @@
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="0dp" />
                     <ProgressBar
+                        android:id="@+id/cleanlinessProgressBar"
+
                         android:paddingBottom="30dp"
                         android:paddingHorizontal="30dp"
                         style="@style/progressBarStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="top"
-                        android:progress="95"/>
+                        android:max="10"/>
                 </LinearLayout>
             </TableRow>
 
@@ -208,13 +216,15 @@
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="0dp" />
                     <ProgressBar
+                        android:id="@+id/buildingProgressBar"
+
                         android:paddingBottom="30dp"
                         android:paddingHorizontal="30dp"
                         style="@style/progressBarStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="top"
-                        android:progress="56"/>
+                        android:max="10"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -234,13 +244,15 @@
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="0dp" />
                     <ProgressBar
+                        android:id="@+id/comfortProgressBar"
+
                         android:paddingBottom="30dp"
                         android:paddingHorizontal="30dp"
                         style="@style/progressBarStyle"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="top"
-                        android:progress="100"/>
+                        android:max="10"/>
                 </LinearLayout>
             </TableRow>
 
@@ -264,45 +276,16 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commentRecyclerView"
+            android:layout_height="300dp"
+            android:layout_width="match_parent"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="16dp"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:text="9.8"
-            android:padding="5dp"
-            android:background="@drawable/mybutton"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_extrabold"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            >
 
-        <TextView
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Exceptional service, stay at a Club Room with access to the 7th floor for a next level hospitality."
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="#000000"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-        <TextView
-            android:layout_marginLeft="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="12dp"
-            android:text="Reviewed by Ward on 7 Sep"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="#000000"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
+        </androidx.recyclerview.widget.RecyclerView>
         <View
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
@@ -322,6 +305,7 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
+            android:id="@+id/textLocation"
             android:layout_marginLeft="16dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -361,11 +345,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_weight="1">
+
                     <ImageView
+                        android:id="@+id/wifiInLobby"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_height="21dp"
                         android:layout_gravity="center_vertical|right"
+                        android:layout_marginLeft="30dp"
                         android:src="@drawable/wifi"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="0dp" />
@@ -389,6 +375,7 @@
                 android:orientation="horizontal"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/wifiInRoom"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="30dp"
@@ -423,11 +410,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
+
                 <ImageView
+                    android:id="@+id/spa"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="30dp"
                     android:src="@drawable/spa"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
@@ -451,6 +440,7 @@
                 android:orientation="horizontal"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/telephone"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="30dp"
@@ -460,6 +450,7 @@
                     tools:layout_editor_absoluteY="0dp" />
 
                 <TextView
+
                     android:layout_height="60dp"
                     android:layout_width="wrap_content"
                     android:gravity="center"
@@ -485,11 +476,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
+
                 <ImageView
+                    android:id="@+id/pool"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="30dp"
                     android:src="@drawable/pool"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
@@ -513,6 +506,7 @@
                 android:orientation="horizontal"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/pet"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="30dp"
@@ -573,6 +567,7 @@
 
 
             <TextView
+                android:id="@+id/phoneNumber"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_regular"

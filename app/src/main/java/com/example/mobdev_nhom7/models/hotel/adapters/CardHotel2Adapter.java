@@ -2,8 +2,6 @@ package com.example.mobdev_nhom7.models.hotel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,7 @@ import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,9 +30,11 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotel2Adapter(Context context, List<SearchHotelItem> data) {
+    SendID sendID;
+    public CardHotel2Adapter(Context context, List<SearchHotelItem> data, SendID sendID) {
         this.context =  context;
         this.data= data;
+        this.sendID = sendID;
     }
 
     @NonNull
@@ -67,6 +68,11 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         holder.textAmount.setText(data.get(position).getAmount() + ".000VND");
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + " from center");
+        Log.d("hotelID", data.get(position).getHotelId());
+
+        holder.itemView.setOnClickListener(v -> {
+            sendID.go(data.get(position).getHotelId(), null);
+        });
     }
 
     @Override

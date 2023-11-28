@@ -2,7 +2,6 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -31,12 +29,16 @@ import java.util.Locale;
 public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPastTripAdapter.ListHotelViewHolder> {
     Context context;
     private List<PastHotelItem> data;
+    SendID sendID;
+
+
     public PastHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelPastTripAdapter(Context context,List <PastHotelItem> data) {
+    public CardHotelPastTripAdapter(Context context,List <PastHotelItem> data, SendID sendID) {
         this.data= data;
         this.context = context;
+        this.sendID = sendID;
     }
 
     @NonNull
@@ -73,6 +75,8 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
         holder.textAmount.setText(amount + ".000VND");
+        Log.d("reservationid", data.get(position).getReservationID());
+
     }
 
     @Override

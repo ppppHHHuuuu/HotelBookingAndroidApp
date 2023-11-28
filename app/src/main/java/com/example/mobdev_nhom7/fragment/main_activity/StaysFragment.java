@@ -1,6 +1,5 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -26,20 +24,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.hotel.HotelItem;
+import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
-import com.example.mobdev_nhom7.models.responseObj.hotel.HotelResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,7 +49,6 @@ import retrofit2.Response;
 public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
-
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> searchHotelItems;
     private RecyclerView recyclerView;
@@ -70,6 +63,7 @@ public class StaysFragment extends Fragment {
     private String roomNumber;
     private String pplNumber;
     private String user_id;
+    SendID sendID;
     public StaysFragment() {
         // Required empty public constructor
     }
@@ -89,7 +83,15 @@ public class StaysFragment extends Fragment {
         ConstraintLayout roomInfoOptions = view.findViewById(R.id.room_info_options);
         ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
         searchHotelItems = new ArrayList<>();
-        cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems);
+
+        cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         roomInfoOptions.setOnClickListener(view12 -> openRoomOptionsDialog());
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
@@ -145,7 +147,6 @@ public class StaysFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getSuggestDest();
-
     }
 
     public void getSuggestedDestinationActivity() {
@@ -307,6 +308,7 @@ public class StaysFragment extends Fragment {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     return;
                 }
+                searchHotelItems.clear();
                 searchHotelItems.addAll(response.body());
                 cardHotel2Adapter.notifyDataSetChanged();
             }
@@ -337,6 +339,7 @@ public class StaysFragment extends Fragment {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     return;
                 }
+                searchHotelItems.clear();
                 searchHotelItems.addAll(response.body());
                 cardHotel2Adapter.notifyDataSetChanged();
             }
