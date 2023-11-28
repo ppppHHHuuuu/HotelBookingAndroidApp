@@ -301,7 +301,7 @@ public class StaysFragment extends Fragment {
                 setDate(checkIn.getText().toString(), checkOut.getText().toString());
                 dialog.hide();
                 startDate = checkIn.getText().toString();
-                endDate = checkIn.getText().toString();
+                endDate = checkOut.getText().toString();
             }
         });
         dialog.show();

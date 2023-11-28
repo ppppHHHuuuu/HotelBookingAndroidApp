@@ -144,7 +144,6 @@ public class TripsPastFragment extends Fragment {
         });
     }
     private void postUserCommentHotel(String comment, RatingItem rating) {
-        //fake-data
         String reservationID = preferences.getString("reservation_id", "empty reservation_id");
         Call<DefaultResponseObj> call = apiService.postUserCommentHotel(reservationID, rating, comment);
         String requestUrl = call.request().url().toString();
