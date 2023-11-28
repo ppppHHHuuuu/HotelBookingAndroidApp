@@ -132,6 +132,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/luggage_selector.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_money_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/money_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_profile_rounded_bg.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/profile_rounded_bg.xml"
     },
@@ -142,6 +146,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_account_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/account_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_calendar_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/calendar_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_city_details.xml.flat",
@@ -242,6 +250,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_pool.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/pool.png"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_review_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/review_icon.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_filter_options.xml.flat",

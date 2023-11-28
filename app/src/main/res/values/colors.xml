@@ -13,5 +13,6 @@
     <color name="green">#2ADC31</color>
     <color name="red">#EF0454</color>
     <color name="modern_red">#FF5454</color>
+    <color name="background_default">#F9F9F9</color>
 
 </resources>

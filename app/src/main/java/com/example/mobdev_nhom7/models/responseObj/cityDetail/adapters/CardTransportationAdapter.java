@@ -25,11 +25,13 @@ import java.util.List;
 public class CardTransportationAdapter extends RecyclerView.Adapter<CardTransportationAdapter.ListTransportationHolder> {
     Context context;
     private List<Transportation> data;
+
     public Transportation getData(int x) {
         return data.get(x);
     }
+
     public CardTransportationAdapter(Context context, ArrayList<Transportation> data) {
-        this.data= data;
+        this.data = data;
         this.context = context;
     }
 
@@ -49,13 +51,12 @@ public class CardTransportationAdapter extends RecyclerView.Adapter<CardTranspor
             transportationImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImage());
             holder.imageTransportation.setImageBitmap(transportationImage);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
 
 
         String content = data.get(position).getContent();
-        Float rating = (float) data.get(position).getRating()/2;
+        Float rating = (float) data.get(position).getRating() / 2;
         String address = data.get(position).getAddress();
 
 
@@ -68,11 +69,13 @@ public class CardTransportationAdapter extends RecyclerView.Adapter<CardTranspor
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
+
     public class ListTransportationHolder extends RecyclerView.ViewHolder {
         private final ImageView imageTransportation;
         private final TextView textName;
         private final RatingBar textRating;
         private final TextView textAddress;
+
         public ListTransportationHolder(@NonNull View itemView) {
             super(itemView);
             imageTransportation = itemView.findViewById(R.id.image);

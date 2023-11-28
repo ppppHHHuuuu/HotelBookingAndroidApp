@@ -48,36 +48,11 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <LinearLayout
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="12dp"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/button1"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp" />
-
-            <include
-                android:id="@+id/button2"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp" />
-
-            <include
-                android:id="@+id/button3"
-                layout="@layout/button_price"
-                android:layout_width="fill_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp" />
-
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/room_type_RV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
 
 
         <View

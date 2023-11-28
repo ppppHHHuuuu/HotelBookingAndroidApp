@@ -16,26 +16,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.text.HtmlCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+
 public class ViewHotel extends Activity {
+    private RecyclerView roomTypeRV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_hotel);
-        View price_button1 = findViewById(R.id.button1);
-        TextView roomName = (TextView) price_button1.findViewById(R.id.room_name);
-        TextView roomPrice = (TextView) price_button1.findViewById(R.id.room_price);
-        TextView roomPersons = (TextView) price_button1.findViewById(R.id.room_persons);
-        price_button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chooseRoomNumberDialog(roomName.getText().toString(), Integer.parseInt(roomPrice.getText().toString()));
-            }
-        });
+//        View price_button1 = findViewById(R.id.button1);
+//        TextView roomName = (TextView) price_button1.findViewById(R.id.room_name);
+//        TextView roomPrice = (TextView) price_button1.findViewById(R.id.room_price);
+//        TextView roomPersons = (TextView) price_button1.findViewById(R.id.room_persons);
+//        price_button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                chooseRoomNumberDialog(roomName.getText().toString(), Integer.parseInt(roomPrice.getText().toString()));
+//            }
+//        });
+        roomTypeRV = findViewById(R.id.room_type_RV);
     }
 
     public void chooseRoomNumberDialog(String name, Integer price) {
@@ -67,6 +72,7 @@ public class ViewHotel extends Activity {
 
         window.setAttributes(windowAttributes);
 
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +81,7 @@ public class ViewHotel extends Activity {
                 if (currentRooms > 0) {
                     currentRooms--;
                     numberOfRooms.setText(String.valueOf(currentRooms));
-//                    totalRoomPrice.setText(String.valueOf(price * currentRooms));
+                    totalRoomPrice.setText(String.valueOf("VND " + decimalFormat.format(price * currentRooms)));
                 }
             }
         });
@@ -87,7 +93,7 @@ public class ViewHotel extends Activity {
                 int currentRooms = Integer.parseInt(numberOfRooms.getText().toString());
                 currentRooms++;
                 numberOfRooms.setText(String.valueOf(currentRooms));
-//                totalRoomPrice.setText(String.valueOf(price * currentRooms));
+                totalRoomPrice.setText(String.valueOf("VND " + decimalFormat.format(price * currentRooms)));
             }
         });
         confirmBtn.setOnClickListener(new View.OnClickListener() {

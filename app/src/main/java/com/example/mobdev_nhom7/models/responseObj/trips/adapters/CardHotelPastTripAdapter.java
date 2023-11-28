@@ -67,7 +67,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         if (data.get(position).getComment()!= null && ! data.get(position).getComment().equals("")) {
             Log.d("comment", data.get(position).getComment());
             comment = data.get(position).getComment();
-            holder.editTextComment.setText(comment);
         }
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
@@ -84,14 +83,12 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
-        private final EditText editTextComment;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName2);
             imagesHotel = itemView.findViewById(R.id.imageHotel2);
             textAmount = itemView.findViewById(R.id.textAmount2);
             textDate = itemView.findViewById(R.id.textDate2);
-            editTextComment = itemView.findViewById(R.id.edit_text_comment);
         }
     }
     private static String parseDate(String start_date, String end_date) {
