@@ -3,7 +3,6 @@ package com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
+import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 
@@ -45,11 +45,6 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
     public CardRestaurantAdapter.ListRestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_city_details, parent, false);
-        view.setOnClickListener(view1 -> {
-            Intent intent = new Intent(context.getApplicationContext(), ViewCity.class);
-            Toast.makeText(context.getApplicationContext(), "Getting hotel details", Toast.LENGTH_LONG).show();
-            context.startActivity(intent);
-        });
         return new CardRestaurantAdapter.ListRestaurantHolder(view);
     }
 
@@ -62,8 +57,6 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
 
         }
         catch (Exception e) {
-            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
-            Log.e("CardRestaurantAdapter", "Error loading image: " + e.getMessage(), e);
         }
 
 
@@ -94,6 +87,4 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
             textAddress = itemView.findViewById(R.id.address);
         }
     }
-
-
 }

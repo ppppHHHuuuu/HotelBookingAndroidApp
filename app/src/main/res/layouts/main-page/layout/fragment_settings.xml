@@ -167,62 +167,62 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textColor="@color/DarkGrey"
-                    android:textSize="12dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Phone Number"-->
+<!--                    android:textColor="@color/DarkGrey"-->
+<!--                    android:textSize="12dp" />-->
 
-                <RelativeLayout
-                    android:id="@+id/phone_block"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/phone_block"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <EditText
-                        android:id="@+id/phone_edit_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="#00000000"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:text="(+84) 012345678"
-                        android:singleLine="true"
-                        android:maxLength="30"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:enabled="false"/>
+<!--                    <EditText-->
+<!--                        android:id="@+id/phone_edit_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:background="#00000000"-->
+<!--                        android:imeOptions="actionDone"-->
+<!--                        android:inputType="text"-->
+<!--                        android:text="(+84) 012345678"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:maxLength="30"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:enabled="false"/>-->
 
-                    <ImageView
-                        android:id="@+id/phone_edit_image"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/edit_icon" />
-                </RelativeLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/AppGrey" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/phone_edit_image"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:src="@drawable/edit_icon" />-->
+<!--                </RelativeLayout>-->
 
 
-            </LinearLayout>
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:layout_marginTop="3dp"-->
+<!--                    android:background="@color/AppGrey" />-->
+
+
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
