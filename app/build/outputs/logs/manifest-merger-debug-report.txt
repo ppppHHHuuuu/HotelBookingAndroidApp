@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-56:12
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:2:1-58:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\New User\.gradle\caches\transforms-3\e530574cc8780721330cf2e82edfeb16\transformed\viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.test:monitor:1.6.1] C:\Users\New User\.gradle\caches\transforms-3\3efc0fdd17594de34da1e3901e030ccc\transformed\monitor-1.6.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\New User\.gradle\caches\transforms-3\0c87f05f34451fde245c87dc3cb8f0c4\transformed\picasso-2.71828\AndroidManifest.xml:2:1-14:12
@@ -95,8 +95,8 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\New User\.g
 	android:name
 		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-54:19
-INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-54:19
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-56:19
+INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:8:5-56:19
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\New User\.gradle\caches\transforms-3\0c87f05f34451fde245c87dc3cb8f0c4\transformed\picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\New User\.gradle\caches\transforms-3\0c87f05f34451fde245c87dc3cb8f0c4\transformed\picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\New User\.gradle\caches\transforms-3\18aee80cf9811f232ccd2c40bacdfd00\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
@@ -190,49 +190,49 @@ ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifes
 	android:name
 		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:30:13-49
 activity#com.example.mobdev_nhom7.activity.Password
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:32:9-34:40
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:33:9-36:40
 	android:exported
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:34:13-37
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:33:13-46
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:35:13-46
 activity#com.example.mobdev_nhom7.activity.MainActivity
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:35:9-37:40
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:37:9-39:40
 	android:exported
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:37:13-37
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:39:13-37
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:36:13-50
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:38:13-50
 activity#com.example.mobdev_nhom7.activity.PhoneInput
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:38:9-40:40
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:40:9-42:40
 	android:exported
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:42:13-37
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:39:13-48
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:41:13-48
 activity#com.example.mobdev_nhom7.activity.CodeInput
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:41:9-43:40
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:43:9-45:40
 	android:exported
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:43:13-37
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:45:13-37
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:42:13-47
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:44:13-47
 activity#com.example.mobdev_nhom7.activity.Login
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:44:9-52:20
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:46:9-54:20
 	android:exported
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:46:13-36
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:48:13-36
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:45:13-43
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:47:13-43
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:47:13-51:29
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:49:13-53:29
 action#android.intent.action.MAIN
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:48:17-69
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:50:17-69
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:48:25-66
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:50:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:50:17-77
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:52:17-77
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:50:27-74
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:52:27-74
 activity#com.example.mobdev_nhom7.fragment.main_activity.SuggestedDestinationActivity
-ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:53:9-88
+ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:55:9-88
 	android:name
-		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:53:19-86
+		ADDED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml:55:19-86
 uses-sdk
 INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\De data\School\MobDev\MobDev21_Nhom-07\app\src\main\AndroidManifest.xml

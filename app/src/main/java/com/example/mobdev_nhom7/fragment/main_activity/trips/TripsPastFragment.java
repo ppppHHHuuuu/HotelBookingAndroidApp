@@ -54,7 +54,7 @@ public class TripsPastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
+        View v = inflater.inflate(R.layout.fragment_trips_past, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         hotelItemList = new ArrayList<>();
         cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList, new SendID() {
@@ -83,9 +83,8 @@ public class TripsPastFragment extends Fragment {
 
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
 
-        Call<List<PastHotelItem>> call = apiService.getRatedReservation(dummyUserID);
+        Call<List<PastHotelItem>> call = apiService.getRatedReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<PastHotelItem>>() {
@@ -113,9 +112,8 @@ public class TripsPastFragment extends Fragment {
         //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
 
-        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(dummyUserID);
+        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<PastHotelItem>>() {

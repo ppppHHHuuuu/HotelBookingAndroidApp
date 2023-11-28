@@ -61,21 +61,15 @@ public class TripsActiveFragment extends Fragment {
 
         return v;
     }
-    //TODO CALL FROM BE
-
-
     @Override
     public void onResume() {
         super.onResume();
         getUserActiveHotel();
     }
-
     private void getUserActiveHotel() {
-        //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
-        Call<List<ActiveHotelItem>> call = apiService.getActiveReservation(dummyUserID);
+        Call<List<ActiveHotelItem>> call = apiService.getActiveReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<ActiveHotelItem>>() {
@@ -106,6 +100,4 @@ public class TripsActiveFragment extends Fragment {
             }
         });
     }
-
-
 }

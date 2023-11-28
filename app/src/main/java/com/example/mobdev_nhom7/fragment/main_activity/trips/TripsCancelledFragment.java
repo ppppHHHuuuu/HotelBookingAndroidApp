@@ -67,11 +67,10 @@ public class TripsCancelledFragment extends Fragment {
     }
 
     private void getUserCancelHotel() {
-        String dummyUserID = "1";
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
 
-        Call<List<CancelledHotelItem>> call = apiService.getCancelReservation(dummyUserID);
+        Call<List<CancelledHotelItem>> call = apiService.getCancelReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<CancelledHotelItem>>() {

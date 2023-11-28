@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating"
+        android:textColor="@color/ButtonColor"
+        android:fontFamily="@font/avenir_bold"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value for money"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="900"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <SeekBar
+                        android:id="@+id/valueSeekBar"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/valueSeekBarValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10.0"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+                
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cleanliness"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="900"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <SeekBar
+                        android:id="@+id/cleanlinessSeekBar"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/cleanlinessSeekBarValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.5"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Building"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="900"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <SeekBar
+                        android:id="@+id/buildingSeekBar"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/buildingSeekBarValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.5"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comfort"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="900"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <SeekBar
+                        android:id="@+id/comfortSeekBar"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/comfortSeekBarValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.5"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/divider"
+        android:layout_marginVertical="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Review"
+        android:textColor="@color/ButtonColor"
+        android:fontFamily="@font/avenir_bold"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/reviewEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Leave a review:"
+            android:background="@drawable/custom_edit_text"
+            android:fontFamily="@font/avenir_rgl"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:textAllCaps="false"
+        android:background="@drawable/search_button"
+        android:textColor="@color/white"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="15dp"/>
+
+
+</LinearLayout>
