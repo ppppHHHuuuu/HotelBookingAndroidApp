@@ -33,6 +33,20 @@ public class SearchHotelItem {
     @Expose
     private String amount;
 
+    public Boolean getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(Boolean is_favorite) {
+        this.is_favorite = is_favorite;
+    }
+
+    @SerializedName("is_favorite")//check
+    @Expose
+    private Boolean is_favorite;
+//    @SerializedName("is")//check
+//    @Expose
+//    private String amount;
     public String getDistanceFromCenter() {
         return distanceFromCenter;
     }

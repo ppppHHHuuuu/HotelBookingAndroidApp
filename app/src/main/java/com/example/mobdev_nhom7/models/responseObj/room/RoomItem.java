@@ -8,28 +8,45 @@ public class RoomItem {
     @SerializedName("room_id")
     @Expose
     private String roomId;
-
     @SerializedName("hotel_id")
     @Expose
     private String hotelId;
-    @SerializedName("star")
+    @SerializedName("quantity")
     @Expose
-    private String star;
-
-    @SerializedName("price_per_night")
+    private String quantity;
+    @SerializedName("capacity")
+    @Expose
+    private String capacity;
+    @SerializedName("price")
     @Expose
     private String pricePerNight;
 
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    private String roomName;
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
     public String getRoomId() {
         return roomId;
-    }
-
-    public String getStar() {
-        return star;
-    }
-
-    public void setStar(String star) {
-        this.star = star;
     }
 
     public void setRoomId(String roomId) {

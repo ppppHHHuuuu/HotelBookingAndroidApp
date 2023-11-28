@@ -94,6 +94,7 @@ public class TripsActiveFragment extends Fragment {
                     Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                     return;
                 }
+                hotelItemList.clear();
                 hotelItemList.addAll(response.body());
                 cardHotelActiveTripAdapter.notifyDataSetChanged();
             }

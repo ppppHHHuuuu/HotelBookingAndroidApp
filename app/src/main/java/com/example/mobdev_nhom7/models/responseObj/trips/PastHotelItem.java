@@ -7,6 +7,16 @@ public class PastHotelItem {
     @SerializedName("user_id")
     @Expose
     private String user_id;
+    @SerializedName("id")
+    @Expose
+    private String reservationID;
+    public String getReservationID() {
+        return reservationID;
+    }
+
+    public void setReservationID(String reservationID) {
+        this.reservationID = reservationID;
+    }
 
     @SerializedName("image_url")
     @Expose

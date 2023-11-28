@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,14 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
+import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelCancelledTripAdapter;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelPastTripAdapter;
-import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
-import com.example.mobdev_nhom7.utils.DateTimeUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,14 @@ public class TripsPastFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         hotelItemList = new ArrayList<>();
-        cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList);
+        cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String reservation_id, String id2) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("reservation_id", reservation_id);
+                startActivity(intent);
+            }
+        });
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setAdapter(cardHotelPastTripAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -93,9 +101,7 @@ public class TripsPastFragment extends Fragment {
                 }
                 hotelItemList.addAll(response.body());
                 cardHotelPastTripAdapter.notifyDataSetChanged();
-
             }
-
             @Override
             public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
@@ -123,6 +129,8 @@ public class TripsPastFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
+
+                hotelItemList.clear();
                 hotelItemList.addAll(response.body());
                 getUserRatedPastHotel();
                 cardHotelPastTripAdapter.notifyDataSetChanged();
@@ -130,6 +138,31 @@ public class TripsPastFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("loadHotel",t.toString());
+            }
+        });
+    }
+    private void postUserCommentHotel(String comment, RatingItem rating) {
+        String reservationID = preferences.getString("reservation_id", "empty reservation_id");
+        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(reservationID, rating, comment);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<DefaultResponseObj>() {
+            @Override
+            public void onResponse(Call<DefaultResponseObj> call, Response<DefaultResponseObj> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("response error", String.valueOf(response.code()));
+                    return;
+                }
+                if (response.body() == null) {
+                    Log.d("response error", "Empty response");
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponseObj> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }

@@ -23,7 +23,6 @@ public class HotelItem {
     @SerializedName("name")
     @Expose
     private String name;
-
     @SerializedName("contact")
     @Expose
     private String contact;

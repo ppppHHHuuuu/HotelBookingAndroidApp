@@ -2,8 +2,7 @@ package com.example.mobdev_nhom7.models.hotel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,11 +33,22 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotel2Adapter(Context context, List<SearchHotelItem> data) {
+    SendID sendID;
+    public CardHotel2Adapter(Context context, List<SearchHotelItem> data, SendID sendID) {
         this.context =  context;
         this.data= data;
+        this.sendID = sendID;
     }
+    private CardHotelAdapter.OnItemClickListener onItemClickListener;
 
+    // Existing code...
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(CardHotelAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -68,9 +79,35 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
-        holder.textAmount.setText(decimalFormat.format(Integer.parseInt(data.get(position).getAmount())*1000).toString());
+        holder.textAmount.setText(data.get(position).getAmount() + ".000VND");
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
-        holder.textDistance.setText(data.get(position).getPositionFromCenter() + " from center");
+        holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
+        Log.d("hotelID", data.get(position).getHotelId());
+
+        holder.itemView.setOnClickListener(v -> {
+            sendID.go(data.get(position).getHotelId(), null);
+        });
+        if (data.get(position).getIs_favorite()) {
+            holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon);
+            holder.is_loved = true;
+        }
+        else {
+            holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
+            holder.is_loved = false;
+        }
+        holder.imageFav.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+            }
+            if (holder.is_loved) {
+                holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon);
+            }
+            else {
+                holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
+            }
+            holder.is_loved = !holder.is_loved;
+        });
+
     }
 
     @Override
@@ -86,8 +123,11 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         private final TextView textJudge;
         private final TextView textAmount;
         private final TextView textDistance;
+        private final ImageView imageFav;
+        private Boolean is_loved;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageFav = itemView.findViewById(R.id.favouriteIcon2);
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
             imagesHotel = itemView.findViewById(R.id.imageHotel);

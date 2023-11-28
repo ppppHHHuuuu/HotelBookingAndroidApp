@@ -53,7 +53,7 @@ public class APITest {
 
     @Test
     public void testLoadHotels() {
-        // Use mockData in your test
+        // Use mockData in your SendID
         assertNotNull(mockData);
         assertEquals(1, mockData.size());
 

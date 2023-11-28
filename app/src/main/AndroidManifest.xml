@@ -29,7 +29,9 @@
         <activity
             android:name=".activity.NewPassword"
             android:exported="false" />
+
         <activity
+
             android:name=".activity.Password"
             android:exported="false" />
         <activity

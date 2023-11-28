@@ -66,10 +66,8 @@ public class SettingsFragment extends Fragment {
     private String mParam2;
     private String mVerificationId;
     String oldName = "";
-    String oldPhone = "";
     String oldEmail = "";
     EditText nameText;
-    EditText phoneText;
     EditText emailText;
     private boolean resendEnabled = false;
     private int resendTime = 60;
@@ -124,16 +122,11 @@ public class SettingsFragment extends Fragment {
         nameText.setText(sharedPreferences.getString("name", ""));
         ImageView nameEditImage = view.findViewById(R.id.name_edit_image);
 
-        phoneText = view.findViewById(R.id.phone_edit_text);
-        phoneText.setText(sharedPreferences.getString("phone", ""));
-        ImageView phoneEditImage = view.findViewById(R.id.phone_edit_image);
-
         emailText = view.findViewById(R.id.email_edit_text);
         emailText.setText(sharedPreferences.getString("email", ""));
         ImageView emailEditImage = view.findViewById(R.id.email_edit_image);
 
         oldName = nameText.getText().toString();
-        oldPhone = phoneText.getText().toString();
         oldEmail = emailText.getText().toString();
 
         LinearLayout saveButton = view.findViewById(R.id.save_button);
@@ -143,7 +136,6 @@ public class SettingsFragment extends Fragment {
         RelativeLayout nameBlock = view.findViewById(R.id.name_block);
         nameBlock.setOnClickListener(v -> {
             nameEditImage.setImageResource(R.drawable.edit_off_icon);
-            phoneEditImage.setImageResource(R.drawable.edit_icon);
             emailEditImage.setImageResource(R.drawable.edit_icon);
             nameText.setEnabled(true);
             nameText.requestFocus();
@@ -161,8 +153,7 @@ public class SettingsFragment extends Fragment {
                 if (!nameText.getText().toString().equals(oldName)) {
                     saveButton.setEnabled(true);
                     savable();
-                } else if (phoneText.getText().toString().equals(oldPhone)
-                        && emailText.getText().toString().equals(oldEmail)) {
+                } else if (emailText.getText().toString().equals(oldEmail)) {
                     saveButton.setEnabled(false);
                     notSavable();
                 }
@@ -181,49 +172,11 @@ public class SettingsFragment extends Fragment {
             return false;
         });
 
-        RelativeLayout phoneBlock = view.findViewById(R.id.phone_block);
-        phoneBlock.setOnClickListener(v -> {
-            phoneEditImage.setImageResource(R.drawable.edit_off_icon);
-            nameEditImage.setImageResource(R.drawable.edit_icon);
-            emailEditImage.setImageResource(R.drawable.edit_icon);
-            phoneText.setEnabled(true);
-            phoneText.requestFocus();
-            phoneText.setSelection(phoneText.getText().length());
-            inputMethodManager.showSoftInput(phoneText, InputMethodManager.SHOW_FORCED);
-        });
-        phoneText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!phoneText.getText().toString().equals(oldPhone)) {
-                    saveButton.setEnabled(true);
-                    savable();
-                } else if (nameText.getText().toString().equals(oldName)
-                        && emailText.getText().toString().equals(oldEmail)) {
-                    saveButton.setEnabled(false);
-                    notSavable();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-        phoneText.setOnEditorActionListener((v1, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                inputMethodManager.hideSoftInputFromWindow(phoneText.getWindowToken(), 0);
-                phoneText.clearFocus();
-                phoneEditImage.setImageResource(R.drawable.edit_icon);
-                return true;
-            }
-            return false;
-        });
 
         RelativeLayout emailBlock = view.findViewById(R.id.email_block);
         emailBlock.setOnClickListener(v -> {
             emailEditImage.setImageResource(R.drawable.edit_off_icon);
-            phoneEditImage.setImageResource(R.drawable.edit_icon);
+
             nameEditImage.setImageResource(R.drawable.edit_icon);
             emailText.setEnabled(true);
             emailText.requestFocus();
@@ -239,8 +192,7 @@ public class SettingsFragment extends Fragment {
                 if (!emailText.getText().toString().equals(oldEmail)) {
                     saveButton.setEnabled(true);
                     savable();
-                } else if (nameText.getText().toString().equals(oldName)
-                        && phoneText.getText().toString().equals(oldPhone)) {
+                } else if (nameText.getText().toString().equals(oldName)) {
                     saveButton.setEnabled(false);
                     notSavable();
                 }
@@ -282,36 +234,7 @@ public class SettingsFragment extends Fragment {
                             }
                         });
             }
-            if (!Objects.equals(oldPhone, phoneText.getText().toString())) {
-                oldPhone = phoneText.getText().toString();
 
-                resendTimeCountText = view.findViewById(R.id.resend_time_count_text);
-                TextView resendButton = view.findViewById(R.id.resend_button);
-                resendButton.setPaintFlags(resendButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                resendButton.setOnClickListener(v2 -> {
-                    if (resendEnabled) {
-                        this.requestPhoneNumberVerification(cleanPhoneNumber(oldPhone));
-                        startCountDownTimer();
-                    }
-                });
-
-                this.requestPhoneNumberVerification(cleanPhoneNumber(oldPhone));
-                startCountDownTimer();
-                Toast.makeText(view.getContext(), "We sent a smsCode to your phone", Toast.LENGTH_SHORT).show();
-
-                LinearLayout verification_section = view.findViewById(R.id.verification_section);
-                verification_section.setVisibility(View.VISIBLE);
-                Button verifyButton = view.findViewById(R.id.button_verify_code);
-                EditText smsInput = view.findViewById(R.id.edit_text_verification_code);
-                verifyButton.setOnClickListener(v1 -> {
-                    if (smsInput.getText().toString().length() < 6) {
-                        Toast.makeText(view.getContext(), "SmsCode must have 6 letters", Toast.LENGTH_SHORT);
-                    } else {
-                        this.updatePhoneNumber(mVerificationId, smsInput.getText().toString());
-                        verification_section.setVisibility(View.GONE);
-                    }
-                });
-            }
             Toast.makeText(view.getContext(), "User information updated successfully", Toast.LENGTH_SHORT).show();
 
             ImageView saveImage = getView().findViewById(R.id.save_image);
@@ -380,73 +303,5 @@ public class SettingsFragment extends Fragment {
         ViewCompat.setBackgroundTintList(saveImage, colorStateList);
         TextView saveText = getView().findViewById(R.id.save_text);
         saveText.setTextColor(color);
-    }
-
-    public void requestPhoneNumberVerification(String phoneNumber) {
-        Activity mActivity = getActivity();
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,          // Phone number to verify
-                60,                   // Timeout duration in seconds
-                TimeUnit.SECONDS,     // Unit of timeout
-                mActivity,            // Activity (for callback binding)
-                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    @Override
-                    public void onVerificationCompleted(PhoneAuthCredential credential) {
-                    }
-
-                    @Override
-                    public void onVerificationFailed(@NonNull FirebaseException e) {
-                        Toast.makeText(mActivity, "Verification failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
-                        mVerificationId = verificationId;
-                    }
-                });
-    }
-
-    // Method to update the user's phone number
-    private void updatePhoneNumber(String verificationId, String smsCode) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        Activity mActivity = getActivity();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-
-            user.updatePhoneNumber(PhoneAuthProvider.getCredential(verificationId, smsCode))
-                    .addOnCompleteListener(mActivity, task -> {
-                        if (task.isSuccessful()) {
-                            // Phone number updated successfully
-                            Toast.makeText(mActivity, "Phone number updated.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If updating fails, display a message to the user.
-                            Toast.makeText(mActivity, "Failed to update phone number.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        } else {
-            Toast.makeText(mActivity, "User not signed in.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void startCountDownTimer() {
-        resendEnabled = false;
-        new CountDownTimer(resendTime * 1000L, 1000) {
-            @Override
-            public void onTick(long sendsUntilFinished) {
-                resendTimeCountText.setText("Resend in: " + String.valueOf(sendsUntilFinished / 1000));
-            }
-
-            @Override
-            public void onFinish() {
-                resendEnabled = true;
-            }
-        }.start();
-    }
-
-    private static String cleanPhoneNumber(String phoneNumber) {
-        String cleanedNumber = phoneNumber.replaceAll("[^+0-9]", "");
-
-        Log.d("asd", cleanedNumber);
-        return cleanedNumber;
     }
 }

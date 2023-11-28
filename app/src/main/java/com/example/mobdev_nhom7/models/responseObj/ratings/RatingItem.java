@@ -6,59 +6,58 @@ import com.google.gson.annotations.SerializedName;
 public class RatingItem {
     @SerializedName("count")
     @Expose
-    private String count;
+    private Integer count;
     @SerializedName("value")
     @Expose
-    private Double value;
+    private Float value;
     @SerializedName("building")
     @Expose
-    private Double building;
+    private Float building;
     @SerializedName("comfort")
     @Expose
-    private Double comfort;
+    private Float comfort;
 
     @SerializedName("cleanliness")
     @Expose
-    private Double cleanliness;
+    private Float cleanliness;
 
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
-    public Double getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 
-    public Double getBuilding() {
+    public Float getBuilding() {
         return building;
     }
 
-    public void setBuilding(Double building) {
+    public void setBuilding(Float building) {
         this.building = building;
     }
 
-    public Double getComfort() {
+    public Float getComfort() {
         return comfort;
     }
 
-    public void setComfort(Double comfort) {
+    public void setComfort(Float comfort) {
         this.comfort = comfort;
     }
 
-    public Double getCleanliness() {
+    public Float getCleanliness() {
         return cleanliness;
     }
 
-    public void setCleanliness(Double cleanliness) {
+    public void setCleanliness(Float cleanliness) {
         this.cleanliness = cleanliness;
     }
-
 }
