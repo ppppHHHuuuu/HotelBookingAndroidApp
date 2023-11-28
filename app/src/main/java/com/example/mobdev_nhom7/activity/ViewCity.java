@@ -77,9 +77,14 @@ public class ViewCity extends AppCompatActivity {
             Log.d("extra", "abc");
             cityID= null;
         } else {
-            cityID= extras.getString("city_id");
+            for (String key : extras.keySet()) {
+                Log.e("extras", key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
+            }
+            if (extras.getString("city_id") != null) {
+                cityID= extras.getString("city_id");
+                Log.d("city_id", cityID);
+            }
         }
-        Log.d("city_id", cityID);
     }
 
     @Override

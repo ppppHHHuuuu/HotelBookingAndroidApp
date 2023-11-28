@@ -32,7 +32,9 @@ public class SearchHotelItem {
     @SerializedName("min_price")//check
     @Expose
     private String amount;
-
+//    @SerializedName("is")//check
+//    @Expose
+//    private String amount;
     public String getDistanceFromCenter() {
         return distanceFromCenter;
     }

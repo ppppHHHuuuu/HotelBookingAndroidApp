@@ -1,6 +1,7 @@
 package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
@@ -74,7 +75,8 @@ public interface APIService {
     Call<List<SearchHotelItem>> getSuggestedHotel();
     @GET("hotel/feedbacks/{id}")
     Call<List<CommentItem>> getAllFeedback(@Path("id") String id);
-
+    @GET("hotel/favourite")
+    Call<List<CardHotelAdapter>> getAllFavouriteHotels(@Query("id") String user_id);
     @GET("reservation/active/{user_id}")
     Call<List<ActiveHotelItem>> getActiveReservation(@Path("user_id") String user_id);
     @GET("reservation/cancel/{user_id}")

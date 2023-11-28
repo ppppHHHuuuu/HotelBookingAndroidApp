@@ -66,7 +66,6 @@ public class CityFragment extends Fragment {
         cityDetail.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
-
             getContext().startActivity(intent);
         });
 
