@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7.fragment.main_activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +38,14 @@ import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.SendID;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,8 +54,11 @@ import retrofit2.Response;
 public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
+    SharedPreferences preferences1;
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> searchHotelItems;
+    private ProgressBar loadingProgressBar;
+    int count = 0;
     private RecyclerView recyclerView;
     private Button buttonSearch;
     private TextView desInput;
@@ -83,6 +91,9 @@ public class StaysFragment extends Fragment {
         ConstraintLayout roomInfoOptions = view.findViewById(R.id.room_info_options);
         ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
         searchHotelItems = new ArrayList<>();
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        preferences1 = getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
 
         cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
             @Override
@@ -91,6 +102,10 @@ public class StaysFragment extends Fragment {
                 intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
+        });
+        cardHotel2Adapter.setOnItemClickListener(position -> {
+            SearchHotelItem deletedItem = cardHotel2Adapter.getData(position);
+            deleteFavouriteHotel(user_id, deletedItem.getHotelId(), position);
         });
         roomInfoOptions.setOnClickListener(view12 -> openRoomOptionsDialog());
         Date today = new Date();
@@ -123,22 +138,30 @@ public class StaysFragment extends Fragment {
 
         //NOTE: Default search value
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-//        destination = desInput.getText().toString();
-        user_id = "1";
-        destination = "1";
+        destination = desInput.getText().toString();
+//        destination = "Z6YyrwkuyVbsyaLxOE7E";
         startDate = dateFullFormat.format(today);
         endDate = dateFullFormat.format(tomorrow);
         roomNumber = "2";
         pplNumber = "1";
-        buttonSearch.setOnClickListener(view1 -> loadHotels(user_id, hotelID, destination, startDate, endDate, roomNumber, pplNumber));
+        buttonSearch.setOnClickListener(view1 -> searchHotels(user_id, hotelID, destination, startDate, endDate, roomNumber, pplNumber));
+        Log.d("user_id", user_id);
         Log.d("hotelID", hotelID);
         Log.d("destination", destination);
         Log.d("start_date", startDate);
         Log.d("end_date", endDate);
         Log.d("room_quantity", roomNumber);
         Log.d("ppl_quantity", pplNumber);
-        desInput.setOnClickListener(view1 -> getSuggestedDestinationActivity());
+        desInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveEditTextContent();
+                getSuggestedDestinationActivity();
+            }
+        });
+        getSuggestDest();
 
         return view;
     }
@@ -146,9 +169,28 @@ public class StaysFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSuggestDest();
-    }
+        if (count > 1) {
+            Map<String, ?> allPreferences = preferences1.getAll();
 
+            for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
+            }
+            String savedDestination = preferences1.getString("destination", "");
+            desInput.setText(savedDestination);
+        }
+        count++;
+    }
+    private void saveEditTextContent() {
+        String editTextContent = desInput.getText().toString();
+
+        // Use SharedPreferences to save the content
+        SharedPreferences preferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("destination", editTextContent);
+        editor.apply();
+    }
     public void getSuggestedDestinationActivity() {
         Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
         startActivity(intent);
@@ -233,6 +275,29 @@ public class StaysFragment extends Fragment {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String start = checkIn.getText().toString();
+                String end = checkOut.getText().toString();
+
+                // Parse the dates for comparison
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+                try {
+                    Date startDate = dateFormat.parse(start);
+                    Date endDate = dateFormat.parse(end);
+
+                    // Check if start date is greater than end date
+                    if (startDate.compareTo(endDate) > 0) {
+                        // If start date is greater, set end date to start date + 1 day
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(startDate);
+                        calendar.add(Calendar.DAY_OF_MONTH, 1);
+                        endDate = calendar.getTime();
+
+                        // Update the checkOut TextView with the new end date
+                        checkOut.setText(dateFormat.format(endDate));
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 setDate(checkIn.getText().toString(), checkOut.getText().toString());
                 dialog.hide();
                 startDate = checkIn.getText().toString();
@@ -289,13 +354,23 @@ public class StaysFragment extends Fragment {
 
         roomsDisplay.setText(res);
     }
-    public void loadHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity,String ppl_quantity ) {
+    public void searchHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity, String ppl_quantity ) {
+        // Show loading circle
+        loadingProgressBar.setVisibility(View.VISIBLE);
+
+        // Hide RecyclerView
+        recyclerView.setVisibility(View.GONE);
         Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID,destination, start_date, end_date, room_quantity, ppl_quantity);
         String requestUrl = callHotel.request().url().toString();
         Log.d("Request URL", requestUrl);
         callHotel.enqueue(new Callback<List<SearchHotelItem>>() {
             @Override
             public void onResponse(Call<List<SearchHotelItem>> call, Response<List<SearchHotelItem>> response) {
+                // Hide loading circle on response
+                loadingProgressBar.setVisibility(View.GONE);
+
+                // Show RecyclerView
+                recyclerView.setVisibility(View.VISIBLE);
                 if (!response.isSuccessful()) {
                     Log.d("response error", String.valueOf(response.code()));
                     return;
@@ -315,6 +390,11 @@ public class StaysFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                // Hide loading circle on failure
+                loadingProgressBar.setVisibility(View.GONE);
+
+                // Show RecyclerView
+                recyclerView.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
@@ -345,6 +425,30 @@ public class StaysFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                Log.d("call", t.toString());
+
+                // Check if the fragment is attached to an activity
+                if (isAdded() && getContext() != null) {
+                    Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    public void deleteFavouriteHotel(String user_id, String hotel_id, int position) {
+        Call<String> call = apiService.deleteFavouriteHotel(user_id, hotel_id);
+        String requestUrl = call.request().url().toString();
+
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+
+                if (response.isSuccessful()) {
+                    cardHotel2Adapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("call", t.toString());
                 Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -69,6 +70,9 @@ public interface APIService {
     Call<List<CityItem>> getSuggestedCity();
     @GET("hotel/favourite")
     Call<List<SearchHotelItem>> getFavouriteHotel(@Query("user_id") String user_id);
+    @DELETE("hotel/favourite")
+    Call<String> deleteFavouriteHotel(@Query("user_id") String user_id,
+                                                     @Query("hotel_id") String hotel_id);
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
     @GET("hotel/suggest")

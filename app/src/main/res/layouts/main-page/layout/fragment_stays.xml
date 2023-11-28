@@ -55,6 +55,7 @@
                 android:layout_marginTop="20dp"
                 android:inputType="none"
                 android:text="Ho Chi Minh City"
+                android:textStyle="bold"
                 android:background="@drawable/edit_background"
                 android:hint="Preferred Destination"
                 android:paddingLeft="20dp"
@@ -208,6 +209,12 @@
             app:layout_constraintTop_toBottomOf="@+id/placeholder_view" />
 
     </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

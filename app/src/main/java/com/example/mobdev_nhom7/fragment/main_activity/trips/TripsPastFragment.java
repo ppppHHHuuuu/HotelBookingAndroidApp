@@ -61,7 +61,7 @@ public class TripsPastFragment extends Fragment {
             @Override
             public void go(String reservation_id, String id2) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-                intent.putExtra("id", reservation_id);
+                intent.putExtra("reservation_id", reservation_id);
                 startActivity(intent);
             }
         });
@@ -146,10 +146,7 @@ public class TripsPastFragment extends Fragment {
     private void postUserCommentHotel(String comment, RatingItem rating) {
         //fake-data
         String reservationID = preferences.getString("reservation_id", "empty reservation_id");
-        Log.d("reservation_id", reservationID);
-        String dummyReservationID = "1";
-
-        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(dummyReservationID, rating, comment);
+        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(reservationID, rating, comment);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<DefaultResponseObj>() {

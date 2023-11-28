@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.fragment.main_activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -107,8 +108,6 @@ public class SuggestedDestinationActivity extends Activity {
                 Log.d("PlaceItem", String.valueOf(placeItemList.size()));
             });
         });
-
-        imageBackButton.setOnClickListener(view -> finish());
         editPreferredDest.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

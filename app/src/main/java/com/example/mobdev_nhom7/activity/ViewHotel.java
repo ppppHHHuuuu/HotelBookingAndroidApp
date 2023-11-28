@@ -29,6 +29,7 @@ import com.example.mobdev_nhom7.utils.BitmapUtil;
 
 import org.checkerframework.checker.units.qual.C;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -202,7 +203,11 @@ public class ViewHotel extends Activity {
                 roomAdapter.notifyDataSetChanged();
 
                 hotelName.setText(hotelItem.getName());
-                ratingValue.setText(String.valueOf(hotelItem.getRating().getValue()));
+                double rating = hotelItem.getRating().getValue();
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                String formattedRating = decimalFormat.format(rating);
+
+                ratingValue.setText(formattedRating);
                 moneyProgressBar.setProgress(hotelItem.getRating().getValue().intValue());
                 buildingProgressBar.setProgress(hotelItem.getRating().getBuilding().intValue());
                 cleanlinessProgressBar.setProgress(hotelItem.getRating().getCleanliness().intValue());

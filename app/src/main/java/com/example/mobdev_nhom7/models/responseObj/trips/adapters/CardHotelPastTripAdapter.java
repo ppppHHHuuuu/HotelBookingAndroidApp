@@ -66,15 +66,23 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String amount = data.get(position).getAmount();
         String comment;
 
-        if (data.get(position).getComment()!= null && ! data.get(position).getComment().equals("")) {
+        if (data.get(position).getComment()!= null ) {
             Log.d("comment", data.get(position).getComment());
             comment = data.get(position).getComment();
             holder.editTextComment.setText(comment);
         }
+        else {
+            holder.editTextComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+        }
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + ".000VND");
+        holder.textAmount.setText(amount + "VND");
         Log.d("reservationid", data.get(position).getReservationID());
 
     }

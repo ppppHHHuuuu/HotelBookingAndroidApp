@@ -38,7 +38,16 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
         this.context = context;
         this.data= data;
     }
+    private OnItemClickListener onItemClickListener;
 
+    // Existing code...
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @NonNull
     @Override
     public FavHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,13 +75,26 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             holder.textCity.setText(String.valueOf(data.get(position).getCity()));
             holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
             holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
             holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
             holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
             holder.ratingBar.setRating(data.get(position).getStar());
+            holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon_checked);
+            holder.favouriteIcon.setOnClickListener(v -> {
+                if (holder.is_loved) {
+                    holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon);
+                } else {
+                    holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon_checked);
+                }
+                holder.is_loved = !holder.is_loved;
+
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(position);
+                }
+            });
+
         }
 
     }
@@ -85,8 +107,13 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
         TextView textCity, textScore, textHotelName, textRate, textNumberofJudges;
         RatingBar ratingBar;
         ImageView imagesHotel;
+        ImageView favouriteIcon;
+        Boolean is_loved;
         public FavHotelViewHolder(@NonNull View itemView) {
             super(itemView);
+            is_loved = true;
+
+            favouriteIcon = itemView.findViewById(R.id.favouriteIcon);
             textCity = itemView.findViewById(R.id.textCity);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             textScore = itemView.findViewById(R.id.textScore);

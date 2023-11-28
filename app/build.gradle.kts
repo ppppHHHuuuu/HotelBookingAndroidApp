@@ -92,6 +92,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
+
     implementation("androidx.test:monitor:1.6.1")
     testImplementation ("org.mock-server:mockserver-netty:3.10.8")
     testImplementation ("org.mock-server:mockserver-client-java:3.10.8")

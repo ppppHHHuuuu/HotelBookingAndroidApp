@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7.models.hotel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,16 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         this.data= data;
         this.sendID = sendID;
     }
+    private CardHotelAdapter.OnItemClickListener onItemClickListener;
 
+    // Existing code...
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(CardHotelAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -73,6 +83,27 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotelId(), null);
         });
+        if (data.get(position).getIs_favorite()) {
+            holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon);
+            holder.is_loved = true;
+        }
+        else {
+            holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
+            holder.is_loved = false;
+        }
+        holder.imageFav.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+            }
+            if (holder.is_loved) {
+                holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon);
+            }
+            else {
+                holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
+            }
+            holder.is_loved = !holder.is_loved;
+        });
+
     }
 
     @Override
@@ -88,8 +119,11 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         private final TextView textJudge;
         private final TextView textAmount;
         private final TextView textDistance;
+        private final ImageView imageFav;
+        private Boolean is_loved;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageFav = itemView.findViewById(R.id.favouriteIcon2);
             textHotel = itemView.findViewById(R.id.textHotel);
             textHotelName = itemView.findViewById(R.id.textHotelName);
             imagesHotel = itemView.findViewById(R.id.imageHotel);
