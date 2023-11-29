@@ -27,6 +27,8 @@ import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +36,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import kotlinx.coroutines.channels.Send;
 
 public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
     APIService apiService = APIUtils.getUserService();
@@ -46,6 +47,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     String user_id;
 
     private List<ActiveHotelItem> data;
+
     public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
@@ -64,6 +66,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public void setOnItemClickListener(CardHotelActiveTripAdapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -96,11 +99,14 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
 
+        DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
+        customSymbol.setCurrencySymbol("VND");
+        DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + ".000VND");
+        holder.textAmount.setText(amount + "VND");
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });
@@ -110,11 +116,13 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
+
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imagesHotel;
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
+
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName1);
@@ -123,6 +131,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
             textDate = itemView.findViewById(R.id.textDate1);
         }
     }
+
     private static String parseDate(String start_date, String end_date) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd", Locale.US);

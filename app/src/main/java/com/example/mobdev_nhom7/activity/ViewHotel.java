@@ -1,7 +1,5 @@
 package com.example.mobdev_nhom7.activity;
 
-import static androidx.test.InstrumentationRegistry.getContext;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;

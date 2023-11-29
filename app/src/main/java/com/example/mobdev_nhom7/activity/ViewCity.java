@@ -48,7 +48,6 @@ public class ViewCity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_detail);
-        getCityDetail("nw2udhrsvdQGsXSgOO43");
 
         cityImage = findViewById(R.id.cityImage);
         String url = "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892";
@@ -57,20 +56,20 @@ public class ViewCity extends AppCompatActivity {
         restaurants = new ArrayList<>();
         cardRestaurantAdapter = new CardRestaurantAdapter(getApplicationContext(), (ArrayList<Restaurant>) restaurants);
         restaurantsRecyclerView = findViewById(R.id.restaurantsRV);
+        restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         restaurantsRecyclerView.setAdapter(cardRestaurantAdapter);
-        restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         transportations = new ArrayList<>();
         cardTransportationAdapter = new CardTransportationAdapter(getApplicationContext(), (ArrayList<Transportation>) transportations);
         transportationsRecyclerView = findViewById(R.id.transportRV);
+        transportationsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         transportationsRecyclerView.setAdapter(cardTransportationAdapter);
-        transportationsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         todos = new ArrayList<>();
         cardTodoAdapter = new CardTodoAdapter(getApplicationContext(), (ArrayList<Todo>) todos);
         todosRecyclerView = findViewById(R.id.activitiesRV);
+        todosRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         todosRecyclerView.setAdapter(cardTodoAdapter);
-        todosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         String cityID;
         Bundle extras = this.getIntent().getExtras();
         if(extras == null) {

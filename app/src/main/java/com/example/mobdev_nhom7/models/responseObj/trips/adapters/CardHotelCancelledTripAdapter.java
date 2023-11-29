@@ -20,6 +20,8 @@ import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,9 +29,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHotelCancelledTripAdapter.ListHotelViewHolder>{
+public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHotelCancelledTripAdapter.ListHotelViewHolder> {
     Context context;
     private List<CancelledHotelItem> data;
+
     public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
@@ -64,6 +67,11 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
 
+        DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
+        customSymbol.setCurrencySymbol("VND");
+        DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
+
+
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
@@ -77,11 +85,13 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
+
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imagesHotel;
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
+
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName1);
@@ -90,6 +100,7 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
             textDate = itemView.findViewById(R.id.textDate1);
         }
     }
+
     private static String parseDate(String start_date, String end_date) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd", Locale.US);

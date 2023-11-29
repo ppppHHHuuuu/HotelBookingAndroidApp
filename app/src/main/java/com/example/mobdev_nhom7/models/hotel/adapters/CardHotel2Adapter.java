@@ -27,6 +27,8 @@ import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -92,10 +94,12 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
-        holder.textAmount.setText(data.get(position).getAmount() + "VND");
+        holder.textAmount.setText(data.get(position).getAmount() + ".000VND");
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
         Log.d("hotel_id", data.get(position).getHotelId());

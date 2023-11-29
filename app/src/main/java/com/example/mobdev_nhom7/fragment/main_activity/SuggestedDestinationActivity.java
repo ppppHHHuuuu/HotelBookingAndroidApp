@@ -87,6 +87,10 @@ public class SuggestedDestinationActivity extends Activity {
             editPreferredDest.setText("");
         });
 
+        imageBackButton.setOnClickListener(v -> {
+            onBackPressed();
+        });
+
         recyclerView.setAdapter(cityItemCardAdapter);
         preferencesEdittext = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
 

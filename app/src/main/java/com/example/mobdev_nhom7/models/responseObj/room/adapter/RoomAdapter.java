@@ -63,10 +63,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
-            roomTextView = itemView.findViewById(R.id.room);
-            peopleTextView = itemView.findViewById(R.id.people);
-            priceTextView = itemView.findViewById(R.id.price);
-            imageView = itemView.findViewById(R.id.imageView);
+            roomTextView = itemView.findViewById(R.id.room_name);
+            peopleTextView = itemView.findViewById(R.id.room_people);
+            priceTextView = itemView.findViewById(R.id.room_price);
         }
     }
 }

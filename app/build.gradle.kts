@@ -121,7 +121,7 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
-    
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 

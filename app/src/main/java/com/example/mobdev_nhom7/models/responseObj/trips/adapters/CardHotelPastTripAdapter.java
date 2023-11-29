@@ -1,14 +1,23 @@
 package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +30,10 @@ import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
 
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +44,8 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     Context context;
     private List<PastHotelItem> data;
     SendID sendID;
+    LinearLayout writeReviewBtn;
+
 
 
     public PastHotelItem getData(int x) {
@@ -47,6 +62,13 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_hotel_trip_with_comment, parent, false);
+        writeReviewBtn = view.findViewById(R.id.review_button);
+        writeReviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openReviewDialog();
+            }
+        });
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +77,8 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 context.startActivity(intent);
             }
         });
+
+
         return new ListHotelViewHolder(view);
     }
 
@@ -67,24 +91,26 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String amount = data.get(position).getAmount();
         String comment;
 
-        if (data.get(position).getComment()!= null ) {
-            Log.d("comment", data.get(position).getComment());
-            comment = data.get(position).getComment();
-            holder.editTextComment.setText(comment);
-        }
-        else {
+//        if (data.get(position).getComment()!= null ) {
+//            Log.d("comment", data.get(position).getComment());
+//            comment = data.get(position).getComment();
+//        }
+//        else {
+//            holder.editTextComment.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                }
+//            });
+//        }
 
-        }
-        holder.editTextComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendID.go(data.get(position).getHotel_id(), null,null);
-            }
-        });
+        DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
+        customSymbol.setCurrencySymbol("VND");
+        DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + "VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         Log.d("reservationid", data.get(position).getReservationID());
         Log.d("hotelid", data.get(position).getHotel_id());
 
@@ -99,14 +125,12 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
-        private final EditText editTextComment;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName2);
             imagesHotel = itemView.findViewById(R.id.imageHotel2);
             textAmount = itemView.findViewById(R.id.textAmount2);
             textDate = itemView.findViewById(R.id.textDate2);
-            editTextComment = itemView.findViewById(R.id.edit_text_comment);
         }
     }
     private static String parseDate(String start_date, String end_date) {
@@ -125,6 +149,149 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
             e.printStackTrace();
             return "Invalid Date";
         }
+    }
+
+    public void openReviewDialog() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.review_dialog);
+
+        Window window = dialog.getWindow();
+
+        SeekBar valueSeekBar = dialog.findViewById(R.id.valueSeekBar);
+        SeekBar cleanlinessSeekBar = dialog.findViewById(R.id.cleanlinessSeekBar);
+        SeekBar buildingSeekBar = dialog.findViewById(R.id.buildingSeekBar);
+        SeekBar comfortSeekBar = dialog.findViewById(R.id.comfortSeekBar);
+
+        TextView valueSeekBarValue = dialog.findViewById(R.id.valueSeekBarValue);
+        TextView cleanlinessSeekBarValue = dialog.findViewById(R.id.cleanlinessSeekBarValue);
+        TextView buildingSeekBarValue = dialog.findViewById(R.id.buildingSeekBarValue);
+        TextView comfortSeekBarValue = dialog.findViewById(R.id.comfortSeekBarValue);
+
+        EditText reviewEditText = dialog.findViewById(R.id.reviewEdit);
+
+        Button sendButton = dialog.findViewById(R.id.sendButton);
+
+        valueSeekBar.setProgress(50);
+        cleanlinessSeekBar.setProgress(50);
+        buildingSeekBar.setProgress(50);
+        comfortSeekBar.setProgress(50);
+        valueSeekBarValue.setText("5.0");
+        cleanlinessSeekBarValue.setText("5.0");
+        buildingSeekBarValue.setText("5.0");
+        comfortSeekBarValue.setText("5.0");
+        valueSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int STEP = 5;
+                int steppedProgress = Math.round(progress / STEP) * STEP;
+                valueSeekBar.setProgress(steppedProgress);
+                valueSeekBarValue.setText(String.valueOf((float) steppedProgress/10));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        cleanlinessSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int STEP = 5;
+                int steppedProgress = Math.round(progress / STEP) * STEP;
+                cleanlinessSeekBar.setProgress(steppedProgress);
+                cleanlinessSeekBarValue.setText(String.valueOf((float) steppedProgress/10));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        buildingSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int STEP = 5;
+                int steppedProgress = Math.round(progress / STEP) * STEP;
+                buildingSeekBar.setProgress(steppedProgress);
+                buildingSeekBarValue.setText(String.valueOf((float) steppedProgress/10));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        comfortSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int STEP = 5;
+                int steppedProgress = Math.round(progress / STEP) * STEP;
+                comfortSeekBar.setProgress(steppedProgress);
+                comfortSeekBarValue.setText(String.valueOf((float) steppedProgress/10));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float reviewValue = (float) valueSeekBar.getProgress()/10;
+                float reviewClean= (float) cleanlinessSeekBar.getProgress()/10;
+                float reviewBuilding= (float) buildingSeekBar.getProgress()/10;
+                float reviewComfort= (float) comfortSeekBar.getProgress()/10;
+                String reviewText = reviewEditText.getText().toString();
+                sendReview(reviewValue, reviewClean, reviewBuilding, reviewComfort, reviewText);
+                dialog.hide();
+            }
+        });
+
+        if (window == null) {
+            return;
+        }
+
+
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.BOTTOM;
+
+        window.setAttributes(windowAttributes);
+        dialog.show();
+    }
+
+    public void sendReview(float reviewValue, float reviewClean, float reviewBuilding, float reviewComfort, String reviewText) {
+        Log.d("Review", "Value SeekBar: " + reviewValue);
+        Log.d("Review", "Cleanliness SeekBar: " + reviewClean);
+        Log.d("Review", "Building SeekBar: " + reviewBuilding);
+        Log.d("Review", "Comfort SeekBar: " + reviewComfort);
+        Log.d("Review", "Review Text: " + reviewText);
     }
 
 }
