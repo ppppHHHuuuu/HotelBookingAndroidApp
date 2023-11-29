@@ -1,5 +1,7 @@
 package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
+import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -105,14 +107,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
         String comment;
-
-        if (data.get(position).getComment()!= null ) {
-            Log.d("comment", data.get(position).getComment());
-            comment = data.get(position).getComment();
-        }
-        else {
-
-        }
 
         DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
         customSymbol.setCurrencySymbol("VND");
