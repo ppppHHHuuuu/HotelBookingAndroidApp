@@ -203,6 +203,10 @@ id imageHotel
 id imageHotel1
 id imageHotel2
 id imageView
+id image_1
+id image_2
+id image_3
+id image_4
 id judge
 id layoutIntroduce
 id linearLayout
