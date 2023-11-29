@@ -1,466 +1,477 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/AppGrey">
-    
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ButtonColor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".85"
-        android:background="@drawable/profile_rounded_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/pfp"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="68dp"
-        android:elevation="30dp"
-        android:src="@drawable/demo_pfp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Dummy Name"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pfp" />
-
-    <TextView
-        android:id="@+id/profile_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="examplemail@example.com"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_tag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_profile_tags"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/profile_icon"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/account_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_bold"
-                android:text="Profile"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profile_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/profile_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_tag">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textColor="@color/DarkGrey"
-                    android:textSize="12dp" />
-
-                <RelativeLayout
-                    android:id="@+id/name_block"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/dummy_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="#00000000"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:text="Dummy Name"
-                        android:singleLine="true"
-                        android:maxLength="50"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:enabled="false"/>
-
-                    <ImageView
-                        android:id="@+id/name_edit_image"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/edit_icon" />
-                </RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@color/AppGrey">
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/AppGrey" />
-
-
-            </LinearLayout>
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="15dp"-->
-<!--                android:orientation="vertical"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Phone Number"-->
-<!--                    android:textColor="@color/DarkGrey"-->
-<!--                    android:textSize="12dp" />-->
-
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/phone_block"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/phone_edit_text"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:background="#00000000"-->
-<!--                        android:imeOptions="actionDone"-->
-<!--                        android:inputType="text"-->
-<!--                        android:text="(+84) 012345678"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:maxLength="30"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="15dp"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:enabled="false"/>-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/phone_edit_image"-->
-<!--                        android:layout_width="20dp"-->
-<!--                        android:layout_height="20dp"-->
-<!--                        android:layout_alignParentEnd="true"-->
-<!--                        android:layout_centerVertical="true"-->
-<!--                        android:src="@drawable/edit_icon" />-->
-<!--                </RelativeLayout>-->
-
-
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_gravity="bottom"-->
-<!--                    android:layout_marginTop="3dp"-->
-<!--                    android:background="@color/AppGrey" />-->
-
-
-<!--            </LinearLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="@color/DarkGrey"
-                    android:textSize="12dp" />
-
-                <RelativeLayout
-                    android:id="@+id/email_block"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/email_edit_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="#00000000"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:text="examplemail@example.com"
-                        android:singleLine="true"
-                        android:maxLength="50"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:enabled="false"/>
-
-                    <ImageView
-                        android:id="@+id/email_edit_image"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/edit_icon" />
-                </RelativeLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/AppGrey" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/save_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="20dp"
-                android:background="@drawable/rounded_profile_tags"
-                android:paddingVertical="10dp">
-                <ImageView
-                    android:id="@+id/save_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/save_icon"
-                    android:layout_marginRight="10dp"
-                    android:backgroundTint="@color/DarkGrey">
-                </ImageView>
-                <TextView
-                    android:id="@+id/save_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Save"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/DarkGrey"
-                    android:fontFamily="@font/avenir_rgl"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/verification_section"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="You need to verify to change the phone number"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-                <EditText
-                    android:id="@+id/edit_text_verification_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter verification code"
-                    android:inputType="number"
-                    android:maxLength="6" />
-
-                <Button
-                    android:id="@+id/button_verify_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Verify Code"
-                    android:background="@drawable/rounded_profile_tags"
-                    android:backgroundTint="@color/TextLowLight"/>
-
-                <TextView
-                    android:id="@+id/resend_time_count_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Resend in: 60"
-                    android:clickable="true" />
-
-                <TextView
-                    android:id="@+id/resend_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Resend"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#006ECB"
-                    android:clickable="true" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/booking_tag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_profile_tags"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_detail">
-
-            <ImageView
-                android:id="@+id/booking_icon"
-                android:layout_width="17dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/bookmark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_bold"
-                android:text="Booking History"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/booking_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/booking_detail"
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/ButtonColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/booking_tag"
-            android:layout_marginTop="10dp">
-            <Button
-                android:id="@+id/past_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Past"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAllCaps="false"
-                android:padding="0dp"
-                />
-            <Button
-                android:id="@+id/active_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Active"
-                app:layout_constraintEnd_toStartOf="@+id/past_btn"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAllCaps="false"
-                android:layout_marginHorizontal="10dp"/>
-            <Button
-                android:id="@+id/cancelled_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancelled"
-                app:layout_constraintStart_toEndOf="@+id/past_btn"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAllCaps="false"
-                android:layout_marginHorizontal="10dp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/profile_rounded_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".85"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/pfp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="68dp"
+            android:elevation="30dp"
+            android:src="@drawable/demo_pfp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Dummy Name"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pfp" />
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="examplemail@example.com"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/sign_out_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_profile_tags"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp"
+            android:paddingHorizontal="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/booking_detail">
+            app:layout_constraintTop_toBottomOf="@+id/profile_email">
 
-            <ImageView
-                android:id="@+id/sign_out_icon"
-                android:layout_width="17dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_tag"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logout"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/rounded_profile_tags"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/account_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/avenir_bold"
+                    android:text="Profile"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/avenir_bold"
-                android:text="Sign out"
-                android:textColor="@color/modern_red"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/sign_out_icon"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_tag">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="12dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/name_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/dummy_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="#00000000"
+                            android:enabled="false"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:singleLine="true"
+                            android:text="Dummy Name"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/name_edit_image"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/edit_icon" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/AppGrey" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="12dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/phone_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/phone_edit_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="#00000000"
+                            android:enabled="false"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:maxLength="30"
+                            android:singleLine="true"
+                            android:text="(+84) 012345678"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/phone_edit_image"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/edit_icon" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/AppGrey" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="12dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/email_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/email_edit_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="#00000000"
+                            android:enabled="false"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:singleLine="true"
+                            android:text="examplemail@example.com"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/email_edit_image"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/edit_icon" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/AppGrey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_profile_tags"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:id="@+id/save_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/save_icon"
+                        android:backgroundTint="@color/DarkGrey"></ImageView>
+
+                    <TextView
+                        android:id="@+id/save_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/avenir_rgl"
+                        android:text="Save"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/verification_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="You need to verify to change the phone number"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edit_text_verification_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter verification code"
+                        android:inputType="number"
+                        android:maxLength="6" />
+
+                    <Button
+                        android:id="@+id/button_verify_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_profile_tags"
+                        android:backgroundTint="@color/TextLowLight"
+                        android:text="Verify Code" />
+
+                    <TextView
+                        android:id="@+id/resend_time_count_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:text="Resend in: 60" />
+
+                    <TextView
+                        android:id="@+id/resend_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:text="Resend"
+                        android:textColor="#006ECB"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/booking_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_profile_tags"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_detail">
+
+                <ImageView
+                    android:id="@+id/booking_icon"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bookmark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/avenir_bold"
+                    android:text="Booking History"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/booking_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/booking_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booking_tag">
+
+                <Button
+                    android:id="@+id/past_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="Past"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/active_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="Active"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toStartOf="@+id/past_btn"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/cancelled_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="Cancelled"
+                    android:textAllCaps="false"
+                    app:layout_constraintStart_toEndOf="@+id/past_btn"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sign_out_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_profile_tags"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booking_detail">
+
+                <ImageView
+                    android:id="@+id/sign_out_icon"
+                    android:layout_width="17dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/avenir_bold"
+                    android:text="Sign out"
+                    android:textColor="@color/modern_red"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sign_out_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

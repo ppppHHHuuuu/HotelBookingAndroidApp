@@ -8,10 +8,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class HotelItem {
-    @SerializedName("hotel_id")
+    @SerializedName("id")
     @Expose
     private String hotelId;
-
 
     @SerializedName("review")
     @Expose
@@ -24,10 +23,32 @@ public class HotelItem {
     @SerializedName("name")
     @Expose
     private String name;
-
     @SerializedName("contact")
     @Expose
     private String contact;
+    @SerializedName("country")
+    @Expose
+    private String country;
+    @SerializedName("city_name")
+    @Expose
+    private String city_name;
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
+    }
+
+
 
     public String getHotelId() {
         return hotelId;

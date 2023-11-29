@@ -52,6 +52,21 @@
             </EditText>
 
             <ImageView
+                android:id="@+id/buttonKinhLup"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/rounded_button_white"
+                android:gravity="center"
+                android:padding="13dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/search_box_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/editPreferredDest"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.444" />
+
+            <ImageView
                 android:id="@+id/buttonCancel"
                 android:layout_width="35dp"
                 android:layout_height="35dp"

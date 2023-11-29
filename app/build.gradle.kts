@@ -92,13 +92,15 @@ android {
 }
 
 dependencies {
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
+
     implementation("androidx.test:monitor:1.6.1")
     testImplementation ("org.mock-server:mockserver-netty:3.10.8")
     testImplementation ("org.mock-server:mockserver-client-java:3.10.8")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
-
+    implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.squareup.retrofit2:retrofit:2.6.1")
     implementation ("com.squareup.retrofit2:converter-gson:2.6.1")
     implementation ("com.google.guava:guava:31.1-jre")
@@ -119,7 +121,7 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation ("com.github.tomakehurst:wiremock-jre8:2.32.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
-    
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 

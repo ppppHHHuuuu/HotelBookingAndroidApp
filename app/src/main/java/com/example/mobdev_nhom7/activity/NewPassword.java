@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
+
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.CustomToast;
@@ -117,7 +118,6 @@ public class NewPassword extends AppCompatActivity {
                                                 case 200:
                                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
                                                     startActivity(intent);
                                             }
                                         }

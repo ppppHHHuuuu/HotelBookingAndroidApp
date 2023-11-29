@@ -1,23 +1,31 @@
 package com.example.mobdev_nhom7.remote;
 
+import com.example.mobdev_nhom7.models.hotel.HotelItem;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
+import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Todo;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Transportation;
-import com.example.mobdev_nhom7.models.responseObj.hotelName.HotelNameResponseData;
-import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
+import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
+import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.example.mobdev_nhom7.models.responseObj.reservation.HistoryResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelResponseData;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -34,8 +42,21 @@ public interface APIService {
                                     @Field("email") String email,
                                     @Field("password") String password);
 
+
+
+    @POST("booking")
+    @FormUrlEncoded
+    Call<Object> booking(@Field("user_id") String user_id,
+                         @Field("hotel_id") String hotel_id,
+                         @Field("rooms") Map<String, Integer> room_number,
+                         @Field("start_date") String start_date,
+                         @Field("end_date") String end_date);
+    @GET("hotel/{id}")
+    Call <com.example.mobdev_nhom7.models.responseObj.hotel.HotelItem> getHotelInRange(@Path("id") String id,
+                                                                                       @Query("start_date") String start_date,
+                                                                                       @Query("end_date") String end_date);
     @GET("hotel/search?limit=10")
-        Call<List<SearchHotelItem>> searchHotels(@Query("user_id") String user_id,
+    Call<List<SearchHotelItem>> searchHotels(@Query("user_id") String user_id,
                                              @Query("hotel_id") String hotel_id,
                                              @Query("city") String city,
                                              @Query("start_date") String start_date,
@@ -46,33 +67,37 @@ public interface APIService {
     @GET("hotel/detail")
     @FormUrlEncoded
     Call<SearchHotelResponseData> searchHotelDetail(@Query("id") String id);
-
-    @POST("booking")
-    @FormUrlEncoded
-    Call<Object> booking(@Field("user_id") String user_id,
-                         @Field("hotel_id") String hotel_id,
-                         @Field("rooms") Map<String, Integer> room_number,
-                         @Field("start_date") String start_date,
-                         @Field("end_date") String end_date);
-
     @GET("cities/find")
     Call<List<CityItem>> getSuggestedCity();
-    @GET("place/getAutoComplete")
-    Call<List<PlaceItem> > getPlaceByWord();
-    @GET("/cities/find")
-    Call<List<CityItem>> getAllCity();
+    @GET("hotel/favourite")
+    Call<List<SearchHotelItem>> getFavouriteHotel(@Query("user_id") String user_id);
+    @DELETE("hotel/favourite")
+    Call<String> deleteFavouriteHotel(@Query("user_id") String user_id,
+                                      @Query("hotel_id") String hotel_id);
+    @POST("hotel/favourite")
+    Call<String> addFavouriteHotel(@Query("user_id") String user_id,
+                                      @Query("hotel_id") String hotel_id);
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
-    @GET("reservation/history/{user_id}")
-    Call<List<HistoryHotelItem>> getHistoryReservation(@Path("user_id") String user_id);
-
-    @GET("get/hotel/all")
-    @FormUrlEncoded
-    Call<HotelNameResponseData> getAllHotelName();
-
+    @GET("hotel/suggest")
+    Call<List<SearchHotelItem>> getSuggestedHotel(@Query("user_id") String user_id);
+    @GET("hotel/feedbacks/{id}")
+    Call<List<CommentItem>> getAllFeedback(@Path("id") String id);
+    @GET("hotel/favourite")
+    Call<List<CardHotelAdapter>> getAllFavouriteHotels(@Query("id") String user_id);
+    @GET("reservation/active/{user_id}")
+    Call<List<ActiveHotelItem>> getActiveReservation(@Path("user_id") String user_id);
+    @GET("reservation/cancel/{user_id}")
+    Call<List<CancelledHotelItem>> getCancelReservation(@Path("user_id") String user_id);
+    @GET("reservation/rated/{user_id}")
+    Call<List<PastHotelItem>> getRatedReservation(@Path("user_id") String user_id);
+    @GET("reservation/notRated/{user_id}")
+    Call<List<PastHotelItem>> getNotRatedReservation(@Path("user_id") String user_id);
     @POST("/user/{id}")
     Call<DefaultResponseData> createUser(@Path("id") String id);
 
+    @GET("/cities/find")
+    Call<List<CityItem>> getAllCity();
     @GET("/cities/restaurant/{id}")
     Call<List<Restaurant>> getRestaurant(@Path("id") String id);
 
@@ -84,4 +109,7 @@ public interface APIService {
 
     @GET("/cities/alert/{id}")
     Call<List<Alert>> getAlert(@Path("id") String id);
+
+    @POST("/reservation/createFeedback")
+    Call<DefaultResponseObj> postUserCommentHotel(@Body FeedbackRequest feedbackRequest);
 }

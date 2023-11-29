@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7.models.responseObj.cityName;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.activity.CityActivity;
+import com.example.mobdev_nhom7.activity.ViewCity;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.List;
 
@@ -19,15 +22,25 @@ public class CityItemCardAdapter extends RecyclerView.Adapter<CityItemCardAdapte
 
     private List<CityItem> cityList;
     private Context context;
-
+    SendID sendID;
     // Constructor
-    public CityItemCardAdapter(Context context, List<CityItem> cityList) {
+    public CityItemCardAdapter(Context context, List<CityItem> cityList, SendID sendID) {
         this.context = context;
         this.cityList = cityList;
+        this.sendID = sendID;
         setHasStableIds(true);
 
     }
+    private CityItemCardAdapter.OnItemClickListener onItemClickListener;
+    Intent intent;
+    // Existing code...
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(CityItemCardAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @Override
     public CityItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_city_name, parent, false);
@@ -45,8 +58,15 @@ public class CityItemCardAdapter extends RecyclerView.Adapter<CityItemCardAdapte
         CityItem city = cityList.get(position);
         holder.bind(city);
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, CityActivity.class);
-            context.startActivity(intent);
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+            }
+            Log.d("cityItemID", cityList.get(position).getCityId());
+            sendID.go(null, cityList.get(position).getCityId(), null);
+//            Intent intent = new Intent(context, ViewCity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  // Add this flag
+//            intent.putExtra("city_id", city.getCityId()); // Assuming you have a method to get the city ID from CityItem
+//            context.startActivity(intent);
         });
     }
 

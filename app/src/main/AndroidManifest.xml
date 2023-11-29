@@ -29,7 +29,9 @@
         <activity
             android:name=".activity.NewPassword"
             android:exported="false" />
+
         <activity
+
             android:name=".activity.Password"
             android:exported="false" />
         <activity
@@ -50,6 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".fragment.main_activity.SuggestedDestinationActivity"/>
     </application>
 
 </manifest>

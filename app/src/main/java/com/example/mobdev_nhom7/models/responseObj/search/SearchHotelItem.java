@@ -1,42 +1,66 @@
 package com.example.mobdev_nhom7.models.responseObj.search;
 
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import com.example.mobdev_nhom7.models.responseObj.image.ImageItem;
+import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.net.URL;
+import java.util.List;
 
 public class SearchHotelItem {
-    @SerializedName("name")
+    @SerializedName("name")//check
     @Expose
     private String name;
-    @SerializedName("star")
+    @SerializedName("star")//check
     @Expose
-    private String star;
-    @SerializedName("hotel_id")
+    private Float star;
+    @SerializedName("hotel_id")//check
     @Expose
     private String hotelId;
-
-    @SerializedName("score")
+    @SerializedName("ratings")//ratings.value
     @Expose
-    private Double score;
-    @SerializedName("imageURL")
+    private RatingItem score;
+    @SerializedName("imageURL")//check
     @Expose
-    private String imageURL;
-    @SerializedName("distanceFromCenter")
+    private List<String> imageURL;
+    @SerializedName("distance_from_center")//check
     @Expose
     private String distanceFromCenter;
-    @SerializedName("city")
+    @SerializedName("city_name")
     @Expose
     private String city;
-    @SerializedName("number_of_judges")
-    @Expose
-    private String numberOfJudges;
-    @SerializedName("amount")
+    @SerializedName("min_price")//check
     @Expose
     private String amount;
+
+    public Boolean getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(Boolean is_favorite) {
+        this.is_favorite = is_favorite;
+    }
+
+    @SerializedName("is_favorite")//check
+    @Expose
+    private Boolean is_favorite;
+//    @SerializedName("is")//check
+//    @Expose
+//    private String amount;
+    public String getDistanceFromCenter() {
+        return distanceFromCenter;
+    }
+
+    public void setDistanceFromCenter(String distanceFromCenter) {
+        this.distanceFromCenter = distanceFromCenter;
+    }
+    public RatingItem getScore() {
+        return score;
+    }
+
+    public void setScore(RatingItem score) {
+        this.score = score;
+    }
 
     public String getPositionFromCenter() {
         return distanceFromCenter;
@@ -44,19 +68,12 @@ public class SearchHotelItem {
     public void setPositionFromCenter(String positionFromCenter) {
         this.distanceFromCenter = positionFromCenter;
     }
-    public Double getScore() {
-        return score;
-    }
 
-    public void setScore(Double score) {
-        this.score = score;
-    }
-
-    public String getImageURL() {
+    public List<String> getImageItemURL() {
         return imageURL;
     }
 
-    public void setImageURL(String imageURL) {
+    public void setImageURL(List<String> imageURL) {
         this.imageURL = imageURL;
     }
 
@@ -77,11 +94,11 @@ public class SearchHotelItem {
     }
 
 
-    public String getStar() {
+    public Float getStar() {
         return star;
     }
 
-    public void setStar(String star) {
+    public void setStar(Float star) {
         this.star = star;
     }
 
@@ -91,14 +108,6 @@ public class SearchHotelItem {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getNumberOfJudges() {
-        return numberOfJudges;
-    }
-
-    public void setNumberOfJudges(String numberOfJudges) {
-        this.numberOfJudges = numberOfJudges;
     }
 
     public String getAmount() {

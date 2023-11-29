@@ -4,13 +4,29 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ActiveHotelItem {
+    @SerializedName("id")
+    @Expose
+    private String reservation_id;
+
+    public String getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(String hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
+    @SerializedName("hotel_id")
+    @Expose
+    private String hotel_id;
+
     @SerializedName("user_id")
     @Expose
     private String user_id;
-    @SerializedName("image_url")
+    @SerializedName("hotel_imageURL")
     @Expose
     private String url;
-    @SerializedName("name")
+    @SerializedName("hotel_name")
     @Expose
     private String name;
     @SerializedName("start_date")
@@ -19,7 +35,7 @@ public class ActiveHotelItem {
     @SerializedName("end_date")
     @Expose
     private String end_date;
-    @SerializedName("price")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 

@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Restaurant;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 
@@ -45,6 +45,7 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
     public CardRestaurantAdapter.ListRestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_city_details, parent, false);
+
         return new CardRestaurantAdapter.ListRestaurantHolder(view);
     }
 
@@ -54,16 +55,14 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
         try {
             restaurantImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImage());
             holder.imageRestaurant.setImageBitmap(restaurantImage);
-
         }
         catch (Exception e) {
+            Log.e("CardRestaurantAdapter", "Error loading image: " + e.getMessage(), e);
         }
 
-
         String name = data.get(position).getName();
-        Float rating = (float) data.get(position).getRating();
+        Float rating = (float) data.get(position).getRating()/2;
         String address = data.get(position).getAddress();
-
 
         holder.textName.setText(name);
         holder.textRating.setRating(rating);

@@ -1,6 +1,8 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
@@ -37,6 +40,7 @@ public class CityFragment extends Fragment {
 
     // Dump Attribute, for demo only
     private Button cityDetail;
+    private EditText citySearchBar;
     private List<CityItem> cityItems;
 
     public CityFragment() {
@@ -62,12 +66,20 @@ public class CityFragment extends Fragment {
         getCityName();
         View view =  inflater.inflate(R.layout.fragment_city, container, false);
         cityDetail = view.findViewById(R.id.button4);
+        citySearchBar = view.findViewById(R.id.searchbar);
 
         cityDetail.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
-
             getContext().startActivity(intent);
+        });
+
+        citySearchBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveEditTextContent();
+                getSuggestedDestinationActivity();
+            }
         });
 
         return view;
@@ -91,5 +103,19 @@ public class CityFragment extends Fragment {
                 Log.d("Call get city error", t.getMessage());
             }
         });
+    }
+
+    private void saveEditTextContent() {
+        String editTextContent = citySearchBar.getText().toString();
+
+        // Use SharedPreferences to save the content
+        SharedPreferences preferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("destination", editTextContent);
+        editor.apply();
+    }
+    public void getSuggestedDestinationActivity() {
+        Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
+        startActivity(intent);
     }
 }

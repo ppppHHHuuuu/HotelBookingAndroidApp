@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,13 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
-import com.example.mobdev_nhom7.models.responseObj.trips.HistoryHotelItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelCancelledTripAdapter;
-import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelPastTripAdapter;
+import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
+import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelPastTripAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
-import com.example.mobdev_nhom7.utils.DateTimeUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +38,7 @@ public class TripsPastFragment extends Fragment {
 
     RecyclerView recyclerView;
     CardHotelPastTripAdapter cardHotelPastTripAdapter;
-    ArrayList<HistoryHotelItem> hotelItemList = new ArrayList<>();
-
+    ArrayList<PastHotelItem> hotelItemList;
     public TripsPastFragment() {
         // Required empty public constructor
     }
@@ -51,27 +52,42 @@ public class TripsPastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-        cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList);
+        View v = inflater.inflate(R.layout.fragment_trips_past, container, false);
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        hotelItemList = new ArrayList<>();
+        cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
-
         recyclerView.setAdapter(cardHotelPastTripAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        getUserPastHotel();
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserNotRatedPastHotel();
+    }
+
     //TODO CALL FROM BE
-    private void getUserPastHotel() {
+    private void getUserRatedPastHotel() {
+        //fake-data
+
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
 
-        Call<List<HistoryHotelItem>> call = apiService.getHistoryReservation(user_id);
-        call.enqueue(new Callback<List<HistoryHotelItem>>() {
+        Call<List<PastHotelItem>> call = apiService.getRatedReservation(user_id);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<PastHotelItem>>() {
             @Override
-            public void onResponse(Call<List<HistoryHotelItem>> call, Response<List<HistoryHotelItem>> response) {
+            public void onResponse(Call<List<PastHotelItem>> call, Response<List<PastHotelItem>> response) {
                 if (!response.isSuccessful()) {
                     Log.d("response error", String.valueOf(response.code()));
                     return;
@@ -80,36 +96,44 @@ public class TripsPastFragment extends Fragment {
                     Log.d("response error", "Empty response");
                     return;
                 }
-                ArrayList<HistoryHotelItem> searchHotelItems = (ArrayList<HistoryHotelItem>) response.body();
-                ArrayList<HistoryHotelItem> pastHotelItems = new ArrayList<>();
-                if (searchHotelItems.size() == 0) {
-                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
-                    //ADD LOADING QUERY
+                hotelItemList.addAll(response.body());
+                cardHotelPastTripAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
+                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("loadHotel",t.toString());
+            }
+        });
+    }
+    private void getUserNotRatedPastHotel() {
+        //fake-data
+        String user_id = preferences.getString("user_id", "empty user_id");
+        Log.d("user_id", user_id);
+
+        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(user_id);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<PastHotelItem>>() {
+            @Override
+            public void onResponse(Call<List<PastHotelItem>> call, Response<List<PastHotelItem>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("response error", String.valueOf(response.code()));
+                    return;
+                }
+                if (response.body() == null) {
+                    Log.d("response error", "Empty response");
                     return;
                 }
 
-                for (int i = 0; i < searchHotelItems.size(); i++) {
-                    Log.d("is cancelled", searchHotelItems.get(i).getIsCancelled().toString());
-                    Log.d("end date", searchHotelItems.get(i).getEndDate());
-                    String date = searchHotelItems.get(i).getEndDate();
-                    if (searchHotelItems.get(i).getIsCancelled()) {
-                        continue;
-                    }
-                    else if (DateTimeUtil.isBeforeCurrentDate(date)) {
-                        pastHotelItems.add(searchHotelItems.get(i));
-                    }
-                    else {
-                        continue;
-                    }
-                }
-                cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), pastHotelItems);
-                recyclerView.setAdapter(cardHotelPastTripAdapter);
-                recyclerView.setVisibility(View.VISIBLE);
-                Log.e("APIError", "Error code: " + response.code() + ", Message: " + response.message());
+                hotelItemList.clear();
+                hotelItemList.addAll(response.body());
+                getUserRatedPastHotel();
+                cardHotelPastTripAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<HistoryHotelItem>> call, Throwable t) {
+            public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }

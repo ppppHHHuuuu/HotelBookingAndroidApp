@@ -7,11 +7,33 @@ public class PastHotelItem {
     @SerializedName("user_id")
     @Expose
     private String user_id;
+    @SerializedName("id")
+    @Expose
+    private String reservationID;
 
-    @SerializedName("image_url")
+    public String getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(String hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
+    @SerializedName("hotel_id")
+    @Expose
+    private String hotel_id;
+    public String getReservationID() {
+        return reservationID;
+    }
+
+    public void setReservationID(String reservationID) {
+        this.reservationID = reservationID;
+    }
+
+    @SerializedName("hotel_imageURL")
     @Expose
     private String image_url;
-    @SerializedName("name")
+    @SerializedName("hotel_name")
     @Expose
     private String name;
     @SerializedName("start_date")
@@ -32,7 +54,7 @@ public class PastHotelItem {
         this.amount = amount;
     }
 
-    @SerializedName("amount")
+    @SerializedName("total_cost")
     @Expose
     private String amount;
 
