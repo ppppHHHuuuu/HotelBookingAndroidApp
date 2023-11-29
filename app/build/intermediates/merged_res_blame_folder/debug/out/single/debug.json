@@ -88,6 +88,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/bookmark.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_acceptable.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_acceptable.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/facebook_icon.xml"
     },
@@ -140,12 +144,12 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/profile_rounded_bg.xml"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hide_eye.png.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hide_eye.png"
-    },
-    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_account_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/account_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hide_eye.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_calendar_icon.xml.flat",
@@ -252,6 +256,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/font/avenir_bold.otf"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_bad.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_bad.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_icon.xml"
     },
@@ -306,6 +314,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_search_box_border.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/search_box_border.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_excellent.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_excellent.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_icon_checked.xml.flat",
@@ -396,6 +408,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_suggested_city.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layout/suggested_city.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/xml_data_extraction_rules.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/xml/data_extraction_rules.xml"
     },
@@ -464,6 +480,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_border.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_book_room_dialog.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/book_room_dialog.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook.png.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/facebook.png"
     },
@@ -520,6 +540,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location_icon_checked.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_great.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_great.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
@@ -570,10 +594,6 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_code_input_text.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/code_input_text.xml"
-    },
-    {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_room_option_dialog.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/room_option_dialog.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_swimming.png.flat",
