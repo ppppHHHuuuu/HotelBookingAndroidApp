@@ -3293,6 +3293,7 @@ id buildingRate
 id button4
 id button5
 id buttonCancel
+id buttonKinhLup
 id buttonPanel
 id buttonSearch
 id button_verify_code

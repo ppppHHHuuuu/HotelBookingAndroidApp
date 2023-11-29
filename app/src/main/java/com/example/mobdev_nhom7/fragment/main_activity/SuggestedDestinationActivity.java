@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdev_nhom7.activity.MainActivity;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
@@ -38,6 +39,7 @@ import com.example.mobdev_nhom7.utils.SendID;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,10 +53,12 @@ public class SuggestedDestinationActivity extends Activity {
     private final APIService apiService = APIUtils.getUserService();
     SendID sendID;
     RecyclerView recyclerView;
+    SharedPreferences preferencesEdittext;
 
     NestedScrollView nestedScrollView;
     EditText editPreferredDest;
     ImageView imageBackButton;
+    ImageView buttonKinhLup;
     TextView suggestedPlace;
     ImageView buttonCancel;
     List<String> data = new ArrayList<>();
@@ -70,7 +74,6 @@ public class SuggestedDestinationActivity extends Activity {
         setContentView(R.layout.suggested_destination);
         hotelItems = new ArrayList<>();
         cityItems = new ArrayList<>();
-
         imageBackButton = findViewById(R.id.imageBackButton);
         suggestedPlace = findViewById(R.id.suggestedPlace);
         editPreferredDest = findViewById(R.id.editPreferredDest);
@@ -83,8 +86,25 @@ public class SuggestedDestinationActivity extends Activity {
         buttonCancel.setOnClickListener(v-> {
             editPreferredDest.setText("");
         });
-        recyclerView.setAdapter(cityItemCardAdapter);
 
+        recyclerView.setAdapter(cityItemCardAdapter);
+        preferencesEdittext = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+
+        buttonKinhLup = findViewById(R.id.buttonKinhLup);
+        buttonKinhLup.setVisibility(View.INVISIBLE);
+        buttonKinhLup.setOnClickListener(v -> {
+            String editTextContent = editPreferredDest.getText().toString();
+
+            // Store the data you want to pass to MainActivity in a shared preference, for example
+            SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("destination", editTextContent);
+            editor.putBoolean("search", true);
+            editor.apply();
+
+            // Go back to MainActivity
+            onBackPressed();
+        });
         getSuggestDest();
 
         getAllHotel(() -> {
@@ -123,9 +143,13 @@ public class SuggestedDestinationActivity extends Activity {
                 //this check with the editable
                 String searchText = editable.toString().trim();
                 if (searchText.isEmpty()) {
+                    buttonKinhLup.setVisibility(View.INVISIBLE);
+
                     recyclerView.setAdapter(cityItemCardAdapter);
                 }
                 else {
+                    buttonKinhLup.setVisibility(View.VISIBLE);
+
                     try {
                         adapter.getFilter().filter(searchText);
                         adapter.notifyDataSetChanged();
@@ -141,7 +165,18 @@ public class SuggestedDestinationActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //TODO
-                finish();
+                String editTextContent = editPreferredDest.getText().toString();
+
+                // Store the data you want to pass to MainActivity in a shared preference, for example
+                SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("destination", editTextContent);
+                editor.putBoolean("search", false);
+
+                editor.apply();
+
+                // Go back to MainActivity
+                onBackPressed();
             }
         });
     }
@@ -185,6 +220,21 @@ public class SuggestedDestinationActivity extends Activity {
              }
          });
      }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Map<String, ?> allPreferences = preferencesEdittext.getAll();
+
+        for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
+        }
+        String savedDestination = preferencesEdittext.getString("destination", "");
+        editPreferredDest.setText(savedDestination);
+    }
+
     private void getAllCity(DataLoadedCallback callback) {
         Call<List<CityItem>> call = apiService.getAllCity();
         String requestUrl = call.request().url().toString();

@@ -1,554 +1,554 @@
 [
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_favourite_toggle_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/favourite_toggle_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_pricebutton.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\pricebutton.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_pet.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/pet.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_luggage_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\luggage_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_luggage_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/luggage_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_trips.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_trips.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_spa.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/spa.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_telephone.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\telephone.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_1.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_1.jpg"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_password.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\activity_password.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_suggested_destination.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/suggested_destination.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_blue_round_background.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\blue_round_background.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_close.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/close.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_phone_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/phone_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_favourite_toggle_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\favourite_toggle_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_demo_pfp.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/demo_pfp.jpg"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_place.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_place.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_favourites.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/fragment_favourites.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_favourite_toggle_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\favourite_toggle_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_mybutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/mybutton.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_city_details.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_city_details.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_animals.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/no_animals.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_account_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\account_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_divider.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/divider.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_pool.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\pool.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_settings_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/settings_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_city_detail.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\city_detail.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rounded_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_background.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_luggage_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\luggage_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_filter.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/filter.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel.jpg.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/xml_backup_rules.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/xml/backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_password_reset.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\activity_password_reset.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_bookmark.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/bookmark.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_hotel_2.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_hotel_2.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/facebook_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_background_with_border.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\background_with_border.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_password_reset.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/activity_password_reset.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_unhide_eye.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\unhide_eye.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel_trip_with_comment.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel_trip_with_comment.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_rounded_background.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\rounded_background.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\color_bottom_nav_color_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\color\\bottom_nav_color_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_ic_back_arrow_xml.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/ic_back_arrow_xml.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_city.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_city.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_button_price.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/button_price.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\menu_bottom_menu.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\menu\\bottom_menu.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_city.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_city.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_image_border.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\image_border.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_poppins_bold.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/poppins_bold.ttf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_phone.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/phone.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_call.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_call.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rounded_button_white.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_button_white.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_apple.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\apple.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_luggage_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/luggage_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_top_rounded_background.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\top_rounded_background.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_profile_rounded_bg.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/profile_rounded_bg.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_hotel_trip_with_comment.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_hotel_trip_with_comment.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hide_eye.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_poppins_regular.ttf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\poppins_regular.ttf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_account_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/account_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_luggage_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\luggage_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_city_details.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_city_details.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_alert_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\alert_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_telephone.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/telephone.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_parking.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\parking.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_trivago_logo.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/trivago_logo.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_stays.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\fragment_stays.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/menu_bottom_menu.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/menu/bottom_menu.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_auto_complete_view.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\auto_complete_view.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_google.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/google.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\xml\\data_extraction_rules.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_progress_bar_drawable.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/progress_bar_drawable.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_phone_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\phone_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_settings.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/fragment_settings.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_logout.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\logout.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_custom_edittext.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/custom_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_2.jpg.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_2.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_top_rounded_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/top_rounded_background.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_pet.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\pet.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_city_name.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_city_name.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_settings_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\settings_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_poppins_extrabold.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/poppins_extrabold.ttf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_demo_pfp.jpg.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\demo_pfp.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_settings_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/settings_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_trips_past.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_trips_past.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_comment.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_comment.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_button_price.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\button_price.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rounded_profile_tags.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_profile_tags.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_animals.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_animals.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_city_detail.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/city_detail.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_auto_complete_custom.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\auto_complete_custom.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_logout.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/logout.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_search_box_border.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\search_box_border.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_avenir_rgl.otf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/avenir_rgl.otf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_location.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\location.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_image_border.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/image_border.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_avenir_bold.otf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\avenir_bold.otf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_call.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/no_call.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_hotel_trip.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_hotel_trip.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_google.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\google.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_password.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/activity_password.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_edit_background.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\edit_background.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_favourite_toggle_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/favourite_toggle_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_search_bar.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\search_bar.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_avenir_bold.otf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/avenir_bold.otf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_avenir_rgl.otf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\avenir_rgl.otf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_car_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/car_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_1.jpg.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_1.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_pool.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/pool.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_filter_options.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/activity_filter_options.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_avenir_lt.otf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\avenir_lt.otf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_save_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/save_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_location_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\location_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_view_hotel.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/view_hotel.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_settings.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\fragment_settings.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_background.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_wifi.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\wifi.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_2.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_2.jpg"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_date_option_pop_up.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\date_option_pop_up.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_pricebutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/pricebutton.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_spa.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\spa.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_heart_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/heart_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_city_name.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_city_name.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_auto_complete_custom.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/auto_complete_custom.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_city.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_city.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_search_box_border.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/search_box_border.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_restaurants_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\restaurants_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_mybutton.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\mybutton.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel_trip.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel_trip.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_city.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_city.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_custom_edittext.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\custom_edittext.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_alert_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/alert_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_home.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\home.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_order.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\order.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_favourites.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\fragment_favourites.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_rounded_button_white.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\rounded_button_white.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_luggage_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/luggage_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_room_option_pop_up.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\room_option_pop_up.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_location_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\location_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_favourite_toggle_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/favourite_toggle_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_heart_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\heart_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_apple.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/apple.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_poppins_bold.ttf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\poppins_bold.ttf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_place.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_place.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_filter_options.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\activity_filter_options.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_progress_bar_drawable.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\progress_bar_drawable.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_blue_round_background.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/blue_round_background.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_heart_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\heart_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel.jpg"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_facebook.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\facebook.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_background_with_border.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/background_with_border.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_next.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\next.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_trips_past.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_trips_past.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_swimming.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_swimming.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_apple_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/apple_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_settings_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\settings_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_phone.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\phone.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_poppins_extrabold.ttf.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\font\\poppins_extrabold.ttf"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_trivago_logo.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\trivago_logo.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_stays.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/fragment_stays.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_filter.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\filter.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_wifi.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/wifi.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_location_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\location_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_divider.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\divider.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/color_bottom_nav_color_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/color/bottom_nav_color_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_bookmark.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\bookmark.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_parking.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/parking.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_hotel.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_hotel.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_room_option_pop_up.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/room_option_pop_up.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_circle_mask.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\circle_mask.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_expedia.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/expedia.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_circle_mask.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/circle_mask.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hotel_3.jpg.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hotel_3.jpg"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_home.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/home.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_wifi.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/no_wifi.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_google_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\google_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_settings_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/settings_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_settings_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\settings_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_restaurants_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/restaurants_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\activity_main.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rounded_border.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_border.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_trips_cancelled.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_trips_cancelled.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/facebook.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_rounded_profile_tags.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\rounded_profile_tags.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_google_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/google_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_next.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/next.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_edit_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\edit_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_fragment_trips_active.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_trips_active.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_date_option_pop_up.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/date_option_pop_up.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\xml\\backup_rules.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_new_password.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/activity_new_password.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_car_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\car_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_avenir_lt.otf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/avenir_lt.otf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_facebook_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\facebook_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_activity_login.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_new_password.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\activity_new_password.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_close.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\close.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_order.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/order.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_overviewbutton.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\overviewbutton.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_trips_active.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_trips_active.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_rounded_border.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\rounded_border.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_3.jpg.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_3.jpg"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_card_comment.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_comment.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location_icon_checked.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location_icon_checked.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_apple_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\apple_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_search_button.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\search_button.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_overviewbutton.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/overviewbutton.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_profile_rounded_bg.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\profile_rounded_bg.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_search_bar.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/search_bar.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_heart_selector.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\heart_selector.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_heart_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/heart_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_wifi.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_wifi.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/font_poppins_regular.ttf.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/font/poppins_regular.ttf"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_suggested_destination.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\main-page\\layout\\suggested_destination.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_trips.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_trips.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_expedia.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\expedia.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_favourite_toggle_icon_checked.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\favourite_toggle_icon_checked.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_unhide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/unhide_eye.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_save_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\save_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_trips_cancelled.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_trips_cancelled.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_off_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_off_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_code_input_text.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\code_input_text.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location_selector.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location_selector.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_edit_off_icon.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\edit_off_icon.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_code_input_text.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/code_input_text.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_view_hotel.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\hotel-detail\\layout\\view_hotel.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_swimming.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/no_swimming.png"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_ic_back_arrow_xml.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\ic_back_arrow_xml.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_search_button.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/search_button.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\activity_login.xml"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_heart_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/heart_icon.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_hide_eye.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\hide_eye.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel_2.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel_2.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_placeholder.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\placeholder.png"
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_auto_complete_view.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/main-page/layout/auto_complete_view.xml"
     }
 ]
