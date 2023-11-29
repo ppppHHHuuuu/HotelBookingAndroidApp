@@ -29,13 +29,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/black"/>
 
-    <EditText
+    <TextView
         android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_background"
-        android:hint="Search for cities:"
+        android:text="Search for cities:"
+        android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="10dp"
         android:textSize="15sp"

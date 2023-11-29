@@ -348,6 +348,7 @@ layout review_dialog
 layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
+layout suggested_city
 layout suggested_destination
 layout view_hotel
 menu bottom_menu

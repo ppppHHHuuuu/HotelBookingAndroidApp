@@ -10,7 +10,8 @@ public class CustomToast {
         if (Constants.errorMessages.get(error) != null) {
             Toast.makeText(context, Constants.errorMessages.get(error), length).show();
         } else {
-            Toast.makeText(context,"Đã có lỗi không xác định", length).show();
+            Toast.makeText(context,"\n" +
+                    "An unknown error occurred", length).show();
         }
     }
 }
