@@ -3258,6 +3258,7 @@ id adjust_height
 id adjust_width
 id alertContent
 id alertTitle
+id alert_content
 id aligned
 id all
 id allStates
@@ -3337,6 +3338,8 @@ id cityName
 id cityName2
 id cityName3
 id cityName4
+id city_country
+id city_name
 id cleanlinessProgressBar
 id cleanlinessRate
 id cleanlinessSeekBar

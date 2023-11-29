@@ -26,19 +26,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
+import com.example.mobdev_nhom7.models.bookingRequest.BookingRequest;
 import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
 import com.example.mobdev_nhom7.models.responseObj.comment.adapter.CommentItemAdapter;
 import com.example.mobdev_nhom7.models.responseObj.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.room.RoomItem;
 import com.example.mobdev_nhom7.models.responseObj.room.adapter.RoomAdapter;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.checkerframework.checker.units.qual.C;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -163,12 +169,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
             }
         }
 
-        bookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bookHotel();
-            }
-        });
+        bookButton.setOnClickListener(view -> bookHotel());
     }
 
     @Override
@@ -320,9 +321,41 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
             Log.d("reservationRoomTestLog", entry.getKey() + " + " + entry.getValue() + " + " + String.valueOf(totalCostFinal));
         }
 
+        if (startDate == null) {
+            startDate = "2023-11-30";
+        }
+        if (endDate == null) {
+            endDate = "2023-12-30";
+        }
+
+        long totalCost = totalCostFinal * countDaysBetween(startDate, endDate);
+        BookingRequest bookingRequest = new BookingRequest(user_id, hotel_id, rooms, startDate, endDate, totalCost);
+        Call<Object>callBooking = apiService.booking(bookingRequest);
+        callBooking.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Toast.makeText(getApplicationContext(), "Booking successfully", Toast.LENGTH_SHORT).show();
+                Log.d("booking","Booking successfully");
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
+                Log.d("booking",t.toString());
+            }
+        });
+
         Intent intent = new Intent(ViewHotel.this, MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_NAVIGATE_TO_TRIPS, true);
         startActivity(intent);
         finish();
+    }
+
+    public static long countDaysBetween(String startDateStr, String endDateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.parse(startDateStr, formatter);
+        LocalDate endDate = LocalDate.parse(endDateStr, formatter);
+
+        return ChronoUnit.DAYS.between(startDate, endDate);
     }
 }

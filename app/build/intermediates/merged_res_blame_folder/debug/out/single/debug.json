@@ -104,10 +104,6 @@
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/no_animals.png"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_room_option_dialog.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/hotel-detail/layout/room_option_dialog.xml"
-    },
-    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_fragment_settings.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/layouts/main-page/layout/fragment_settings.xml"
     },
@@ -490,6 +486,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_rounded_background.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-7:/drawable/rounded_background.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-5:/layout_book_room_dialog.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-7:/layouts/hotel-detail/layout/book_room_dialog.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-5:/drawable_circle_mask.png.flat",

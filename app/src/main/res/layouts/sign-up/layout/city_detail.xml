@@ -21,6 +21,7 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
+            android:id="@+id/city_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -33,6 +34,7 @@
             tools:layout_editor_absoluteY="0dp"
             android:lineHeight="0dp"/>
         <TextView
+            android:id="@+id/city_country"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -70,6 +72,7 @@
                 android:includeFontPadding="false"/>
         </LinearLayout>
         <TextView
+            android:id="@+id/alert_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="This is the Alert Content of this City!"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +23,8 @@ import com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters.CardTrans
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiveTripAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,8 @@ public class ViewCity extends AppCompatActivity {
         cityImage = findViewById(R.id.cityImage);
         String url = "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892";
         Glide.with(this).load(url).centerCrop().into(cityImage);
+
+
 
         restaurants = new ArrayList<>();
         cardRestaurantAdapter = new CardRestaurantAdapter(getApplicationContext(), (ArrayList<Restaurant>) restaurants);
@@ -84,6 +89,11 @@ public class ViewCity extends AppCompatActivity {
                 getCityDetail(cityID);
                 Log.d("city_id", cityID);
             }
+            TextView cityName = findViewById(R.id.city_name);
+            cityName.setText(extras.getString("city_name"));
+
+            TextView cityCountry = findViewById(R.id.city_country);
+            cityCountry.setText(extras.getString("city_country"));
         }
     }
 
@@ -96,20 +106,20 @@ public class ViewCity extends AppCompatActivity {
             public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
-                    if (restaurants.size() == 0) {
+                    if (response.body().size() == 0) {
                         return;
                     }
                     restaurants.clear();
                     restaurants.addAll(response.body());
                     cardRestaurantAdapter.notifyDataSetChanged();
                 } else {
-                    Log.d("Call get city error", "Empty or unsuccessful response");
+                    Log.d("Call get restaurant error", "Empty or unsuccessful response");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Restaurant>> call, Throwable t) {
-                Log.d("Call get city error", t.getMessage());
+                Log.d("Call get restaurant error", t.getMessage());
             }
         });
 
@@ -166,6 +176,17 @@ public class ViewCity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
                     alerts = response.body();
+                    TextView alertContent = findViewById(R.id.alert_content);
+                    String a = "";
+                    for (int i = 0; i < alerts.size(); i++) {
+                        if (i > 0) {
+                            a = a + alerts.get(i).getContent();
+                        } else {
+                            a = a + alerts.get(i).getContent() + "\n";
+                        }
+
+                    }
+                    alertContent.setText(a);
                 } else {
                     Log.d("Call get city error", "Empty or unsuccessful response");
                 }
