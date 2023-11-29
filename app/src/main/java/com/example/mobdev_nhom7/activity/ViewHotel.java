@@ -40,6 +40,7 @@ import org.checkerframework.checker.units.qual.C;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -170,12 +171,22 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
     @Override
     protected void onResume() {
         super.onResume();
         //fake-data
-        getHotelInRange(hotel_id, "2023-11-28", "2023-11-30");
+        if (startDate == null || endDate == null) {
+            startDate = String.valueOf(new Date());
+            endDate = String.valueOf(new Date());
+        }
+        getHotelInRange(hotel_id, startDate, endDate);
+
+        Log.d("startDate", startDate);
+        Log.d("endDate", endDate);
     }
 
     private void getAllComment(String hotel_id) {

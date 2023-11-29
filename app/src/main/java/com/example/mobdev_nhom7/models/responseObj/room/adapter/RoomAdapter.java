@@ -193,7 +193,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     }
 
     private String calculateTotalRoomPrice(int roomCount, String roomPrice) {
-        int totalRoomPrice = roomCount * Integer.parseInt(roomPrice.replaceAll(",", ""));
+        int totalRoomPrice = roomCount * Integer.parseInt(roomPrice.replaceAll("[,//.]", ""));
         DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
         customSymbol.setCurrencySymbol("VND");
         DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
@@ -205,7 +205,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         int totalCost = 0;
         for (RoomItem room : roomList) {
             if (room.getTotalRoomCost() != null && Integer.parseInt(room.getNumberBooked()) > 0) {
-                totalCost += Integer.parseInt(room.getTotalRoomCost().replaceAll(",", ""));
+                totalCost += Integer.parseInt(room.getTotalRoomCost().replaceAll("[,//.]", ""));
             }
         }
         return totalCost;
