@@ -46,6 +46,9 @@
         android:theme="@style/Theme.MobDev_Nhom7"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.example.mobdev_nhom7.fragment.main_activity.SuggestedCityActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.mobdev_nhom7.activity.ViewCity"
             android:exported="false" />
         <activity

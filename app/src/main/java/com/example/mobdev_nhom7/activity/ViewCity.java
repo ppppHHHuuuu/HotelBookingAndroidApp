@@ -81,20 +81,14 @@ public class ViewCity extends AppCompatActivity {
             }
             if (extras.getString("city_id") != null) {
                 cityID= extras.getString("city_id");
+                getCityDetail(cityID);
                 Log.d("city_id", cityID);
             }
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getCityDetail("1");
-
-    }
-
     private void getCityDetail(String id) {
-        Call<List<Restaurant>> callGetRestaurant = apiService.getRestaurant("nw2udhrsvdQGsXSgOO43");
+        Call<List<Restaurant>> callGetRestaurant = apiService.getRestaurant(id);
         String requestUrl = callGetRestaurant.request().url().toString();
         Log.d("Request URL", requestUrl);
         callGetRestaurant.enqueue(new Callback<List<Restaurant>>() {
@@ -103,7 +97,6 @@ public class ViewCity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Handle the first CityDetail in the list
                     if (restaurants.size() == 0) {
-                        Toast.makeText(getApplicationContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
                         return;
                     }
                     restaurants.clear();
@@ -120,7 +113,7 @@ public class ViewCity extends AppCompatActivity {
             }
         });
 
-        Call<List<Transportation>> callGetTransportation = apiService.getTransportation("nw2udhrsvdQGsXSgOO43");
+        Call<List<Transportation>> callGetTransportation = apiService.getTransportation(id);
         String requestUrl1 = callGetTransportation.request().url().toString();
         Log.d("Request URL", requestUrl1);
         callGetTransportation.enqueue(new Callback<List<Transportation>>() {
@@ -146,7 +139,7 @@ public class ViewCity extends AppCompatActivity {
             }
         });
 
-        Call<List<Todo>> callGetTodo = apiService.getTodo("nw2udhrsvdQGsXSgOO43");
+        Call<List<Todo>> callGetTodo = apiService.getTodo(id);
         callGetTodo.enqueue(new Callback<List<Todo>>() {
             @Override
             public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
@@ -166,7 +159,7 @@ public class ViewCity extends AppCompatActivity {
             }
         });
 
-        Call<List<Alert>> callGetAlert = apiService.getAlert("nw2udhrsvdQGsXSgOO43");
+        Call<List<Alert>> callGetAlert = apiService.getAlert(id);
         callGetAlert.enqueue(new Callback<List<Alert>>() {
             @Override
             public void onResponse(Call<List<Alert>> call, Response<List<Alert>> response) {

@@ -4107,9 +4107,10 @@ int layout search_bar 0x7f0c0087
 int layout select_dialog_item_material 0x7f0c0088
 int layout select_dialog_multichoice_material 0x7f0c0089
 int layout select_dialog_singlechoice_material 0x7f0c008a
-int layout suggested_destination 0x7f0c008b
-int layout support_simple_spinner_dropdown_item 0x7f0c008c
-int layout view_hotel 0x7f0c008d
+int layout suggested_city 0x7f0c008b
+int layout suggested_destination 0x7f0c008c
+int layout support_simple_spinner_dropdown_item 0x7f0c008d
+int layout view_hotel 0x7f0c008e
 int menu bottom_menu 0x7f0e0000
 int mipmap ic_launcher 0x7f0f0000
 int mipmap ic_launcher_round 0x7f0f0001
