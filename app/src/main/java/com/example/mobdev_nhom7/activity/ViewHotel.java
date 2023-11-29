@@ -199,6 +199,7 @@ public class ViewHotel extends Activity {
                     roomItem.setPricePerNight(entry.getValue().getPricePerNight());
                     roomItem.setQuantity(entry.getValue().getQuantity());
                     roomItems.add(roomItem);
+                    Log.d("roomItem", roomItem.getQuantity().toString());
                     Log.d("entry", entry.getKey() + " + " + entry.getValue().getCapacity());
                 }
                 roomAdapter.notifyDataSetChanged();

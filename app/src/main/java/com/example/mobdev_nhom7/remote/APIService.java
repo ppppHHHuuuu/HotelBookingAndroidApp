@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7.remote;
 
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
+import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseData;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
 import com.example.mobdev_nhom7.models.responseObj.cityDetail.Alert;
@@ -110,7 +111,5 @@ public interface APIService {
     Call<List<Alert>> getAlert(@Path("id") String id);
 
     @POST("/reservation/createFeedback")
-    Call<DefaultResponseObj> postUserCommentHotel(@Body String reservation,
-                                                  @Body RatingItem ratings,
-                                                  @Body String comment);
+    Call<DefaultResponseObj> postUserCommentHotel(@Body FeedbackRequest feedbackRequest);
 }

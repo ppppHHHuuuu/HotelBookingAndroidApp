@@ -117,6 +117,7 @@ public class NewPassword extends AppCompatActivity {
                                             switch (response.code()) {
                                                 case 200:
                                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     startActivity(intent);
                                             }
                                         }

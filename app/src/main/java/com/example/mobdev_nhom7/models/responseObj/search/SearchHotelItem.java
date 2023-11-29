@@ -14,7 +14,7 @@ public class SearchHotelItem {
     @SerializedName("star")//check
     @Expose
     private Float star;
-    @SerializedName("id")//check
+    @SerializedName("hotel_id")//check
     @Expose
     private String hotelId;
     @SerializedName("ratings")//ratings.value

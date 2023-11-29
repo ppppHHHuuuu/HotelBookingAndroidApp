@@ -39,8 +39,6 @@ public class TripsPastFragment extends Fragment {
     RecyclerView recyclerView;
     CardHotelPastTripAdapter cardHotelPastTripAdapter;
     ArrayList<PastHotelItem> hotelItemList;
-
-
     public TripsPastFragment() {
         // Required empty public constructor
     }
@@ -61,7 +59,6 @@ public class TripsPastFragment extends Fragment {
             @Override
             public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-//                intent.putExtra("reservation_id", reservation_id);
                 intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
@@ -137,31 +134,6 @@ public class TripsPastFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("loadHotel",t.toString());
-            }
-        });
-    }
-    private void postUserCommentHotel(String comment, RatingItem rating) {
-        String reservationID = preferences.getString("reservation_id", "empty reservation_id");
-        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(reservationID, rating, comment);
-        String requestUrl = call.request().url().toString();
-        Log.d("Request URL", requestUrl);
-        call.enqueue(new Callback<DefaultResponseObj>() {
-            @Override
-            public void onResponse(Call<DefaultResponseObj> call, Response<DefaultResponseObj> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("response error", String.valueOf(response.code()));
-                    return;
-                }
-                if (response.body() == null) {
-                    Log.d("response error", "Empty response");
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponseObj> call, Throwable t) {
                 Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }

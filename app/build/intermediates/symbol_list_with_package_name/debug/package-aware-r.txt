@@ -1369,6 +1369,7 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background_default
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -2969,6 +2970,7 @@ drawable avd_show_password
 drawable background_with_border
 drawable blue_round_background
 drawable bookmark
+drawable border_box
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2977,6 +2979,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable calendar_icon
 drawable car_icon
 drawable circle_mask
 drawable close
@@ -2999,6 +3002,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable custom_edit_text
 drawable custom_edittext
 drawable demo_pfp
 drawable design_fab_background
@@ -3078,6 +3082,8 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable minus_sign_icon
+drawable money_icon
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3141,11 +3147,13 @@ drawable pet
 drawable phone
 drawable phone_icon
 drawable placeholder
+drawable plus_sign_icon
 drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
 drawable progress_bar_drawable
 drawable restaurants_icon
+drawable review_icon
 drawable rounded_background
 drawable rounded_border
 drawable rounded_button_white
@@ -3290,6 +3298,8 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id buildingProgressBar
 id buildingRate
+id buildingSeekBar
+id buildingSeekBarValue
 id button4
 id button5
 id buttonCancel
@@ -3328,6 +3338,8 @@ id cityName3
 id cityName4
 id cleanlinessProgressBar
 id cleanlinessRate
+id cleanlinessSeekBar
+id cleanlinessSeekBarValue
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3336,6 +3348,8 @@ id closest
 id collapseActionView
 id comfortProgressBar
 id comfortRate
+id comfortSeekBar
+id comfortSeekBarValue
 id commentRecyclerView
 id commentTextView
 id compress
@@ -3409,7 +3423,6 @@ id east
 id edge
 id editPreferredDest
 id edit_query
-id edit_text_comment
 id edit_text_verification_code
 id elastic
 id email_block
@@ -3427,7 +3440,6 @@ id expanded_menu
 id fade
 id favouriteIcon
 id favouriteIcon2
-id favouriteIconTrip
 id favourites
 id fill
 id fill_horizontal
@@ -3538,6 +3550,7 @@ id matrix
 id message
 id middle
 id mini
+id minusButton
 id moneyProgressBar
 id month_grid
 id month_navigation_bar
@@ -3594,6 +3607,7 @@ id notification_main_column
 id notification_main_column_container
 id numberGuestCl
 id numberGuestTv
+id numberPicker
 id numberRoomCl
 id numberRoomTv
 id off
@@ -3614,20 +3628,23 @@ id past_btn
 id path
 id pathRelative
 id peekHeight
-id people
 id percent
 id pet
 id pfp
 id phoneNumber
+id phone_block
+id phone_edit_image
+id phone_edit_text
+id picked_room_num
 id pin
 id placeName
 id placeTypeIcon
 id placeholder_view
+id plusButton
 id pool
 id position
 id postLayout
 id pressed
-id price
 id priceLayout
 id profile_detail
 id profile_email
@@ -3654,13 +3671,17 @@ id restaurantsImage
 id restaurantsRV
 id restaurantsTitle
 id reverseSawtooth
+id reviewEdit
+id review_button
 id right
 id rightToLeft
 id right_icon
 id right_side
-id room
 id room_info_options
+id room_name
 id room_number_edit_text
+id room_people
+id room_price
 id roomsDisplay
 id roomsView
 id rounded
@@ -3711,6 +3732,7 @@ id secondRow
 id select_dialog_listview
 id selected
 id selection_type
+id sendButton
 id settings
 id sharedValueSet
 id sharedValueUnset
@@ -3796,7 +3818,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3813,6 +3834,7 @@ id title_template
 id toggle
 id top
 id topPanel
+id totalRoomPrice
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3834,6 +3856,8 @@ id upper_case_characters
 id useLogo
 id userNameTextView
 id valueRate
+id valueSeekBar
+id valueSeekBarValue
 id verification_section
 id verticalDivider
 id vertical_only
@@ -4077,6 +4101,8 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout review_dialog
+layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
 layout select_dialog_item_material

@@ -30,7 +30,7 @@ public class PastHotelItem {
         this.reservationID = reservationID;
     }
 
-    @SerializedName("image_url")
+    @SerializedName("hotel_imageURL")
     @Expose
     private String image_url;
     @SerializedName("hotel_name")

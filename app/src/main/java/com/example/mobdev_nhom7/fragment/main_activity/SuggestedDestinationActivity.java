@@ -68,6 +68,7 @@ public class SuggestedDestinationActivity extends Activity {
 
     CityItemCardAdapter cityItemCardAdapter;
     CustomAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -199,18 +200,29 @@ public class SuggestedDestinationActivity extends Activity {
                          Log.d("cityItems", response.body().get(i).getCityName());
                      }
                      cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
+                         String editTextContent = editPreferredDest.getText().toString();
+
+
                          @Override
                          public void go(String hotel_id, String city_id, String reservation_id) {
-                             Intent intent;
-                             if (hotel_id == null) {
-                                 intent = new Intent(getApplicationContext(), ViewCity.class);
-                                 intent.putExtra("city_id", city_id);
-                             }
-                             else {
-                                 intent = new Intent(getApplicationContext(), ViewHotel.class);
-                                 intent.putExtra("hotel_id", hotel_id);
-                             }
-                             startActivity(intent);
+                             SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                             SharedPreferences.Editor editor = preferences.edit();
+                             editor.putString("destination", editTextContent);
+
+                             editor.putString("destinationID", city_id);
+                             editor.putBoolean("search", true);
+                             editor.apply();
+                             onBackPressed();
+//                             Intent intent;
+//                             if (hotel_id == null) {
+//                                 intent = new Intent(getApplicationContext(), ViewCity.class);
+//                                 intent.putExtra("city_id", city_id);
+//                             }
+//                             else {
+//                                 intent = new Intent(getApplicationContext(), ViewHotel.class);
+//                                 intent.putExtra("hotel_id", hotel_id);
+//                             }
+//                             startActivity(intent);
                          }
                      });
                      recyclerView.setAdapter(cityItemCardAdapter);

@@ -141,7 +141,8 @@ public class StaysFragment extends Fragment {
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-        destination = desInput.getText().toString();
+        //TODO: ID OF HANOI
+        destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
         startDate = dateFullFormat.format(today);
         endDate = dateFullFormat.format(tomorrow);
         roomNumber = "2";
@@ -177,10 +178,12 @@ public class StaysFragment extends Fragment {
             Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
         }
         String savedDestination = preferencesEdittext.getString("destination", "");
+        String savedDestinationID = preferencesEdittext.getString("destinationID", "");
         desInput.setText(savedDestination);
         Boolean isSearch = preferencesEdittext.getBoolean("search", false);
         if (isSearch) {
-            searchHotels(user_id, null, desInput.getText().toString(),startDate, endDate, roomNumber, pplNumber);
+            Log.d("destinationID", savedDestinationID);
+            searchHotels(user_id, null, savedDestinationID,startDate, endDate, roomNumber, pplNumber);
         }
     }
     private void saveEditTextContent() {

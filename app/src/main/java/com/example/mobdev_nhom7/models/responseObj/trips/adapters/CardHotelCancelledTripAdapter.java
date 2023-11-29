@@ -75,7 +75,7 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + ".000VND");
+        holder.textAmount.setText(amount + "VND");
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });
