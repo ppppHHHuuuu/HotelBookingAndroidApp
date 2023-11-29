@@ -54,7 +54,8 @@ import retrofit2.Response;
 public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
-    SharedPreferences preferences1;
+    SharedPreferences preferencesEdittext;
+    SharedPreferences.Editor editorHotel;
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> searchHotelItems;
     private ProgressBar loadingProgressBar;
@@ -92,12 +93,12 @@ public class StaysFragment extends Fragment {
         ConstraintLayout dateOptions = view.findViewById(R.id.date_options);
         searchHotelItems = new ArrayList<>();
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
-        preferences1 = getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        preferencesEdittext = getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
 
         cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
             @Override
-            public void go(String hotel_id, String city_id) {
+            public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
                 intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
@@ -141,7 +142,6 @@ public class StaysFragment extends Fragment {
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
         destination = desInput.getText().toString();
-//        destination = "Z6YyrwkuyVbsyaLxOE7E";
         startDate = dateFullFormat.format(today);
         endDate = dateFullFormat.format(tomorrow);
         roomNumber = "2";
@@ -170,14 +170,14 @@ public class StaysFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (count > 1) {
-            Map<String, ?> allPreferences = preferences1.getAll();
+            Map<String, ?> allPreferences = preferencesEdittext.getAll();
 
             for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
             }
-            String savedDestination = preferences1.getString("destination", "");
+            String savedDestination = preferencesEdittext.getString("destination", "");
             desInput.setText(savedDestination);
         }
         count++;
@@ -401,7 +401,7 @@ public class StaysFragment extends Fragment {
         });
     }
     public void getSuggestDest() {
-        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel();
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<SearchHotelItem>>() {

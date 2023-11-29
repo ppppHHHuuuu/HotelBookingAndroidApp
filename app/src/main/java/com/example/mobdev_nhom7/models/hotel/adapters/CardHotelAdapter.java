@@ -2,6 +2,8 @@ package com.example.mobdev_nhom7.models.hotel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +21,22 @@ import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavHotelViewHolder> {
     Context context;
+    Intent intent;
+    SendID sendID;
+    String user_id;
+    private SharedPreferences preferences;
+
     private List<SearchHotelItem> data;
     public SearchHotelItem getData(int x) {
         return data.get(x);
@@ -35,9 +45,10 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
         this.data.clear();
         this.data.addAll(data);
     }
-    public CardHotelAdapter(Context context, ArrayList<SearchHotelItem > data) {
+    public CardHotelAdapter(Context context, ArrayList<SearchHotelItem > data, SendID sendID) {
         this.context = context;
         this.data= data;
+        this.sendID = sendID;
     }
     private OnItemClickListener onItemClickListener;
 
@@ -54,10 +65,15 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
     public FavHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_hotel, parent, false);
+        preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+
+        user_id = preferences.getString("user_id", "no user_id");
+
+        intent = new Intent(context.getApplicationContext(), ViewHotel.class);
+        intent.putExtra("user_id", user_id);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), ViewHotel.class);
                 context.startActivity(intent);
             }
         });
@@ -76,14 +92,22 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            intent.putExtra("hotel_id", data.get(position).getHotelId());
+
             holder.textCity.setText(String.valueOf(data.get(position).getCity()));
             holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
-            holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+            double rating = data.get(position).getScore().getValue();
+            DecimalFormat decimalFormat = new DecimalFormat("#.#");
+            String formattedRating = decimalFormat.format(rating);
+            holder.textScore.setText(formattedRating);
             holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
             holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
             holder.ratingBar.setRating(data.get(position).getStar());
             holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon_checked);
             holder.favouriteIcon.setOnClickListener(v -> {
+                if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+                }
                 if (holder.is_loved) {
                     holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon);
                 } else {
@@ -91,9 +115,7 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
                 }
                 holder.is_loved = !holder.is_loved;
 
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(position);
-                }
+
             });
 
         }

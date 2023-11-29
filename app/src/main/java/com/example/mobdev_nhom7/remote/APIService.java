@@ -72,11 +72,14 @@ public interface APIService {
     Call<List<SearchHotelItem>> getFavouriteHotel(@Query("user_id") String user_id);
     @DELETE("hotel/favourite")
     Call<String> deleteFavouriteHotel(@Query("user_id") String user_id,
-                                                     @Query("hotel_id") String hotel_id);
+                                      @Query("hotel_id") String hotel_id);
+    @POST("hotel/favourite")
+    Call<String> addFavouriteHotel(@Query("user_id") String user_id,
+                                      @Query("hotel_id") String hotel_id);
     @GET("hotel")
     Call<List<HotelItem>> getAllHotel();
     @GET("hotel/suggest")
-    Call<List<SearchHotelItem>> getSuggestedHotel();
+    Call<List<SearchHotelItem>> getSuggestedHotel(@Query("user_id") String user_id);
     @GET("hotel/feedbacks/{id}")
     Call<List<CommentItem>> getAllFeedback(@Path("id") String id);
     @GET("hotel/favourite")

@@ -95,7 +95,7 @@ public class SuggestedDestinationActivity extends Activity {
             getAllCity(() -> {
                 adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
                     @Override
-                    public void go(String hotel_id, String city_id) {
+                    public void go(String hotel_id, String city_id, String reservation_id) {
                         if (hotel_id != null && !hotel_id.equals("")) {
                             Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
                             intent.putExtra("hotel_id", hotel_id);
@@ -141,7 +141,13 @@ public class SuggestedDestinationActivity extends Activity {
                 }
             }
         });
-
+        imageBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+                finish();
+            }
+        });
     }
     public void getSuggestDest() {
          Call<List<CityItem>> call = apiService.getSuggestedCity();
@@ -159,9 +165,16 @@ public class SuggestedDestinationActivity extends Activity {
                      }
                      cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
                          @Override
-                         public void go(String hotel_id, String city_id) {
-                             Intent intent = new Intent(getApplicationContext(), ViewCity.class);
-                             intent.putExtra("city_id", city_id);
+                         public void go(String hotel_id, String city_id, String reservation_id) {
+                             Intent intent;
+                             if (hotel_id == null) {
+                                 intent = new Intent(getApplicationContext(), ViewCity.class);
+                                 intent.putExtra("city_id", city_id);
+                             }
+                             else {
+                                 intent = new Intent(getApplicationContext(), ViewHotel.class);
+                                 intent.putExtra("hotel_id", hotel_id);
+                             }
                              startActivity(intent);
                          }
                      });

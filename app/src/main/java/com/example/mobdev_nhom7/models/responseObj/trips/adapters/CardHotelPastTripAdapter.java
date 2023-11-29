@@ -1,6 +1,7 @@
 package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
 import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,10 +30,6 @@ import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
 
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,13 +73,11 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 context.startActivity(intent);
             }
         });
-
-
         return new ListHotelViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListHotelViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
@@ -90,27 +85,26 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String amount = data.get(position).getAmount();
         String comment;
 
-//        if (data.get(position).getComment()!= null ) {
-//            Log.d("comment", data.get(position).getComment());
-//            comment = data.get(position).getComment();
-//        }
-//        else {
-//            holder.editTextComment.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                }
-//            });
-//        }
+        if (data.get(position).getComment()!= null ) {
+            Log.d("comment", data.get(position).getComment());
+            comment = data.get(position).getComment();
+            holder.editTextComment.setText(comment);
+        }
+        else {
 
-        DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
-        customSymbol.setCurrencySymbol("VND");
-        DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
+        }
+        holder.editTextComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendID.go(data.get(position).getHotel_id(), null,null);
+            }
+        });
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
+        holder.textAmount.setText(amount + "VND");
         Log.d("reservationid", data.get(position).getReservationID());
+        Log.d("hotelid", data.get(position).getHotel_id());
 
     }
 
@@ -123,12 +117,14 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
+        private final EditText editTextComment;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName2);
             imagesHotel = itemView.findViewById(R.id.imageHotel2);
             textAmount = itemView.findViewById(R.id.textAmount2);
             textDate = itemView.findViewById(R.id.textDate2);
+            editTextComment = itemView.findViewById(R.id.edit_text_comment);
         }
     }
     private static String parseDate(String start_date, String end_date) {

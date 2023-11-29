@@ -1,7 +1,9 @@
 package com.example.mobdev_nhom7.activity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +40,9 @@ import retrofit2.Response;
 
 public class ViewHotel extends Activity {
     private APIService apiService = APIUtils.getUserService();
+    SharedPreferences preferences;
+    String user_id;
+    String hotel_id;
     RecyclerView commentRecyclerView;
     List<CommentItem> commentItems;
     List<RoomItem> roomItems;
@@ -83,8 +88,6 @@ public class ViewHotel extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_hotel);
-//        View price_button1 = findViewById(R.id.button1);
-//        TextView room1 = (TextView) price_button1.findViewById(R.id.room);
         commentItems = new ArrayList<>();
         hotelItem = new HotelItem();
         roomItems = new ArrayList<>();
@@ -114,22 +117,22 @@ public class ViewHotel extends Activity {
         priceLayout.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         priceLayout.setAdapter(roomAdapter);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        user_id = preferences.getString("user_id", "no user_id");
 
-//        room1.setText("Doubles Room");
-        String hotelID;
         Bundle extras = this.getIntent().getExtras();
         if(extras == null) {
-            Log.d("extra", "abc");
-            hotelID= null;
+            Log.d("extra", "null");
+            hotel_id= "obpw61GK8OYRO11TsdB7";
             Log.d("hotel_id", "null");
 
         } else {
             for (String key : extras.keySet()) {
                 Log.e("extras", key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
             }
-            if ( extras.getString("hotel_id") != null) {
-                hotelID = extras.getString("hotel_id");
-                Log.d("hotel_id", hotelID);
+            if (extras.getString("hotel_id") != null) {
+                hotel_id = extras.getString("hotel_id");
+                Log.d("hotel_id View Hotel", hotel_id);
             }
         }
     }
@@ -138,7 +141,7 @@ public class ViewHotel extends Activity {
     protected void onResume() {
         super.onResume();
         //fake-data
-        getHotelInRange("MARDKwwXTzoC3ohydrRS", "2023-11-20", "2023-11-21");
+        getHotelInRange(hotel_id, "2023-11-28", "2023-11-30");
     }
     private void getAllComment(String hotel_id) {
         Call<List<CommentItem>> call = apiService.getAllFeedback(hotel_id);
@@ -196,7 +199,7 @@ public class ViewHotel extends Activity {
                     roomItem.setPricePerNight(entry.getValue().getPricePerNight());
                     roomItem.setQuantity(entry.getValue().getQuantity());
                     roomItems.add(roomItem);
-                    Log.d("entry", entry.getKey()+  " + "+  entry.getValue().getCapacity());
+                    Log.d("entry", entry.getKey() + " + " + entry.getValue().getCapacity());
                 }
                 roomAdapter.notifyDataSetChanged();
 
@@ -217,44 +220,38 @@ public class ViewHotel extends Activity {
                 judgeTextView.setText(AmountConverter.calculate(Double.parseDouble(hotelItem.getRating().getValue().toString())));
                 if (hotelItem.getAmentinies().isPet()) {
                     petImageView.setImageResource(R.drawable.pet);
-                }
-                else {
+                } else {
                     petImageView.setImageResource(R.drawable.no_animals);
                 }
                 if (hotelItem.getAmentinies().isPool()) {
                     poolImageView.setImageResource(R.drawable.pool);
-                }
-                else {
+                } else {
                     poolImageView.setImageResource(R.drawable.no_swimming);
                 }
                 if (hotelItem.getAmentinies().isTelephone()) {
                     telephoneImageView.setImageResource(R.drawable.telephone);
-                }
-                else {
+                } else {
                     telephoneImageView.setImageResource(R.drawable.no_call);
                 }
                 if (hotelItem.getAmentinies().isWifiInLobby()) {
                     wifiInLobbyImageView.setImageResource(R.drawable.wifi);
-                }
-                else {
+                } else {
                     wifiInLobbyImageView.setImageResource(R.drawable.no_wifi);
                 }
                 if (hotelItem.getAmentinies().isWifiInRoom()) {
                     wifiInRoomImageView.setImageResource(R.drawable.wifi);
-                }
-                else {
+                } else {
                     wifiInRoomImageView.setImageResource(R.drawable.no_wifi);
                 }
                 contactTitle.setText(hotelItem.getContact().toString());
 
             }
+
             @Override
             public void onFailure(Call<HotelItem> call, Throwable t) {
                 Log.d("call", t.toString());
                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 }

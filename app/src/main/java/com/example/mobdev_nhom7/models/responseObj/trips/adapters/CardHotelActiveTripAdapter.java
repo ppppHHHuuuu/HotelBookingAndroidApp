@@ -2,7 +2,9 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -30,23 +36,48 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
-    Context context;
-    private List<ActiveHotelItem> data;
+import kotlinx.coroutines.channels.Send;
 
+public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
+    APIService apiService = APIUtils.getUserService();
+    Context context;
+    SendID sendID;
+    private SharedPreferences preferences;
+    private SharedPreferences preferencesHotel;
+    SharedPreferences.Editor editor;
+    String user_id;
+
+    private List<ActiveHotelItem> data;
     public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
-
     public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data) {
-        this.data = data;
+        this.data= data;
         this.context = context;
+        this.sendID = sendID;
     }
+    private CardHotelActiveTripAdapter.OnItemClickListener onItemClickListener;
+    Intent intent;
+    // Existing code...
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(CardHotelActiveTripAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        preferencesHotel = context.getSharedPreferences("hotel",Context.MODE_PRIVATE);
+        editor = preferencesHotel.edit();
+        preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        user_id = preferences.getString("user_id", "no user_id");
+        intent = new Intent(context.getApplicationContext(), ViewHotel.class);
         LayoutInflater layoutInflater = LayoutInflater.from(context);
+        intent.putExtra("user_id", user_id);
+
         View view = layoutInflater.inflate(R.layout.card_hotel_trip, parent, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +105,10 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
+        holder.textAmount.setText(amount + ".000VND");
+        holder.itemView.setOnClickListener(v -> {
+            sendID.go(data.get(position).getHotel_id(), null, null);
+        });
     }
 
     @Override

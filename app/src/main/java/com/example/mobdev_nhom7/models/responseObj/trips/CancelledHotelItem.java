@@ -4,6 +4,28 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class CancelledHotelItem {
+    public String getReservation_id() {
+        return reservation_id;
+    }
+
+    public void setReservation_id(String reservation_id) {
+        this.reservation_id = reservation_id;
+    }
+
+    public String getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(String hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
+    @SerializedName("reservation_id")
+    @Expose
+    private String reservation_id;
+    @SerializedName("hotel_id")
+    @Expose
+    private String hotel_id;
     @SerializedName("user_id")
     @Expose
     private String user_id;

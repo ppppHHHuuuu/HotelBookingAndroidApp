@@ -26,6 +26,7 @@ import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.DateTimeUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class TripsActiveFragment extends Fragment {
     CardHotelActiveTripAdapter cardHotelActiveTripAdapter;
     ArrayList<ActiveHotelItem> hotelItemList;
     RecyclerView recyclerView;
-    CollapsingToolbarLayout appBarLayout;
 
     public TripsActiveFragment() {
         // Required empty public constructor
@@ -57,7 +57,14 @@ public class TripsActiveFragment extends Fragment {
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         hotelItemList = new ArrayList<>();
-        cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(requireContext(), hotelItemList);
+        cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(requireContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
@@ -106,4 +113,6 @@ public class TripsActiveFragment extends Fragment {
             }
         });
     }
+
+
 }

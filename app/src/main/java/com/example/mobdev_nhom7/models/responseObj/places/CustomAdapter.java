@@ -62,12 +62,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         PlaceItem placeItem = filteredData.get(position);
         if (Objects.equals(placeItem.getType(), PlaceType.CITY.getDisplayName())) {
             holder.imageType.setBackgroundResource(R.drawable.location_icon);
-            holder.itemView.setOnClickListener(v -> sendID.go(null, placeItem.getCity_id()));
+            holder.itemView.setOnClickListener(v -> sendID.go(null, placeItem.getCity_id(), null));
 
         }
         else if (Objects.equals(placeItem.getType(), PlaceType.HOTEL.getDisplayName())) {
             holder.imageType.setBackgroundResource(R.drawable.hotel_icon);
-            holder.itemView.setOnClickListener(v -> sendID.go(placeItem.getHotel_id(), null));
+            holder.itemView.setOnClickListener(v -> sendID.go(placeItem.getHotel_id(), null, null));
         }
         holder.country.setText(placeItem.getCountry());
         holder.place.setText(placeItem.getName());

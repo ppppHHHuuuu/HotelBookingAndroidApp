@@ -59,9 +59,10 @@ public class TripsPastFragment extends Fragment {
         hotelItemList = new ArrayList<>();
         cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList, new SendID() {
             @Override
-            public void go(String reservation_id, String id2) {
+            public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-                intent.putExtra("reservation_id", reservation_id);
+//                intent.putExtra("reservation_id", reservation_id);
+                intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
         });

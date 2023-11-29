@@ -10,6 +10,18 @@ public class PastHotelItem {
     @SerializedName("id")
     @Expose
     private String reservationID;
+
+    public String getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(String hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
+    @SerializedName("hotel_id")
+    @Expose
+    private String hotel_id;
     public String getReservationID() {
         return reservationID;
     }
