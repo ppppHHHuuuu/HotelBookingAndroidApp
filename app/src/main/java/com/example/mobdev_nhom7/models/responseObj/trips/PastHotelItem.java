@@ -1,5 +1,7 @@
 package com.example.mobdev_nhom7.models.responseObj.trips;
 
+import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
+import com.example.mobdev_nhom7.models.responseObj.comment.FeedbackItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -30,7 +32,7 @@ public class PastHotelItem {
         this.reservationID = reservationID;
     }
 
-    @SerializedName("image_url")
+    @SerializedName("hotel_imageURL")
     @Expose
     private String image_url;
     @SerializedName("hotel_name")
@@ -45,6 +47,29 @@ public class PastHotelItem {
     @SerializedName("comment")
     @Expose
     private String comment;
+    @SerializedName("feedback")
+    @Expose
+    private FeedbackItem feedbackItem;
+
+
+
+    private Boolean reviewed;
+    public Boolean getReviewed() {
+        return reviewed;
+    }
+
+    public void setReviewed(Boolean reviewed) {
+        this.reviewed = reviewed;
+    }
+
+    public FeedbackItem getFeedbackItem() {
+        return feedbackItem;
+    }
+
+    public void setFeedbackItem(FeedbackItem feedbackItem) {
+        this.feedbackItem = feedbackItem;
+    }
+
 
     public String getAmount() {
         return amount;

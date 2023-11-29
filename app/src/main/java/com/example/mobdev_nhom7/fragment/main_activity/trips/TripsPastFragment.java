@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,8 +40,6 @@ public class TripsPastFragment extends Fragment {
     RecyclerView recyclerView;
     CardHotelPastTripAdapter cardHotelPastTripAdapter;
     ArrayList<PastHotelItem> hotelItemList;
-
-
     public TripsPastFragment() {
         // Required empty public constructor
     }
@@ -61,24 +60,24 @@ public class TripsPastFragment extends Fragment {
             @Override
             public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-//                intent.putExtra("reservation_id", reservation_id);
                 intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
         });
+//        cardHotelPastTripAdapter.setOnReviewSubmittedListener(this);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setAdapter(cardHotelPastTripAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        getUserNotRatedPastHotel();
+        getUserRatedPastHotel();
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getUserNotRatedPastHotel();
-    }
 
-    //TODO CALL FROM BE
+    }
     private void getUserRatedPastHotel() {
         //fake-data
 
@@ -110,7 +109,6 @@ public class TripsPastFragment extends Fragment {
         });
     }
     private void getUserNotRatedPastHotel() {
-        //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
 
@@ -129,9 +127,7 @@ public class TripsPastFragment extends Fragment {
                     return;
                 }
 
-                hotelItemList.clear();
                 hotelItemList.addAll(response.body());
-                getUserRatedPastHotel();
                 cardHotelPastTripAdapter.notifyDataSetChanged();
             }
 
@@ -142,30 +138,24 @@ public class TripsPastFragment extends Fragment {
             }
         });
     }
-    private void postUserCommentHotel(String comment, RatingItem rating) {
-        String reservationID = preferences.getString("reservation_id", "empty reservation_id");
-        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(reservationID, rating, comment);
-        String requestUrl = call.request().url().toString();
-        Log.d("Request URL", requestUrl);
-        call.enqueue(new Callback<DefaultResponseObj>() {
-            @Override
-            public void onResponse(Call<DefaultResponseObj> call, Response<DefaultResponseObj> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("response error", String.valueOf(response.code()));
-                    return;
-                }
-                if (response.body() == null) {
-                    Log.d("response error", "Empty response");
-                    return;
-                }
-            }
 
-            @Override
-            public void onFailure(Call<DefaultResponseObj> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("loadHotel",t.toString());
-            }
-        });
-    }
-
+//    @Override
+//    public void onReviewSubmitted() {
+//        Log.d("onReviewSubmitted", "Called");
+//        getUserRatedPastHotel(new OnUserRatedPastHotelCompleted() {
+//            @Override
+//            public void onCompleted() {
+//                getUserRatedPastHotel();
+//            }
+//        });
+//    }
+//    interface OnUserRatedPastHotelCompleted {
+//        void onCompleted();
+//    }
+//    private void getUserRatedPastHotel(OnUserRatedPastHotelCompleted callback) {
+//        getUserNotRatedPastHotel();
+//        if (callback != null) {
+//            callback.onCompleted();
+//        }
+//    }
 }

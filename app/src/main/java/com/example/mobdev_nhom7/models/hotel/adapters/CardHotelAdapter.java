@@ -114,8 +114,6 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
                     holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon_checked);
                 }
                 holder.is_loved = !holder.is_loved;
-
-
             });
 
         }

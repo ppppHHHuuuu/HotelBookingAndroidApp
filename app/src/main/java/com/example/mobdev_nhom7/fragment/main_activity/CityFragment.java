@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
@@ -40,7 +41,7 @@ public class CityFragment extends Fragment {
 
     // Dump Attribute, for demo only
     private Button cityDetail;
-    private EditText citySearchBar;
+    private TextView citySearchBar;
     private List<CityItem> cityItems;
 
     public CityFragment() {
@@ -63,7 +64,6 @@ public class CityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getCityName();
         View view =  inflater.inflate(R.layout.fragment_city, container, false);
         cityDetail = view.findViewById(R.id.button4);
         citySearchBar = view.findViewById(R.id.searchbar);
@@ -78,32 +78,13 @@ public class CityFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 saveEditTextContent();
-                getSuggestedDestinationActivity();
+                getSuggestedCityActivity();
             }
         });
 
         return view;
     }
 
-    public void getCityName() {
-        Call<List<CityItem>> callGetAlert = apiService.getAllCity();
-        callGetAlert.enqueue(new Callback<List<CityItem>>() {
-            @Override
-            public void onResponse(Call<List<CityItem>> call, Response<List<CityItem>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Handle the first CityDetail in the list
-                    cityItems = response.body();
-                } else {
-                    Log.d("Call get city error", "Empty or unsuccessful response");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<CityItem>> call, Throwable t) {
-                Log.d("Call get city error", t.getMessage());
-            }
-        });
-    }
 
     private void saveEditTextContent() {
         String editTextContent = citySearchBar.getText().toString();
@@ -114,8 +95,8 @@ public class CityFragment extends Fragment {
         editor.putString("destination", editTextContent);
         editor.apply();
     }
-    public void getSuggestedDestinationActivity() {
-        Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
+    public void getSuggestedCityActivity() {
+        Intent intent = new Intent(getContext(), SuggestedCityActivity.class);
         startActivity(intent);
     }
 }

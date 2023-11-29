@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdev_nhom7.activity.MainActivity;
 import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.places.CustomAdapter;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.PlaceType;
 
 import androidx.annotation.NonNull;
@@ -38,6 +41,8 @@ import com.example.mobdev_nhom7.utils.SendID;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,6 +56,8 @@ public class SuggestedDestinationActivity extends Activity {
     private final APIService apiService = APIUtils.getUserService();
     SendID sendID;
     RecyclerView recyclerView;
+    SharedPreferences preferencesEdittext;
+    SharedPreferences preferences;
 
     NestedScrollView nestedScrollView;
     EditText editPreferredDest;
@@ -60,17 +67,20 @@ public class SuggestedDestinationActivity extends Activity {
     List<String> data = new ArrayList<>();
     List<PlaceItem> placeItemList;
     List<CityItem> cityItems;
+    List<SearchHotelItem> suggestHotelItems;
     List<HotelItem> hotelItems;
 
     CityItemCardAdapter cityItemCardAdapter;
+    SearchHotelItem searchHotelItem;
     CustomAdapter adapter;
+    String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggested_destination);
         hotelItems = new ArrayList<>();
         cityItems = new ArrayList<>();
-
         imageBackButton = findViewById(R.id.imageBackButton);
         suggestedPlace = findViewById(R.id.suggestedPlace);
         editPreferredDest = findViewById(R.id.editPreferredDest);
@@ -87,8 +97,11 @@ public class SuggestedDestinationActivity extends Activity {
         imageBackButton.setOnClickListener(v -> {
             onBackPressed();
         });
-        recyclerView.setAdapter(cityItemCardAdapter);
 
+        recyclerView.setAdapter(cityItemCardAdapter);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferencesEdittext = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        user_id = preferences.getString("user_id", "empty user_id");
         getSuggestDest();
 
         getAllHotel(() -> {
@@ -96,16 +109,14 @@ public class SuggestedDestinationActivity extends Activity {
                 adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
                     @Override
                     public void go(String hotel_id, String city_id, String reservation_id) {
-                        if (hotel_id != null && !hotel_id.equals("")) {
-                            Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
-                            intent.putExtra("hotel_id", hotel_id);
-                            startActivity(intent);
-                        }
-                        else if (city_id!= null && !city_id.equals("")) {
-                            Intent intent = new Intent(getApplicationContext(), ViewCity.class);
-                            intent.putExtra("city_id", city_id);
-                            startActivity(intent);
-                        }
+                        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("destination", editPreferredDest.getText().toString());
+                        editor.putString("destinationID", city_id);
+                        editor.putBoolean("search", true);
+                        editor.apply();
+                        onBackPressed();
+                        Log.d("Share", "in getAll" );
 
                     }
                 });
@@ -117,11 +128,9 @@ public class SuggestedDestinationActivity extends Activity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
                 //this check with the editable
@@ -145,37 +154,52 @@ public class SuggestedDestinationActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //TODO
-                finish();
+                Log.d("Share", "in Back Button" );
+                String editTextContent = editPreferredDest.getText().toString();
+                SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("destination", editTextContent);
+                editor.putBoolean("search", false);
+                editor.apply();
+                onBackPressed();
             }
         });
     }
+
     public void getSuggestDest() {
-         Call<List<CityItem>> call = apiService.getSuggestedCity();
-         call.enqueue(new Callback<List<CityItem>>() {
+         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
+         call.enqueue(new Callback<List<SearchHotelItem>>() {
              @Override
-             public void onResponse(@NonNull Call<List<CityItem>> call, @NonNull Response<List<CityItem>> response) {
+             public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
                  if (response.isSuccessful()) {
                      if  (response.body() == null) {
                          Log.d("Content", "Empty content");
                          Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
                      }
-                     cityItems = (ArrayList<CityItem>) response.body();
+                     suggestHotelItems = (ArrayList<SearchHotelItem>) response.body();
                      for (int i = 0; i < response.body().size(); i++ ) {
-                         Log.d("cityItems", response.body().get(i).getCityName());
+                         Log.d("hotelItems", suggestHotelItems.get(i).getName());
                      }
                      cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
+                         String editTextContent = "";
                          @Override
                          public void go(String hotel_id, String city_id, String reservation_id) {
-                             Intent intent;
-                             if (hotel_id == null) {
-                                 intent = new Intent(getApplicationContext(), ViewCity.class);
-                                 intent.putExtra("city_id", city_id);
+                             for (int i = 0; i < cityItems.size(); i++) {
+                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
+                                     editTextContent =cityItems.get(i).getCityName();
+                                 }
                              }
-                             else {
-                                 intent = new Intent(getApplicationContext(), ViewHotel.class);
-                                 intent.putExtra("hotel_id", hotel_id);
+                             if (Objects.equals(editTextContent, "")) {
+                                 editTextContent = "No CITY";
                              }
-                             startActivity(intent);
+                             SharedPreferences.Editor editor = preferencesEdittext.edit();
+                             editor.putString("destination", editTextContent);
+                             editor.putString("destinationID", city_id);
+                             editor.putBoolean("search", true);
+                             editor.apply();
+                             onBackPressed();
+                             Log.d("Share", "in suggest_dest" );
+
                          }
                      });
                      recyclerView.setAdapter(cityItemCardAdapter);
@@ -183,12 +207,74 @@ public class SuggestedDestinationActivity extends Activity {
              }
 
              @Override
-             public void onFailure(Call<List<CityItem>> call, Throwable t) {
+             public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
                  Log.d("call", t.toString());
                  Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
              }
          });
-     }
+    }
+//    public void getSuggestDest() {
+//         Call<List<CityItem>> call = apiService.getSuggestedCity();
+//         call.enqueue(new Callback<List<CityItem>>() {
+//             @Override
+//             public void onResponse(@NonNull Call<List<CityItem>> call, @NonNull Response<List<CityItem>> response) {
+//                 if (response.isSuccessful()) {
+//                     if  (response.body() == null) {
+//                         Log.d("Content", "Empty content");
+//                         Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
+//                     }
+//                     cityItems = (ArrayList<CityItem>) response.body();
+//                     for (int i = 0; i < response.body().size(); i++ ) {
+//                         Log.d("cityItems", response.body().get(i).getCityName());
+//                     }
+//                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
+//                         String editTextContent = "";
+//                         @Override
+//                         public void go(String hotel_id, String city_id, String reservation_id) {
+//                             for (int i = 0; i < cityItems.size(); i++) {
+//                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
+//                                     editTextContent =cityItems.get(i).getCityName();
+//                                 }
+//                             }
+//                             if (Objects.equals(editTextContent, "")) {
+//                                 editTextContent = "No CITY";
+//                             }
+//                             SharedPreferences.Editor editor = preferencesEdittext.edit();
+//                             editor.putString("destination", editTextContent);
+//                             editor.putString("destinationID", city_id);
+//                             editor.putBoolean("search", true);
+//                             editor.apply();
+//                             onBackPressed();
+//                             Log.d("Share", "in suggest_dest" );
+//
+//                         }
+//                     });
+//                     recyclerView.setAdapter(cityItemCardAdapter);
+//                 }
+//             }
+//
+//             @Override
+//             public void onFailure(Call<List<CityItem>> call, Throwable t) {
+//                 Log.d("call", t.toString());
+//                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+//             }
+//         });
+//     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Map<String, ?> allPreferences = preferencesEdittext.getAll();
+
+        for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            Log.d("SharedPreferences Suggest", "Key: " + key + ", Value: " + value);
+        }
+        String savedDestination = preferencesEdittext.getString("destination", "");
+        editPreferredDest.setText(savedDestination);
+    }
+
     private void getAllCity(DataLoadedCallback callback) {
         Call<List<CityItem>> call = apiService.getAllCity();
         String requestUrl = call.request().url().toString();

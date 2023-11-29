@@ -148,7 +148,8 @@ public class StaysFragment extends Fragment {
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-        destination = desInput.getText().toString();
+        //TODO: ID OF HANOI
+        destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
         startDate = dateFullFormat.format(today);
         endDate = dateFullFormat.format(tomorrow);
         roomNumber = "2";
@@ -176,18 +177,21 @@ public class StaysFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (count > 1) {
-            Map<String, ?> allPreferences = preferencesEdittext.getAll();
+        Map<String, ?> allPreferences = preferencesEdittext.getAll();
 
-            for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
-                Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
-            }
-            String savedDestination = preferencesEdittext.getString("destination", "");
-            desInput.setText(savedDestination);
+        for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            Log.d("SharedPreferences Stay", "Key: " + key + ", Value: " + value);
         }
-        count++;
+        String savedDestination = preferencesEdittext.getString("destination", "Ha Noi");
+        String savedDestinationID = preferencesEdittext.getString("destinationID", "Z6YyrwkuyVbsyaLxOE7E");
+        desInput.setText(savedDestination);
+        Boolean isSearch = preferencesEdittext.getBoolean("search", false);
+        if (isSearch) {
+            Log.d("destinationID", savedDestinationID);
+            searchHotels(user_id, null, savedDestinationID,startDate, endDate, roomNumber, pplNumber);
+        }
     }
     private void saveEditTextContent() {
         String editTextContent = desInput.getText().toString();
@@ -203,8 +207,6 @@ public class StaysFragment extends Fragment {
         startActivity(intent);
     }
     public void openRoomOptionsDialog() {
-
-
         final Dialog dialog = new Dialog(this.getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.room_option_pop_up);

@@ -88,7 +88,6 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         return new ListHotelViewHolder(view);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
         try {
@@ -107,9 +106,8 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
 
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-        holder.textScore.setText(formattedScore);
-        holder.textScore.setBackgroundResource(setScoreColor(score));
-        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
+        holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+        holder.textAmount.setText(data.get(position).getAmount() + ".000VND");
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
         Log.d("hotel_id", data.get(position).getHotelId());
