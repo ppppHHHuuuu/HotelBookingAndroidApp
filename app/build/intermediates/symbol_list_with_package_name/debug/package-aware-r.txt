@@ -3425,6 +3425,8 @@ id expand_activities_button
 id expanded_menu
 id fade
 id favouriteIcon
+id favouriteIcon2
+id favouriteIconTrip
 id favourites
 id fill
 id fill_horizontal
@@ -3503,6 +3505,7 @@ id linearLayout2
 id linearLayout4
 id listMode
 id list_item
+id loadingProgressBar
 id login_button
 id lower_case_characters
 id m3_side_sheet
@@ -3792,6 +3795,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon

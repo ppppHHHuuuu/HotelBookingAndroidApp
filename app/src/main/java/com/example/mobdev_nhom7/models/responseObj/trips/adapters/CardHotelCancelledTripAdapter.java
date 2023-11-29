@@ -18,6 +18,7 @@ import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,9 +33,11 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
     public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data) {
+    SendID sendID;
+    public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data, SendID sendID) {
         this.context = context;
         this.data= data;
+        this.sendID = sendID;
     }
 
     @NonNull
@@ -65,7 +68,9 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
         holder.textAmount.setText(amount + ".000VND");
-
+        holder.itemView.setOnClickListener(v -> {
+            sendID.go(data.get(position).getHotel_id(), null, null);
+        });
     }
 
     @Override

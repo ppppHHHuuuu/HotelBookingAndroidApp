@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -58,7 +59,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListHotelViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
@@ -72,18 +73,20 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
             holder.editTextComment.setText(comment);
         }
         else {
-            holder.editTextComment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
         }
+        holder.editTextComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendID.go(data.get(position).getHotel_id(), null,null);
+            }
+        });
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
         holder.textAmount.setText(amount + "VND");
         Log.d("reservationid", data.get(position).getReservationID());
+        Log.d("hotelid", data.get(position).getHotel_id());
 
     }
 

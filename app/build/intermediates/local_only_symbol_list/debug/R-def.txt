@@ -170,6 +170,8 @@ id email_edit_image
 id email_edit_text
 id email_text
 id favouriteIcon
+id favouriteIcon2
+id favouriteIconTrip
 id favourites
 id firstRow
 id forgot_password_text
@@ -189,6 +191,7 @@ id layoutIntroduce
 id linearLayout
 id linearLayout2
 id linearLayout4
+id loadingProgressBar
 id login_button
 id lower_case_characters
 id moneyProgressBar
@@ -270,6 +273,7 @@ id textLocation
 id textNumberofJudges
 id textRate
 id textScore
+id textView
 id title
 id transportRV
 id transportTitle

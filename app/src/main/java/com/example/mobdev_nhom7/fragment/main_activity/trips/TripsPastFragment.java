@@ -59,9 +59,10 @@ public class TripsPastFragment extends Fragment {
         hotelItemList = new ArrayList<>();
         cardHotelPastTripAdapter = new CardHotelPastTripAdapter(getContext(), hotelItemList, new SendID() {
             @Override
-            public void go(String reservation_id, String id2) {
+            public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-                intent.putExtra("reservation_id", reservation_id);
+//                intent.putExtra("reservation_id", reservation_id);
+                intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
         });
@@ -83,9 +84,8 @@ public class TripsPastFragment extends Fragment {
 
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
 
-        Call<List<PastHotelItem>> call = apiService.getRatedReservation(dummyUserID);
+        Call<List<PastHotelItem>> call = apiService.getRatedReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<PastHotelItem>>() {
@@ -113,9 +113,8 @@ public class TripsPastFragment extends Fragment {
         //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
 
-        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(dummyUserID);
+        Call<List<PastHotelItem>> call = apiService.getNotRatedReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<PastHotelItem>>() {

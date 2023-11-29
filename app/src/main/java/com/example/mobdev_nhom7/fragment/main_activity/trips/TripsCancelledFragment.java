@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,10 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelCancelledTripAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +54,14 @@ public class TripsCancelledFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_trips_active, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        cardHotelCancelledTripAdapter = new CardHotelCancelledTripAdapter(getContext(), hotelItemList);
+        cardHotelCancelledTripAdapter = new CardHotelCancelledTripAdapter(getContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(cardHotelCancelledTripAdapter);
@@ -67,11 +77,10 @@ public class TripsCancelledFragment extends Fragment {
     }
 
     private void getUserCancelHotel() {
-        String dummyUserID = "1";
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
 
-        Call<List<CancelledHotelItem>> call = apiService.getCancelReservation(dummyUserID);
+        Call<List<CancelledHotelItem>> call = apiService.getCancelReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<CancelledHotelItem>>() {

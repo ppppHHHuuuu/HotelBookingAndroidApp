@@ -88,6 +88,10 @@
         "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\components\\cards\\layout\\card_hotel_2.xml"
     },
     {
+        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_background_with_border.xml.flat",
+        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\background_with_border.xml"
+    },
+    {
         "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_unhide_eye.png.flat",
         "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\unhide_eye.png"
     },
@@ -192,12 +196,12 @@
         "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\sign-up\\layout\\fragment_trips_past.xml"
     },
     {
-        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_animals.png.flat",
-        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_animals.png"
-    },
-    {
         "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_button_price.xml.flat",
         "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\layouts\\login\\layout\\button_price.xml"
+    },
+    {
+        "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_no_animals.png.flat",
+        "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\no_animals.png"
     },
     {
         "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\layout_auto_complete_custom.xml.flat",
@@ -326,10 +330,6 @@
     {
         "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\drawable_heart_icon.xml.flat",
         "source": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-main-38:\\drawable\\heart_icon.xml"
-    },
-    {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_background_with_border.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/background_with_border.xml"
     },
     {
         "merged": "C:\\Users\\doanv\\.gradle\\daemon\\8.0\\com.example.mobdev_nhom7.app-merged_res-36:\\font_poppins_bold.ttf.flat",

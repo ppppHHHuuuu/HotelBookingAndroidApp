@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
@@ -24,6 +26,7 @@ import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiv
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.DateTimeUtil;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,28 +57,29 @@ public class TripsActiveFragment extends Fragment {
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         hotelItemList = new ArrayList<>();
-        cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(requireContext(), hotelItemList);
+        cardHotelActiveTripAdapter = new CardHotelActiveTripAdapter(requireContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
 
         return v;
     }
-    //TODO CALL FROM BE
-
-
     @Override
     public void onResume() {
         super.onResume();
         getUserActiveHotel();
     }
-
     private void getUserActiveHotel() {
-        //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
-        String dummyUserID = "1";
-        Call<List<ActiveHotelItem>> call = apiService.getActiveReservation(dummyUserID);
+        Call<List<ActiveHotelItem>> call = apiService.getActiveReservation(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<ActiveHotelItem>>() {
@@ -106,6 +110,4 @@ public class TripsActiveFragment extends Fragment {
             }
         });
     }
-
-
 }

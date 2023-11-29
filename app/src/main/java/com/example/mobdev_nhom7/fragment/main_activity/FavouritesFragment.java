@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,11 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +53,17 @@ public class FavouritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_favourites, container, false);
 
-        cardHotelAdapter = new CardHotelAdapter(requireContext(), hotelItemList);
+        cardHotelAdapter = new CardHotelAdapter(requireContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                startActivity(intent);
+            }
+        });
         cardHotelAdapter.setOnItemClickListener(position -> {
             SearchHotelItem deletedItem = cardHotelAdapter.getData(position);
+            Log.d("hotel_id when delete", deletedItem.getHotelId());
             deleteFavouriteHotel(user_id, deletedItem.getHotelId(), position);
         });
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
@@ -98,8 +109,6 @@ public class FavouritesFragment extends Fragment {
         });
     }
     public void deleteFavouriteHotel(String user_id, String hotel_id, int position) {
-        //fake data
-//        String user_id = preferences.getString("user_id", "empty user_id");
         Call<String> call = apiService.deleteFavouriteHotel(user_id, hotel_id);
         String requestUrl = call.request().url().toString();
 
@@ -109,6 +118,7 @@ public class FavouritesFragment extends Fragment {
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
 
                 if (response.isSuccessful()) {
+                    Log.d("response", response.toString());
                     hotelItemList.remove(position);
                     cardHotelAdapter.notifyDataSetChanged();
                 }
