@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.remote;
 
+import com.example.mobdev_nhom7.models.bookingRequest.BookingRequest;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
@@ -43,15 +44,6 @@ public interface APIService {
                                     @Field("email") String email,
                                     @Field("password") String password);
 
-
-
-    @POST("booking")
-    @FormUrlEncoded
-    Call<Object> booking(@Field("user_id") String user_id,
-                         @Field("hotel_id") String hotel_id,
-                         @Field("rooms") Map<String, Integer> room_number,
-                         @Field("start_date") String start_date,
-                         @Field("end_date") String end_date);
     @GET("hotel/{id}")
     Call <com.example.mobdev_nhom7.models.responseObj.hotel.HotelItem> getHotelInRange(@Path("id") String id,
                                                                                        @Query("start_date") String start_date,
@@ -116,4 +108,10 @@ public interface APIService {
 
     @PUT("/reservation/cancel/{id}")
     Call <DefaultResponseObj> cancelUserComment(@Path("id") String id );
+
+    @POST("/reservation")
+    Call<Object> booking(
+            @Body BookingRequest request
+    );
+
 }

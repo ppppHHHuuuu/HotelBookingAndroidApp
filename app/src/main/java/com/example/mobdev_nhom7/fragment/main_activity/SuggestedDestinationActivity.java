@@ -39,6 +39,7 @@ import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -117,9 +118,16 @@ public class SuggestedDestinationActivity extends Activity {
                         editor.apply();
                         onBackPressed();
                         Log.d("Share", "in getAll" );
-
+                        for (int i = 0; i < placeItemList.size(); i++) {
+                            if (Objects.equals(placeItemList.get(i).getType(), PlaceType.HOTEL.getDisplayName())) {
+                                Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
+                                intent.putExtra("hotel_id", hotel_id);
+                                startActivity(intent);
+                            }
+                        }
                     }
                 });
+
                 Log.d("PlaceItem", String.valueOf(placeItemList.size()));
             });
         });

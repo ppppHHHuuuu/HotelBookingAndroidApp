@@ -128,6 +128,7 @@ id activitiesTitle
 id address
 id alertContent
 id alertTitle
+id alert_content
 id appBarLayout
 id back_button
 id bookButton
@@ -159,6 +160,8 @@ id cityName
 id cityName2
 id cityName3
 id cityName4
+id city_country
+id city_name
 id cleanlinessProgressBar
 id cleanlinessRate
 id cleanlinessSeekBar

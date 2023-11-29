@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,9 +117,18 @@ public class SuggestedCityActivity extends AppCompatActivity {
                 @Override
                 public void go(String hotel_id, String city_id, String reservation_id) {
                     if (city_id!= null && !city_id.equals("")) {
-                        Intent intent = new Intent(getApplicationContext(), ViewCity.class);
-                        intent.putExtra("city_id", city_id);
-                        startActivity(intent);
+                        Intent intent;
+                        intent = new Intent(getApplicationContext(), ViewCity.class);
+                        for (int i = 0; i < cityItems.size(); i++) {
+                            if (cityItems.get(i).getCityId() == city_id) {
+                                intent.putExtra("city_name", cityItems.get(i).getCityName());
+                                break;
+                            }
+                        }
+                        if (hotel_id == null) {
+                            intent.putExtra("city_id", city_id);
+                            startActivity(intent);
+                        }
                     }
                 }
             });
@@ -192,14 +202,20 @@ public class SuggestedCityActivity extends AppCompatActivity {
                         Log.d("cityItems", response.body().get(i).getCityName());
                     }
                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
-                        String editTextContent = editPreferredDest.getText().toString();
-
 
                         @Override
                         public void go(String hotel_id, String city_id, String reservation_id) {
                              Intent intent;
+                             intent = new Intent(getApplicationContext(), ViewCity.class);
+                             for (int i = 0; i < cityItems.size(); i++) {
+                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
+                                     intent.putExtra("city_country", cityItems.get(i).getCountry());
+                                     intent.putExtra("city_name", cityItems.get(i).getCityName());
+                                     break;
+                                 }
+                             }
+
                              if (hotel_id == null) {
-                                 intent = new Intent(getApplicationContext(), ViewCity.class);
                                  intent.putExtra("city_id", city_id);
                                  startActivity(intent);
                              }
