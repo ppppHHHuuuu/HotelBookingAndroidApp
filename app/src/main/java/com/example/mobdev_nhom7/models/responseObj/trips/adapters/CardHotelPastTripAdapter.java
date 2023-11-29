@@ -1,14 +1,11 @@
 package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Rating;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,16 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
-import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
-import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
-import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
-import com.example.mobdev_nhom7.remote.APIService;
-import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -48,18 +38,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPastTripAdapter.ListHotelViewHolder> {
-    APIService apiService = APIUtils.getUserService();
     Context context;
     private List<PastHotelItem> data;
     SendID sendID;
     LinearLayout writeReviewBtn;
-    String user_id;
-    SharedPreferences preferences;
+
+
 
     public PastHotelItem getData(int x) {
         return data.get(x);
@@ -75,9 +60,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_hotel_trip_with_comment, parent, false);
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        user_id = preferences.getString("user_id", "empty user_id");
-
         writeReviewBtn = view.findViewById(R.id.review_button);
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +75,9 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 context.startActivity(intent);
             }
         });
-
-
         return new ListHotelViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String start_date = data.get(position).getStartDate();
@@ -105,6 +86,14 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
         String comment;
+
+        if (data.get(position).getComment()!= null ) {
+            Log.d("comment", data.get(position).getComment());
+            comment = data.get(position).getComment();
+        }
+        else {
+
+        }
 
         DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
         customSymbol.setCurrencySymbol("VND");
@@ -115,9 +104,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         Log.d("reservationid", data.get(position).getReservationID());
         Log.d("hotelid", data.get(position).getHotel_id());
-        holder.itemView.setOnClickListener(v -> {
-            sendID.go(data.get(position).getHotel_id(), null, data.get(position).getReservationID());
-        });
 
     }
 
@@ -271,12 +257,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 float reviewComfort= (float) comfortSeekBar.getProgress()/10;
                 String reviewText = reviewEditText.getText().toString();
                 sendReview(reviewValue, reviewClean, reviewBuilding, reviewComfort, reviewText);
-                RatingItem ratingItem = new RatingItem();
-                ratingItem.setBuilding(reviewBuilding);
-                ratingItem.setValue(reviewValue);
-                ratingItem.setCleanliness(reviewClean);
-                ratingItem.setComfort(reviewComfort);
-//                createFeedback(getData(), ratingItem, reviewText);
                 dialog.hide();
             }
         });
@@ -305,32 +285,4 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         Log.d("Review", "Review Text: " + reviewText);
     }
 
-    public void createFeedback(String reservation_id, RatingItem rating, String comment) {
-        FeedbackRequest feedbackRequest = new FeedbackRequest();
-        feedbackRequest.setComment(comment);
-        feedbackRequest.setRatings(rating);
-        feedbackRequest.setReservationId(reservation_id);
-        Call<DefaultResponseObj> call = apiService.postUserCommentHotel(feedbackRequest);
-        String requestUrl = call.request().url().toString();
-        Log.d("Request URL", requestUrl);
-        call.enqueue(new Callback<DefaultResponseObj>() {
-            @Override
-            public void onResponse(Call<DefaultResponseObj> call, Response<DefaultResponseObj> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("response error", String.valueOf(response.code()));
-                    return;
-                }
-                if (response.body() == null) {
-                    Log.d("response error", "Empty response");
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponseObj> call, Throwable t) {
-                Toast.makeText(context, R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("loadHotel",t.toString());
-            }
-        });
-    }
 }

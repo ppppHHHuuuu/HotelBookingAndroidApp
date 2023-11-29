@@ -36,7 +36,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-
 public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
     APIService apiService = APIUtils.getUserService();
     Context context;
@@ -47,7 +46,6 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     String user_id;
 
     private List<ActiveHotelItem> data;
-
     public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
@@ -66,7 +64,6 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public void setOnItemClickListener(CardHotelActiveTripAdapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
-
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -106,7 +103,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + "VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });

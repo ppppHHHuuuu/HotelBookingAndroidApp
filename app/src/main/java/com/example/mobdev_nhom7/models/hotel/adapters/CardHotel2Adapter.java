@@ -28,8 +28,10 @@ import com.example.mobdev_nhom7.utils.SendID;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,13 +96,15 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
+        customSymbol.setCurrencySymbol("VND");
+        DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
+        String amount = data.get(position).getAmount();
 
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
         holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
-//        Log.d("money", data.get(position).getAmount());
-        holder.textAmount.setText(data.get(position).getAmount() + "VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
         Log.d("hotel_id", data.get(position).getHotelId());

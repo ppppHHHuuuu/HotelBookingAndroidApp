@@ -26,9 +26,9 @@ import com.example.mobdev_nhom7.models.responseObj.trips.adapters.CardHotelActiv
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.DateTimeUtil;
-import com.example.mobdev_nhom7.utils.SendID;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,6 @@ public class TripsActiveFragment extends Fragment {
     CardHotelActiveTripAdapter cardHotelActiveTripAdapter;
     ArrayList<ActiveHotelItem> hotelItemList;
     RecyclerView recyclerView;
-    CollapsingToolbarLayout appBarLayout;
 
     public TripsActiveFragment() {
         // Required empty public constructor
@@ -71,9 +70,6 @@ public class TripsActiveFragment extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
-
-        appBarLayout = v.findViewById(R.id.appBarLayout);
-        appBarLayout.setActivated(true);
 
         return v;
     }
@@ -116,4 +112,6 @@ public class TripsActiveFragment extends Fragment {
             }
         });
     }
+
+
 }

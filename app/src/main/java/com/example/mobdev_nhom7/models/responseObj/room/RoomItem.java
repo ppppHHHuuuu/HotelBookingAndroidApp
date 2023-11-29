@@ -20,6 +20,9 @@ public class RoomItem {
     @SerializedName("price")
     @Expose
     private String pricePerNight;
+    private String numberBooked;
+    private String totalRoomCost;
+    private boolean showHidden;
 
     public String getRoomName() {
         return roomName;
@@ -30,6 +33,7 @@ public class RoomItem {
     }
 
     private String roomName;
+
     public String getQuantity() {
         return quantity;
     }
@@ -45,6 +49,7 @@ public class RoomItem {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
+
     public String getRoomId() {
         return roomId;
     }
@@ -67,5 +72,29 @@ public class RoomItem {
 
     public void setPricePerNight(String pricePerNight) {
         this.pricePerNight = pricePerNight;
+    }
+
+    public String getNumberBooked() {
+        return numberBooked;
+    }
+
+    public void setNumberBooked (String numberBooked) {
+        this.numberBooked = numberBooked;
+    }
+
+    public String getTotalRoomCost() {
+        return totalRoomCost;
+    }
+
+    public void setTotalRoomCost (String totalRoomCost) {
+        this.totalRoomCost = totalRoomCost;
+    }
+
+    public boolean getShowHidden() {
+        return showHidden;
+    }
+
+    public void setShowHidden (boolean showHidden) {
+        this.showHidden = showHidden;
     }
 }

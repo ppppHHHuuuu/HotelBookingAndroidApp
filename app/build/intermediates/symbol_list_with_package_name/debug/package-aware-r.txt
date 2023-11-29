@@ -3281,6 +3281,7 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id blocking
+id bookButton
 id booking_detail
 id booking_icon
 id booking_tag
@@ -3609,6 +3610,7 @@ id numberGuestCl
 id numberGuestTv
 id numberPicker
 id numberRoomCl
+id numberRoomPickedTV
 id numberRoomTv
 id off
 id on
@@ -3677,6 +3679,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id roomBookingHidden
 id room_info_options
 id room_name
 id room_number_edit_text
@@ -3834,6 +3837,9 @@ id title_template
 id toggle
 id top
 id topPanel
+id totalCost
+id totalCostLayout
+id totalCostTV
 id totalRoomPrice
 id touch_outside
 id transitionToEnd
@@ -4005,6 +4011,7 @@ layout activity_password
 layout activity_password_reset
 layout auto_complete_custom
 layout auto_complete_view
+layout book_room_dialog
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout button_price
@@ -4102,7 +4109,6 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout review_dialog
-layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
 layout select_dialog_item_material
