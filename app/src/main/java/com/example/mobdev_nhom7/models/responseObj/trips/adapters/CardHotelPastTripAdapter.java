@@ -31,6 +31,7 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.requestObj.feedback.FeedbackRequest;
 import com.example.mobdev_nhom7.models.responseObj.DefaultResponseObj;
+import com.example.mobdev_nhom7.models.responseObj.comment.FeedbackItem;
 import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.PastHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
@@ -57,10 +58,11 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     Context context;
     private List<PastHotelItem> data;
     SendID sendID;
-    LinearLayout writeReviewBtn;
     String user_id;
     SharedPreferences preferences;
+    private int currentPosition = -1; // Initialize with an invalid value
 
+    private int getPosition(int x) {return x;}
     public PastHotelItem getData(int x) {
         return data.get(x);
     }
@@ -68,6 +70,13 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         this.data= data;
         this.context = context;
         this.sendID = sendID;
+    }
+    public interface OnReviewSubmittedListener {
+        void onReviewSubmitted();
+    }
+    private OnReviewSubmittedListener onReviewSubmittedListener;
+    public void setOnReviewSubmittedListener(OnReviewSubmittedListener listener) {
+        this.onReviewSubmittedListener = listener;
     }
 
     @NonNull
@@ -78,13 +87,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
         user_id = preferences.getString("user_id", "empty user_id");
 
-        writeReviewBtn = view.findViewById(R.id.review_button);
-        writeReviewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openReviewDialog();
-            }
-        });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +102,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
     }
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         String start_date = data.get(position).getStartDate();
         String end_date = data.get(position).getEndDate();
         String dates = parseDate(start_date, end_date);
@@ -119,6 +123,21 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
             sendID.go(data.get(position).getHotel_id(), null, data.get(position).getReservationID());
         });
 
+        if (data.get(position).getFeedbackItem() == null) {
+            Log.d("feedback", "False");
+            holder.writeReviewBtn.setEnabled(true);
+            holder.writeReviewBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openReviewDialog(data.get(position).getReservationID(), position);
+                }
+            });
+        }
+        else {
+            Log.d("feedback", "True");
+            holder.writeReviewBtn.setEnabled(false);
+            holder.writeReviewBtn.setBackgroundColor(Color.GRAY); // Example: Set background color to gray
+        }
     }
 
     @Override
@@ -130,8 +149,10 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
+        LinearLayout writeReviewBtn;
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
+            writeReviewBtn = itemView.findViewById(R.id.review_button);
             textHotelName = itemView.findViewById(R.id.textHotelName2);
             imagesHotel = itemView.findViewById(R.id.imageHotel2);
             textAmount = itemView.findViewById(R.id.textAmount2);
@@ -156,7 +177,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         }
     }
 
-    public void openReviewDialog() {
+    public void openReviewDialog(String reservation_id, int position) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.review_dialog);
@@ -276,7 +297,10 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 ratingItem.setValue(reviewValue);
                 ratingItem.setCleanliness(reviewClean);
                 ratingItem.setComfort(reviewComfort);
-//                createFeedback(getData(), ratingItem, reviewText);
+                createFeedback(reservation_id, ratingItem, reviewText, position);
+                data.get(position).setFeedbackItem(new FeedbackItem());
+                notifyItemChanged(position);
+                Log.d("notify", "true");
                 dialog.hide();
             }
         });
@@ -305,7 +329,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         Log.d("Review", "Review Text: " + reviewText);
     }
 
-    public void createFeedback(String reservation_id, RatingItem rating, String comment) {
+    public void createFeedback(String reservation_id, RatingItem rating, String comment, int position) {
         FeedbackRequest feedbackRequest = new FeedbackRequest();
         feedbackRequest.setComment(comment);
         feedbackRequest.setRatings(rating);
@@ -324,6 +348,7 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                     Log.d("response error", "Empty response");
                     return;
                 }
+
             }
 
             @Override

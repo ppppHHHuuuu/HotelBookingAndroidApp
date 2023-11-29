@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,19 +64,20 @@ public class TripsPastFragment extends Fragment {
                 startActivity(intent);
             }
         });
+//        cardHotelPastTripAdapter.setOnReviewSubmittedListener(this);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setAdapter(cardHotelPastTripAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        getUserNotRatedPastHotel();
+        getUserRatedPastHotel();
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getUserNotRatedPastHotel();
-    }
 
-    //TODO CALL FROM BE
+    }
     private void getUserRatedPastHotel() {
         //fake-data
 
@@ -107,7 +109,6 @@ public class TripsPastFragment extends Fragment {
         });
     }
     private void getUserNotRatedPastHotel() {
-        //fake-data
         String user_id = preferences.getString("user_id", "empty user_id");
         Log.d("user_id", user_id);
 
@@ -126,9 +127,7 @@ public class TripsPastFragment extends Fragment {
                     return;
                 }
 
-                hotelItemList.clear();
                 hotelItemList.addAll(response.body());
-                getUserRatedPastHotel();
                 cardHotelPastTripAdapter.notifyDataSetChanged();
             }
 
@@ -140,4 +139,23 @@ public class TripsPastFragment extends Fragment {
         });
     }
 
+//    @Override
+//    public void onReviewSubmitted() {
+//        Log.d("onReviewSubmitted", "Called");
+//        getUserRatedPastHotel(new OnUserRatedPastHotelCompleted() {
+//            @Override
+//            public void onCompleted() {
+//                getUserRatedPastHotel();
+//            }
+//        });
+//    }
+//    interface OnUserRatedPastHotelCompleted {
+//        void onCompleted();
+//    }
+//    private void getUserRatedPastHotel(OnUserRatedPastHotelCompleted callback) {
+//        getUserNotRatedPastHotel();
+//        if (callback != null) {
+//            callback.onCompleted();
+//        }
+//    }
 }

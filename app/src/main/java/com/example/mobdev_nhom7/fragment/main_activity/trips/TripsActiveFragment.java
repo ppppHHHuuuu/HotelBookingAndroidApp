@@ -44,6 +44,10 @@ public class TripsActiveFragment extends Fragment {
     ArrayList<ActiveHotelItem> hotelItemList;
     RecyclerView recyclerView;
     CollapsingToolbarLayout appBarLayout;
+    public void deleteActive(int position) {
+        hotelItemList.remove(position);
+        cardHotelActiveTripAdapter.notifyDataSetChanged();
+    }
 
     public TripsActiveFragment() {
         // Required empty public constructor
@@ -67,7 +71,7 @@ public class TripsActiveFragment extends Fragment {
                 intent.putExtra("hotel_id", hotel_id);
                 startActivity(intent);
             }
-        });
+        }, this);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);

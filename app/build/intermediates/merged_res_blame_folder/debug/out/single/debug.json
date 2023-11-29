@@ -324,6 +324,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_city.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_cancel_button.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/cancel_button.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_alert_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/alert_icon.xml"
     },
@@ -360,12 +364,12 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_place.xml"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
-    },
-    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_blue_round_background.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/blue_round_background.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel.jpg.flat",
@@ -410,6 +414,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/color_bottom_nav_color_selector.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/color/bottom_nav_color_selector.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_card_hotel_trip_with_cancel.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_hotel_trip_with_cancel.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_parking.png.flat",

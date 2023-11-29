@@ -2980,6 +2980,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable calendar_icon
+drawable cancel_button
 drawable car_icon
 drawable circle_mask
 drawable close
@@ -4015,6 +4016,7 @@ layout card_comment
 layout card_hotel
 layout card_hotel_2
 layout card_hotel_trip
+layout card_hotel_trip_with_cancel
 layout card_hotel_trip_with_comment
 layout card_place
 layout city_detail
