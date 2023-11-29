@@ -29,11 +29,13 @@ import java.util.Locale;
 public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHotelCancelledTripAdapter.ListHotelViewHolder> {
     Context context;
     private List<CancelledHotelItem> data;
+    private SendID sendID;
 
     public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
-    SendID sendID;
+
+
     public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data, SendID sendID) {
         this.context = context;
         this.data= data;
@@ -72,7 +74,7 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
         BitmapUtil.ggDriveConverter(data.get(position).getImageURL(), holder.imagesHotel);
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + "VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });
@@ -88,7 +90,6 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
         private final TextView textHotelName;
         private final TextView textAmount;
         private final TextView textDate;
-
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             textHotelName = itemView.findViewById(R.id.textHotelName1);
@@ -97,7 +98,6 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
             textDate = itemView.findViewById(R.id.textDate1);
         }
     }
-
     private static String parseDate(String start_date, String end_date) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd", Locale.US);

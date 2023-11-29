@@ -69,7 +69,6 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public void setOnItemClickListener(CardHotelActiveTripAdapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
-
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -110,7 +109,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + "VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });

@@ -1,11 +1,17 @@
 package com.example.mobdev_nhom7.activity;
 
+import static android.app.PendingIntent.getActivity;
+import static java.sql.Types.NULL;
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -13,10 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
 import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
 import com.example.mobdev_nhom7.models.responseObj.comment.adapter.CommentItemAdapter;
 import com.example.mobdev_nhom7.models.responseObj.hotel.HotelItem;
@@ -31,6 +40,7 @@ import org.checkerframework.checker.units.qual.C;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +48,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewHotel extends Activity {
+public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
     String user_id;
     String hotel_id;
+    String startDate;
+    String endDate;
     RecyclerView commentRecyclerView;
     List<CommentItem> commentItems;
     List<RoomItem> roomItems;
@@ -84,6 +96,9 @@ public class ViewHotel extends Activity {
     private TextView contactTitle;
     private ImageView contactIconImageView;
     private TextView phoneNumberTextView;
+    private TextView totalCostTV;
+    private Button bookButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,22 +123,24 @@ public class ViewHotel extends Activity {
         telephoneImageView = findViewById(R.id.telephone);
         poolImageView = findViewById(R.id.pool);
         petImageView = findViewById(R.id.pet);
-        contactTitle =findViewById(R.id.phoneNumber);
-        commentItemAdapter= new CommentItemAdapter(getApplicationContext(), (ArrayList<CommentItem>) commentItems);
+        contactTitle = findViewById(R.id.phoneNumber);
+        totalCostTV = findViewById(R.id.totalCost);
+        bookButton = findViewById(R.id.bookButton);
+
+        commentItemAdapter = new CommentItemAdapter(getApplicationContext(), (ArrayList<CommentItem>) commentItems);
         commentRecyclerView.setAdapter(commentItemAdapter);
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        roomAdapter = new RoomAdapter(getApplicationContext(), roomItems);
+        roomAdapter = new RoomAdapter(ViewHotel.this, roomItems, this, this);
         priceLayout.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         priceLayout.setAdapter(roomAdapter);
-
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         user_id = preferences.getString("user_id", "no user_id");
 
         Bundle extras = this.getIntent().getExtras();
-        if(extras == null) {
+        if (extras == null) {
             Log.d("extra", "null");
-            hotel_id= "obpw61GK8OYRO11TsdB7";
+            hotel_id = "obpw61GK8OYRO11TsdB7";
             Log.d("hotel_id", "null");
 
         } else {
@@ -134,7 +151,24 @@ public class ViewHotel extends Activity {
                 hotel_id = extras.getString("hotel_id");
                 Log.d("hotel_id View Hotel", hotel_id);
             }
+//
+            if (extras.getString("startDate") != null) {
+                startDate = extras.getString("startDate");
+                Log.d("startDate", startDate);
+            }
+
+            if (extras.getString("endDate") != null) {
+                endDate = extras.getString("endDate");
+                Log.d("endDate", startDate);
+            }
         }
+
+        bookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bookHotel();
+            }
+        });
     }
 
     @Override
@@ -143,6 +177,7 @@ public class ViewHotel extends Activity {
         //fake-data
         getHotelInRange(hotel_id, "2023-11-28", "2023-11-30");
     }
+
     private void getAllComment(String hotel_id) {
         Call<List<CommentItem>> call = apiService.getAllFeedback(hotel_id);
         String requestUrl = call.request().url().toString();
@@ -167,10 +202,11 @@ public class ViewHotel extends Activity {
             @Override
             public void onFailure(Call<List<CommentItem>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("loadHotel",t.toString());
+                Log.d("loadHotel", t.toString());
             }
         });
     }
+
     private void getHotelInRange(String hotel_id, String start_date, String end_date) {
         Call<HotelItem> call = apiService.getHotelInRange(hotel_id, start_date, end_date);
         String requestUrl = call.request().url().toString();
@@ -210,6 +246,7 @@ public class ViewHotel extends Activity {
                 String formattedRating = decimalFormat.format(rating);
 
                 ratingValue.setText(formattedRating);
+                ratingValue.setBackgroundResource(setScoreColor((float) rating));
                 moneyProgressBar.setProgress(hotelItem.getRating().getValue().intValue());
                 buildingProgressBar.setProgress(hotelItem.getRating().getBuilding().intValue());
                 cleanlinessProgressBar.setProgress(hotelItem.getRating().getCleanliness().intValue());
@@ -254,5 +291,51 @@ public class ViewHotel extends Activity {
                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onItemUpdated(int position, String number, String cost, String totalCost, boolean showHidden) {
+        RoomItem roomItem = roomItems.get(position);
+        roomItem.setNumberBooked(number);
+        roomItem.setTotalRoomCost(cost);
+        roomItem.setShowHidden(showHidden);
+        roomAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void updateTotalCost(String totalCost) {
+        totalCostTV.setText(totalCost);
+    }
+
+    public void bookHotel() {
+        Map<String, Integer> rooms = new HashMap<String, Integer>();
+        for (RoomItem room : roomItems) {
+            if (room.getNumberBooked() != null && Integer.parseInt(room.getNumberBooked()) > 0) {
+                rooms.put(room.getRoomName(), Integer.parseInt(room.getNumberBooked()));
+            }
+        }
+
+        int totalCostFinal = roomAdapter.getTotalCost();
+
+        for (Map.Entry<String, Integer> entry : rooms.entrySet()) {
+            Log.d("reservationRoomTestLog", entry.getKey() + " + " + entry.getValue() + " + " + String.valueOf(totalCostFinal));
+        }
+
+        Intent intent = new Intent(ViewHotel.this, MainActivity.class);
+        intent.putExtra(MainActivity.EXTRA_NAVIGATE_TO_TRIPS, true);
+        startActivity(intent);
+        finish();
+    }
+
+    public int setScoreColor(float score) {
+        if (score > 8.5) {
+            return R.drawable.rating_excellent;
+        } else if (score > 7.0) {
+            return R.drawable.rating_great;
+        } else if (score > 5.0) {
+            return R.drawable.rating_acceptable;
+        } else {
+            return R.drawable.rating_bad;
+        }
     }
 }

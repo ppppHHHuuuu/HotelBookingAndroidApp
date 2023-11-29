@@ -76,9 +76,6 @@ public class TripsActiveFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
 
-        appBarLayout = v.findViewById(R.id.appBarLayout);
-        appBarLayout.setActivated(true);
-
         return v;
     }
     @Override
@@ -120,4 +117,6 @@ public class TripsActiveFragment extends Fragment {
             }
         });
     }
+
+
 }

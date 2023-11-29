@@ -39,8 +39,6 @@ import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.example.mobdev_nhom7.utils.SendID;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -96,8 +94,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
                 context.startActivity(intent);
             }
         });
-
-
         return new ListHotelViewHolder(view);
     }
     @Override
@@ -109,6 +105,14 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
         String hotelName = data.get(position).getName();
         String amount = data.get(position).getAmount();
         String comment;
+
+        if (data.get(position).getComment()!= null ) {
+            Log.d("comment", data.get(position).getComment());
+            comment = data.get(position).getComment();
+        }
+        else {
+
+        }
 
         DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
         customSymbol.setCurrencySymbol("VND");
