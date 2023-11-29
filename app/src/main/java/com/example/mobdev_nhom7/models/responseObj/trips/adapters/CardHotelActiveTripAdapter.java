@@ -3,12 +3,12 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,7 +54,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data, SendID sendID) {
+    public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data, SendID sendID, TripsActiveFragment tripsActiveFragment) {
         this.data= data;
         this.context = context;
         this.sendID = sendID;

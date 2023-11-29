@@ -38,18 +38,22 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
     private SharedPreferences preferences;
 
     private List<SearchHotelItem> data;
+
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
+
     public void setData(List<SearchHotelItem> data) {
         this.data.clear();
         this.data.addAll(data);
     }
-    public CardHotelAdapter(Context context, ArrayList<SearchHotelItem > data, SendID sendID) {
+
+    public CardHotelAdapter(Context context, ArrayList<SearchHotelItem> data, SendID sendID) {
         this.context = context;
-        this.data= data;
+        this.data = data;
         this.sendID = sendID;
     }
+
     private OnItemClickListener onItemClickListener;
 
     // Existing code...
@@ -57,9 +61,11 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+
     @NonNull
     @Override
     public FavHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -87,7 +93,7 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
         if (searchHotelItem != null) {
             try {
                 URL url = new URL(data.get(position).getImageItemURL().get(0));
-                Log.d("url", url.toString());
+                Log.d("CardHotelAdapterImageURL", url.toString());
                 BitmapUtil.ggDriveConverter(url.toString(), holder.imagesHotel);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -95,18 +101,18 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             intent.putExtra("hotel_id", data.get(position).getHotelId());
             holder.textCity.setText(String.valueOf(data.get(position).getCity()));
             holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
-            double rating = data.get(position).getScore().getValue();
+            float rating = data.get(position).getScore().getValue();
             DecimalFormat decimalFormat = new DecimalFormat("#.#");
             String formattedRating = decimalFormat.format(rating);
             holder.textScore.setText(formattedRating);
-            holder.textScore.setBackgroundResource(setScoreColor(setScoreColor((float) rating)));
+            holder.textScore.setBackgroundResource(setScoreColor(rating));
             holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
             holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
             holder.ratingBar.setRating(data.get(position).getStar());
             holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon_checked);
             holder.favouriteIcon.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(position);
+                    onItemClickListener.onItemClick(position);
                 }
                 if (holder.is_loved) {
                     holder.favouriteIcon.setImageResource(R.drawable.favourite_toggle_icon);
@@ -119,17 +125,19 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
         }
 
     }
+
     @Override
     public int getItemCount() {
         return data != null ? data.size() : 0; // Return the number of hotels in the list
     }
 
-    public class FavHotelViewHolder extends RecyclerView.ViewHolder{
+    public class FavHotelViewHolder extends RecyclerView.ViewHolder {
         TextView textCity, textScore, textHotelName, textRate, textNumberofJudges;
         RatingBar ratingBar;
         ImageView imagesHotel;
         ImageView favouriteIcon;
         Boolean is_loved;
+
         public FavHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             is_loved = true;
@@ -141,7 +149,7 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             textHotelName = itemView.findViewById(R.id.textHotelName);
             textRate = itemView.findViewById(R.id.textRate);
             textNumberofJudges = itemView.findViewById(R.id.textNumberofJudges);
-            imagesHotel = itemView.findViewById(R.id.imageView);
+            imagesHotel = itemView.findViewById(R.id.imagesHotel);
         }
     }
 

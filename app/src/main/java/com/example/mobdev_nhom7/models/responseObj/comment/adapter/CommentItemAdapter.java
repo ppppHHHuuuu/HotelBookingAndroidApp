@@ -19,6 +19,8 @@ import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.ktx.Firebase;
 
 import org.w3c.dom.Text;
 
@@ -61,9 +63,10 @@ public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.
     @Override
     public void onBindViewHolder(@NonNull CommentItemViewHolder holder, int position) {
         CommentItem commentItem = data.get(position);
-
-        holder.textName.setText("Phu");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        holder.textName.setText(mAuth.getCurrentUser().getDisplayName());
         holder.textComment.setText(commentItem.getFeedbackItem().getComment());
+        Log.d("Hotel review", commentItem.getFeedbackItem().getComment().toString());
         holder.create_date.setText(commentItem.getCreated_date());
         holder.comfortJudge.setText(commentItem.getFeedbackItem().getRatingItemList().getComfort().toString());
         holder.cleanlinessJudge.setText(commentItem.getFeedbackItem().getRatingItemList().getCleanliness().toString());
