@@ -61,7 +61,7 @@
             android:background="@drawable/rounded_button_white"
             android:elevation="10dp"
             android:paddingHorizontal="20dp"
-            android:text="New York City"
+            android:text="Hai Phong"
             android:textFontWeight="900"
             android:textAllCaps="false"
             />
@@ -114,11 +114,11 @@
                 >
 
                 <ImageView
+                    android:id="@+id/image_1"
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/hotel_1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:elevation="10dp"
@@ -168,11 +168,11 @@
                 android:layout_weight="1"
                 android:layout_marginHorizontal="5dp">
                 <ImageView
+                    android:id="@+id/image_2"
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/hotel_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:elevation="10dp"
@@ -235,11 +235,11 @@
                 android:layout_marginHorizontal="5dp"
                 >
                 <ImageView
+                    android:id="@+id/image_3"
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/hotel_3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:elevation="10dp"
@@ -291,11 +291,11 @@
                 android:layout_marginHorizontal="5dp"
                 >
                 <ImageView
+                    android:id="@+id/image_4"
                     android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/hotel"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:elevation="10dp"
