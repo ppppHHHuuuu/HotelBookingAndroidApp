@@ -140,12 +140,12 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/profile_rounded_bg.xml"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hide_eye.png.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hide_eye.png"
-    },
-    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_account_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/account_icon.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hide_eye.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hide_eye.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_calendar_icon.xml.flat",
@@ -360,12 +360,12 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/components/cards/layout/card_place.xml"
     },
     {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
-    },
-    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_blue_round_background.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/blue_round_background.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_placeholder.png.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/placeholder.png"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel.jpg.flat",
@@ -454,6 +454,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rounded_border.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rounded_border.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_book_room_dialog.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/book_room_dialog.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook.png.flat",
@@ -562,10 +566,6 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_code_input_text.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/login/layout/code_input_text.xml"
-    },
-    {
-        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_room_option_dialog.xml.flat",
-        "source": "com.example.mobdev_nhom7.app-main-38:/layouts/hotel-detail/layout/room_option_dialog.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_no_swimming.png.flat",

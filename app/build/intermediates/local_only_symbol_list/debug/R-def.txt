@@ -120,6 +120,7 @@ id alertContent
 id alertTitle
 id appBarLayout
 id back_button
+id bookButton
 id booking_detail
 id booking_icon
 id booking_tag
@@ -216,6 +217,7 @@ id numberGuestCl
 id numberGuestTv
 id numberPicker
 id numberRoomCl
+id numberRoomPickedTV
 id numberRoomTv
 id password_edit_text
 id past_btn
@@ -253,6 +255,7 @@ id restaurantsRV
 id restaurantsTitle
 id reviewEdit
 id review_button
+id roomBookingHidden
 id room_info_options
 id room_name
 id room_number_edit_text
@@ -296,6 +299,9 @@ id textNumberofJudges
 id textRate
 id textScore
 id title
+id totalCost
+id totalCostLayout
+id totalCostTV
 id totalRoomPrice
 id transportRV
 id transportTitle
@@ -320,6 +326,7 @@ layout activity_password
 layout activity_password_reset
 layout auto_complete_custom
 layout auto_complete_view
+layout book_room_dialog
 layout button_price
 layout card_city
 layout card_city_details
@@ -342,7 +349,6 @@ layout fragment_trips_active
 layout fragment_trips_cancelled
 layout fragment_trips_past
 layout review_dialog
-layout room_option_dialog
 layout room_option_pop_up
 layout search_bar
 layout suggested_destination

@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_NAVIGATE_TO_TRIPS = "navigate_to_trips";
     ActivityMainBinding binding;
     int fragmentId = 0;
 
@@ -67,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
+        if (getIntent().getBooleanExtra(EXTRA_NAVIGATE_TO_TRIPS, false)) {
+            // Navigate to TripsFragment
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, new TripsFragment())
+                    .commit();
+        }
     }
 
     private void replaceFragment (Fragment fragment) {

@@ -36,8 +36,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import kotlinx.coroutines.channels.Send;
-
 public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelActiveTripAdapter.ListHotelViewHolder> {
     APIService apiService = APIUtils.getUserService();
     Context context;
@@ -51,7 +49,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
     public ActiveHotelItem getData(int x) {
         return data.get(x);
     }
-    public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data) {
+    public CardHotelActiveTripAdapter(Context context, ArrayList<ActiveHotelItem> data, SendID sendID) {
         this.data= data;
         this.context = context;
         this.sendID = sendID;
@@ -105,7 +103,7 @@ public class CardHotelActiveTripAdapter extends RecyclerView.Adapter<CardHotelAc
         Log.d("imageURL", data.get(position).getImageURL());
         holder.textHotelName.setText(hotelName);
         holder.textDate.setText(dates);
-        holder.textAmount.setText(amount + ".000VND");
+        holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.itemView.setOnClickListener(v -> {
             sendID.go(data.get(position).getHotel_id(), null, null);
         });

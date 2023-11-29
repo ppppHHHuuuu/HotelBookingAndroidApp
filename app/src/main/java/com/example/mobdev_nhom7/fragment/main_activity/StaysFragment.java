@@ -99,8 +99,15 @@ public class StaysFragment extends Fragment {
         cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
             @Override
             public void go(String hotel_id, String city_id, String reservation_id) {
+//                Intent intent = new Intent(getContext(), ViewHotel.class);
+//                intent.putExtra("hotel_id", hotel_id);
+//                startActivity(intent);
                 Intent intent = new Intent(getContext(), ViewHotel.class);
-                intent.putExtra("hotel_id", hotel_id);
+                Bundle extras = new Bundle();
+                extras.putString("startDate", startDate);
+                extras.putString("endDate", endDate);
+                extras.putString("hotel_id", hotel_id);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });

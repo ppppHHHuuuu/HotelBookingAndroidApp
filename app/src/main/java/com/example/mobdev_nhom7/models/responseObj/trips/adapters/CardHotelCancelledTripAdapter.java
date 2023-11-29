@@ -32,16 +32,15 @@ import java.util.Locale;
 public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHotelCancelledTripAdapter.ListHotelViewHolder> {
     Context context;
     private List<CancelledHotelItem> data;
+    private SendID sendID;
 
     public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
 
-    public CardHotelCancelledTripAdapter(Context context, List<CancelledHotelItem> data) {
-    SendID sendID;
+
     public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data, SendID sendID) {
         this.context = context;
-        this.data = data;
         this.data= data;
         this.sendID = sendID;
     }

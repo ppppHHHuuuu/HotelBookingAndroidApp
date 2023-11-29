@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.fragment.main_activity.trips;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
@@ -68,9 +70,6 @@ public class TripsActiveFragment extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(cardHotelActiveTripAdapter);
-
-        appBarLayout = v.findViewById(R.id.appBarLayout);
-        appBarLayout.setActivated(true);
 
         return v;
     }
