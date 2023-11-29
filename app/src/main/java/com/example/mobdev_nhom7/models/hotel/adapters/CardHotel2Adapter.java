@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.models.hotel.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -87,6 +88,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         return new ListHotelViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
         try {
@@ -100,10 +102,13 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         customSymbol.setCurrencySymbol("VND");
         DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
         String amount = data.get(position).getAmount();
+        float score = data.get(position).getScore().getValue();
+        String formattedScore = String.format("%.1f", score);
 
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-        holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+        holder.textScore.setText(formattedScore);
+        holder.textScore.setBackgroundResource(setScoreColor(score));
         holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
@@ -218,5 +223,17 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
                 Toast.makeText(context.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public int setScoreColor(float score) {
+        if (score > 8.5) {
+            return R.drawable.rating_excellent;
+        } else if (score > 7.0) {
+            return R.drawable.rating_great;
+        } else if (score > 5.0) {
+            return R.drawable.rating_acceptable;
+        } else {
+            return R.drawable.rating_bad;
+        }
     }
 }

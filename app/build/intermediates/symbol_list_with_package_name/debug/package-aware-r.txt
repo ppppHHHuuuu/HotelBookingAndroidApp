@@ -1451,6 +1451,7 @@ color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
 color green
+color grey_with_alpha
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color light_black
@@ -2088,6 +2089,10 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color rating_acceptable
+color rating_bad
+color rating_excellent
+color rating_great
 color red
 color ripple_material_dark
 color ripple_material_light
@@ -2980,6 +2985,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable calendar_icon
+drawable cancel_button
 drawable car_icon
 drawable circle_mask
 drawable close
@@ -3152,6 +3158,10 @@ drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
 drawable progress_bar_drawable
+drawable rating_acceptable
+drawable rating_bad
+drawable rating_excellent
+drawable rating_great
 drawable restaurants_icon
 drawable review_icon
 drawable rounded_background

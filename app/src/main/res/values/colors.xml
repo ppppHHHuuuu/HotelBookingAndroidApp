@@ -14,5 +14,10 @@
     <color name="red">#EF0454</color>
     <color name="modern_red">#FF5454</color>
     <color name="background_default">#F9F9F9</color>
+    <color name="rating_bad">#FF5454</color>
+    <color name="rating_acceptable">#FFC107</color>
+    <color name="rating_great">#AFC450</color>
+    <color name="rating_excellent">#4CAF50</color>
+    <color name="grey_with_alpha">#39737373</color>
 
 </resources>

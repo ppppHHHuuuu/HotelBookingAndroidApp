@@ -10,8 +10,13 @@
     <color name="black">#FF000000</color>
     <color name="black_with_alpha">#40000000</color>
     <color name="green">#2ADC31</color>
+    <color name="grey_with_alpha">#39737373</color>
     <color name="light_black">#3C3C3C</color>
     <color name="modern_red">#FF5454</color>
+    <color name="rating_acceptable">#FFC107</color>
+    <color name="rating_bad">#FF5454</color>
+    <color name="rating_excellent">#4CAF50</color>
+    <color name="rating_great">#AFC450</color>
     <color name="red">#EF0454</color>
     <color name="white">#FFFFFFFF</color>
     <dimen name="dialog_horizontal_margin">16dp</dimen>

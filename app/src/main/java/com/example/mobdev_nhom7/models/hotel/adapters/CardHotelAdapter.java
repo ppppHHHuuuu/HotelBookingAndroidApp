@@ -100,6 +100,7 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             DecimalFormat decimalFormat = new DecimalFormat("#.#");
             String formattedRating = decimalFormat.format(rating);
             holder.textScore.setText(formattedRating);
+            holder.textScore.setBackgroundResource(setScoreColor(setScoreColor((float) rating)));
             holder.textRate.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
             holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
             holder.ratingBar.setRating(data.get(position).getStar());
@@ -144,6 +145,18 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             textRate = itemView.findViewById(R.id.textRate);
             textNumberofJudges = itemView.findViewById(R.id.textNumberofJudges);
             imagesHotel = itemView.findViewById(R.id.imageView);
+        }
+    }
+
+    public int setScoreColor(float score) {
+        if (score > 8.5) {
+            return R.drawable.rating_excellent;
+        } else if (score > 7.0) {
+            return R.drawable.rating_great;
+        } else if (score > 5.0) {
+            return R.drawable.rating_acceptable;
+        } else {
+            return R.drawable.rating_bad;
         }
     }
 

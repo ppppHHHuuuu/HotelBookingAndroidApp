@@ -88,6 +88,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/bookmark.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_acceptable.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_acceptable.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_facebook_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/facebook_icon.xml"
     },
@@ -252,6 +256,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/font/avenir_bold.otf"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_bad.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_bad.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_edit_icon.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/edit_icon.xml"
     },
@@ -308,6 +316,10 @@
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/search_box_border.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_excellent.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_excellent.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_hotel_icon_checked.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/hotel_icon_checked.xml"
     },
@@ -322,6 +334,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/layout_fragment_city.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/layouts/sign-up/layout/fragment_city.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_cancel_button.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/cancel_button.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_alert_icon.xml.flat",
@@ -514,6 +530,10 @@
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_location_icon_checked.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-38:/drawable/location_icon_checked.xml"
+    },
+    {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-36:/drawable_rating_great.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-38:/drawable/rating_great.xml"
     },
     {
         "merged": "com.example.mobdev_nhom7.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",

@@ -245,6 +245,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
                 String formattedRating = decimalFormat.format(rating);
 
                 ratingValue.setText(formattedRating);
+                ratingValue.setBackgroundResource(setScoreColor((float) rating));
                 moneyProgressBar.setProgress(hotelItem.getRating().getValue().intValue());
                 buildingProgressBar.setProgress(hotelItem.getRating().getBuilding().intValue());
                 cleanlinessProgressBar.setProgress(hotelItem.getRating().getCleanliness().intValue());
@@ -323,5 +324,17 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         intent.putExtra(MainActivity.EXTRA_NAVIGATE_TO_TRIPS, true);
         startActivity(intent);
         finish();
+    }
+
+    public int setScoreColor(float score) {
+        if (score > 8.5) {
+            return R.drawable.rating_excellent;
+        } else if (score > 7.0) {
+            return R.drawable.rating_great;
+        } else if (score > 5.0) {
+            return R.drawable.rating_acceptable;
+        } else {
+            return R.drawable.rating_bad;
+        }
     }
 }

@@ -11,8 +11,13 @@ color black
 color black_with_alpha
 color bottom_nav_color_selector
 color green
+color grey_with_alpha
 color light_black
 color modern_red
+color rating_acceptable
+color rating_bad
+color rating_excellent
+color rating_great
 color red
 color white
 dimen dialog_horizontal_margin
@@ -25,6 +30,7 @@ drawable blue_round_background
 drawable bookmark
 drawable border_box
 drawable calendar_icon
+drawable cancel_button
 drawable car_icon
 drawable circle_mask
 drawable close
@@ -88,6 +94,10 @@ drawable pool
 drawable pricebutton
 drawable profile_rounded_bg
 drawable progress_bar_drawable
+drawable rating_acceptable
+drawable rating_bad
+drawable rating_excellent
+drawable rating_great
 drawable restaurants_icon
 drawable review_icon
 drawable rounded_background
