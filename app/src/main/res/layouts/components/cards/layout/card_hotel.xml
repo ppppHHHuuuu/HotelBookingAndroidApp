@@ -75,7 +75,6 @@
                 android:id="@+id/textScore"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/rounded_border"
                 android:gravity="center"
                 android:text="8.6"
                 android:textColor="@color/white"

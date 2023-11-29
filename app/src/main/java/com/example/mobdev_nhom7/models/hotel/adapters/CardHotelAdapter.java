@@ -93,7 +93,6 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
                 throw new RuntimeException(e);
             }
             intent.putExtra("hotel_id", data.get(position).getHotelId());
-
             holder.textCity.setText(String.valueOf(data.get(position).getCity()));
             holder.textNumberofJudges.setText(String.valueOf(data.get(position).getScore().getCount() + " reviews"));
             double rating = data.get(position).getScore().getValue();
@@ -159,5 +158,4 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
             return R.drawable.rating_bad;
         }
     }
-
 }
