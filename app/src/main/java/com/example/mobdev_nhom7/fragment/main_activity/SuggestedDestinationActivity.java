@@ -83,6 +83,10 @@ public class SuggestedDestinationActivity extends Activity {
         buttonCancel.setOnClickListener(v-> {
             editPreferredDest.setText("");
         });
+
+        imageBackButton.setOnClickListener(v -> {
+            onBackPressed();
+        });
         recyclerView.setAdapter(cityItemCardAdapter);
 
         getSuggestDest();

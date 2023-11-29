@@ -55,17 +55,14 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
         try {
             restaurantImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImage());
             holder.imageRestaurant.setImageBitmap(restaurantImage);
-
         }
         catch (Exception e) {
             Log.e("CardRestaurantAdapter", "Error loading image: " + e.getMessage(), e);
         }
 
-
         String name = data.get(position).getName();
         Float rating = (float) data.get(position).getRating()/2;
         String address = data.get(position).getAddress();
-
 
         holder.textName.setText(name);
         holder.textRating.setRating(rating);
@@ -89,6 +86,4 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
             textAddress = itemView.findViewById(R.id.address);
         }
     }
-
-
 }
