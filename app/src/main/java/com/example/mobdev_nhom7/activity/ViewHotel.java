@@ -322,7 +322,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         }
 
         if (startDate == null) {
-            startDate = "2023-11-30";
+            startDate = "2023-12-05";
         }
         if (endDate == null) {
             endDate = "2023-12-30";
