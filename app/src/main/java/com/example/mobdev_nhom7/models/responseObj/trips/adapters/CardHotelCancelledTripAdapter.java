@@ -37,6 +37,8 @@ public class CardHotelCancelledTripAdapter extends RecyclerView.Adapter<CardHote
     public CancelledHotelItem getData(int x) {
         return data.get(x);
     }
+
+
     public CardHotelCancelledTripAdapter(Context context,List <CancelledHotelItem> data, SendID sendID) {
         this.context = context;
         this.data= data;

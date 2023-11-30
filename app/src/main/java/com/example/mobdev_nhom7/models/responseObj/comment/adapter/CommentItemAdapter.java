@@ -53,6 +53,8 @@ public class CommentItemAdapter extends RecyclerView.Adapter<CommentItemAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ViewHotel.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
+
                 context.startActivity(intent);
             }
         });

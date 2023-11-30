@@ -5,7 +5,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RequestClient {
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://172.16.3.234:3000";
+    private static final String BASE_URL = "http://172.20.10.6:3000";
     public static Retrofit getClient(){
         if(retrofit == null){
             retrofit = new Retrofit.Builder()

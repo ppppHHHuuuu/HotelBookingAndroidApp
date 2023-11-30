@@ -2,6 +2,8 @@ package com.example.mobdev_nhom7.models.responseObj.trips.adapters;
 
 import android.app.Dialog;
 import android.annotation.SuppressLint;
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
