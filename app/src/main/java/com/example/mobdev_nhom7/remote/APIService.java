@@ -31,6 +31,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -105,8 +106,12 @@ public interface APIService {
     @POST("/reservation/createFeedback")
     Call<DefaultResponseObj> postUserCommentHotel(@Body FeedbackRequest feedbackRequest);
 
+    @PUT("/reservation/cancel/{id}")
+    Call <DefaultResponseObj> cancelUserComment(@Path("id") String id );
+
     @POST("/reservation")
     Call<Object> booking(
             @Body BookingRequest request
     );
+
 }

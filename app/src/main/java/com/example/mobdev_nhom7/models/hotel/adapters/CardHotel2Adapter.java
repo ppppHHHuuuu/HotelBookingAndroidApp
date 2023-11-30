@@ -1,5 +1,6 @@
 package com.example.mobdev_nhom7.models.hotel.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,15 +48,19 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     boolean is_loved;
     int count = 0;
     String user_id;
+
     public SearchHotelItem getData(int x) {
         return data.get(x);
     }
+
     SendID sendID;
+
     public CardHotel2Adapter(Context context, List<SearchHotelItem> data, SendID sendID) {
-        this.context =  context;
-        this.data= data;
+        this.context = context;
+        this.data = data;
         this.sendID = sendID;
     }
+
     private CardHotel2Adapter.OnItemClickListener onItemClickListener;
     Intent intent;
     // Existing code...
@@ -63,13 +68,15 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
+
     public void setOnItemClickListener(CardHotel2Adapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+
     @NonNull
     @Override
     public ListHotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        preferencesHotel = context.getSharedPreferences("hotel",Context.MODE_PRIVATE);
+        preferencesHotel = context.getSharedPreferences("hotel", Context.MODE_PRIVATE);
         editor = preferencesHotel.edit();
         preferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         user_id = preferences.getString("user_id", "no user_id");
@@ -87,6 +94,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         return new ListHotelViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListHotelViewHolder holder, int position) {
         try {
@@ -100,10 +108,13 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         customSymbol.setCurrencySymbol("VND");
         DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
         String amount = data.get(position).getAmount();
+        float score = data.get(position).getScore().getValue();
+        String formattedScore = String.format("%.1f", score);
 
         holder.textHotel.setText("Hotel");
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
-        holder.textScore.setText(String.valueOf(data.get(position).getScore().getValue()));
+        holder.textScore.setText(String.valueOf(formattedScore));
+        holder.textScore.setBackgroundResource(setScoreColor(score));
         holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
@@ -114,8 +125,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         });
         if (data.get(position).getIs_favorite()) {
             holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
-        }
-        else {
+        } else {
             holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon);
         }
         String hotel_id = data.get(position).getHotelId();
@@ -136,8 +146,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
                 Log.d("is_favourite", String.valueOf(data.get(position).getIs_favorite()));
 
                 deleteFavHotel(user_id, hotel_id, position);
-            }
-            else {
+            } else {
                 holder.imageFav.setImageResource(R.drawable.favourite_toggle_icon_checked);
 
                 Log.d("is_favourite", String.valueOf(data.get(position).getIs_favorite()));
@@ -159,9 +168,10 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     public int getItemCount() {
         return data.size(); // Return the number of hotels in the list
     }
+
     public class ListHotelViewHolder extends RecyclerView.ViewHolder {
         private final TextView textHotel;
-//        private final TextView textLocation;
+        //        private final TextView textLocation;
         private final TextView textScore;
         private final ImageView imagesHotel;
         private final TextView textHotelName;
@@ -169,6 +179,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         private final TextView textAmount;
         private final TextView textDistance;
         private final ImageView imageFav;
+
         public ListHotelViewHolder(@NonNull View itemView) {
             super(itemView);
             is_loved = false;
@@ -182,6 +193,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             textDistance = itemView.findViewById(R.id.textDistance);
         }
     }
+
     public void deleteFavHotel(String user_id, String hotel_id, int position) {
         Call<String> call = apiService.deleteFavouriteHotel(user_id, hotel_id);
         String requestUrl = call.request().url().toString();
@@ -194,6 +206,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
                     Log.d("response", response.toString());
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d("call", t.toString());
@@ -203,7 +216,7 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
     }
 
     public void addFavHotel(String user_id, String hotel_id) {
-        Call<String>  call = apiService.addFavouriteHotel(user_id, hotel_id);
+        Call<String> call = apiService.addFavouriteHotel(user_id, hotel_id);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -212,11 +225,24 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
 
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d("call", t.toString());
                 Toast.makeText(context.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public int setScoreColor(float score) {
+        if (score > 8.5) {
+            return R.drawable.rating_excellent;
+        } else if (score > 7.0) {
+            return R.drawable.rating_great;
+        } else if (score > 5.0) {
+            return R.drawable.rating_acceptable;
+        } else {
+            return R.drawable.rating_bad;
+        }
     }
 }

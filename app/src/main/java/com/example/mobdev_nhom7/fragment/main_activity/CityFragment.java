@@ -86,15 +86,37 @@ public class CityFragment extends Fragment {
 
         ImageView imageView_1 = view.findViewById(R.id.image_1);
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/1skt3lc9lLpMxZgV-tgQFjnf-VvWA3za3/view?usp=share_link", imageView_1);
+        imageView_1.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ViewCity.class);
+            intent.putExtra("city_id", "8u8doWKXGkMc0gvXYA58");
+            startActivity(intent);
 
+        });
         ImageView imageView_2 = view.findViewById(R.id.image_2);
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/1a9wbKYCyyBQUeZLPa8zzqQJuJlhvtWRa/view", imageView_2);
+        imageView_2.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ViewCity.class);
+            intent.putExtra("city_id", "aSQphDmzTKedOvUrkQPR");
+            startActivity(intent);
+
+        });
 
         ImageView imageView_3 = view.findViewById(R.id.image_3);
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/14TD0Cxq_TtErCaAO6eW8Ocb1wOnsYoZi/view", imageView_3);
+        imageView_3.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ViewCity.class);
+            intent.putExtra("city_id", "AOLUEoqmAt5lN8IhpQ50");
+            startActivity(intent);
+        });
 
         ImageView imageView_4 = view.findViewById(R.id.image_4);
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/1y-yjZCk44EXPaLMZkvZQW1aZ2xf8-YXj/view?usp=share_link", imageView_4);
+        imageView_3.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ViewCity.class);
+            intent.putExtra("city_id", "a3gN4bdOKVEgpEjxi5nU");
+            startActivity(intent);
+
+        });
 
         return view;
     }

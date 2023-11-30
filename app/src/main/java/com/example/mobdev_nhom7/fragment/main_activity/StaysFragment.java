@@ -182,10 +182,10 @@ public class StaysFragment extends Fragment {
         for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            Log.d("SharedPreferences", "Key: " + key + ", Value: " + value);
+            Log.d("SharedPreferences Stay", "Key: " + key + ", Value: " + value);
         }
-        String savedDestination = preferencesEdittext.getString("destination", "");
-        String savedDestinationID = preferencesEdittext.getString("destinationID", "");
+        String savedDestination = preferencesEdittext.getString("destination", "Ha Noi");
+        String savedDestinationID = preferencesEdittext.getString("destinationID", "Z6YyrwkuyVbsyaLxOE7E");
         desInput.setText(savedDestination);
         Boolean isSearch = preferencesEdittext.getBoolean("search", false);
         if (isSearch) {

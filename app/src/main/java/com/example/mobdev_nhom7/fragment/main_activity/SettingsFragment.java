@@ -6,7 +6,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -72,6 +77,8 @@ public class SettingsFragment extends Fragment {
     private boolean resendEnabled = false;
     private int resendTime = 60;
     TextView resendTimeCountText;
+    private ImageView profilePic;
+    Bitmap results, maskBitmap;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -110,6 +117,9 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        profilePic = view.findViewById(R.id.pfp);
+
+        Bitmap finalMasking = maskingProcess();
         SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
 
         TextView profileName = view.findViewById(R.id.profile_name);
@@ -303,5 +313,34 @@ public class SettingsFragment extends Fragment {
         ViewCompat.setBackgroundTintList(saveImage, colorStateList);
         TextView saveText = getView().findViewById(R.id.save_text);
         saveText.setTextColor(color);
+    }
+
+    private Bitmap maskingProcess() {
+        try {
+            Bitmap original, mask;
+            original = BitmapFactory.decodeResource(getResources(), R.drawable.demo_pfp);
+            mask = BitmapFactory.decodeResource(getResources(), R.drawable.circle_mask);
+
+            if (original != null) {
+                int width = original.getWidth();
+                int height = original.getHeight();
+                results = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                maskBitmap = Bitmap.createScaledBitmap(mask, width, height, true);
+
+                Canvas canvas = new Canvas(results);
+                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+
+                canvas.drawBitmap(original, 0, 0, null);
+                canvas.drawBitmap(maskBitmap,0,0,paint);
+                paint.setXfermode(null);
+                paint.setStyle(Paint.Style.STROKE);
+            }
+        } catch (OutOfMemoryError outOfMemoryError) {
+            outOfMemoryError.printStackTrace();
+        }
+
+        profilePic.setImageBitmap(results);
+        return results;
     }
 }

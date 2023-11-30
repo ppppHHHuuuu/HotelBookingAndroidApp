@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -26,10 +27,11 @@ public class BitmapUtil {
         return hotelImage;
     }
     public static void ggDriveConverter(String url, ImageView imageView) {
-        if (url == null || url == "") {
+        if (TextUtils.isEmpty(url)) {
             Log.d("url", "is empty or null");
             return;
         }
+
         if (url.startsWith("https://drive.google.com/file/d/")) {
             // Extract the file ID from the input link
             Pattern pattern = Pattern.compile("/file/d/([^/]+)/");
@@ -38,24 +40,22 @@ public class BitmapUtil {
             // If a match is found, construct the direct link
             if (matcher.find()) {
                 String fileId = matcher.group(1);
-                url =  "https://drive.google.com/uc?id=" + fileId;
+                url = "https://drive.google.com/uc?id=" + fileId;
             }
         }
+
         try {
+            Picasso.get().setLoggingEnabled(true);
+
             Picasso.get()
                     .load(url)
                     .fit()
                     .into(imageView);
             Log.d("url", url);
-        }
-        catch(Exception e) {
-            Picasso.get()
-                    .load("https://drive.google.com/uc?id=1VgY1DsGCSJ6z3u45Lv8RHpiL33JkBYUu")
-                    .fit()
-                    .into(imageView);
-            Log.d("url", "https://drive.google.com/uc?id=1VgY1DsGCSJ6z3u45Lv8RHpiL33JkBYUu");
-
+        } catch (Exception e) {
+            // Handle Picasso loading error
             Log.d("error", Objects.requireNonNull(e.getMessage()));
         }
     }
+
 }
