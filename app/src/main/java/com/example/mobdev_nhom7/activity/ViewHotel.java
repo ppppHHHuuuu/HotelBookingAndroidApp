@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
 import com.example.mobdev_nhom7.models.bookingRequest.BookingRequest;
 import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
@@ -104,6 +105,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     private TextView phoneNumberTextView;
     private TextView totalCostTV;
     private Button bookButton;
+    private StaysFragment staysFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +146,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         user_id = preferences.getString("user_id", "no user_id");
 
         Bundle extras = this.getIntent().getExtras();
+        Log.d("view Hotel", "start");
         if (extras == null) {
             Log.d("extra", "null");
             hotel_id = "obpw61GK8OYRO11TsdB7";
@@ -160,12 +163,15 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 //
             if (extras.getString("startDate") != null) {
                 startDate = extras.getString("startDate");
+//                startDate = "2023-12-01";
                 Log.d("startDate", startDate);
             }
 
             if (extras.getString("endDate") != null) {
                 endDate = extras.getString("endDate");
-                Log.d("endDate", startDate);
+//                startDate = "2023-12-03";
+
+                Log.d("endDate", endDate);
             }
         }
 
@@ -175,8 +181,17 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     @Override
     protected void onResume() {
         super.onResume();
+        if (startDate == null) {
+            startDate = "2023-12-03";
+        }
+        if (endDate == null) {
+            endDate = "2023-12-07";
+        }
+
         //fake-data
-        getHotelInRange(hotel_id, "2023-11-28", "2023-11-30");
+        getHotelInRange(hotel_id, startDate, endDate);
+        Log.d("startDate", startDate);
+        Log.d("endDate", endDate);
     }
 
     private void getAllComment(String hotel_id) {
@@ -210,8 +225,6 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
     private void getHotelInRange(String hotel_id, String start_date, String end_date) {
         Call<HotelItem> call = apiService.getHotelInRange(hotel_id, start_date, end_date);
-        String requestUrl = call.request().url().toString();
-        Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<HotelItem>() {
             @Override
             public void onResponse(@NonNull Call<HotelItem> call, @NonNull Response<HotelItem> response) {
@@ -320,28 +333,30 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         for (Map.Entry<String, Integer> entry : rooms.entrySet()) {
             Log.d("reservationRoomTestLog", entry.getKey() + " + " + entry.getValue() + " + " + String.valueOf(totalCostFinal));
         }
+//        startDate = "2023-12-03";
+//        endDate = "2023-12-07";
 
-        if (startDate == null) {
-            startDate = "2023-11-30";
-        }
-        if (endDate == null) {
-            endDate = "2023-12-30";
-        }
+//        if (startDate == null) {
+//            startDate = "2023-12-01";
+//        }
+//        if (endDate == null) {
+//            endDate = "2023-12-03";
+//        }
 
         long totalCost = totalCostFinal * countDaysBetween(startDate, endDate);
         BookingRequest bookingRequest = new BookingRequest(user_id, hotel_id, rooms, startDate, endDate, totalCost);
-        Call<Object>callBooking = apiService.booking(bookingRequest);
+        Call<Object> callBooking = apiService.booking(bookingRequest);
         callBooking.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 Toast.makeText(getApplicationContext(), "Booking successfully", Toast.LENGTH_SHORT).show();
-                Log.d("booking","Booking successfully");
+                Log.d("booking", "Booking successfully");
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("booking",t.toString());
+                Log.d("booking", t.toString());
             }
         });
 

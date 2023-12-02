@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editPreferredDest"
+                android:id="@+id/editPreferredDest1"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
                 android:inputType="textAutoComplete"
@@ -77,7 +77,7 @@
                 android:layout_marginRight="2dp"
                 android:src="@drawable/close"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/editPreferredDest"
+                app:layout_constraintEnd_toEndOf="@+id/editPreferredDest1"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

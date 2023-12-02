@@ -84,7 +84,7 @@ public class SuggestedDestinationActivity extends Activity {
         cityItems = new ArrayList<>();
         imageBackButton = findViewById(R.id.imageBackButton);
         suggestedPlace = findViewById(R.id.suggestedPlace);
-        editPreferredDest = findViewById(R.id.editPreferredDest);
+        editPreferredDest = findViewById(R.id.editPreferredDest1);
         nestedScrollView = findViewById(R.id.nestedScrollView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,45 +96,47 @@ public class SuggestedDestinationActivity extends Activity {
         });
 
         imageBackButton.setOnClickListener(v -> {
+            Log.d("ImageBackButton", "how can it be hêre");
+            SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("destination", editPreferredDest.getText().toString());
+            editor.putString("destinationID", "null");
+            editor.putBoolean("search", true);
+            editor.apply();
             onBackPressed();
+            finish();
         });
 
-        recyclerView.setAdapter(cityItemCardAdapter);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         preferencesEdittext = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         user_id = preferences.getString("user_id", "empty user_id");
-        getSuggestDest();
+        getAllCity(() -> {
+            getAllHotel(() -> {
 
-        getAllHotel(() -> {
-            getAllCity(() -> {
-                adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
-                    @Override
-                    public void go(String hotel_id, String city_id, String reservation_id) {
-                        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("destination", editPreferredDest.getText().toString());
-                        editor.putString("destinationID", city_id);
-                        editor.putBoolean("search", true);
-                        editor.apply();
-                        onBackPressed();
-                        Log.d("Share", "in getAll" );
-                        for (int i = 0; i < placeItemList.size(); i++) {
-                            if (Objects.equals(placeItemList.get(i).getType(), PlaceType.HOTEL.getDisplayName())) {
-                                Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
-                                intent.putExtra("hotel_id", hotel_id);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-                });
-
-                Log.d("PlaceItem", String.valueOf(placeItemList.size()));
             });
+        });
+        adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                if (hotel_id != null) {
+                    Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
+                    intent.putExtra("hotel_id", hotel_id);
+                    startActivity(intent);
+                }
+                else {
+                    setBackPage(city_id, editPreferredDest.getText().toString(), true);
+                }
+            }
         });
         editPreferredDest.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                if (editPreferredDest.toString() != "") {
+                    Log.d("charSequence", editPreferredDest.getText().toString());
+                    adapter.getFilter().filter(editPreferredDest.getText().toString());
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
+                }
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -161,15 +163,9 @@ public class SuggestedDestinationActivity extends Activity {
         imageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
                 Log.d("Share", "in Back Button" );
                 String editTextContent = editPreferredDest.getText().toString();
-                SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("destination", editTextContent);
-                editor.putBoolean("search", false);
-                editor.apply();
-                onBackPressed();
+                setBackPage("null", editTextContent, true);
             }
         });
     }
@@ -200,14 +196,7 @@ public class SuggestedDestinationActivity extends Activity {
                              if (Objects.equals(editTextContent, "")) {
                                  editTextContent = "No CITY";
                              }
-                             SharedPreferences.Editor editor = preferencesEdittext.edit();
-                             editor.putString("destination", editTextContent);
-                             editor.putString("destinationID", city_id);
-                             editor.putBoolean("search", true);
-                             editor.apply();
-                             onBackPressed();
-                             Log.d("Share", "in suggest_dest" );
-
+                             setBackPage(city_id, editTextContent.toString(), true);
                          }
                      });
                      recyclerView.setAdapter(cityItemCardAdapter);
@@ -221,57 +210,16 @@ public class SuggestedDestinationActivity extends Activity {
              }
          });
     }
-//    public void getSuggestDest() {
-//         Call<List<CityItem>> call = apiService.getSuggestedCity();
-//         call.enqueue(new Callback<List<CityItem>>() {
-//             @Override
-//             public void onResponse(@NonNull Call<List<CityItem>> call, @NonNull Response<List<CityItem>> response) {
-//                 if (response.isSuccessful()) {
-//                     if  (response.body() == null) {
-//                         Log.d("Content", "Empty content");
-//                         Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
-//                     }
-//                     cityItems = (ArrayList<CityItem>) response.body();
-//                     for (int i = 0; i < response.body().size(); i++ ) {
-//                         Log.d("cityItems", response.body().get(i).getCityName());
-//                     }
-//                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
-//                         String editTextContent = "";
-//                         @Override
-//                         public void go(String hotel_id, String city_id, String reservation_id) {
-//                             for (int i = 0; i < cityItems.size(); i++) {
-//                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
-//                                     editTextContent =cityItems.get(i).getCityName();
-//                                 }
-//                             }
-//                             if (Objects.equals(editTextContent, "")) {
-//                                 editTextContent = "No CITY";
-//                             }
-//                             SharedPreferences.Editor editor = preferencesEdittext.edit();
-//                             editor.putString("destination", editTextContent);
-//                             editor.putString("destinationID", city_id);
-//                             editor.putBoolean("search", true);
-//                             editor.apply();
-//                             onBackPressed();
-//                             Log.d("Share", "in suggest_dest" );
-//
-//                         }
-//                     });
-//                     recyclerView.setAdapter(cityItemCardAdapter);
-//                 }
-//             }
-//
-//             @Override
-//             public void onFailure(Call<List<CityItem>> call, Throwable t) {
-//                 Log.d("call", t.toString());
-//                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
-//             }
-//         });
-//     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (editPreferredDest.getText().toString().equals("")) {
+            Log.d("editPreferredDest", editPreferredDest.getText().toString());
+            getSuggestDest();
+            recyclerView.setAdapter(cityItemCardAdapter);
+        }
         Map<String, ?> allPreferences = preferencesEdittext.getAll();
 
         for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
@@ -305,6 +253,8 @@ public class SuggestedDestinationActivity extends Activity {
                     placeItem.setType(PlaceType.CITY.getDisplayName());
                     placeItemList.add(placeItem);
                 }
+                adapter.notifyDataSetChanged();
+
                 callback.onDataLoaded();
             }
 
@@ -352,13 +302,13 @@ public class SuggestedDestinationActivity extends Activity {
                     PlaceItem placeItem = new PlaceItem();
                     placeItem.setName(hotelItem.getName());
                     placeItem.setHotel_id(hotelItem.getHotelId());
-//                    if (hotelItem.getLocation() != null && hotelItem.getLocation().getAddress() != null) {
                     placeItem.setCountry(hotelItem.getCountry());
-//                    }
                     placeItem.setType(PlaceType.HOTEL.getDisplayName());
 
                     placeItemList.add(placeItem);
                 }
+                adapter.notifyDataSetChanged();
+
                 callback.onDataLoaded();
             }
 
@@ -383,5 +333,21 @@ public class SuggestedDestinationActivity extends Activity {
             }
         });
 
+    }
+    private void setBackPage(String city_id, String city_name, Boolean search) {
+        Log.d("Share", "in Back Button" );
+        String editTextContent = editPreferredDest.getText().toString();
+        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("destination", city_name);
+        editor.putString("destinationID", city_id);
+        if (search) {
+            editor.putBoolean("search", true);
+        }else {
+            editor.putBoolean("search", false);
+
+        }
+        editor.apply();
+        onBackPressed();
     }
 }
