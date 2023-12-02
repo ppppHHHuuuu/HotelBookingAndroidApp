@@ -42,6 +42,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         filteredData.clear();
         notifyDataSetChanged();
     }
+
+    public PlaceItem getData(int position) {
+        return filteredData.get(position);
+    }
     public void setData(List<PlaceItem> newData) {
         filteredData.clear();
         filteredData.addAll(newData);

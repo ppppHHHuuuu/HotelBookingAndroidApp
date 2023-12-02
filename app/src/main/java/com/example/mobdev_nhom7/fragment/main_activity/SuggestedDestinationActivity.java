@@ -13,8 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
 import com.example.mobdev_nhom7.activity.MainActivity;
 import com.example.mobdev_nhom7.activity.ViewCity;
@@ -75,6 +77,7 @@ public class SuggestedDestinationActivity extends Activity {
     SearchHotelItem searchHotelItem;
     CustomAdapter adapter;
     String user_id;
+    private RelativeLayout noResultsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,24 +90,13 @@ public class SuggestedDestinationActivity extends Activity {
         editPreferredDest = findViewById(R.id.editPreferredDest1);
         nestedScrollView = findViewById(R.id.nestedScrollView);
         recyclerView = findViewById(R.id.recyclerView);
+        noResultsLayout = findViewById(R.id.noResultsLayoutSuggest);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         placeItemList = new ArrayList<>();
         buttonCancel = findViewById(R.id.buttonCancel);
 
         buttonCancel.setOnClickListener(v-> {
             editPreferredDest.setText("");
-        });
-
-        imageBackButton.setOnClickListener(v -> {
-            Log.d("ImageBackButton", "how can it be hêre");
-            SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("destination", editPreferredDest.getText().toString());
-            editor.putString("destinationID", "null");
-            editor.putBoolean("search", true);
-            editor.apply();
-            onBackPressed();
-            finish();
         });
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -124,7 +116,7 @@ public class SuggestedDestinationActivity extends Activity {
                     startActivity(intent);
                 }
                 else {
-                    setBackPage(city_id, editPreferredDest.getText().toString(), true);
+                    setBackPage(city_id, adapter.getData(0).getName(), true);
                 }
             }
         });
@@ -147,12 +139,23 @@ public class SuggestedDestinationActivity extends Activity {
                 String searchText = editable.toString().trim();
                 if (searchText.isEmpty()) {
                     recyclerView.setAdapter(cityItemCardAdapter);
+                    noResultsLayout.setVisibility(View.GONE);
+                    nestedScrollView.setVisibility(View.VISIBLE);
                 }
                 else {
                     try {
                         adapter.getFilter().filter(searchText);
-                        adapter.notifyDataSetChanged();
-                        recyclerView.setAdapter(adapter);
+                        if (adapter.getItemCount() == 0) {
+                            Log.d("adapter", "empty");
+                            noResultsLayout.setVisibility(View.VISIBLE);
+                            nestedScrollView.setVisibility(View.GONE);
+                        }
+                        else {
+                            noResultsLayout.setVisibility(View.GONE);
+                            nestedScrollView.setVisibility(View.VISIBLE);
+                            adapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(adapter);
+                        }
                     }
                     catch (Exception e) {
                         Log.d("exception", e.getMessage().toString());
@@ -165,14 +168,18 @@ public class SuggestedDestinationActivity extends Activity {
             public void onClick(View view) {
                 Log.d("Share", "in Back Button" );
                 String editTextContent = editPreferredDest.getText().toString();
-                setBackPage("null", editTextContent, true);
+                setBackPage("", editTextContent, true);
             }
         });
     }
 
     public void getSuggestDest() {
-         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
-         call.enqueue(new Callback<List<SearchHotelItem>>() {
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+
              @Override
              public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
                  if (response.isSuccessful()) {
@@ -214,6 +221,9 @@ public class SuggestedDestinationActivity extends Activity {
 
     @Override
     protected void onResume() {
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
         super.onResume();
         if (editPreferredDest.getText().toString().equals("")) {
             Log.d("editPreferredDest", editPreferredDest.getText().toString());
@@ -232,6 +242,7 @@ public class SuggestedDestinationActivity extends Activity {
     }
 
     private void getAllCity(DataLoadedCallback callback) {
+        nestedScrollView.setVisibility(View.VISIBLE);
         Call<List<CityItem>> call = apiService.getAllCity();
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
@@ -281,6 +292,9 @@ public class SuggestedDestinationActivity extends Activity {
         );
     }
     private void getAllHotel(DataLoadedCallback callback) {
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
         Call<List<HotelItem>> call = apiService.getAllHotel();
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
@@ -334,18 +348,25 @@ public class SuggestedDestinationActivity extends Activity {
         });
 
     }
+//    @NonNull
+//    @Override
+//    public OnBackInvokedDispatcher getOnBackInvokedDispatcher() {
+//        setBackPage("", editPreferredDest.getText().toString(), true);
+//
+//        return super.getOnBackInvokedDispatcher();
+//    }
+
     private void setBackPage(String city_id, String city_name, Boolean search) {
         Log.d("Share", "in Back Button" );
-        String editTextContent = editPreferredDest.getText().toString();
         SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("destination", city_name);
+        Log.d("destination send", city_name);
         editor.putString("destinationID", city_id);
         if (search) {
             editor.putBoolean("search", true);
         }else {
             editor.putBoolean("search", false);
-
         }
         editor.apply();
         onBackPressed();

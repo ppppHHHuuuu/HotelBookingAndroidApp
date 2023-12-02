@@ -1,5 +1,9 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import static com.example.mobdev_nhom7.utils.CityIdMatch.getMatchingKey;
+import static com.example.mobdev_nhom7.utils.CityIdMatch.getValue;
+import static com.example.mobdev_nhom7.utils.CityIdMatch.globalMap;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -37,6 +41,7 @@ import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.CityIdMatch;
 import com.example.mobdev_nhom7.utils.SendID;
 
 import java.nio.charset.StandardCharsets;
@@ -154,12 +159,13 @@ public class StaysFragment extends Fragment {
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-        //TODO: ID OF HANOI
-        if (desInput.getText().toString() == "") {
-            destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
+
+        if (getMatchingKey(desInput.getText().toString()) != ""){
+            destination =getIdOfCity(getMatchingKey(desInput.getText().toString()));
         }
-        else {
-            destination = desInput.getText().toString();
+        else{
+            destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
+
         }
         startDateString = dateFullFormat.format(today);
         endDateString = dateFullFormat.format(tomorrow);
@@ -187,26 +193,40 @@ public class StaysFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Map<String, ?> allPreferences = preferencesEdittext.getAll();
-
-        for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            Log.d("SharedPreferences Stay", "Key: " + key + ", Value: " + value);
-        }
         String savedDestination = preferencesEdittext.getString("destination", "Ha Noi");
-        String savedDestinationID = preferencesEdittext.getString("destinationID", "null");
-        desInput.setText(savedDestination);
+        String savedDestinationID = preferencesEdittext.getString("destinationID", "");
+        Log.d("destinationID", savedDestinationID);
+        if (savedDestinationID.equals("")) {
+            Log.d("destination before", savedDestination);
+
+            destination = getFilledCitySearch(savedDestination);
+            Log.d("destination filled", destination);
+            savedDestinationID = getIdOfCity(destination);
+            Log.d("destinationID saved", savedDestinationID);
+        }
+        else {
+            destination = savedDestination;
+        }
+        Log.d("destination received", destination);
+        desInput.setText(destination);
+
         if (count >= 1) {
             Boolean isSearch = preferencesEdittext.getBoolean("search", true);
             if (isSearch) {
-                Log.d("destinationID", savedDestinationID);
                 searchHotels(user_id, null, savedDestinationID, startDateString, endDateString, roomNumber, pplNumber);
             }
         }
         count++;
+
     }
 
+    private String getFilledCitySearch(String city_name) {
+        return getMatchingKey(city_name);
+    }
+    private String getIdOfCity(String city_name) {
+
+        return getValue(city_name);
+    }
     private void saveEditTextContent() {
         String editTextContent = desInput.getText().toString();
 

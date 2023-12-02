@@ -232,7 +232,10 @@ id name
 id name_block
 id name_edit_image
 id nestedScrollView
+id nestedScrollViewActive
 id noResultsLayout
+id noResultsLayoutActive
+id noResultsLayoutSuggest
 id numberGuestCl
 id numberGuestTv
 id numberPicker
