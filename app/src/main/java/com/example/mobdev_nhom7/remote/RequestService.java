@@ -34,7 +34,6 @@ public class RequestService {
 
             @Override
             public void onFailure(Call<SearchHotelResponseData> call, Throwable t) {
-                Toast.makeText(context, R.string.err_network, Toast.LENGTH_SHORT).show();
             }
         } );
         return result[0];

@@ -4,10 +4,14 @@ import static android.app.PendingIntent.getActivity;
 import static java.sql.Types.NULL;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.LocaleData;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.fragment.main_activity.StaysFragment;
 import com.example.mobdev_nhom7.fragment.main_activity.TripsFragment;
 import com.example.mobdev_nhom7.models.bookingRequest.BookingRequest;
 import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
@@ -35,6 +40,7 @@ import com.example.mobdev_nhom7.models.responseObj.room.adapter.RoomAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.AlarmReceiver;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,12 +48,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.checkerframework.checker.units.qual.C;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -104,6 +114,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     private TextView phoneNumberTextView;
     private TextView totalCostTV;
     private Button bookButton;
+    private StaysFragment staysFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +155,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         user_id = preferences.getString("user_id", "no user_id");
 
         Bundle extras = this.getIntent().getExtras();
+        Log.d("view Hotel", "start");
         if (extras == null) {
             Log.d("extra", "null");
             hotel_id = "obpw61GK8OYRO11TsdB7";
@@ -160,12 +172,15 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 //
             if (extras.getString("startDate") != null) {
                 startDate = extras.getString("startDate");
+//                startDate = "2023-12-01";
                 Log.d("startDate", startDate);
             }
 
             if (extras.getString("endDate") != null) {
                 endDate = extras.getString("endDate");
-                Log.d("endDate", startDate);
+//                startDate = "2023-12-03";
+
+                Log.d("endDate", endDate);
             }
         }
 
@@ -175,8 +190,17 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     @Override
     protected void onResume() {
         super.onResume();
+        if (startDate == null) {
+            startDate = "2023-12-03";
+        }
+        if (endDate == null) {
+            endDate = "2023-12-07";
+        }
+
         //fake-data
-        getHotelInRange(hotel_id, "2023-11-28", "2023-11-30");
+        getHotelInRange(hotel_id, startDate, endDate);
+        Log.d("startDate", startDate);
+        Log.d("endDate", endDate);
     }
 
     private void getAllComment(String hotel_id) {
@@ -202,7 +226,6 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
             @Override
             public void onFailure(Call<List<CommentItem>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel", t.toString());
             }
         });
@@ -304,7 +327,11 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
     @Override
     public void updateTotalCost(String totalCost) {
-        totalCostTV.setText(totalCost);
+        String tam = totalCost.replace(",", "");
+
+        Long newTotalCost = Long.valueOf(tam);
+        newTotalCost = newTotalCost * countDaysBetween(startDate, endDate);
+        totalCostTV.setText(String.valueOf(newTotalCost));
     }
 
     public void bookHotel() {
@@ -320,28 +347,39 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         for (Map.Entry<String, Integer> entry : rooms.entrySet()) {
             Log.d("reservationRoomTestLog", entry.getKey() + " + " + entry.getValue() + " + " + String.valueOf(totalCostFinal));
         }
+//        startDate = "2023-12-03";
+//        endDate = "2023-12-07";
 
-        if (startDate == null) {
-            startDate = "2023-12-05";
-        }
-        if (endDate == null) {
-            endDate = "2023-12-30";
-        }
+//        if (startDate == null) {
+//            startDate = "2023-12-01";
+//        }
+//        if (endDate == null) {
+//            endDate = "2023-12-03";
+//        }
 
         long totalCost = totalCostFinal * countDaysBetween(startDate, endDate);
         BookingRequest bookingRequest = new BookingRequest(user_id, hotel_id, rooms, startDate, endDate, totalCost);
-        Call<Object>callBooking = apiService.booking(bookingRequest);
+        Call<Object> callBooking = apiService.booking(bookingRequest);
         callBooking.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 Toast.makeText(getApplicationContext(), "Booking successfully", Toast.LENGTH_SHORT).show();
-                Log.d("booking","Booking successfully");
+                Log.d("booking", "Booking successfully");
+                if (startDate == null) {
+                    Log.d("asd", "adads");
+                    LocalDate currentDate = LocalDate.now();
+                    LocalDate tomorrow = currentDate.plusDays(1);
+
+                    String tam = tomorrow.format(DateTimeFormatter.ISO_DATE);
+                    setAlarm(tam);
+                } else {
+                    setAlarm(startDate);
+                }
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("booking",t.toString());
+                Log.d("booking", t.toString());
             }
         });
 
@@ -357,5 +395,28 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         LocalDate endDate = LocalDate.parse(endDateStr, formatter);
 
         return ChronoUnit.DAYS.between(startDate, endDate);
+    }
+
+    private void setAlarm(String startDate) {
+        Instant currentTime = Instant.now();
+
+        LocalDate startDateObject = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
+
+        LocalDate notificationDate = startDateObject.minusDays(5);
+
+        Instant notificationInstant = notificationDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
+
+        long futureTimeInMillis = SystemClock.elapsedRealtime() + Duration.between(currentTime, notificationInstant).toMillis();
+
+        Intent intent1 = new Intent(this, AlarmReceiver.class);
+        intent1.putExtra("content", "Chuyến đi của bạn sắp bắt đầu");
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureTimeInMillis, pendingIntent);
+        }
     }
 }

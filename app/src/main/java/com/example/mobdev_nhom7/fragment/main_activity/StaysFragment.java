@@ -67,12 +67,13 @@ public class StaysFragment extends Fragment {
     private TextView dateDisplay;
     private String hotelID;
     private String destination;
-    private String startDate;
-    private String endDate;
+    private String startDateString;
+    private String endDateString;
     private String roomNumber;
     private String pplNumber;
     private String user_id;
     SendID sendID;
+
     public StaysFragment() {
         // Required empty public constructor
     }
@@ -104,8 +105,8 @@ public class StaysFragment extends Fragment {
 //                startActivity(intent);
                 Intent intent = new Intent(getContext(), ViewHotel.class);
                 Bundle extras = new Bundle();
-                extras.putString("startDate", startDate);
-                extras.putString("endDate", endDate);
+                extras.putString("startDate", startDateString);
+                extras.putString("endDate", endDateString);
                 extras.putString("hotel_id", hotel_id);
                 intent.putExtras(extras);
                 startActivity(intent);
@@ -126,8 +127,8 @@ public class StaysFragment extends Fragment {
         dateDisplay.setText(formattedToday + " - " + formattedTomorrow);
 
         String fullDate = dateDisplay.getText().toString();
-        String checkInDate = fullDate.substring(0,6);
-        String checkOutDate = fullDate.substring(9,15);
+        String checkInDate = fullDate.substring(0, 6);
+        String checkOutDate = fullDate.substring(9, 15);
         dateOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,16 +151,16 @@ public class StaysFragment extends Fragment {
         hotelID = "null";
         //TODO: ID OF HANOI
         destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
-        startDate = dateFullFormat.format(today);
-        endDate = dateFullFormat.format(tomorrow);
+        startDateString = dateFullFormat.format(today);
+        endDateString = dateFullFormat.format(tomorrow);
         roomNumber = "2";
         pplNumber = "1";
-        buttonSearch.setOnClickListener(view1 -> searchHotels(user_id, hotelID, destination, startDate, endDate, roomNumber, pplNumber));
+        buttonSearch.setOnClickListener(view1 -> searchHotels(user_id, hotelID, destination, startDateString, endDateString, roomNumber, pplNumber));
         Log.d("user_id", user_id);
         Log.d("hotelID", hotelID);
         Log.d("destination", destination);
-        Log.d("start_date", startDate);
-        Log.d("end_date", endDate);
+        Log.d("start_date", startDateString);
+        Log.d("end_date", endDateString);
         Log.d("room_quantity", roomNumber);
         Log.d("ppl_quantity", pplNumber);
         desInput.setOnClickListener(new View.OnClickListener() {
@@ -190,9 +191,10 @@ public class StaysFragment extends Fragment {
         Boolean isSearch = preferencesEdittext.getBoolean("search", false);
         if (isSearch) {
             Log.d("destinationID", savedDestinationID);
-            searchHotels(user_id, null, savedDestinationID,startDate, endDate, roomNumber, pplNumber);
+            searchHotels(user_id, null, savedDestinationID, startDateString, endDateString, roomNumber, pplNumber);
         }
     }
+
     private void saveEditTextContent() {
         String editTextContent = desInput.getText().toString();
 
@@ -202,10 +204,12 @@ public class StaysFragment extends Fragment {
         editor.putString("destination", editTextContent);
         editor.apply();
     }
+
     public void getSuggestedDestinationActivity() {
         Intent intent = new Intent(getContext(), SuggestedDestinationActivity.class);
         startActivity(intent);
     }
+
     public void openRoomOptionsDialog() {
         final Dialog dialog = new Dialog(this.getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -241,6 +245,7 @@ public class StaysFragment extends Fragment {
         });
         dialog.show();
     }
+
     public void openDateOptionsDialog(TextView dateDisplay) {
         final Dialog dialog = new Dialog(this.getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -263,8 +268,8 @@ public class StaysFragment extends Fragment {
         TextView checkOut = dialog.findViewById(R.id.check_out_date_picker);
 
         String fullDate = dateDisplay.getText().toString();
-        String checkInDate = fullDate.substring(0,6);
-        String checkOutDate = fullDate.substring(9,15);
+        String checkInDate = fullDate.substring(0, 6);
+        String checkOutDate = fullDate.substring(9, 15);
         checkIn.setText(checkInDate);
         checkOut.setText(checkOutDate);
         checkIn.setOnClickListener(new View.OnClickListener() {
@@ -289,9 +294,14 @@ public class StaysFragment extends Fragment {
 
                 // Parse the dates for comparison
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+                SimpleDateFormat fullDateFormat = new SimpleDateFormat("2023-MM-dd", Locale.US);
                 try {
                     Date startDate = dateFormat.parse(start);
                     Date endDate = dateFormat.parse(end);
+                    startDateString = fullDateFormat.format(startDate);
+                    endDateString = fullDateFormat.format(endDate);
+                    Log.d("startDateString", startDateString);
+
 
                     // Check if start date is greater than end date
                     if (startDate.compareTo(endDate) > 0) {
@@ -306,15 +316,17 @@ public class StaysFragment extends Fragment {
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    Log.d("dateStringError", e.getMessage());
                 }
                 setDate(checkIn.getText().toString(), checkOut.getText().toString());
                 dialog.hide();
-                startDate = checkIn.getText().toString();
-                endDate = checkOut.getText().toString();
+//                startDateString = checkIn.getText().toString();
+//                endDateString = checkOut.getText().toString();
             }
         });
         dialog.show();
     }
+
     public void showDatePicker(TextView tv) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -340,9 +352,11 @@ public class StaysFragment extends Fragment {
         // Show the DatePickerDialog
         datePickerDialog.show();
     }
+
     public void setDate(String in, String out) {
         dateDisplay.setText(in + " - " + out);
     }
+
     public void setRoomType(String roomNum, String guestNum) {
         String res = roomNum;
         int roomNumInt = Integer.parseInt(roomNum);
@@ -363,13 +377,14 @@ public class StaysFragment extends Fragment {
 
         roomsDisplay.setText(res);
     }
-    public void searchHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity, String ppl_quantity ) {
+
+    public void searchHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity, String ppl_quantity) {
         // Show loading circle
         loadingProgressBar.setVisibility(View.VISIBLE);
 
         // Hide RecyclerView
         recyclerView.setVisibility(View.GONE);
-        Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID,destination, start_date, end_date, room_quantity, ppl_quantity);
+        Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID, destination, start_date, end_date, room_quantity, ppl_quantity);
         String requestUrl = callHotel.request().url().toString();
         Log.d("Request URL", requestUrl);
         callHotel.enqueue(new Callback<List<SearchHotelItem>>() {
@@ -404,11 +419,11 @@ public class StaysFragment extends Fragment {
 
                 // Show RecyclerView
                 recyclerView.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
-                Log.d("loadHotel",t.toString());
+                Log.d("loadHotel", t.toString());
             }
         });
     }
+
     public void getSuggestDest() {
         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
         String requestUrl = call.request().url().toString();
@@ -432,6 +447,7 @@ public class StaysFragment extends Fragment {
                 searchHotelItems.addAll(response.body());
                 cardHotel2Adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
                 Log.d("call", t.toString());
@@ -443,6 +459,7 @@ public class StaysFragment extends Fragment {
             }
         });
     }
+
     public void deleteFavouriteHotel(String user_id, String hotel_id, int position) {
         Call<String> call = apiService.deleteFavouriteHotel(user_id, hotel_id);
         String requestUrl = call.request().url().toString();
@@ -456,12 +473,29 @@ public class StaysFragment extends Fragment {
                     cardHotel2Adapter.notifyDataSetChanged();
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d("call", t.toString());
                 Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setStartDate(String startDate) {
+        this.startDateString = startDate;
+    }
+
+    private void setEndDate(String endDate) {
+        this.endDateString = endDate;
+    }
+
+    public String getStartDateString() {
+        return startDateString;
+    }
+
+    public String getEndDateString() {
+        return endDateString;
     }
 
 }

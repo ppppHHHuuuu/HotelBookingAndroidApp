@@ -23,6 +23,7 @@ color white
 dimen dialog_horizontal_margin
 drawable account_icon
 drawable alert_icon
+drawable android_icon
 drawable apple
 drawable apple_icon
 drawable background_with_border

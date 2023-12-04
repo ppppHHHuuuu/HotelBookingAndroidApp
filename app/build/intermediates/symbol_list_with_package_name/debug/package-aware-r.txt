@@ -2968,6 +2968,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable account_icon
 drawable alert_icon
+drawable android_icon
 drawable apple
 drawable apple_icon
 drawable avd_hide_password

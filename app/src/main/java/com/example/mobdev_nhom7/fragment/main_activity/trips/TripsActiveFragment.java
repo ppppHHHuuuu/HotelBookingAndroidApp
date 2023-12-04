@@ -112,7 +112,6 @@ public class TripsActiveFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<ActiveHotelItem>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
         });

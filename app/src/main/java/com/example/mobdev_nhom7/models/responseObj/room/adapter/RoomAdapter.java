@@ -176,7 +176,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                 DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
                 viewHotel.updateTotalCost(customFormat.format(getTotalCost()));
 
-
                 dialog.dismiss();
             }
         });

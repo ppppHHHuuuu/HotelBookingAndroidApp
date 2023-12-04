@@ -44,7 +44,7 @@ public class SearchHotelItem {
     @SerializedName("is_favorite")//check
     @Expose
     private Boolean is_favorite;
-//    @SerializedName("is")//check
+    //    @SerializedName("is")//check
 //    @Expose
 //    private String amount;
     public String getDistanceFromCenter() {
