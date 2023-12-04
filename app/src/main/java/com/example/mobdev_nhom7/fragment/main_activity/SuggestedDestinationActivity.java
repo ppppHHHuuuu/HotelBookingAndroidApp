@@ -110,19 +110,23 @@ public class SuggestedDestinationActivity extends Activity {
                 adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
                     @Override
                     public void go(String hotel_id, String city_id, String reservation_id) {
-                        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("destination", editPreferredDest.getText().toString());
-                        editor.putString("destinationID", city_id);
-                        editor.putBoolean("search", true);
-                        editor.apply();
-                        onBackPressed();
-                        Log.d("Share", "in getAll" );
+
                         for (int i = 0; i < placeItemList.size(); i++) {
                             if (Objects.equals(placeItemList.get(i).getType(), PlaceType.HOTEL.getDisplayName())) {
                                 Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
                                 intent.putExtra("hotel_id", hotel_id);
                                 startActivity(intent);
+                            }
+                            else {
+                                SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("destination", editPreferredDest.getText().toString());
+                                editor.putString("destinationID", city_id);
+                                editor.putBoolean("search", true);
+                                editor.apply();
+                                onBackPressed();
+                                Log.d("Share", "in getAll" );
+                                finish();
                             }
                         }
                     }
@@ -175,51 +179,51 @@ public class SuggestedDestinationActivity extends Activity {
     }
 
     public void getSuggestDest() {
-         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
-         call.enqueue(new Callback<List<SearchHotelItem>>() {
-             @Override
-             public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
-                 if (response.isSuccessful()) {
-                     if  (response.body() == null) {
-                         Log.d("Content", "Empty content");
-                         Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
-                     }
-                     suggestHotelItems = (ArrayList<SearchHotelItem>) response.body();
-                     for (int i = 0; i < response.body().size(); i++ ) {
-                         Log.d("hotelItems", suggestHotelItems.get(i).getName());
-                     }
-                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
-                         String editTextContent = "";
-                         @Override
-                         public void go(String hotel_id, String city_id, String reservation_id) {
-                             for (int i = 0; i < cityItems.size(); i++) {
-                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
-                                     editTextContent =cityItems.get(i).getCityName();
-                                 }
-                             }
-                             if (Objects.equals(editTextContent, "")) {
-                                 editTextContent = "No CITY";
-                             }
-                             SharedPreferences.Editor editor = preferencesEdittext.edit();
-                             editor.putString("destination", editTextContent);
-                             editor.putString("destinationID", city_id);
-                             editor.putBoolean("search", true);
-                             editor.apply();
-                             onBackPressed();
-                             Log.d("Share", "in suggest_dest" );
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
+                if (response.isSuccessful()) {
+                    if  (response.body() == null) {
+                        Log.d("Content", "Empty content");
+                        Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
+                    }
+                    suggestHotelItems = (ArrayList<SearchHotelItem>) response.body();
+                    for (int i = 0; i < response.body().size(); i++ ) {
+                        Log.d("hotelItems", suggestHotelItems.get(i).getName());
+                    }
+                    cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
+                        String editTextContent = "";
+                        @Override
+                        public void go(String hotel_id, String city_id, String reservation_id) {
+                            for (int i = 0; i < cityItems.size(); i++) {
+                                if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
+                                    editTextContent =cityItems.get(i).getCityName();
+                                }
+                            }
+                            if (Objects.equals(editTextContent, "")) {
+                                editTextContent = "No CITY";
+                            }
+                            SharedPreferences.Editor editor = preferencesEdittext.edit();
+                            editor.putString("destination", editTextContent);
+                            editor.putString("destinationID", city_id);
+                            editor.putBoolean("search", true);
+                            editor.apply();
+                            onBackPressed();
+                            Log.d("Share", "in suggest_dest" );
 
-                         }
-                     });
-                     recyclerView.setAdapter(cityItemCardAdapter);
-                 }
-             }
+                        }
+                    });
+                    recyclerView.setAdapter(cityItemCardAdapter);
+                }
+            }
 
-             @Override
-             public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
-                 Log.d("call", t.toString());
-                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
-             }
-         });
+            @Override
+            public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                Log.d("call", t.toString());
+                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 //    public void getSuggestDest() {
 //         Call<List<CityItem>> call = apiService.getSuggestedCity();
@@ -288,46 +292,46 @@ public class SuggestedDestinationActivity extends Activity {
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<List<CityItem>>() {
-            @Override
-            public void onResponse(Call<List<CityItem>> call, Response<List<CityItem>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                cityItems = response.body();
-                Log.d("cityItemListResponse", cityItems.toString());
-                for (int i = 0; i < cityItems.size(); i++) {
-                    CityItem cityItem = cityItems.get(i);
-                    PlaceItem placeItem = new PlaceItem();
-                    placeItem.setCity_id(cityItem.getCityId());
-                    placeItem.setName(cityItem.getCityName());
-                    placeItem.setCountry(cityItem.getCountry());
-                    placeItem.setType(PlaceType.CITY.getDisplayName());
-                    placeItemList.add(placeItem);
-                }
-                callback.onDataLoaded();
-            }
+                         @Override
+                         public void onResponse(Call<List<CityItem>> call, Response<List<CityItem>> response) {
+                             if (!response.isSuccessful()) {
+                                 Toast.makeText(getApplicationContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                                 return;
+                             }
+                             cityItems = response.body();
+                             Log.d("cityItemListResponse", cityItems.toString());
+                             for (int i = 0; i < cityItems.size(); i++) {
+                                 CityItem cityItem = cityItems.get(i);
+                                 PlaceItem placeItem = new PlaceItem();
+                                 placeItem.setCity_id(cityItem.getCityId());
+                                 placeItem.setName(cityItem.getCityName());
+                                 placeItem.setCountry(cityItem.getCountry());
+                                 placeItem.setType(PlaceType.CITY.getDisplayName());
+                                 placeItemList.add(placeItem);
+                             }
+                             callback.onDataLoaded();
+                         }
 
-            @Override
-            public void onFailure(Call<List<CityItem>> call, Throwable t) {
-                if (t instanceof IOException) {
-                    // An IOException occurred, usually a network issue
-                    Log.e("onFailure", "Network error: " + t.getMessage());
-                    Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
-                } else if (t instanceof HttpException) {
-                    // An HTTP exception occurred, get the status code
-                    HttpException httpException = (HttpException) t;
-                    int statusCode = httpException.code();
-                    String errorBody = httpException.response().errorBody().toString();
-                    Log.e("onFailure", "HTTP error: " + statusCode + ", " + errorBody);
-                    Toast.makeText(getApplicationContext(), "HTTP error: " + statusCode, Toast.LENGTH_SHORT).show();
-                } else {
-                    // Other types of exceptions
-                    Log.e("onFailure", "Error: " + t.getMessage());
-                    Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
+                         @Override
+                         public void onFailure(Call<List<CityItem>> call, Throwable t) {
+                             if (t instanceof IOException) {
+                                 // An IOException occurred, usually a network issue
+                                 Log.e("onFailure", "Network error: " + t.getMessage());
+                                 Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+                             } else if (t instanceof HttpException) {
+                                 // An HTTP exception occurred, get the status code
+                                 HttpException httpException = (HttpException) t;
+                                 int statusCode = httpException.code();
+                                 String errorBody = httpException.response().errorBody().toString();
+                                 Log.e("onFailure", "HTTP error: " + statusCode + ", " + errorBody);
+                                 Toast.makeText(getApplicationContext(), "HTTP error: " + statusCode, Toast.LENGTH_SHORT).show();
+                             } else {
+                                 // Other types of exceptions
+                                 Log.e("onFailure", "Error: " + t.getMessage());
+                                 Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                             }
+                         }
+                     }
         );
     }
     private void getAllHotel(DataLoadedCallback callback) {

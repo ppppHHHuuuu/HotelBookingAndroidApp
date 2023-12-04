@@ -174,7 +174,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                 DecimalFormatSymbols customSymbol = new DecimalFormatSymbols(Locale.getDefault());
                 customSymbol.setCurrencySymbol("VND");
                 DecimalFormat customFormat = new DecimalFormat("###,###", customSymbol);
-                viewHotel.updateTotalCost(customFormat.format(getTotalCost()));
+//                viewHotel.updateTotalCost(customFormat.format(getTotalCost()));
 
 
                 dialog.dismiss();
