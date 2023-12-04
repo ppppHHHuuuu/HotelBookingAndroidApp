@@ -225,8 +225,6 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
     private void getHotelInRange(String hotel_id, String start_date, String end_date) {
         Call<HotelItem> call = apiService.getHotelInRange(hotel_id, start_date, end_date);
-        String requestUrl = call.request().url().toString();
-        Log.d("Request URL", requestUrl);
         call.enqueue(new Callback<HotelItem>() {
             @Override
             public void onResponse(@NonNull Call<HotelItem> call, @NonNull Response<HotelItem> response) {

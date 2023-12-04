@@ -1,5 +1,9 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import static com.example.mobdev_nhom7.utils.CityIdMatch.getMatchingKey;
+import static com.example.mobdev_nhom7.utils.CityIdMatch.getValue;
+import static com.example.mobdev_nhom7.utils.CityIdMatch.globalMap;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -27,6 +31,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +41,10 @@ import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.CityIdMatch;
 import com.example.mobdev_nhom7.utils.SendID;
 
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,6 +79,8 @@ public class StaysFragment extends Fragment {
     private String roomNumber;
     private String pplNumber;
     private String user_id;
+    private RelativeLayout noResultsLayout;
+
     SendID sendID;
 
     public StaysFragment() {
@@ -96,7 +105,8 @@ public class StaysFragment extends Fragment {
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         preferencesEdittext = getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
-
+        noResultsLayout = view.findViewById(R.id.noResultsLayout);
+        noResultsLayout.setVisibility(View.GONE);
         cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
             @Override
             public void go(String hotel_id, String city_id, String reservation_id) {
@@ -149,8 +159,14 @@ public class StaysFragment extends Fragment {
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-        //TODO: ID OF HANOI
-        destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
+
+        if (getMatchingKey(desInput.getText().toString()) != ""){
+            destination =getIdOfCity(getMatchingKey(desInput.getText().toString()));
+        }
+        else{
+            destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
+
+        }
         startDateString = dateFullFormat.format(today);
         endDateString = dateFullFormat.format(tomorrow);
         roomNumber = "2";
@@ -174,27 +190,43 @@ public class StaysFragment extends Fragment {
 
         return view;
     }
-
     @Override
     public void onResume() {
         super.onResume();
-        Map<String, ?> allPreferences = preferencesEdittext.getAll();
-
-        for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            Log.d("SharedPreferences Stay", "Key: " + key + ", Value: " + value);
-        }
         String savedDestination = preferencesEdittext.getString("destination", "Ha Noi");
-        String savedDestinationID = preferencesEdittext.getString("destinationID", "Z6YyrwkuyVbsyaLxOE7E");
-        desInput.setText(savedDestination);
-        Boolean isSearch = preferencesEdittext.getBoolean("search", false);
-        if (isSearch) {
-            Log.d("destinationID", savedDestinationID);
-            searchHotels(user_id, null, savedDestinationID, startDateString, endDateString, roomNumber, pplNumber);
+        String savedDestinationID = preferencesEdittext.getString("destinationID", "");
+        Log.d("destinationID", savedDestinationID);
+        if (savedDestinationID.equals("")) {
+            Log.d("destination before", savedDestination);
+
+            destination = getFilledCitySearch(savedDestination);
+            Log.d("destination filled", destination);
+            savedDestinationID = getIdOfCity(destination);
+            Log.d("destinationID saved", savedDestinationID);
         }
+        else {
+            destination = savedDestination;
+        }
+        Log.d("destination received", destination);
+        desInput.setText(destination);
+
+        if (count >= 1) {
+            Boolean isSearch = preferencesEdittext.getBoolean("search", true);
+            if (isSearch) {
+                searchHotels(user_id, null, savedDestinationID, startDateString, endDateString, roomNumber, pplNumber);
+            }
+        }
+        count++;
+
     }
 
+    private String getFilledCitySearch(String city_name) {
+        return getMatchingKey(city_name);
+    }
+    private String getIdOfCity(String city_name) {
+
+        return getValue(city_name);
+    }
     private void saveEditTextContent() {
         String editTextContent = desInput.getText().toString();
 
@@ -380,6 +412,8 @@ public class StaysFragment extends Fragment {
 
     public void searchHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity, String ppl_quantity) {
         // Show loading circle
+        noResultsLayout.setVisibility(View.INVISIBLE);
+
         loadingProgressBar.setVisibility(View.VISIBLE);
 
         // Hide RecyclerView
@@ -394,19 +428,24 @@ public class StaysFragment extends Fragment {
                 loadingProgressBar.setVisibility(View.GONE);
 
                 // Show RecyclerView
-                recyclerView.setVisibility(View.VISIBLE);
                 if (!response.isSuccessful()) {
                     Log.d("response error", String.valueOf(response.code()));
                     return;
                 }
                 if (response.body() == null) {
                     Log.d("response error", "Empty response");
+
                     return;
                 }
                 if (response.body().size() == 0) {
-                    Toast.makeText(getContext(), "NO SEARCH FOUND", Toast.LENGTH_LONG).show();
+                    recyclerView.setVisibility(View.GONE);
+                    noResultsLayout.setVisibility(View.VISIBLE);
                     return;
                 }
+                noResultsLayout.setVisibility(View.INVISIBLE);
+
+                recyclerView.setVisibility(View.VISIBLE);
+
                 searchHotelItems.clear();
                 searchHotelItems.addAll(response.body());
                 cardHotel2Adapter.notifyDataSetChanged();
@@ -426,6 +465,8 @@ public class StaysFragment extends Fragment {
     }
 
     public void getSuggestDest() {
+        noResultsLayout.setVisibility(View.INVISIBLE);
+
         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
