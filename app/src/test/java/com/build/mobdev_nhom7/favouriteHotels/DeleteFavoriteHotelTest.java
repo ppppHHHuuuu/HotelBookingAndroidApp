@@ -27,7 +27,7 @@ public class DeleteFavoriteHotelTest {
     }
 
     @Test
-    public void testAddFavoriteHotel() throws IOException {
+    public void testDeleteFavoriteHotel() throws IOException {
         setup();
 
         assertEquals(200, response.code());

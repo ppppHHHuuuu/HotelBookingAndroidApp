@@ -1,4 +1,4 @@
-package com.build.mobdev_nhom7;
+package com.build.mobdev_nhom7.viewHotels;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;

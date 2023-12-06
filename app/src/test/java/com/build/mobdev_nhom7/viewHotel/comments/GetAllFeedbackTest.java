@@ -1,4 +1,4 @@
-package com.build.mobdev_nhom7;
+package com.build.mobdev_nhom7.comments;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,27 +16,33 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class AddFavoriteHotelTest {
+public class GetAllFeedbackTest {
     APIService apiService;
-    Call<String> addFavoriteHotel;
-    Response<String> response;
-
+    Call<List<CommentItem>> getAllFeedback;
+    Response<List<CommentItem>> response;
 
     @BeforeAll
     public void setup() throws IOException {
         apiService = APIUtils.getTestService();
-        addFavoriteHotel = apiService.addFavouriteHotel("1xdyOLnYOsUAMLjhKQUq2a6GAX13", "3LQ2wJJMwKAlfdnaVC9v");
-        response = addFavoriteHotel.execute();
+        getAllFeedback = apiService.getAllFeedback("3LQ2wJJMwKAlfdnaVC9v");
+        response = getAllFeedback.execute();
     }
-
     @Test
-    public void testAddFavoriteHotel() throws IOException {
+    public void testAllFeedback() throws IOException {
         setup();
 
         assertEquals(200, response.code());
 
-        assertEquals(true, response.isSuccessful());
+        List<CommentItem> result = response.body();
 
-        assertEquals("{}", response.body());
+        assertEquals(4, result.size());
+
+        CommentItem commentItem = result.get(0);
+
+        assertNotNull(commentItem.getFeedbackItem());
+
+        assertNotNull(commentItem.getHotel_id());
+
+        assertNotNull(commentItem.getUser_id());
     }
 }
