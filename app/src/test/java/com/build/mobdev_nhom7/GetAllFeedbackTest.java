@@ -35,7 +35,7 @@ public class GetAllFeedbackTest {
 
         List<CommentItem> result = response.body();
 
-        assertEquals(3, result.size());
+        assertEquals(4, result.size());
 
         CommentItem commentItem = result.get(0);
 

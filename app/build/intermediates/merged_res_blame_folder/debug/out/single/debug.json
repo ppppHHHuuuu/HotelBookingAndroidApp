@@ -436,6 +436,10 @@
         "source": "com.example.mobdev_nhom7.app-main-39:/drawable/top_rounded_background.xml"
     },
     {
+        "merged": "com.example.mobdev_nhom7.app-merged_res-37:/drawable_android_icon.xml.flat",
+        "source": "com.example.mobdev_nhom7.app-main-39:/drawable/android_icon.xml"
+    },
+    {
         "merged": "com.example.mobdev_nhom7.app-merged_res-37:/layout_suggested_destination.xml.flat",
         "source": "com.example.mobdev_nhom7.app-main-39:/layouts/main-page/layout/suggested_destination.xml"
     },

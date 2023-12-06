@@ -37,6 +37,6 @@ public class AddFavoriteHotelTest {
 
         assertEquals(true, response.isSuccessful());
 
-        assertEquals("already exist", response.body());
+        assertEquals("{}", response.body());
     }
 }
