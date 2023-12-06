@@ -103,7 +103,6 @@ public class ViewCity extends AppCompatActivity {
             }
             TextView cityName = findViewById(R.id.city_name);
             cityName.setText(extras.getString("city_name"));
-
             TextView cityCountry = findViewById(R.id.city_country);
             cityCountry.setText(extras.getString("city_country"));
         }
