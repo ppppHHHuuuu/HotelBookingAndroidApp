@@ -51,8 +51,12 @@ public class TripsActiveFragment extends Fragment {
 
     public void deleteActive(int position) {
         hotelItemList.remove(position);
-        nestedScrollView.setVisibility(View.GONE);
-        noResultsLayout.setVisibility(View.VISIBLE);
+        if (hotelItemList.size() == 0) {
+            nestedScrollView.setVisibility(View.GONE);
+            noResultsLayout.setVisibility(View.VISIBLE);
+        }
+//        nestedScrollView.setVisibility(View.GONE);
+//        noResultsLayout.setVisibility(View.VISIBLE);
         cardHotelActiveTripAdapter.notifyDataSetChanged();
     }
 

@@ -58,6 +58,7 @@ import retrofit2.Response;
 public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
+    SharedPreferences preferencesDate;
     String user_id;
     String hotel_id;
     String startDate;
@@ -144,7 +145,15 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         priceLayout.setAdapter(roomAdapter);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         user_id = preferences.getString("user_id", "no user_id");
+        preferencesDate = getApplicationContext().getSharedPreferences("DateBooking", Context.MODE_PRIVATE);
 
+        if (preferencesDate != null) {
+            for (String key : preferencesDate.getAll().keySet()) {
+                Log.e("extras Date", key + " : " + (preferencesDate.getString(key, "")));
+            }
+            startDate = preferencesDate.getString("startDate", null);
+            endDate = preferencesDate.getString("endDate", null);
+        }
         Bundle extras = this.getIntent().getExtras();
         Log.d("view Hotel", "start");
         if (extras == null) {
@@ -154,25 +163,25 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
         } else {
             for (String key : extras.keySet()) {
-                Log.e("extras", key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
+                Log.e("extras Hotel", key + " : " + (extras.get(key) != null ? extras.get(key) : "NULL"));
             }
             if (extras.getString("hotel_id") != null) {
                 hotel_id = extras.getString("hotel_id");
                 Log.d("hotel_id View Hotel", hotel_id);
             }
 //
-            if (extras.getString("startDate") != null) {
-                startDate = extras.getString("startDate");
-//                startDate = "2023-12-01";
-                Log.d("startDate", startDate);
-            }
-
-            if (extras.getString("endDate") != null) {
-                endDate = extras.getString("endDate");
-//                startDate = "2023-12-03";
-
-                Log.d("endDate", endDate);
-            }
+//            if (extras.getString("startDate") != null) {
+//                startDate = extras.getString("startDate");
+////                startDate = "2023-12-01";
+//                Log.d("startDate", startDate);
+//            }
+//
+//            if (extras.getString("endDate") != null) {
+//                endDate = extras.getString("endDate");
+////                startDate = "2023-12-03";
+//
+//                Log.d("endDate", endDate);
+//            }
         }
 
         bookButton.setOnClickListener(view -> bookHotel());
@@ -182,10 +191,10 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     protected void onResume() {
         super.onResume();
         if (startDate == null) {
-            startDate = "2023-12-03";
+            startDate = "2023-12-08";
         }
         if (endDate == null) {
-            endDate = "2023-12-07";
+            endDate = "2023-12-09";
         }
 
         //fake-data

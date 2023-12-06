@@ -1,8 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-34:/values-v18/values-v18.xml",
+            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-35:/values-v18/values-v18.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\doanv\\.gradle\\caches\\transforms-3\\2cd4372d8c39fe4fbc477dfda441e29a\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
+                    "from": {
+                        "startLines": "4,12",
+                        "startColumns": "0,0",
+                        "startOffsets": "180,596",
+                        "endLines": "11,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "595,1009"
+                    },
+                    "to": {
+                        "startLines": "3,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "104,524",
+                        "endLines": "10,18",
+                        "endColumns": "8,8",
+                        "endOffsets": "519,937"
+                    }
+                },
                 {
                     "source": "C:\\Users\\doanv\\.gradle\\caches\\transforms-3\\986d40ec9e622783b8bb05f7a0a6d7a4\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
                     "from": {

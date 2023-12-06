@@ -53,6 +53,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,6 +63,7 @@ public class StaysFragment extends Fragment {
     private APIService apiService = APIUtils.getUserService();
     SharedPreferences preferences;
     SharedPreferences preferencesEdittext;
+    SharedPreferences preferencesDate;
     SharedPreferences.Editor editorHotel;
     CardHotel2Adapter cardHotel2Adapter;
     ArrayList<SearchHotelItem> searchHotelItems;
@@ -74,6 +76,7 @@ public class StaysFragment extends Fragment {
     private TextView dateDisplay;
     private String hotelID;
     private String destination;
+    private String destinationID;
     private String startDateString;
     private String endDateString;
     private String roomNumber;
@@ -104,20 +107,22 @@ public class StaysFragment extends Fragment {
         searchHotelItems = new ArrayList<>();
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         preferencesEdittext = getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        preferencesDate = getContext().getSharedPreferences("DateBooking", Context.MODE_PRIVATE);
         loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
         noResultsLayout = view.findViewById(R.id.noResultsLayout);
         noResultsLayout.setVisibility(View.GONE);
         cardHotel2Adapter = new CardHotel2Adapter(requireContext(), searchHotelItems, new SendID() {
             @Override
             public void go(String hotel_id, String city_id, String reservation_id) {
-//                Intent intent = new Intent(getContext(), ViewHotel.class);
-//                intent.putExtra("hotel_id", hotel_id);
-//                startActivity(intent);
                 Intent intent = new Intent(getContext(), ViewHotel.class);
                 Bundle extras = new Bundle();
-                extras.putString("startDate", startDateString);
-                extras.putString("endDate", endDateString);
+//                extras.putString("startDate", startDateString);
+//                extras.putString("endDate", endDateString);
                 extras.putString("hotel_id", hotel_id);
+                SharedPreferences.Editor editor = preferencesDate.edit();
+                editor.putString("startDate", startDateString);
+                editor.putString("endDate", endDateString);
+                editor.apply();
                 intent.putExtras(extras);
                 startActivity(intent);
             }
@@ -127,7 +132,7 @@ public class StaysFragment extends Fragment {
             deleteFavouriteHotel(user_id, deletedItem.getHotelId(), position);
         });
         roomInfoOptions.setOnClickListener(view12 -> openRoomOptionsDialog());
-        Date today = new Date();
+        Date today = getNextDate(new Date());
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
         String formattedToday = dateFormat.format(today);
         Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
@@ -159,19 +164,24 @@ public class StaysFragment extends Fragment {
         SimpleDateFormat dateFullFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         user_id = preferences.getString("user_id", "empty user_id");
         hotelID = "null";
-
-        if (getMatchingKey(desInput.getText().toString()) != ""){
-            destination =getIdOfCity(getMatchingKey(desInput.getText().toString()));
+        destination = "Ha Noi";
+        Log.d("destination DesInput", desInput.getText().toString());
+        if (desInput.getText().toString().equals("")) {
+            desInput.setText( preferencesEdittext.getString("destination", "Ha Noi"));
+        }
+        if (!Objects.equals(getMatchingKey(desInput.getText().toString()), "")){
+            destinationID =getIdOfCity(getMatchingKey(desInput.getText().toString()));
         }
         else{
-            destination = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
-
+            destinationID = "Z6YyrwkuyVbsyaLxOE7E"; //aka Hanoi
         }
         startDateString = dateFullFormat.format(today);
         endDateString = dateFullFormat.format(tomorrow);
         roomNumber = "2";
         pplNumber = "1";
-        buttonSearch.setOnClickListener(view1 -> searchHotels(user_id, hotelID, destination, startDateString, endDateString, roomNumber, pplNumber));
+        buttonSearch.setOnClickListener(view1 -> searchHotels(user_id, hotelID, destinationID, startDateString, endDateString, roomNumber, pplNumber));
+        Log.d("Search Button call", "From OnCreate");
+        Log.d("Search Button call", destination);
         Log.d("user_id", user_id);
         Log.d("hotelID", hotelID);
         Log.d("destination", destination);
@@ -190,6 +200,17 @@ public class StaysFragment extends Fragment {
 
         return view;
     }
+    public void formatDate(String start_date, String end_date) throws ParseException {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = inputFormat.parse(start_date);
+        Date endDate = inputFormat.parse(end_date);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.US);
+        String formattedStartDate = dateFormat.format(startDate);
+        String formattedEndDate = dateFormat.format(endDate);
+
+        dateDisplay.setText(formattedStartDate + " - " + formattedEndDate);
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -207,6 +228,16 @@ public class StaysFragment extends Fragment {
         else {
             destination = savedDestination;
         }
+        Log.d("preferencesDate", preferencesDate.getString("startDate", "empty"));
+        if (preferencesDate != null) {
+            startDateString = preferencesDate.getString("startDate", startDateString);
+            endDateString = preferencesDate.getString("endDate", endDateString);
+            try {
+                formatDate (startDateString, endDateString);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
         Log.d("destination received", destination);
         desInput.setText(destination);
 
@@ -214,12 +245,27 @@ public class StaysFragment extends Fragment {
             Boolean isSearch = preferencesEdittext.getBoolean("search", true);
             if (isSearch) {
                 searchHotels(user_id, null, savedDestinationID, startDateString, endDateString, roomNumber, pplNumber);
+                Log.d("Search Button call", "From Resume");
+                Log.d("Search Button call", savedDestinationID);
+
             }
         }
         count++;
 
     }
 
+    private Date getNextDate(Date date) {
+        // Create a Calendar instance and set it to the current date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        // Add one day to the current date
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        // Get the next day
+        Date nextDay = calendar.getTime();
+        return nextDay;
+    }
     private String getFilledCitySearch(String city_name) {
         return getMatchingKey(city_name);
     }
@@ -330,13 +376,8 @@ public class StaysFragment extends Fragment {
                 try {
                     Date startDate = dateFormat.parse(start);
                     Date endDate = dateFormat.parse(end);
-                    startDateString = fullDateFormat.format(startDate);
-                    endDateString = fullDateFormat.format(endDate);
-                    Log.d("startDateString", startDateString);
-
-
                     // Check if start date is greater than end date
-                    if (startDate.compareTo(endDate) > 0) {
+                    if (startDate.compareTo(endDate) >= 0) {
                         // If start date is greater, set end date to start date + 1 day
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(startDate);
@@ -346,6 +387,11 @@ public class StaysFragment extends Fragment {
                         // Update the checkOut TextView with the new end date
                         checkOut.setText(dateFormat.format(endDate));
                     }
+                    startDateString = fullDateFormat.format(startDate);
+                    endDateString = fullDateFormat.format(endDate);
+                    Log.d("startDateString", startDateString);
+                    Log.d("endDateString", endDateString);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Log.d("dateStringError", e.getMessage());
@@ -411,12 +457,9 @@ public class StaysFragment extends Fragment {
     }
 
     public void searchHotels(String user_id, String hotelID, String destination, String start_date, String end_date, String room_quantity, String ppl_quantity) {
-        // Show loading circle
         noResultsLayout.setVisibility(View.INVISIBLE);
-
         loadingProgressBar.setVisibility(View.VISIBLE);
 
-        // Hide RecyclerView
         recyclerView.setVisibility(View.GONE);
         Call<List<SearchHotelItem>> callHotel = apiService.searchHotels(user_id, hotelID, destination, start_date, end_date, room_quantity, ppl_quantity);
         String requestUrl = callHotel.request().url().toString();

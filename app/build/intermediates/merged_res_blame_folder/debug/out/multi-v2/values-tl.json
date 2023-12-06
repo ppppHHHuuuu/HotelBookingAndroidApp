@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-34:/values-tl/values-tl.xml",
+            "outputFile": "com.example.mobdev_nhom7.app-mergeDebugResources-35:/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\doanv\\.gradle\\caches\\transforms-3\\9b79ea6e55f6ed53868fcf639bd07122\\transformed\\browser-1.4.0\\res\\values-tl\\values-tl.xml",

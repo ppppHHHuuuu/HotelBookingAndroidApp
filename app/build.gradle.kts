@@ -93,7 +93,9 @@ android {
 
 dependencies {
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
-
+    implementation("androidx.test.espresso:espresso-intents:3.5.1")
+    testImplementation ("org.mockito:mockito-core:3.11.2")
+    testImplementation ("com.github.tomakehurst:wiremock:2.24.1")
     implementation("androidx.test:monitor:1.6.1")
     testImplementation ("org.mock-server:mockserver-netty:3.10.8")
     testImplementation ("org.mock-server:mockserver-client-java:3.10.8")
@@ -114,6 +116,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.test:monitor:1.6.1")
