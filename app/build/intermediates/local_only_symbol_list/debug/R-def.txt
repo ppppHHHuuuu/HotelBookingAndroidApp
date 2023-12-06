@@ -258,6 +258,7 @@ id placeholder_view
 id plusButton
 id pool
 id priceLayout
+id price_button
 id profile_detail
 id profile_email
 id profile_icon

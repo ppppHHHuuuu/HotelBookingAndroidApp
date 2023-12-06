@@ -119,6 +119,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.test.espresso:espresso-contrib:3.5.1")
     implementation("androidx.test:monitor:1.6.1")
     testImplementation ("org.mock-server:mockserver-netty:3.10.8")
     testImplementation ("org.mock-server:mockserver-client-java:3.10.8")

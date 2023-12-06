@@ -2,6 +2,7 @@ package com.example.mobdev_nhom7;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import static java.lang.Thread.sleep;
@@ -25,13 +26,17 @@ public class SearchCityTest {
     @Test
     public void searchCity() throws InterruptedException {
         sleep(2000);
+        onView(withId(R.id.cities))
+                .perform(click());
+        sleep(2000);
         onView(withId(R.id.searchbar))
                 .perform(click());
         sleep(2000);
         onView(withId(R.id.editPreferredDest1))
+                .perform(typeText("Hai Phong"));
+        sleep(2000);
+        onView(withId(R.id.recyclerView))
                 .perform(click());
-//        onView(withId(R.id.recyclerView))
-//                .perform();
-
+        sleep(2000);
     }
 }
