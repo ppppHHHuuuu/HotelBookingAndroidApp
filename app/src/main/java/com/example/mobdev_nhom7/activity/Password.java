@@ -61,16 +61,8 @@ public class Password extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                SharedPreferences sharedPreferences = this.getSharedPreferences(
-                                        getString(R.string.user_info), Context.MODE_PRIVATE
-                                );
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("email", user.getEmail());
-                                editor.putString("provider", user.getProviderId());
-                                editor.apply();
-
                                 Intent intent = new Intent(this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } else {
                                 CustomToast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT);

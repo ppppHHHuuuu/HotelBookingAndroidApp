@@ -1,127 +1,135 @@
 package com.example.mobdev_nhom7.fragment.main_activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
+import com.example.mobdev_nhom7.activity.ViewHotel;
+import com.example.mobdev_nhom7.models.hotel.adapters.CardHotel2Adapter;
 import com.example.mobdev_nhom7.models.hotel.adapters.CardHotelAdapter;
+import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
+import com.example.mobdev_nhom7.remote.APIService;
+import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.SendID;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FavouritesFragment extends Fragment {
-
-    ArrayList<String> hotels;
-    ArrayList <String> stars;
-    ArrayList <String> cities;
-    ArrayList <String> scores;
-    ArrayList <String> rates;
-    ArrayList <String> judges;
-    ArrayList <Integer> images;
-
-    RecyclerView recyclerView;
-
+    private APIService apiService = APIUtils.getUserService();
+    SharedPreferences preferences;
     CardHotelAdapter cardHotelAdapter;
-    private static final String TAG = "Favourite Fragment";
-    private String mParam1;
+    ArrayList<SearchHotelItem> hotelItemList = new ArrayList<>();
+    RecyclerView recyclerView;
+    String user_id;
+//    String user_id = "1";
 
     public FavouritesFragment() {
         // Required empty public constructor
     }
-
-    // TODO: Rename and change types and number of parameters
-    public static FavouritesFragment newInstance(String param1) {
-        FavouritesFragment fragment = new FavouritesFragment();
-        Bundle args = new Bundle();
-        args.putString(TAG, param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(TAG);
-        }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_favourites, container, false);
-        hotels = new ArrayList<String>(){{
-            add("Hotel 1");
-            add("Hotel 2");
-            add("Hotel 3");
-            add("Hotel 4");
-            add("Hotel Long Name does it lost");
-            add("Hotel 6");
-        }};
-        stars = new ArrayList<String>(){{
-            add("****");
-            add("*****");
-            add("***");
-            add("***");
-            add("***");
-            add("***");
-        }};
-        cities = new ArrayList<String>() {
-            {
-                add("Ha Noi");
-                add("Ho Chi Minh");
-                add("Da Nang");
-                add("Da Nang");
-                add("Da Nang");
-                add("Da Nang");
+
+        cardHotelAdapter = new CardHotelAdapter(requireContext(), hotelItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                Intent intent = new Intent(getContext(), ViewHotel.class);
+                intent.putExtra("hotel_id", hotel_id);
+                Log.d("extra", hotel_id);
+                startActivity(intent);
             }
-        };
-        scores = new ArrayList<String>() {{
-            add("8.6");
-            add("4.5");
-            add("8.9");
-            add("8.9");
-            add("8.9");
-            add("8.9");
-        }};
-        rates = new ArrayList<String>() {{
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-            add("Xuat sac");
-        }};
-        judges = new ArrayList<String>() {{
-            add("4546 nhan xet");
-            add("3456 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-            add("3546 nhan xet");
-        }};
-        images = new ArrayList<Integer>() {{
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-            add(R.drawable.google);
-        }};
+        });
+        cardHotelAdapter.setOnItemClickListener(position -> {
+            SearchHotelItem deletedItem = cardHotelAdapter.getData(position);
+            Log.d("hotel_id when delete", deletedItem.getHotelId());
+            deleteFavouriteHotel(user_id, deletedItem.getHotelId(), position);
+        });
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        user_id = preferences.getString("user_id", "empty user_id");
 
-        cardHotelAdapter = new CardHotelAdapter(getActivity(), hotels, stars, cities, scores, rates, judges, images );
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleView);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(cardHotelAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getFavouriteHotel();
+    }
+
+    public void getFavouriteHotel() {
+        //fake data
+        Call<List<SearchHotelItem>> call = apiService.getFavouriteHotel(user_id);
+        String requestUrl = call.request().url().toString();
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
+                if (response.isSuccessful()) {
+                    if  (response.body() == null) {
+                        Log.d("Content", "Empty cntent");
+                        Toast.makeText(getContext(), "Empty content", Toast.LENGTH_LONG).show();
+                    }
+                    // Clear the existing list and add the new items
+                    hotelItemList.clear();
+                    hotelItemList.addAll(response.body());
+                    cardHotelAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchHotelItem>> call, Throwable t) {
+                Log.d("call", t.toString());
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void deleteFavouriteHotel(String user_id, String hotel_id, int position) {
+        Call<String> call = apiService.deleteFavouriteHotel(user_id, hotel_id);
+        String requestUrl = call.request().url().toString();
+
+        Log.d("Request URL", requestUrl);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+
+                if (response.isSuccessful()) {
+                    Log.d("response", response.toString());
+                    hotelItemList.remove(position);
+                    cardHotelAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("call", t.toString());
+                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

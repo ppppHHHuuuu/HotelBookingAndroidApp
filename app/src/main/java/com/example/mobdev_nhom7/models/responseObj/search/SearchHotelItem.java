@@ -1,109 +1,79 @@
 package com.example.mobdev_nhom7.models.responseObj.search;
 
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import com.example.mobdev_nhom7.models.responseObj.image.ImageItem;
+import com.example.mobdev_nhom7.models.responseObj.ratings.RatingItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.net.URL;
+import java.util.List;
 
 public class SearchHotelItem {
-    @SerializedName("hotel_id")
-    @Expose
-    private String hotelId;
-    @SerializedName("name")
+    @SerializedName("name")//check
     @Expose
     private String name;
-    @SerializedName("location")
+    @SerializedName("star")//check
     @Expose
-    private String location;
-    @SerializedName("score")
+    private Float star;
+    @SerializedName("hotel_id")//check
     @Expose
-    private Double score;
-    @SerializedName("imageURL")
+    private String hotelId;
+    @SerializedName("ratings")//ratings.value
     @Expose
-    private String imageURL;
-    @SerializedName("amount")
+    private RatingItem score;
+    @SerializedName("imageURL")//check
+    @Expose
+    private List<String> imageURL;
+    @SerializedName("distance_from_center")//check
+    @Expose
+    private String distanceFromCenter;
+    @SerializedName("city_name")
+    @Expose
+    private String city;
+    @SerializedName("min_price")//check
     @Expose
     private String amount;
-    @SerializedName("positionFromCenter")
+
+    public Boolean getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(Boolean is_favorite) {
+        this.is_favorite = is_favorite;
+    }
+
+    @SerializedName("is_favorite")//check
     @Expose
-    private String positionFromCenter;
-    @SerializedName("isLoved")
-    @Expose
-    private String isLoved;
-    @SerializedName("isBooked")
-    @Expose
-    private String isBooked;
-    @SerializedName("isCanceled")
-    @Expose
-    private String isCanceled;
-    @SerializedName("isBooking")
-    @Expose
-    private String isBooking;
-
-    public String getIsCanceled() {
-        return isCanceled;
+    private Boolean is_favorite;
+    //    @SerializedName("is")//check
+//    @Expose
+//    private String amount;
+    public String getDistanceFromCenter() {
+        return distanceFromCenter;
     }
 
-    public void setIsCanceled(String isCanceled) {
-        this.isCanceled = isCanceled;
+    public void setDistanceFromCenter(String distanceFromCenter) {
+        this.distanceFromCenter = distanceFromCenter;
     }
-
-    public String getIsBooking() {
-        return isBooking;
-    }
-
-    public void setIsBooking(String isBooking) {
-        this.isBooking = isBooking;
-    }
-
-    public String getIsBooked() {
-        return isBooked;
-    }
-
-    public void setIsBooked(String isBooked) {
-        this.isBooked = isBooked;
-    }
-
-    public String getIsLoved() {
-        return isLoved;
-    }
-
-    public void setIsLoved(String isLoved) {
-        this.isLoved = isLoved;
-    }
-
-    public String getPositionFromCenter() {
-        return positionFromCenter;
-    }
-
-    public void setPositionFromCenter(String positionFromCenter) {
-        this.positionFromCenter = positionFromCenter;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public Double getScore() {
+    public RatingItem getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public void setScore(RatingItem score) {
         this.score = score;
     }
 
-    public String getImageURL() {
+    public String getPositionFromCenter() {
+        return distanceFromCenter;
+    }
+    public void setPositionFromCenter(String positionFromCenter) {
+        this.distanceFromCenter = positionFromCenter;
+    }
+
+    public List<String> getImageItemURL() {
         return imageURL;
     }
 
-    public void setImageURL(String imageURL) {
+    public void setImageURL(List<String> imageURL) {
         this.imageURL = imageURL;
     }
 
@@ -123,35 +93,28 @@ public class SearchHotelItem {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+
+    public Float getStar() {
+        return star;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStar(Float star) {
+        this.star = star;
     }
 
-    public String getReview() {
-        return review;
+    public String getCity() {
+        return city;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getDistance() {
-        return distance;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
-
-    @SerializedName("review")
-    @Expose
-    private String review;
-
-    @SerializedName("distance")
-    @Expose
-    private String distance;
 }

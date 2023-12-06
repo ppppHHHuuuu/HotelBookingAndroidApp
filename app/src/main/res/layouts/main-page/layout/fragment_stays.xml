@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
     android:paddingHorizontal="10dp">
 
 
@@ -16,7 +15,8 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:layout_scrollFlags="scroll" />
+            app:layout_scrollFlags="scroll"
+            android:background="@color/background_default"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="2dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/rounded_background"
             android:elevation="3dp"
             android:padding="10sp"
@@ -48,16 +48,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/desInput"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
+                android:inputType="none"
+                android:textStyle="bold"
                 android:background="@drawable/edit_background"
                 android:hint="Preferred Destination"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
                 android:textSize="15sp"
+                android:gravity="center_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.473"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +86,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="100dp"
+                    android:id="@+id/date_options"
+                    android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -104,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Oct 9 - Oct 10"
+                        android:text="Nov 24 - Nov 12"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -125,6 +129,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/room_info_options"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_marginLeft="15dp"
@@ -186,11 +191,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/dateRoomLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    <!-- Your existing layout code -->
+
+    <RelativeLayout
+        android:id="@+id/noResultsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- Add any UI components you want to display when no results are found -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="No destination found"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -203,6 +226,12 @@
             app:layout_constraintTop_toBottomOf="@+id/placeholder_view" />
 
     </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

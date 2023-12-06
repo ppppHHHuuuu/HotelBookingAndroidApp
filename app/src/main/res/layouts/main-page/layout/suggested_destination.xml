@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="8dp">
+
+            <ImageView
+                android:id="@+id/imageBackButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back_arrow_xml"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editPreferredDest1"
+                android:layout_width="0dp"
+                android:layout_height="37dp"
+                android:inputType="textAutoComplete"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/edit_background"
+                android:hint="Preferred Destination"
+
+                android:completionThreshold="1"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageBackButton"
+                app:layout_constraintTop_toTopOf="parent">
+            </EditText>
+
+<!--            <ImageView-->
+<!--                android:id="@+id/buttonKinhLup"-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginEnd="56dp"-->
+<!--                android:background="@drawable/rounded_button_white"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="13dp"-->
+<!--                android:scaleType="centerInside"-->
+<!--                android:src="@drawable/search_box_border"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/editPreferredDest"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.444" />-->
+
+            <ImageView
+                android:id="@+id/buttonCancel"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/rounded_button_white"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:padding="13dp"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/editPreferredDest1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingHorizontal="15dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/suggestedPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="Suggested Places"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/noResultsLayoutSuggest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- Add any UI components you want to display when no results are found -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="No destination found"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

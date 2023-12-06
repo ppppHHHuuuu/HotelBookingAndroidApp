@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_background"
+    android:layout_margin="60dp"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Rooms &amp; Guests"
+        android:textSize="17dp"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/numberRoomCl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/numberRoomTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of rooms:"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/avenir_bold"/>
+        <EditText
+            android:id="@+id/room_number_edit_text"
+            android:layout_width="100dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/numberGuestCl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/numberRoomCl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:fontFamily="@font/avenir_bold"
+            android:id="@+id/numberGuestTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of guests:"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <EditText
+            android:id="@+id/guest_number_edit_text"
+            android:layout_width="100dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/numberGuestCl"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/search_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Confirm"
+            android:textSize="13dp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,18 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
+    android:background="@drawable/rounded_background"
+    android:layout_marginBottom="20dp"
+    android:elevation="8dp"
     android:orientation="vertical"
-    android:background="@drawable/top_rounded_background"
-    android:paddingHorizontal="10dp"
-    android:paddingBottom="3dp"
-    android:layout_marginVertical="10dp"
-    >
+    android:clickable="true">
 
     <ImageView
-        android:background="@drawable/top_rounded_background"
         android:id="@+id/imageHotel"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:scaleType="centerCrop"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -40,19 +39,24 @@
             android:id="@+id/textHotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+            android:text="Hotel"
             android:textColor="@color/black"
-            android:text="Khach san" />
+            android:textFontWeight="900" />
 
         <TextView
             android:id="@+id/textHotelName"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/avenir_bold"
+            android:text="Torino Hotel Dalat"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:text="Torino Hotel Dalat" />
+            android:textSize="20sp" />
 
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,36 +67,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_border"
-                android:text="8.1" />
+                android:padding="4dp"
+                android:text="8.1"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textJudge"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4sp"
-                android:text="Rat tot" />
+                android:text="Very Good"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textScore"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/distanceIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:src="@drawable/location" />
+                android:layout_marginStart="36dp"
+                android:src="@drawable/location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textJudge"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textDistance"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cach trung tam 1,1 km" />
-            <TextView
-                android:layout_marginLeft="30dp"
-                android:id="@+id/textLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dalat"
-                />
-        </LinearLayout>
+                android:layout_marginStart="4dp"
+                android:text="1.1km away from center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/distanceIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.555" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
@@ -100,6 +113,7 @@
         android:id="@+id/divider1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="10sp"
         android:background="@color/AppGrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,30 +124,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider1"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/divider1">
 
         <TextView
             android:id="@+id/textAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="383.436 VND"
-            android:textColor="@color/red"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:layout_weight="1"
+            android:text="383.436"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/textLastBookingTime"
-            android:layout_width="300sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="Lan dat gan nhat cach day 2h" />
+            android:text="View Details"
+            android:textSize="15dp"
+            android:textFontWeight="900"
+            android:textColor="@color/black"
+            android:includeFontPadding="false"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/next"
+            android:layout_marginStart="10dp"/>
+
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/favouriteIcon2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/favourite_toggle_selector"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageHotel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
