@@ -49,7 +49,7 @@ public class BitmapUtil {
 
             Picasso.get()
                     .load(url)
-                    .fit()
+                    .fit().centerCrop()
                     .into(imageView);
             Log.d("url", url);
         } catch (Exception e) {

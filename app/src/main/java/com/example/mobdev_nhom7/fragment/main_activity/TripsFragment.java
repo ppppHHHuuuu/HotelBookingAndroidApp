@@ -20,7 +20,6 @@ public class TripsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     public static int initialPosition = 0;
-
     public TripsFragment() {
         // Required empty public constructor
     }
@@ -29,7 +28,6 @@ public class TripsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
-
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager = view.findViewById(R.id.viewPager);
 

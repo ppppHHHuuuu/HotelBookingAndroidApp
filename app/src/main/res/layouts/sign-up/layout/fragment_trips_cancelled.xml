@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="10dp"
-    android:paddingHorizontal="10dp">
+    android:paddingHorizontal="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -26,8 +27,23 @@
         android:elevation="20dp"
         app:layout_scrollFlags="enterAlwaysCollapsed">
     </com.google.android.material.appbar.AppBarLayout>
+    <RelativeLayout
+        android:id="@+id/noResultsLayoutActive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <!-- Add any UI components you want to display when no results are found -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="No active booking found"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewActive"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">

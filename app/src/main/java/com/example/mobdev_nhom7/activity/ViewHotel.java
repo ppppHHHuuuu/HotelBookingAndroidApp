@@ -343,9 +343,9 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 //            endDate = "2023-12-03";
 //        }
 
-        long totalCost = totalCostFinal * countDaysBetween(startDate, endDate);
-        totalCostTV.setText(String.valueOf(totalCost));
-        BookingRequest bookingRequest = new BookingRequest(user_id, hotel_id, rooms, startDate, endDate, totalCost);
+//        long totalCost = totalCostFinal * countDaysBetween(startDate, endDate);
+        totalCostTV.setText(String.valueOf(totalCostFinal));
+        BookingRequest bookingRequest = new BookingRequest(user_id, hotel_id, rooms, startDate, endDate, totalCostFinal);
         Call<Object> callBooking = apiService.booking(bookingRequest);
         callBooking.enqueue(new Callback<Object>() {
             @Override

@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="10dp">
+    android:layout_marginTop="10dp"
+    android:paddingHorizontal="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <com.google.android.material.appbar.AppBarLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp">
@@ -192,15 +195,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/dateRoomLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <!-- Your existing layout code -->
-
     <RelativeLayout
         android:id="@+id/noResultsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <!-- Add any UI components you want to display when no results are found -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,12 +209,11 @@
             android:layout_centerInParent="true"/>
 
     </RelativeLayout>
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewActive"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -224,7 +223,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placeholder_view" />
+            app:layout_constraintTop_toBottomOf="@+id/placeholder_view"
+            app:layoutManager="LinearLayoutManager"/>
 
     </androidx.core.widget.NestedScrollView>
     <ProgressBar
