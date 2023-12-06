@@ -88,8 +88,8 @@ public class CityFragment extends Fragment {
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/1skt3lc9lLpMxZgV-tgQFjnf-VvWA3za3/view?usp=share_link", imageView_1);
         imageView_1.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
-            intent.putExtra("city_id", "8u8doWKXGkMc0gvXYA58");
-            intent.putExtra("city_name", "Hanoi");
+            intent.putExtra("city_id", "Z6YyrwkuyVbsyaLxOE7E");
+            intent.putExtra("city_name", "Ha Noi");
             intent.putExtra("city_country", "Vietnam");
             startActivity(intent);
 
