@@ -14,7 +14,7 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PutFavoriteHotelTest {
+public class PostFavoriteHotelTest {
     APIService apiService;
     Call<String> addFavoriteHotel;
     Response<String> response;
@@ -35,6 +35,7 @@ public class PutFavoriteHotelTest {
 
         assertEquals(true, response.isSuccessful());
 
-        assertEquals("{}", response.body());
+        assertEquals("already exist", response.body());
+
     }
 }

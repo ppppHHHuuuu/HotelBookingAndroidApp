@@ -1,4 +1,4 @@
-package com.build.mobdev_nhom7;
+package com.build.mobdev_nhom7.favouriteHotels;
 
 import static org.junit.Assert.assertEquals;
 

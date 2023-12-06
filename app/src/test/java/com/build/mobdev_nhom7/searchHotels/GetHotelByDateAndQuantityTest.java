@@ -1,10 +1,9 @@
-package com.build.mobdev_nhom7.viewHotels;
+package com.build.mobdev_nhom7.searchHotels;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;

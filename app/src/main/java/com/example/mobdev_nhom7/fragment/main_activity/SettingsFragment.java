@@ -110,7 +110,7 @@ public class SettingsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    SharedPreferences sharedPreferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -120,7 +120,7 @@ public class SettingsFragment extends Fragment {
         profilePic = view.findViewById(R.id.pfp);
 
         Bitmap finalMasking = maskingProcess();
-        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
+        sharedPreferences= view.getContext().getSharedPreferences(getString(R.string.user_info), MODE_PRIVATE);
 
         TextView profileName = view.findViewById(R.id.profile_name);
         profileName.setText(sharedPreferences.getString("name", ""));
@@ -222,6 +222,10 @@ public class SettingsFragment extends Fragment {
         });
 
         saveButton.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Log.d("name when save", nameText.getText().toString());
+            editor.putString("name", nameText.getText().toString());
+            editor.apply();
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser user = mAuth.getCurrentUser();
             if (!Objects.equals(oldEmail, emailText.getText().toString())) {
@@ -304,6 +308,13 @@ public class SettingsFragment extends Fragment {
         ViewCompat.setBackgroundTintList(saveImage, colorStateList);
         TextView saveText = getView().findViewById(R.id.save_text);
         saveText.setTextColor(color);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("name resume", sharedPreferences.getString("name", ""));
+        nameText.setText(sharedPreferences.getString("name", ""));
     }
 
     public void notSavable() {

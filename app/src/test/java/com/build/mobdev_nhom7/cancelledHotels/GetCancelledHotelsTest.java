@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
-import com.example.mobdev_nhom7.models.responseObj.trips.ActiveHotelItem;
 import com.example.mobdev_nhom7.models.responseObj.trips.CancelledHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
@@ -19,7 +17,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class GetCancelledHotelTest {
+public class GetCancelledHotelsTest {
     APIService apiService;
     Call<List<CancelledHotelItem>> getCancelHotelTest;
     Response<List<CancelledHotelItem>> response;
@@ -31,7 +29,7 @@ public class GetCancelledHotelTest {
         response = getCancelHotelTest.execute();
     }
     @Test
-    public void testCancelHotelTest() throws IOException {
+    public void testGetCancelHotelTest() throws IOException {
         setup();
         assertEquals(200, response.code());
 

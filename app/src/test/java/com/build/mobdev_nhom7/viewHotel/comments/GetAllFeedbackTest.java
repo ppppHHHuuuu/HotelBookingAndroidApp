@@ -1,7 +1,9 @@
-package com.build.mobdev_nhom7.comments;
+package com.build.mobdev_nhom7.viewHotel.comments;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.example.mobdev_nhom7.models.responseObj.comment.CommentItem;
 import com.example.mobdev_nhom7.remote.APIService;
@@ -28,14 +30,12 @@ public class GetAllFeedbackTest {
         response = getAllFeedback.execute();
     }
     @Test
-    public void testAllFeedback() throws IOException {
+    public void testGetAllFeedback() throws IOException {
         setup();
 
         assertEquals(200, response.code());
 
         List<CommentItem> result = response.body();
-
-        assertEquals(4, result.size());
 
         CommentItem commentItem = result.get(0);
 

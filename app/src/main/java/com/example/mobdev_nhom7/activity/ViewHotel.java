@@ -332,7 +332,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     @Override
     public void updateTotalCost(String totalCost) {
         String tam = totalCost.replace(",", "");
-
+        tam=tam.replace(".", "");
         Long newTotalCost = Long.valueOf(tam);
         newTotalCost = newTotalCost * countDaysBetween(startDate, endDate);
         totalCostTV.setText(String.valueOf(newTotalCost));
@@ -403,6 +403,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
     }
 
     private void setAlarm(String startDate) {
+        Log.d("Start Date Set Alarm", startDate);
         Instant currentTime = Instant.now();
 
         LocalDate startDateObject = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
