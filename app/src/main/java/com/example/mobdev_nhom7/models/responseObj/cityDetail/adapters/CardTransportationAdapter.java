@@ -3,6 +3,7 @@ package com.example.mobdev_nhom7.models.responseObj.cityDetail.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,9 +49,8 @@ public class CardTransportationAdapter extends RecyclerView.Adapter<CardTranspor
     public void onBindViewHolder(@NonNull CardTransportationAdapter.ListTransportationHolder holder, int position) {
         Bitmap transportationImage = null;
         try {
-            transportationImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImage());
-            holder.imageTransportation.setImageBitmap(transportationImage);
-
+            Log.d("asd", data.get(position).getImage());
+            BitmapUtil.ggDriveConverter(data.get(position).getImage(), holder.imageTransportation);
         } catch (Exception e) {
         }
 
