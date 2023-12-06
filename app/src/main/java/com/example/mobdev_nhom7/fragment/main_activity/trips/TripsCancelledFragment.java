@@ -106,7 +106,6 @@ public class TripsCancelledFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<CancelledHotelItem>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
         });

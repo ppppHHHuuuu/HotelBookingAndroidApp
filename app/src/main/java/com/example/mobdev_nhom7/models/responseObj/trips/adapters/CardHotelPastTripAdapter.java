@@ -351,7 +351,6 @@ public class CardHotelPastTripAdapter extends RecyclerView.Adapter<CardHotelPast
 
             @Override
             public void onFailure(Call<DefaultResponseObj> call, Throwable t) {
-                Toast.makeText(context, R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
         });

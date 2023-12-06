@@ -4,10 +4,14 @@ import static android.app.PendingIntent.getActivity;
 import static java.sql.Types.NULL;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.LocaleData;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +40,7 @@ import com.example.mobdev_nhom7.models.responseObj.room.adapter.RoomAdapter;
 import com.example.mobdev_nhom7.models.responseObj.search.SearchHotelItem;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
+import com.example.mobdev_nhom7.utils.AlarmReceiver;
 import com.example.mobdev_nhom7.utils.AmountConverter;
 import com.example.mobdev_nhom7.utils.BitmapUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,12 +48,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.checkerframework.checker.units.qual.C;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -197,10 +206,7 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
             endDate = "2023-12-09";
         }
 
-        //fake-data
         getHotelInRange(hotel_id, startDate, endDate);
-        Log.d("startDate", startDate);
-        Log.d("endDate", endDate);
     }
 
     private void getAllComment(String hotel_id) {
@@ -226,7 +232,6 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
             @Override
             public void onFailure(Call<List<CommentItem>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel", t.toString());
             }
         });
@@ -326,7 +331,11 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
 
     @Override
     public void updateTotalCost(String totalCost) {
-        totalCostTV.setText(totalCost);
+        String tam = totalCost.replace(",", "");
+
+        Long newTotalCost = Long.valueOf(tam);
+        newTotalCost = newTotalCost * countDaysBetween(startDate, endDate);
+        totalCostTV.setText(String.valueOf(newTotalCost));
     }
 
     public void bookHotel() {
@@ -360,6 +369,16 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
             public void onResponse(Call<Object> call, Response<Object> response) {
                 Toast.makeText(getApplicationContext(), "Booking successfully", Toast.LENGTH_SHORT).show();
                 Log.d("booking", "Booking successfully");
+                if (startDate == null) {
+                    Log.d("asd", "adads");
+                    LocalDate currentDate = LocalDate.now();
+                    LocalDate tomorrow = currentDate.plusDays(1);
+
+                    String tam = tomorrow.format(DateTimeFormatter.ISO_DATE);
+                    setAlarm(tam);
+                } else {
+                    setAlarm(startDate);
+                }
             }
 
             @Override
@@ -381,5 +400,28 @@ public class ViewHotel extends Activity implements RoomAdapter.AdapterCallback {
         LocalDate endDate = LocalDate.parse(endDateStr, formatter);
 
         return ChronoUnit.DAYS.between(startDate, endDate);
+    }
+
+    private void setAlarm(String startDate) {
+        Instant currentTime = Instant.now();
+
+        LocalDate startDateObject = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
+
+        LocalDate notificationDate = startDateObject.minusDays(5);
+
+        Instant notificationInstant = notificationDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
+
+        long futureTimeInMillis = SystemClock.elapsedRealtime() + Duration.between(currentTime, notificationInstant).toMillis();
+
+        Intent intent1 = new Intent(this, AlarmReceiver.class);
+        intent1.putExtra("content", "Chuyến đi của bạn sắp bắt đầu");
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        if (alarmManager != null) {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureTimeInMillis, pendingIntent);
+        }
     }
 }

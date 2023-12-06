@@ -115,6 +115,9 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
         holder.textHotelName.setText(String.valueOf(data.get(position).getName()));
         holder.textScore.setText(String.valueOf(formattedScore));
         holder.textScore.setBackgroundResource(setScoreColor(score));
+        if (amount == null) {
+            amount = "10500000";
+        }
         holder.textAmount.setText("VNĐ " + customFormat.format(Integer.parseInt(amount)));
         holder.textJudge.setText(AmountConverter.calculate(data.get(position).getScore().getValue()));
         holder.textDistance.setText(data.get(position).getPositionFromCenter() + "km from center");
@@ -222,7 +225,6 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.isSuccessful()) {
                     Log.d("response", response.toString());
-
                 }
             }
 

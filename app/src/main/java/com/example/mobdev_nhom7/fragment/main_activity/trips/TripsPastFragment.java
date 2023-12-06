@@ -103,7 +103,6 @@ public class TripsPastFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
         });
@@ -133,7 +132,6 @@ public class TripsPastFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<PastHotelItem>> call, Throwable t) {
-                Toast.makeText(getContext(), R.string.err_network, Toast.LENGTH_SHORT).show();
                 Log.d("loadHotel",t.toString());
             }
         });
