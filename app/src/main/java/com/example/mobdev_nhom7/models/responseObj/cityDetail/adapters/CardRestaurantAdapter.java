@@ -51,10 +51,9 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
 
     @Override
     public void onBindViewHolder(@NonNull CardRestaurantAdapter.ListRestaurantHolder holder, int position) {
-        Bitmap restaurantImage = null;
         try {
-            restaurantImage = BitmapUtil.urlToBitmapConverter(data.get(position).getImage());
-            holder.imageRestaurant.setImageBitmap(restaurantImage);
+            Log.d("asd", data.get(position).getImage());
+            BitmapUtil.ggDriveConverter(data.get(position).getImage(), holder.imageRestaurant);
         }
         catch (Exception e) {
             Log.e("CardRestaurantAdapter", "Error loading image: " + e.getMessage(), e);
@@ -74,7 +73,7 @@ public class CardRestaurantAdapter extends RecyclerView.Adapter<CardRestaurantAd
         return data.size(); // Return the number of hotels in the list
     }
     public class ListRestaurantHolder extends RecyclerView.ViewHolder {
-        private final ImageView imageRestaurant;
+        private ImageView imageRestaurant = itemView.findViewById(R.id.image);
         private final TextView textName;
         private final RatingBar textRating;
         private final TextView textAddress;

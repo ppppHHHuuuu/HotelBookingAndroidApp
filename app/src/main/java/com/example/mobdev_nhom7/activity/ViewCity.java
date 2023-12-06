@@ -28,6 +28,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,10 +54,21 @@ public class ViewCity extends AppCompatActivity {
         setContentView(R.layout.city_detail);
 
         cityImage = findViewById(R.id.cityImage);
-        String url = "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892";
+        String urls[] = {
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FRomeMarriottHotel.jpg?alt=media&token=e12b0a8e-b88a-46b4-8794-aa5df43d7742",
+                "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FSenatorBarajasMadrid.jpg?alt=media&token=b77757a3-44fc-41e6-bb1f-50d6cb09508b",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FSheratonHaiPhong.jpg?alt=media&token=0f2059a7-d042-4911-bc76-b356a04f32f5",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FMIAHotelHanoi.jpg?alt=media&token=dd691ee6-0e84-4421-a3b4-221ad2210a2e",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FElianaPremioHanoiHotel.jpg?alt=media&token=2af3424f-cdf2-4470-9507-fa4d1acbecfe",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FCochinSangHotel.jpg?alt=media&token=75f4ee39-4805-4832-b1d5-ac7019b0b9fc",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FJWMarriottHanoi.jpg?alt=media&token=ba40d2d3-458d-43ab-ad9f-83e29e8b3d73",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FManolitaParis.jpg?alt=media&token=ae2501b2-03c7-4425-8533-454543bffcb4",
+                "https://firebasestorage.googleapis.com/v0/b/hotel-management-applica-2820c.appspot.com/o/hotel%2FParkCentralNewYork.jpg?alt=media&token=9e770e36-6650-4015-ba3a-2cdc02ec7432"
+        };
+        int randomIndex = new Random().nextInt(urls.length);
+        String url = urls[randomIndex];
         Glide.with(this).load(url).centerCrop().into(cityImage);
-
-
 
         restaurants = new ArrayList<>();
         cardRestaurantAdapter = new CardRestaurantAdapter(getApplicationContext(), (ArrayList<Restaurant>) restaurants);
