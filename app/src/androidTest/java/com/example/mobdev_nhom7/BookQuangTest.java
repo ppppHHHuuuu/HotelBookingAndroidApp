@@ -25,7 +25,10 @@ public class BookQuangTest {
                 .perform(scrollTo(), click());
         sleep(2000);
         onView(withId(R.id.priceLayout))
-                .perform(scrollTo(), RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                .perform(scrollTo());
+        sleep(2000);
+        onView(withId(R.id.priceLayout))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         sleep(2000);
         onView(withId(R.id.plusButton))
                 .perform(click());
