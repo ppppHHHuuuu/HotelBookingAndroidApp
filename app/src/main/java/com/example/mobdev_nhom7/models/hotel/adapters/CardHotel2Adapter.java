@@ -225,7 +225,6 @@ public class CardHotel2Adapter extends RecyclerView.Adapter<CardHotel2Adapter.Li
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.isSuccessful()) {
                     Log.d("response", response.toString());
-
                 }
             }
 
