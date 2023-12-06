@@ -26,7 +26,7 @@ public class DeleteActiveHotelTest {
         response = putActiveHotel.execute();
     }
     @Test
-    public void testDeleteFavoriteHotel() throws IOException {
+    public void testDeleteActiveHotel() throws IOException {
         setup();
         assertEquals(200, response.code());
         assertEquals(true, response.isSuccessful());

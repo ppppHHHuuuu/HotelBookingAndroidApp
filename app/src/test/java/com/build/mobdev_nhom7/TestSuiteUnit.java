@@ -13,34 +13,17 @@ import com.build.mobdev_nhom7.favouriteHotels.DeleteFavoriteHotelTest;
 import com.build.mobdev_nhom7.searchHotels.GetAllHotelTest;
 import com.build.mobdev_nhom7.searchHotels.GetSuggestedCityTest;
 import com.build.mobdev_nhom7.viewHotel.comments.PostBookingTest;
+import com.example.mobdev_nhom7.LoginUnitTest;
+import com.example.mobdev_nhom7.NewPasswordTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        PostFavoriteHotelTest.class,
-
-        GetAllHotelTest.class,
-        GetSuggestedCityTest.class,
-        GetAllFeedbackTest.class,
-        GetAlert.class,
-        GetRestaurant.class,
-
-        GetPastHotelsTest.class,
-        GetCancelledHotelsTest.class,
-        GetActiveHotelsTest.class,
-
-        GetHotelByDateAndQuantityTest.class,
-        GetAllHotelTest.class,
-        GetSuggestedCityTest.class,
-
-        DeleteFavoriteHotelTest.class,
-
-        PostBookingTest.class,
-        DeleteActiveHotelTest.class,
-
+    LoginUnitTest.class,
+    NewPasswordTest.class
 })
-public class TestSuiteAPI {
+public class TestSuiteUnit {
 
 }

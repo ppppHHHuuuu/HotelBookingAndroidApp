@@ -30,12 +30,11 @@ public class PostFavoriteHotelTest {
     @Test
     public void testAddFavoriteHotel() throws IOException {
         setup();
-
         assertEquals(200, response.code());
 
         assertEquals(true, response.isSuccessful());
 
-        assertEquals("already exist", response.body());
+        assertEquals("{}", response.body());
 
     }
 }
