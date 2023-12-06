@@ -58,6 +58,7 @@ public class FavouritesFragment extends Fragment {
             public void go(String hotel_id, String city_id, String reservation_id) {
                 Intent intent = new Intent(getContext(), ViewHotel.class);
                 intent.putExtra("hotel_id", hotel_id);
+                Log.d("extra", hotel_id);
                 startActivity(intent);
             }
         });

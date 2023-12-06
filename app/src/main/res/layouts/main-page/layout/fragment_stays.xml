@@ -54,7 +54,6 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
                 android:inputType="none"
-                android:text="Ho Chi Minh City"
                 android:textStyle="bold"
                 android:background="@drawable/edit_background"
                 android:hint="Preferred Destination"
@@ -192,6 +191,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/dateRoomLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    <!-- Your existing layout code -->
+
+    <RelativeLayout
+        android:id="@+id/noResultsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- Add any UI components you want to display when no results are found -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="No destination found"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -121,7 +121,9 @@ public class CardHotelAdapter extends RecyclerView.Adapter<CardHotelAdapter.FavH
                 }
                 holder.is_loved = !holder.is_loved;
             });
-
+            holder.itemView.setOnClickListener(v -> {
+                sendID.go(data.get(position).getHotelId(), null, null);
+            });
         }
 
     }

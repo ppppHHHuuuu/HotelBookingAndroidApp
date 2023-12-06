@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.activity.ViewCity;
-import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
@@ -77,7 +76,7 @@ public class SuggestedCityActivity extends AppCompatActivity {
         cityItems = new ArrayList<>();
         imageBackButton = findViewById(R.id.imageBackButton);
         suggestedPlace = findViewById(R.id.suggestedPlace);
-        editPreferredDest = findViewById(R.id.editPreferredDest);
+        editPreferredDest = findViewById(R.id.editPreferredDest1);
         nestedScrollView = findViewById(R.id.nestedScrollView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

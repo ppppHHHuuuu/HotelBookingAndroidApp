@@ -11,13 +11,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mobdev_nhom7.activity.MainActivity;
-import com.example.mobdev_nhom7.activity.ViewCity;
 import com.example.mobdev_nhom7.activity.ViewHotel;
 import com.example.mobdev_nhom7.models.hotel.HotelItem;
 import com.example.mobdev_nhom7.models.responseObj.places.CustomAdapter;
@@ -33,13 +31,11 @@ import com.example.mobdev_nhom7.R;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItemCardAdapter;
 import com.example.mobdev_nhom7.models.responseObj.cityName.CityItem;
 import com.example.mobdev_nhom7.models.responseObj.places.PlaceItem;
-import com.example.mobdev_nhom7.models.responseObj.places.PlaceItemCardAdapter;
 import com.example.mobdev_nhom7.remote.APIService;
 import com.example.mobdev_nhom7.remote.APIUtils;
 import com.example.mobdev_nhom7.utils.SendID;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +71,7 @@ public class SuggestedDestinationActivity extends Activity {
     SearchHotelItem searchHotelItem;
     CustomAdapter adapter;
     String user_id;
+    private RelativeLayout noResultsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +81,10 @@ public class SuggestedDestinationActivity extends Activity {
         cityItems = new ArrayList<>();
         imageBackButton = findViewById(R.id.imageBackButton);
         suggestedPlace = findViewById(R.id.suggestedPlace);
-        editPreferredDest = findViewById(R.id.editPreferredDest);
+        editPreferredDest = findViewById(R.id.editPreferredDest1);
         nestedScrollView = findViewById(R.id.nestedScrollView);
         recyclerView = findViewById(R.id.recyclerView);
+        noResultsLayout = findViewById(R.id.noResultsLayoutSuggest);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         placeItemList = new ArrayList<>();
         buttonCancel = findViewById(R.id.buttonCancel);
@@ -95,46 +93,36 @@ public class SuggestedDestinationActivity extends Activity {
             editPreferredDest.setText("");
         });
 
-        imageBackButton.setOnClickListener(v -> {
-            onBackPressed();
-        });
-
-        recyclerView.setAdapter(cityItemCardAdapter);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         preferencesEdittext = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         user_id = preferences.getString("user_id", "empty user_id");
-        getSuggestDest();
+        getAllCity(() -> {
+            getAllHotel(() -> {
 
-        getAllHotel(() -> {
-            getAllCity(() -> {
-                adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
-                    @Override
-                    public void go(String hotel_id, String city_id, String reservation_id) {
-                        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("destination", editPreferredDest.getText().toString());
-                        editor.putString("destinationID", city_id);
-                        editor.putBoolean("search", true);
-                        editor.apply();
-                        onBackPressed();
-                        Log.d("Share", "in getAll" );
-                        for (int i = 0; i < placeItemList.size(); i++) {
-                            if (Objects.equals(placeItemList.get(i).getType(), PlaceType.HOTEL.getDisplayName())) {
-                                Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
-                                intent.putExtra("hotel_id", hotel_id);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-                });
-
-                Log.d("PlaceItem", String.valueOf(placeItemList.size()));
             });
+        });
+        adapter = new CustomAdapter(getApplicationContext(), placeItemList, new SendID() {
+            @Override
+            public void go(String hotel_id, String city_id, String reservation_id) {
+                if (hotel_id != null) {
+                    Intent intent = new Intent(getApplicationContext(), ViewHotel.class);
+                    intent.putExtra("hotel_id", hotel_id);
+                    startActivity(intent);
+                }
+                else {
+                    setBackPage(city_id, adapter.getData(0).getName(), true);
+                }
+            }
         });
         editPreferredDest.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                if (editPreferredDest.toString() != "") {
+                    Log.d("charSequence", editPreferredDest.getText().toString());
+                    adapter.getFilter().filter(editPreferredDest.getText().toString());
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
+                }
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -145,12 +133,23 @@ public class SuggestedDestinationActivity extends Activity {
                 String searchText = editable.toString().trim();
                 if (searchText.isEmpty()) {
                     recyclerView.setAdapter(cityItemCardAdapter);
+                    noResultsLayout.setVisibility(View.GONE);
+                    nestedScrollView.setVisibility(View.VISIBLE);
                 }
                 else {
                     try {
                         adapter.getFilter().filter(searchText);
-                        adapter.notifyDataSetChanged();
-                        recyclerView.setAdapter(adapter);
+                        if (adapter.getItemCount() == 0) {
+                            Log.d("adapter", "empty");
+                            noResultsLayout.setVisibility(View.VISIBLE);
+                            nestedScrollView.setVisibility(View.GONE);
+                        }
+                        else {
+                            noResultsLayout.setVisibility(View.GONE);
+                            nestedScrollView.setVisibility(View.VISIBLE);
+                            adapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(adapter);
+                        }
                     }
                     catch (Exception e) {
                         Log.d("exception", e.getMessage().toString());
@@ -161,22 +160,20 @@ public class SuggestedDestinationActivity extends Activity {
         imageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
                 Log.d("Share", "in Back Button" );
                 String editTextContent = editPreferredDest.getText().toString();
-                SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("destination", editTextContent);
-                editor.putBoolean("search", false);
-                editor.apply();
-                onBackPressed();
+                setBackPage("", editTextContent, true);
             }
         });
     }
 
     public void getSuggestDest() {
-         Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
-         call.enqueue(new Callback<List<SearchHotelItem>>() {
+        Call<List<SearchHotelItem>> call = apiService.getSuggestedHotel(user_id);
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
+        call.enqueue(new Callback<List<SearchHotelItem>>() {
+
              @Override
              public void onResponse(@NonNull Call<List<SearchHotelItem>> call, @NonNull Response<List<SearchHotelItem>> response) {
                  if (response.isSuccessful()) {
@@ -200,14 +197,7 @@ public class SuggestedDestinationActivity extends Activity {
                              if (Objects.equals(editTextContent, "")) {
                                  editTextContent = "No CITY";
                              }
-                             SharedPreferences.Editor editor = preferencesEdittext.edit();
-                             editor.putString("destination", editTextContent);
-                             editor.putString("destinationID", city_id);
-                             editor.putBoolean("search", true);
-                             editor.apply();
-                             onBackPressed();
-                             Log.d("Share", "in suggest_dest" );
-
+                             setBackPage(city_id, editTextContent.toString(), true);
                          }
                      });
                      recyclerView.setAdapter(cityItemCardAdapter);
@@ -221,57 +211,19 @@ public class SuggestedDestinationActivity extends Activity {
              }
          });
     }
-//    public void getSuggestDest() {
-//         Call<List<CityItem>> call = apiService.getSuggestedCity();
-//         call.enqueue(new Callback<List<CityItem>>() {
-//             @Override
-//             public void onResponse(@NonNull Call<List<CityItem>> call, @NonNull Response<List<CityItem>> response) {
-//                 if (response.isSuccessful()) {
-//                     if  (response.body() == null) {
-//                         Log.d("Content", "Empty content");
-//                         Toast.makeText(getApplicationContext(), "Empty content", Toast.LENGTH_LONG).show();
-//                     }
-//                     cityItems = (ArrayList<CityItem>) response.body();
-//                     for (int i = 0; i < response.body().size(); i++ ) {
-//                         Log.d("cityItems", response.body().get(i).getCityName());
-//                     }
-//                     cityItemCardAdapter = new CityItemCardAdapter(getApplicationContext(), cityItems, new SendID() {
-//                         String editTextContent = "";
-//                         @Override
-//                         public void go(String hotel_id, String city_id, String reservation_id) {
-//                             for (int i = 0; i < cityItems.size(); i++) {
-//                                 if (Objects.equals(cityItems.get(i).getCityId(), city_id)) {
-//                                     editTextContent =cityItems.get(i).getCityName();
-//                                 }
-//                             }
-//                             if (Objects.equals(editTextContent, "")) {
-//                                 editTextContent = "No CITY";
-//                             }
-//                             SharedPreferences.Editor editor = preferencesEdittext.edit();
-//                             editor.putString("destination", editTextContent);
-//                             editor.putString("destinationID", city_id);
-//                             editor.putBoolean("search", true);
-//                             editor.apply();
-//                             onBackPressed();
-//                             Log.d("Share", "in suggest_dest" );
-//
-//                         }
-//                     });
-//                     recyclerView.setAdapter(cityItemCardAdapter);
-//                 }
-//             }
-//
-//             @Override
-//             public void onFailure(Call<List<CityItem>> call, Throwable t) {
-//                 Log.d("call", t.toString());
-//                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
-//             }
-//         });
-//     }
+
 
     @Override
     protected void onResume() {
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
         super.onResume();
+        if (editPreferredDest.getText().toString().equals("")) {
+            Log.d("editPreferredDest", editPreferredDest.getText().toString());
+            getSuggestDest();
+            recyclerView.setAdapter(cityItemCardAdapter);
+        }
         Map<String, ?> allPreferences = preferencesEdittext.getAll();
 
         for (Map.Entry<String, ?> entry : allPreferences.entrySet()) {
@@ -284,6 +236,7 @@ public class SuggestedDestinationActivity extends Activity {
     }
 
     private void getAllCity(DataLoadedCallback callback) {
+        nestedScrollView.setVisibility(View.VISIBLE);
         Call<List<CityItem>> call = apiService.getAllCity();
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
@@ -305,6 +258,8 @@ public class SuggestedDestinationActivity extends Activity {
                     placeItem.setType(PlaceType.CITY.getDisplayName());
                     placeItemList.add(placeItem);
                 }
+                adapter.notifyDataSetChanged();
+
                 callback.onDataLoaded();
             }
 
@@ -331,6 +286,9 @@ public class SuggestedDestinationActivity extends Activity {
         );
     }
     private void getAllHotel(DataLoadedCallback callback) {
+        nestedScrollView.setVisibility(View.VISIBLE);
+        noResultsLayout.setVisibility(View.GONE);
+
         Call<List<HotelItem>> call = apiService.getAllHotel();
         String requestUrl = call.request().url().toString();
         Log.d("Request URL", requestUrl);
@@ -352,13 +310,13 @@ public class SuggestedDestinationActivity extends Activity {
                     PlaceItem placeItem = new PlaceItem();
                     placeItem.setName(hotelItem.getName());
                     placeItem.setHotel_id(hotelItem.getHotelId());
-//                    if (hotelItem.getLocation() != null && hotelItem.getLocation().getAddress() != null) {
                     placeItem.setCountry(hotelItem.getCountry());
-//                    }
                     placeItem.setType(PlaceType.HOTEL.getDisplayName());
 
                     placeItemList.add(placeItem);
                 }
+                adapter.notifyDataSetChanged();
+
                 callback.onDataLoaded();
             }
 
@@ -383,5 +341,28 @@ public class SuggestedDestinationActivity extends Activity {
             }
         });
 
+    }
+//    @NonNull
+//    @Override
+//    public OnBackInvokedDispatcher getOnBackInvokedDispatcher() {
+//        setBackPage("", editPreferredDest.getText().toString(), true);
+//
+//        return super.getOnBackInvokedDispatcher();
+//    }
+
+    private void setBackPage(String city_id, String city_name, Boolean search) {
+        Log.d("Share", "in Back Button" );
+        SharedPreferences preferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("destination", city_name);
+        Log.d("destination send", city_name);
+        editor.putString("destinationID", city_id);
+        if (search) {
+            editor.putBoolean("search", true);
+        }else {
+            editor.putBoolean("search", false);
+        }
+        editor.apply();
+        onBackPressed();
     }
 }
