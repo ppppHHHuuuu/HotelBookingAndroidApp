@@ -89,6 +89,8 @@ public class CityFragment extends Fragment {
         imageView_1.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.putExtra("city_id", "8u8doWKXGkMc0gvXYA58");
+            intent.putExtra("city_name", "Hanoi");
+            intent.putExtra("city_country", "Vietnam");
             startActivity(intent);
 
         });
@@ -97,6 +99,8 @@ public class CityFragment extends Fragment {
         imageView_2.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.putExtra("city_id", "aSQphDmzTKedOvUrkQPR");
+            intent.putExtra("city_name", "New York");
+            intent.putExtra("city_country", "USA");
             startActivity(intent);
 
         });
@@ -106,14 +110,20 @@ public class CityFragment extends Fragment {
         imageView_3.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.putExtra("city_id", "AOLUEoqmAt5lN8IhpQ50");
+
+            intent.putExtra("city_name", "Rome");
+            intent.putExtra("city_country", "Italy");
             startActivity(intent);
         });
 
         ImageView imageView_4 = view.findViewById(R.id.image_4);
         BitmapUtil.ggDriveConverter("https://drive.google.com/file/d/1y-yjZCk44EXPaLMZkvZQW1aZ2xf8-YXj/view?usp=share_link", imageView_4);
-        imageView_3.setOnClickListener(v -> {
+        imageView_4.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ViewCity.class);
             intent.putExtra("city_id", "a3gN4bdOKVEgpEjxi5nU");
+
+            intent.putExtra("city_name", "Paris");
+            intent.putExtra("city_country", "France");
             startActivity(intent);
 
         });
