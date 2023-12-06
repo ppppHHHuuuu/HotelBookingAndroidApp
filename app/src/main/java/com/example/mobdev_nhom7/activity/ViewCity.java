@@ -56,8 +56,6 @@ public class ViewCity extends AppCompatActivity {
         String url = "https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAdUoMDI1hncAN7nJF3wa4QSaAyLts3jyBu2Tc96Z2gbTuPdaWJ2HK0hRA0Sg-uEdz4CdtmWMOYYezle54tnMFe4eaU=w1920-h892";
         Glide.with(this).load(url).centerCrop().into(cityImage);
 
-
-
         restaurants = new ArrayList<>();
         cardRestaurantAdapter = new CardRestaurantAdapter(getApplicationContext(), (ArrayList<Restaurant>) restaurants);
         restaurantsRecyclerView = findViewById(R.id.restaurantsRV);
